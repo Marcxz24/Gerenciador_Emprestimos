@@ -1,22 +1,39 @@
 ﻿using Gerenciador_de_Emprestimos.Database;
 using MySql.Data.MySqlClient;
+using Mysqlx;
 using System.Data;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace Gerenciador_de_Emprestimos
 {
     public partial class formSelecionarCliente : Form
     {
-        DataTable dataTable = new DataTable();
-
         public formSelecionarCliente()
         {
             InitializeComponent();
         }
 
+        // Oque seria essas implementações dos campos de filtrar cliente?
+
+        // Dificuldade para entender o processo de SELECT no programa, sem implementar no DataGrid e como chamar.
         private void btnSelecionarCliente_Click(object sender, EventArgs e)
         {
-            dataTable = SelecionarCliente.GetClientes(true);
-            dataGridClientes.DataSource = dataTable;
+            string selectBd = $"SELECT codigo, nome_cliente, genero, celular, situacao_cadastral, cpf_cnpj FROM emprestimosbd.cliente;";
+
+            var conexao = ConexaoBancoDeDados.Conectar();
+
+            if (conexao.State != ConnectionState.Open)
+            {
+                conexao.Open();
+            }
+
+            using (var dataAdapter = new MySqlDataAdapter(selectBd, conexao))
+            {
+                DataTable dataTable = new DataTable();
+                dataAdapter.Fill(dataTable);
+
+                dataGridClientes.DataSource = dataTable;
+            }
         }
 
         private void btnCpfSelecionar_CheckedChanged(object sender, EventArgs e)

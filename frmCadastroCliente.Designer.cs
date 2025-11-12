@@ -269,6 +269,7 @@
             // 
             MaskedTxtCpfCnpjCliente.BeepOnError = true;
             MaskedTxtCpfCnpjCliente.Location = new Point(314, 52);
+            MaskedTxtCpfCnpjCliente.Mask = "000,000,000-00";
             MaskedTxtCpfCnpjCliente.Name = "MaskedTxtCpfCnpjCliente";
             MaskedTxtCpfCnpjCliente.ReadOnly = true;
             MaskedTxtCpfCnpjCliente.Size = new Size(249, 25);

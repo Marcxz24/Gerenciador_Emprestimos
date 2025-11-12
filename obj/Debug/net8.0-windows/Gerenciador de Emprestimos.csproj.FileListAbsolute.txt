@@ -36,3 +36,4 @@ C:\GerenciadorEmprestimos\Gerenciador de Emprestimos\bin\Debug\net8.0-windows\ru
 C:\GerenciadorEmprestimos\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador de Emprestimos.csproj.AssemblyReference.cache
 C:\GerenciadorEmprestimos\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerencia.441AA974.Up2Date
 C:\GerenciadorEmprestimos\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.formSelecionarCliente.resources
+C:\GerenciadorEmprestimos\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador de Emprestimos.sourcelink.json

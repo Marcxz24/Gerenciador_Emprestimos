@@ -25,108 +25,65 @@ namespace Gerenciador_de_Emprestimos
             }
         }
 
-        private void SumirBotoes()
+        // Função que gerencia os campos do formulário.
+        private void GerenciarBotoesCampos(bool OcultarBotoes, bool ManifestarBotoes, bool LimparCampos)
         {
-            btnNovoCadastro.Visible = false;
-            btnEditarCadastro.Visible = false;
-            btnPesquisarCliente.Visible = false;
-            btnFecharForm.Visible = false;
-        }
+            comboBoxSituacaoCadastral.Enabled = ManifestarBotoes;
+            txtNomeCliente.ReadOnly = !ManifestarBotoes;
+            btnRadioCpf.Enabled = ManifestarBotoes;
+            btnRadioCnpj.Enabled = ManifestarBotoes;
+            MaskedTxtCpfCnpjCliente.ReadOnly = !ManifestarBotoes;
+            btnRadioMasculino.Enabled = ManifestarBotoes;
+            btnRadioFeminino.Enabled = ManifestarBotoes;
+            btnRadioGeneroOutros.Enabled = ManifestarBotoes;
+            comboBoxEstadoCivil.Enabled = ManifestarBotoes;
+            txtCidadeCliente.ReadOnly = !ManifestarBotoes;
+            comboBoxEstadoUF.Enabled = ManifestarBotoes;
+            txtEnderecoCliente.ReadOnly = !ManifestarBotoes;
+            txtBairroCliente.ReadOnly = !ManifestarBotoes;
+            txtNumeroResidencia.ReadOnly = !ManifestarBotoes;
+            MaskedTxtCepCliente.ReadOnly = !ManifestarBotoes;
+            MaskedTxtCelularCliente.ReadOnly = !ManifestarBotoes;
+            txtEmailCliente.ReadOnly = !ManifestarBotoes;
+            txtObservacoes.ReadOnly = !ManifestarBotoes;
 
-        private void AparecerBotoes()
-        {
-            btnNovoCadastro.Visible = true;
-            btnFecharForm.Visible = true;
-            btnEditarCadastro.Visible = true;
-            btnPesquisarCliente.Visible = true;
-        }
+            if (LimparCampos)
+            {
+                comboBoxSituacaoCadastral.SelectedIndex = -1;
+                txtNomeCliente.Clear();
+                btnRadioCpf.Checked = false;
+                btnRadioCnpj.Checked = false;
+                MaskedTxtCpfCnpjCliente.Clear();
+                btnRadioMasculino.Checked = false;
+                btnRadioFeminino.Checked = false;
+                btnRadioGeneroOutros.Checked = false;
+                comboBoxEstadoCivil.SelectedIndex = -1;
+                txtCidadeCliente.Clear();
+                comboBoxEstadoUF.SelectedIndex = -1;
+                txtEnderecoCliente.Clear();
+                txtBairroCliente.Clear();
+                txtNumeroResidencia.Clear();
+                MaskedTxtCepCliente.Clear();
+                MaskedTxtCelularCliente.Clear();
+                txtEmailCliente.Clear();
+                txtObservacoes.Clear();
+                txtCodigoCliente.Clear();
+            }
 
-        private void LimparCampos()
-        {
-            comboBoxSituacaoCadastral.SelectedIndex = -1;
-            txtNomeCliente.Clear();
-            btnRadioCpf.Checked = false;
-            btnRadioCnpj.Checked = false;
-            MaskedTxtCpfCnpjCliente.Clear();
-            btnRadioMasculino.Checked = false;
-            btnRadioFeminino.Checked = false;
-            btnRadioGeneroOutros.Checked = false;
-            comboBoxEstadoCivil.SelectedIndex = -1;
-            txtCidadeCliente.Clear();
-            comboBoxEstadoUF.SelectedIndex = -1;
-            txtEnderecoCliente.Clear();
-            txtBairroCliente.Clear();
-            txtNumeroResidencia.Clear();
-            MaskedTxtCepCliente.Clear();
-            MaskedTxtCelularCliente.Clear();
-            txtEmailCliente.Clear();
-            txtObservacoes.Clear();
-        }
-
-        private void BloquearCampos()
-        {
-            comboBoxSituacaoCadastral.Enabled = false;
-            txtNomeCliente.ReadOnly = true;
-            btnRadioCpf.Enabled = false;
-            btnRadioCnpj.Enabled = false;
-            MaskedTxtCpfCnpjCliente.ReadOnly = true;
-            btnRadioMasculino.Enabled = false;
-            btnRadioFeminino.Enabled = false;
-            btnRadioGeneroOutros.Enabled = false;
-            comboBoxEstadoCivil.Enabled = false;
-            txtCidadeCliente.ReadOnly = true;
-            comboBoxEstadoUF.Enabled = false;
-            txtEnderecoCliente.ReadOnly = true;
-            txtBairroCliente.ReadOnly = true;
-            txtNumeroResidencia.ReadOnly = true;
-            MaskedTxtCepCliente.ReadOnly = true;
-            MaskedTxtCelularCliente.ReadOnly = true;
-            txtEmailCliente.ReadOnly = true;
-            txtObservacoes.ReadOnly = true;
-        }
-
-        private void DesbloquearCampos()
-        {
-            comboBoxSituacaoCadastral.Enabled = true;
-            txtNomeCliente.ReadOnly = false;
-            btnRadioCpf.Enabled = true;
-            btnRadioCnpj.Enabled = true;
-            MaskedTxtCpfCnpjCliente.ReadOnly = false;
-            btnRadioMasculino.Enabled = true;
-            btnRadioFeminino.Enabled = true;
-            btnRadioGeneroOutros.Enabled = true;
-            comboBoxEstadoCivil.Enabled = true;
-            txtCidadeCliente.ReadOnly = false;
-            comboBoxEstadoUF.Enabled = true;
-            txtEnderecoCliente.ReadOnly = false;
-            txtBairroCliente.ReadOnly = false;
-            txtNumeroResidencia.ReadOnly = false;
-            MaskedTxtCepCliente.ReadOnly = false;
-            MaskedTxtCelularCliente.ReadOnly = false;
-            txtEmailCliente.ReadOnly = false;
-            txtObservacoes.ReadOnly = false;
+            btnNovoCadastro.Visible = !OcultarBotoes;
+            btnEditarCadastro.Visible = !OcultarBotoes;
+            btnPesquisarCliente.Visible = !OcultarBotoes;
+            btnFecharForm.Visible = !OcultarBotoes;
         }
 
         private void btnNovoCadastro_Click(object sender, EventArgs e)
         {
-            LimparCampos();
-
-            // liberar os campos
-            DesbloquearCampos();
-
-            SumirBotoes();
+            GerenciarBotoesCampos(OcultarBotoes: true, ManifestarBotoes: true, LimparCampos: true);
         }
 
         private void btnCancelarCadastro_Click(object sender, EventArgs e)
         {
-            //bloquear os campos
-            BloquearCampos();
-
-            // limpar os campos
-            LimparCampos();
-
-            // Sumir Botoes
-            AparecerBotoes();
+            GerenciarBotoesCampos(OcultarBotoes: false, ManifestarBotoes: false, LimparCampos: true);
         }
 
         private void btnSalvarCadastroCliente_Click(object sender, EventArgs e)
@@ -138,11 +95,7 @@ namespace Gerenciador_de_Emprestimos
 
             SalvarCadastro();
 
-            //bloquear os campos
-            BloquearCampos();
-
-            // aparecer botoes
-            AparecerBotoes();
+            GerenciarBotoesCampos(OcultarBotoes: false, ManifestarBotoes: false, LimparCampos: false);
         }
 
         private void SalvarCadastro()
@@ -206,6 +159,9 @@ namespace Gerenciador_de_Emprestimos
                 insertBd.Parameters.AddWithValue("@data_cadastro", DateTime.Now);
 
                 insertBd.ExecuteNonQuery();
+
+                insertBd.CommandText = "SELECT @@IDENTITY";
+                txtCodigoCliente.Text =  insertBd.ExecuteScalar().ToString();
             }
         }
 
