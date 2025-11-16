@@ -47,6 +47,12 @@
             btnSelecionarCliente = new Button();
             btnFecharForm = new Button();
             dataGridClientes = new DataGridView();
+            lblBairro = new Label();
+            txtBairro = new TextBox();
+            lblEndereco = new Label();
+            txtEndereco = new TextBox();
+            lblNumeroResidencia = new Label();
+            txtNumeroResidencia = new TextBox();
             groupBoxFiltrosCliente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridClientes).BeginInit();
             SuspendLayout();
@@ -65,6 +71,12 @@
             // groupBoxFiltrosCliente
             // 
             groupBoxFiltrosCliente.BackColor = Color.Transparent;
+            groupBoxFiltrosCliente.Controls.Add(txtNumeroResidencia);
+            groupBoxFiltrosCliente.Controls.Add(lblNumeroResidencia);
+            groupBoxFiltrosCliente.Controls.Add(txtEndereco);
+            groupBoxFiltrosCliente.Controls.Add(lblEndereco);
+            groupBoxFiltrosCliente.Controls.Add(txtBairro);
+            groupBoxFiltrosCliente.Controls.Add(lblBairro);
             groupBoxFiltrosCliente.Controls.Add(comboBoxSituacaoCadastralSelecionar);
             groupBoxFiltrosCliente.Controls.Add(lblSituacaoCadastralSelecionar);
             groupBoxFiltrosCliente.Controls.Add(maskedCpfCnpj);
@@ -81,7 +93,7 @@
             groupBoxFiltrosCliente.Font = new Font("Arial Rounded MT Bold", 9F);
             groupBoxFiltrosCliente.Location = new Point(14, 10);
             groupBoxFiltrosCliente.Name = "groupBoxFiltrosCliente";
-            groupBoxFiltrosCliente.Size = new Size(807, 156);
+            groupBoxFiltrosCliente.Size = new Size(807, 188);
             groupBoxFiltrosCliente.TabIndex = 2;
             groupBoxFiltrosCliente.TabStop = false;
             // 
@@ -261,6 +273,60 @@
             dataGridClientes.Size = new Size(807, 456);
             dataGridClientes.TabIndex = 6;
             // 
+            // lblBairro
+            // 
+            lblBairro.AutoSize = true;
+            lblBairro.BackColor = Color.Transparent;
+            lblBairro.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblBairro.Location = new Point(7, 128);
+            lblBairro.Name = "lblBairro";
+            lblBairro.Size = new Size(62, 22);
+            lblBairro.TabIndex = 15;
+            lblBairro.Text = "Bairro";
+            // 
+            // txtBairro
+            // 
+            txtBairro.Location = new Point(7, 153);
+            txtBairro.Name = "txtBairro";
+            txtBairro.Size = new Size(267, 25);
+            txtBairro.TabIndex = 16;
+            // 
+            // lblEndereco
+            // 
+            lblEndereco.AutoSize = true;
+            lblEndereco.BackColor = Color.Transparent;
+            lblEndereco.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblEndereco.Location = new Point(280, 128);
+            lblEndereco.Name = "lblEndereco";
+            lblEndereco.Size = new Size(88, 22);
+            lblEndereco.TabIndex = 17;
+            lblEndereco.Text = "Endereço";
+            // 
+            // txtEndereco
+            // 
+            txtEndereco.Location = new Point(280, 153);
+            txtEndereco.Name = "txtEndereco";
+            txtEndereco.Size = new Size(256, 25);
+            txtEndereco.TabIndex = 18;
+            // 
+            // lblNumeroResidencia
+            // 
+            lblNumeroResidencia.AutoSize = true;
+            lblNumeroResidencia.BackColor = Color.Transparent;
+            lblNumeroResidencia.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNumeroResidencia.Location = new Point(543, 129);
+            lblNumeroResidencia.Name = "lblNumeroResidencia";
+            lblNumeroResidencia.Size = new Size(125, 22);
+            lblNumeroResidencia.TabIndex = 19;
+            lblNumeroResidencia.Text = "N° Residencia";
+            // 
+            // txtNumeroResidencia
+            // 
+            txtNumeroResidencia.Location = new Point(543, 153);
+            txtNumeroResidencia.Name = "txtNumeroResidencia";
+            txtNumeroResidencia.Size = new Size(200, 25);
+            txtNumeroResidencia.TabIndex = 20;
+            // 
             // frmSelecionarCliente
             // 
             AutoScaleDimensions = new SizeF(9F, 17F);
@@ -302,5 +368,11 @@
         private Button btnSelecionarCliente;
         private Button btnFecharForm;
         private DataGridView dataGridClientes;
+        private TextBox txtEndereco;
+        private Label lblEndereco;
+        private TextBox txtBairro;
+        private Label lblBairro;
+        private TextBox txtNumeroResidencia;
+        private Label lblNumeroResidencia;
     }
 }

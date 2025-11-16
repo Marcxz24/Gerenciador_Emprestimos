@@ -14,6 +14,7 @@ namespace Gerenciador_de_Emprestimos
             txtCodigoCliente.KeyPress += SomenteNumeros_KeyPress;
             maskedCelularSelecionar.KeyPress += SomenteNumeros_KeyPress;
             maskedCpfCnpj.KeyPress += SomenteNumeros_KeyPress;
+            txtNumeroResidencia.KeyPress += SomenteNumeros_KeyPress;
         }
 
         private void SomenteNumeros_KeyPress(object sender, KeyPressEventArgs e)
@@ -64,6 +65,24 @@ namespace Gerenciador_de_Emprestimos
                 Filtrar.Parameters.AddWithValue("@cpf_cnpj", maskedCpfCnpj.Text);
             }
 
+            if (!string.IsNullOrEmpty(txtEndereco.Text))
+            {
+                filtrosPesquisa += " AND endereco LIKE @endereco";
+                Filtrar.Parameters.AddWithValue("@endereco", "%" + txtEndereco.Text + "%");
+            }
+
+            if (!string.IsNullOrEmpty(txtBairro.Text))
+            {
+                filtrosPesquisa += " AND bairro LIKE @bairro";
+                Filtrar.Parameters.AddWithValue("@bairro", "%" + txtBairro.Text + "%");
+            }
+
+            if (!string.IsNullOrEmpty(txtNumeroResidencia.Text))
+            {
+                filtrosPesquisa += " AND numero_residencia LIKE @numero_residencia";
+                Filtrar.Parameters.AddWithValue("@numero_residencia", "%" + txtNumeroResidencia.Text + "%");
+            }
+
             return filtrosPesquisa;
         }
 
@@ -79,7 +98,7 @@ namespace Gerenciador_de_Emprestimos
             MySqlCommand comando = conexao.CreateCommand();
             string filtrosPesquisa = QuerySelecionarCliente(comando);
 
-            string selectBd = $"SELECT codigo, nome_cliente, genero, celular, situacao_cadastral, cpf_cnpj FROM emprestimosbd.cliente {filtrosPesquisa} LIMIT 10;";
+            string selectBd = $"SELECT codigo, nome_cliente, genero, celular, situacao_cadastral, cpf_cnpj, endereco, bairro, numero_residencia FROM emprestimosbd.cliente {filtrosPesquisa} LIMIT 10;";
 
             comando.CommandText = selectBd;
 
@@ -121,6 +140,9 @@ namespace Gerenciador_de_Emprestimos
         {
             txtCodigoCliente.Clear();
             txtNomeCliente.Clear();
+            txtBairro.Clear();
+            txtEndereco.Clear();
+            txtNumeroResidencia.Clear();
             maskedCelularSelecionar.Clear();
             maskedCpfCnpj.Clear();
             comboBoxGeneroCliente.SelectedIndex = -1;
