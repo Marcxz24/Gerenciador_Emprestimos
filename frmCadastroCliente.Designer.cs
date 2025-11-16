@@ -311,11 +311,13 @@
             // 
             btnRadioCpf.AutoSize = true;
             btnRadioCpf.BackColor = Color.Transparent;
+            btnRadioCpf.Checked = true;
             btnRadioCpf.Enabled = false;
             btnRadioCpf.Location = new Point(328, 18);
             btnRadioCpf.Name = "btnRadioCpf";
             btnRadioCpf.Size = new Size(66, 21);
             btnRadioCpf.TabIndex = 35;
+            btnRadioCpf.TabStop = true;
             btnRadioCpf.Text = "*CPF";
             btnRadioCpf.UseVisualStyleBackColor = false;
             btnRadioCpf.CheckedChanged += btnRadioCpf_CheckedChanged;
@@ -535,6 +537,7 @@
             btnEditarCadastro.Text = "Editar";
             btnEditarCadastro.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEditarCadastro.UseVisualStyleBackColor = false;
+            btnEditarCadastro.Click += btnEditarCadastro_Click;
             // 
             // groupBoxNomeCpfCnpj
             // 

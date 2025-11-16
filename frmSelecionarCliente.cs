@@ -6,19 +6,27 @@ using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace Gerenciador_de_Emprestimos
 {
-    public partial class formSelecionarCliente : Form
+    public partial class frmSelecionarCliente : Form
     {
-        public formSelecionarCliente()
+        public frmSelecionarCliente()
         {
             InitializeComponent();
+            txtCodigoCliente.KeyPress += SomenteNumeros_KeyPress;
+            maskedCelularSelecionar.KeyPress += SomenteNumeros_KeyPress;
+            maskedCpfCnpj.KeyPress += SomenteNumeros_KeyPress;
         }
 
-        // Oque seria essas implementações dos campos de filtrar cliente?
+        private void SomenteNumeros_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
 
-        // Dificuldade para entender o processo de SELECT no programa, sem implementar no DataGrid e como chamar.
         private void btnSelecionarCliente_Click(object sender, EventArgs e)
         {
-            string selectBd = $"SELECT codigo, nome_cliente, genero, celular, situacao_cadastral, cpf_cnpj FROM emprestimosbd.cliente;";
+            string selectBd = $"SELECT codigo, nome_cliente, genero, celular, situacao_cadastral, cpf_cnpj FROM emprestimosbd.cliente LIMIT 10;";
 
             var conexao = ConexaoBancoDeDados.Conectar();
 
@@ -38,6 +46,8 @@ namespace Gerenciador_de_Emprestimos
 
         private void btnCpfSelecionar_CheckedChanged(object sender, EventArgs e)
         {
+            maskedCpfCnpj.Clear();
+
             if (btnCpfSelecionar.Checked == true)
             {
                 maskedCpfCnpj.Mask = "000,000,000-00";
@@ -46,6 +56,8 @@ namespace Gerenciador_de_Emprestimos
 
         private void btnCnpjSelecionar_CheckedChanged(object sender, EventArgs e)
         {
+            maskedCpfCnpj.Clear();
+
             if (btnCnpjSelecionar.Checked == true)
             {
                 maskedCpfCnpj.Mask = "00,000,000/0000-00";
@@ -63,9 +75,9 @@ namespace Gerenciador_de_Emprestimos
             txtNomeCliente.Clear();
             maskedCelularSelecionar.Clear();
             maskedCpfCnpj.Clear();
-            comboBoxGeneroCliente.Items.Clear();
-            comboBoxSituacaoCadastralSelecionar.Items.Clear();
-            btnCpfSelecionar.Checked = false;
+            comboBoxGeneroCliente.SelectedIndex = -1;
+            comboBoxSituacaoCadastralSelecionar.SelectedIndex = -1;
+            btnCpfSelecionar.Checked = true;
             btnCnpjSelecionar.Checked = false;
         }
     }

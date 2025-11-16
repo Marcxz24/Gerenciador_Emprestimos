@@ -1,6 +1,6 @@
 ﻿namespace Gerenciador_de_Emprestimos
 {
-    partial class formSelecionarCliente
+    partial class frmSelecionarCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formSelecionarCliente));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSelecionarCliente));
             lblCodigoClienteSelecionar = new Label();
             groupBoxFiltrosCliente = new GroupBox();
             comboBoxSituacaoCadastralSelecionar = new ComboBox();
@@ -89,7 +89,7 @@
             // 
             comboBoxSituacaoCadastralSelecionar.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxSituacaoCadastralSelecionar.FormattingEnabled = true;
-            comboBoxSituacaoCadastralSelecionar.Items.AddRange(new object[] { "ATIVO", "INATIVO" });
+            comboBoxSituacaoCadastralSelecionar.Items.AddRange(new object[] { "ATIVO", "INATIVO", "TODOS" });
             comboBoxSituacaoCadastralSelecionar.Location = new Point(574, 41);
             comboBoxSituacaoCadastralSelecionar.Name = "comboBoxSituacaoCadastralSelecionar";
             comboBoxSituacaoCadastralSelecionar.Size = new Size(169, 25);
@@ -109,6 +109,7 @@
             // maskedCpfCnpj
             // 
             maskedCpfCnpj.Location = new Point(371, 101);
+            maskedCpfCnpj.Mask = "000,000,000-00";
             maskedCpfCnpj.Name = "maskedCpfCnpj";
             maskedCpfCnpj.Size = new Size(248, 25);
             maskedCpfCnpj.TabIndex = 12;
@@ -121,7 +122,6 @@
             btnCnpjSelecionar.Name = "btnCnpjSelecionar";
             btnCnpjSelecionar.Size = new Size(77, 26);
             btnCnpjSelecionar.TabIndex = 11;
-            btnCnpjSelecionar.TabStop = true;
             btnCnpjSelecionar.Text = "CNPJ";
             btnCnpjSelecionar.UseVisualStyleBackColor = true;
             btnCnpjSelecionar.CheckedChanged += btnCnpjSelecionar_CheckedChanged;
@@ -129,6 +129,7 @@
             // btnCpfSelecionar
             // 
             btnCpfSelecionar.AutoSize = true;
+            btnCpfSelecionar.Checked = true;
             btnCpfSelecionar.Font = new Font("Arial Black", 9F, FontStyle.Bold);
             btnCpfSelecionar.Location = new Point(387, 77);
             btnCpfSelecionar.Name = "btnCpfSelecionar";
@@ -162,7 +163,7 @@
             // 
             comboBoxGeneroCliente.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxGeneroCliente.FormattingEnabled = true;
-            comboBoxGeneroCliente.Items.AddRange(new object[] { "Masculino", "Feminino", "Outros" });
+            comboBoxGeneroCliente.Items.AddRange(new object[] { "Masculino", "Feminino", "Outros", "Todos" });
             comboBoxGeneroCliente.Location = new Point(174, 41);
             comboBoxGeneroCliente.Name = "comboBoxGeneroCliente";
             comboBoxGeneroCliente.Size = new Size(169, 25);

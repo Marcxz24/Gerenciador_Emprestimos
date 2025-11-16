@@ -51,7 +51,7 @@ namespace Gerenciador_de_Emprestimos
             {
                 comboBoxSituacaoCadastral.SelectedIndex = -1;
                 txtNomeCliente.Clear();
-                btnRadioCpf.Checked = false;
+                btnRadioCpf.Checked = true;
                 btnRadioCnpj.Checked = false;
                 MaskedTxtCpfCnpjCliente.Clear();
                 btnRadioMasculino.Checked = false;
@@ -98,6 +98,25 @@ namespace Gerenciador_de_Emprestimos
             GerenciarBotoesCampos(OcultarBotoes: false, ManifestarBotoes: false, LimparCampos: false);
         }
 
+        private void btnEditarCadastro_Click(object sender, EventArgs e)
+        {
+            GerenciarBotoesCampos(OcultarBotoes: true, ManifestarBotoes: true, LimparCampos: true);
+        }
+
+        private bool validarCpfCadastrado(string cpf)
+        {
+            var conexao = ConexaoBancoDeDados.Conectar();
+
+            using (var selectBd = conexao.CreateCommand())
+            {
+                selectBd.CommandText = "SELECT COUNT(*) FROM emprestimosbd.cliente WHERE cpf_cnpj = @cpf";
+                selectBd.Parameters.AddWithValue("@cpf", cpf);
+
+                int quantidadeCpf = Convert.ToInt32(selectBd.ExecuteScalar());
+                return quantidadeCpf > 0;
+            }
+        }
+
         private void SalvarCadastro()
         {
 
@@ -105,7 +124,7 @@ namespace Gerenciador_de_Emprestimos
 
             using (MySqlCommand insertBd = conexao.CreateCommand())
             {
-                insertBd.CommandText = "INSERT INTO cliente (nome_cliente, cpf_cnpj, genero, estado_civil, endereco, bairro, cidade, uf, numero_residencia, cep, celular, email, observacoes, situacao_cadastral, imagem, data_cadastro) VALUES(@nome_cliente, @cpf_cnpj, @genero, @estado_civil, @endereco, @bairro, @cidade, @uf, @numero_residencia, @cep, @celular, @email, @observacoes, @situacao_cadastral, @imagem, @data_cadastro)";
+                insertBd.CommandText = "INSERT INTO emprestimosbd.cliente (nome_cliente, cpf_cnpj, genero, estado_civil, endereco, bairro, cidade, uf, numero_residencia, cep, celular, email, observacoes, situacao_cadastral, imagem, data_cadastro) VALUES(@nome_cliente, @cpf_cnpj, @genero, @estado_civil, @endereco, @bairro, @cidade, @uf, @numero_residencia, @cep, @celular, @email, @observacoes, @situacao_cadastral, @imagem, @data_cadastro)";
 
 
                 insertBd.Parameters.AddWithValue("@nome_cliente", txtNomeCliente.Text);
@@ -161,7 +180,7 @@ namespace Gerenciador_de_Emprestimos
                 insertBd.ExecuteNonQuery();
 
                 insertBd.CommandText = "SELECT @@IDENTITY";
-                txtCodigoCliente.Text =  insertBd.ExecuteScalar().ToString();
+                txtCodigoCliente.Text = insertBd.ExecuteScalar().ToString();
             }
         }
 
@@ -169,8 +188,8 @@ namespace Gerenciador_de_Emprestimos
         {
             if (string.IsNullOrEmpty(comboBoxSituacaoCadastral.Text))
             {
-                MessageBox.Show("Tentativa de INSERT INTO em valores NOT NULL\n\nCampo: Situação Cadastral",
-                    "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Situação Cadastral",
+                "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 comboBoxSituacaoCadastral.Focus();
 
@@ -179,8 +198,8 @@ namespace Gerenciador_de_Emprestimos
 
             if (string.IsNullOrWhiteSpace(txtNomeCliente.Text))
             {
-                MessageBox.Show("Tentativa de INSERT INTO em valores NOT NULL\n\nCampo: Nome do Cliente",
-                    "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Nome do Cliente",
+                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 txtNomeCliente.Focus();
 
@@ -189,8 +208,8 @@ namespace Gerenciador_de_Emprestimos
 
             if (btnRadioCpf.Checked == false && btnRadioCnpj.Checked == false)
             {
-                MessageBox.Show("Tentativa de INSERT INTO em valores NOT NULL\n\nCampo: CPF/CNPJ",
-                    "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: CPF/CNPJ",
+                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 MaskedTxtCpfCnpjCliente.Focus();
                 return true;
@@ -198,26 +217,32 @@ namespace Gerenciador_de_Emprestimos
 
             if (string.IsNullOrWhiteSpace(MaskedTxtCpfCnpjCliente.Text))
             {
-                MessageBox.Show("Tentativa de INSERT INTO em valores NOT NULL\n\nCampo: CPF/CNPJ",
-                    "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: CPF/CNPJ",
+                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 MaskedTxtCpfCnpjCliente.Focus();
 
                 return true;
             }
 
+            if (validarCpfCadastrado(MaskedTxtCpfCnpjCliente.Text))
+            {
+                MessageBox.Show("Já Existe um Cliente com este CPF Cadastrado", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return true;
+            }
+
             if (btnRadioMasculino.Checked == false && btnRadioFeminino.Checked == false && btnRadioGeneroOutros.Checked == false)
             {
-                MessageBox.Show("Tentativa de INSERT INTO em valores NOT NULL\n\nCampo: Gênero",
-                    "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Botão de Genêro não Marcado, por favor Marque!\n\nCampo: Gênero",
+                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 return true;
             }
 
             if (string.IsNullOrWhiteSpace(txtEnderecoCliente.Text))
             {
-                MessageBox.Show("Tentativa de INSERT INTO em valores NOT NULL\n\nCampo: Endereço",
-                    "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Endereço",
+                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 txtEnderecoCliente.Focus();
 
@@ -226,8 +251,8 @@ namespace Gerenciador_de_Emprestimos
 
             if (string.IsNullOrWhiteSpace(txtBairroCliente.Text))
             {
-                MessageBox.Show("Tentativa de INSERT INTO em valores NOT NULL\n\nCampo: Bairro",
-                    "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Bairro",
+                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 txtBairroCliente.Focus();
 
@@ -236,8 +261,8 @@ namespace Gerenciador_de_Emprestimos
 
             if (string.IsNullOrWhiteSpace(txtCidadeCliente.Text))
             {
-                MessageBox.Show("Tentativa de INSERT INTO em valores NOT NULL\n\nCampo: Cidade",
-                    "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Cidade",
+                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 txtCidadeCliente.Focus();
 
@@ -246,8 +271,8 @@ namespace Gerenciador_de_Emprestimos
 
             if (string.IsNullOrWhiteSpace(comboBoxEstadoUF.Text))
             {
-                MessageBox.Show("Tentativa de INSERT INTO em valores NOT NULL\n\nCampo: UF",
-                    "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: UF",
+                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 comboBoxEstadoUF.Focus();
 
@@ -256,8 +281,8 @@ namespace Gerenciador_de_Emprestimos
 
             if (string.IsNullOrWhiteSpace(txtNumeroResidencia.Text))
             {
-                MessageBox.Show("Tentativa de INSERT INTO em valores NOT NULL\n\nCampo: Número da Residência",
-                    "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Número da Residência",
+                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 txtNumeroResidencia.Focus();
 
@@ -266,8 +291,8 @@ namespace Gerenciador_de_Emprestimos
 
             if (string.IsNullOrWhiteSpace(MaskedTxtCepCliente.Text))
             {
-                MessageBox.Show("Tentativa de INSERT INTO em valores NOT NULL\n\nCampo: CEP",
-                    "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: CEP",
+                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 MaskedTxtCepCliente.Focus();
 
@@ -279,7 +304,7 @@ namespace Gerenciador_de_Emprestimos
 
         private void btnPesquisarCliente_Click(object sender, EventArgs e)
         {
-            formSelecionarCliente formPesquisarCliente = new formSelecionarCliente();
+            frmSelecionarCliente formPesquisarCliente = new frmSelecionarCliente();
             formPesquisarCliente.ShowDialog();
         }
 
