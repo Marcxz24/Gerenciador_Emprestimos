@@ -113,6 +113,7 @@
             maskedCpfCnpj.Name = "maskedCpfCnpj";
             maskedCpfCnpj.Size = new Size(248, 25);
             maskedCpfCnpj.TabIndex = 12;
+            maskedCpfCnpj.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             // 
             // btnCnpjSelecionar
             // 
@@ -147,6 +148,7 @@
             maskedCelularSelecionar.Name = "maskedCelularSelecionar";
             maskedCelularSelecionar.Size = new Size(166, 25);
             maskedCelularSelecionar.TabIndex = 9;
+            maskedCelularSelecionar.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             // 
             // lblCelularClienteSelecionar
             // 
@@ -259,7 +261,7 @@
             dataGridClientes.Size = new Size(807, 456);
             dataGridClientes.TabIndex = 6;
             // 
-            // formSelecionarCliente
+            // frmSelecionarCliente
             // 
             AutoScaleDimensions = new SizeF(9F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -272,7 +274,7 @@
             Controls.Add(groupBoxFiltrosCliente);
             Font = new Font("Arial Rounded MT Bold", 9F);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "formSelecionarCliente";
+            Name = "frmSelecionarCliente";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Selecionar Cliente";
             groupBoxFiltrosCliente.ResumeLayout(false);
