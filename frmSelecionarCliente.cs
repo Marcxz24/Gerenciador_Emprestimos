@@ -65,6 +65,12 @@ namespace Gerenciador_de_Emprestimos
                 Filtrar.Parameters.AddWithValue("@cpf_cnpj", maskedCpfCnpj.Text);
             }
 
+            if (!string.IsNullOrEmpty(txtCidade.Text))
+            {
+                filtrosPesquisa += " AND cidade LIKE @cidade";
+                Filtrar.Parameters.AddWithValue("@cidade", "%" + txtCidade.Text + "%");
+            }
+
             if (!string.IsNullOrEmpty(txtEndereco.Text))
             {
                 filtrosPesquisa += " AND endereco LIKE @endereco";
@@ -98,7 +104,7 @@ namespace Gerenciador_de_Emprestimos
             MySqlCommand comando = conexao.CreateCommand();
             string filtrosPesquisa = QuerySelecionarCliente(comando);
 
-            string selectBd = $"SELECT codigo, nome_cliente, genero, celular, situacao_cadastral, cpf_cnpj, endereco, bairro, numero_residencia FROM emprestimosbd.cliente {filtrosPesquisa} LIMIT 10;";
+            string selectBd = $"SELECT codigo, nome_cliente, genero, celular, situacao_cadastral, cpf_cnpj, cidade, endereco, bairro, numero_residencia FROM emprestimosbd.cliente {filtrosPesquisa} LIMIT 10;";
 
             comando.CommandText = selectBd;
 
