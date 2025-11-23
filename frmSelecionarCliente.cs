@@ -41,7 +41,7 @@ namespace Gerenciador_de_Emprestimos
                 Filtrar.Parameters.AddWithValue("@nome_cliente", "%" + txtNomeCliente.Text + "%");
             }
 
-            if (!string.IsNullOrEmpty(comboBoxGeneroCliente.Text))
+            if (!string.IsNullOrEmpty(comboBoxGeneroCliente.Text) && !comboBoxGeneroCliente.Text.Equals("Todos", StringComparison.OrdinalIgnoreCase))
             {
                 filtrosPesquisa += " AND genero = @genero";
                 Filtrar.Parameters.AddWithValue("@genero", comboBoxGeneroCliente.Text);
@@ -53,7 +53,7 @@ namespace Gerenciador_de_Emprestimos
                 Filtrar.Parameters.AddWithValue("@celular", maskedCelularSelecionar.Text);
             }
 
-            if (!string.IsNullOrEmpty(comboBoxSituacaoCadastralSelecionar.Text))
+            if (!string.IsNullOrEmpty(comboBoxSituacaoCadastralSelecionar.Text) && !comboBoxSituacaoCadastralSelecionar.Text.Equals("Todos", StringComparison.OrdinalIgnoreCase))
             {
                 filtrosPesquisa += " AND situacao_cadastral = @situacao_cadastral";
                 Filtrar.Parameters.AddWithValue("@situacao_cadastral", comboBoxSituacaoCadastralSelecionar.Text);
@@ -155,6 +155,7 @@ namespace Gerenciador_de_Emprestimos
             comboBoxSituacaoCadastralSelecionar.SelectedIndex = -1;
             btnCpfSelecionar.Checked = true;
             btnCnpjSelecionar.Checked = false;
+            dataGridClientes.DataSource = null;
         }
     }
 }

@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSelecionarCliente));
             lblCodigoClienteSelecionar = new Label();
             groupBoxFiltrosCliente = new GroupBox();
+            lblCidade = new Label();
+            txtCidade = new TextBox();
             txtNumeroResidencia = new TextBox();
             lblNumeroResidencia = new Label();
             txtEndereco = new TextBox();
@@ -53,8 +55,6 @@
             btnSelecionarCliente = new Button();
             btnFecharForm = new Button();
             dataGridClientes = new DataGridView();
-            txtCidade = new TextBox();
-            lblCidade = new Label();
             groupBoxFiltrosCliente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridClientes).BeginInit();
             SuspendLayout();
@@ -97,13 +97,31 @@
             groupBoxFiltrosCliente.Font = new Font("Arial Rounded MT Bold", 9F);
             groupBoxFiltrosCliente.Location = new Point(14, 10);
             groupBoxFiltrosCliente.Name = "groupBoxFiltrosCliente";
-            groupBoxFiltrosCliente.Size = new Size(807, 188);
+            groupBoxFiltrosCliente.Size = new Size(807, 233);
             groupBoxFiltrosCliente.TabIndex = 2;
             groupBoxFiltrosCliente.TabStop = false;
             // 
+            // lblCidade
+            // 
+            lblCidade.AutoSize = true;
+            lblCidade.BackColor = Color.Transparent;
+            lblCidade.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCidade.Location = new Point(11, 121);
+            lblCidade.Name = "lblCidade";
+            lblCidade.Size = new Size(67, 22);
+            lblCidade.TabIndex = 22;
+            lblCidade.Text = "Cidade";
+            // 
+            // txtCidade
+            // 
+            txtCidade.Location = new Point(11, 146);
+            txtCidade.Name = "txtCidade";
+            txtCidade.Size = new Size(337, 25);
+            txtCidade.TabIndex = 21;
+            // 
             // txtNumeroResidencia
             // 
-            txtNumeroResidencia.Location = new Point(640, 152);
+            txtNumeroResidencia.Location = new Point(302, 198);
             txtNumeroResidencia.Name = "txtNumeroResidencia";
             txtNumeroResidencia.Size = new Size(129, 25);
             txtNumeroResidencia.TabIndex = 20;
@@ -113,7 +131,7 @@
             lblNumeroResidencia.AutoSize = true;
             lblNumeroResidencia.BackColor = Color.Transparent;
             lblNumeroResidencia.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblNumeroResidencia.Location = new Point(640, 128);
+            lblNumeroResidencia.Location = new Point(302, 174);
             lblNumeroResidencia.Name = "lblNumeroResidencia";
             lblNumeroResidencia.Size = new Size(125, 22);
             lblNumeroResidencia.TabIndex = 19;
@@ -121,7 +139,7 @@
             // 
             // txtEndereco
             // 
-            txtEndereco.Location = new Point(337, 153);
+            txtEndereco.Location = new Point(365, 146);
             txtEndereco.Name = "txtEndereco";
             txtEndereco.Size = new Size(256, 25);
             txtEndereco.TabIndex = 18;
@@ -131,7 +149,7 @@
             lblEndereco.AutoSize = true;
             lblEndereco.BackColor = Color.Transparent;
             lblEndereco.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblEndereco.Location = new Point(337, 128);
+            lblEndereco.Location = new Point(365, 121);
             lblEndereco.Name = "lblEndereco";
             lblEndereco.Size = new Size(88, 22);
             lblEndereco.TabIndex = 17;
@@ -139,7 +157,7 @@
             // 
             // txtBairro
             // 
-            txtBairro.Location = new Point(7, 153);
+            txtBairro.Location = new Point(11, 199);
             txtBairro.Name = "txtBairro";
             txtBairro.Size = new Size(267, 25);
             txtBairro.TabIndex = 16;
@@ -149,7 +167,7 @@
             lblBairro.AutoSize = true;
             lblBairro.BackColor = Color.Transparent;
             lblBairro.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblBairro.Location = new Point(7, 128);
+            lblBairro.Location = new Point(11, 174);
             lblBairro.Name = "lblBairro";
             lblBairro.Size = new Size(62, 22);
             lblBairro.TabIndex = 15;
@@ -160,7 +178,7 @@
             comboBoxSituacaoCadastralSelecionar.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxSituacaoCadastralSelecionar.FormattingEnabled = true;
             comboBoxSituacaoCadastralSelecionar.Items.AddRange(new object[] { "ATIVO", "INATIVO", "TODOS" });
-            comboBoxSituacaoCadastralSelecionar.Location = new Point(682, 40);
+            comboBoxSituacaoCadastralSelecionar.Location = new Point(316, 41);
             comboBoxSituacaoCadastralSelecionar.Name = "comboBoxSituacaoCadastralSelecionar";
             comboBoxSituacaoCadastralSelecionar.Size = new Size(116, 25);
             comboBoxSituacaoCadastralSelecionar.TabIndex = 14;
@@ -170,7 +188,7 @@
             lblSituacaoCadastralSelecionar.AutoSize = true;
             lblSituacaoCadastralSelecionar.BackColor = Color.Transparent;
             lblSituacaoCadastralSelecionar.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblSituacaoCadastralSelecionar.Location = new Point(682, 19);
+            lblSituacaoCadastralSelecionar.Location = new Point(316, 20);
             lblSituacaoCadastralSelecionar.Name = "lblSituacaoCadastralSelecionar";
             lblSituacaoCadastralSelecionar.Size = new Size(83, 22);
             lblSituacaoCadastralSelecionar.TabIndex = 13;
@@ -178,7 +196,7 @@
             // 
             // maskedCpfCnpj
             // 
-            maskedCpfCnpj.Location = new Point(321, 40);
+            maskedCpfCnpj.Location = new Point(369, 91);
             maskedCpfCnpj.Mask = "000,000,000-00";
             maskedCpfCnpj.Name = "maskedCpfCnpj";
             maskedCpfCnpj.Size = new Size(221, 25);
@@ -189,7 +207,7 @@
             // 
             btnCnpjSelecionar.AutoSize = true;
             btnCnpjSelecionar.Font = new Font("Arial Black", 9F, FontStyle.Bold);
-            btnCnpjSelecionar.Location = new Point(418, 16);
+            btnCnpjSelecionar.Location = new Point(466, 67);
             btnCnpjSelecionar.Name = "btnCnpjSelecionar";
             btnCnpjSelecionar.Size = new Size(77, 26);
             btnCnpjSelecionar.TabIndex = 11;
@@ -202,7 +220,7 @@
             btnCpfSelecionar.AutoSize = true;
             btnCpfSelecionar.Checked = true;
             btnCpfSelecionar.Font = new Font("Arial Black", 9F, FontStyle.Bold);
-            btnCpfSelecionar.Location = new Point(337, 16);
+            btnCpfSelecionar.Location = new Point(385, 67);
             btnCpfSelecionar.Name = "btnCpfSelecionar";
             btnCpfSelecionar.Size = new Size(64, 26);
             btnCpfSelecionar.TabIndex = 10;
@@ -213,10 +231,10 @@
             // 
             // maskedCelularSelecionar
             // 
-            maskedCelularSelecionar.Location = new Point(548, 41);
+            maskedCelularSelecionar.Location = new Point(607, 89);
             maskedCelularSelecionar.Mask = "(00) 00000-0000";
             maskedCelularSelecionar.Name = "maskedCelularSelecionar";
-            maskedCelularSelecionar.Size = new Size(124, 25);
+            maskedCelularSelecionar.Size = new Size(148, 25);
             maskedCelularSelecionar.TabIndex = 9;
             maskedCelularSelecionar.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             // 
@@ -225,7 +243,7 @@
             lblCelularClienteSelecionar.AutoSize = true;
             lblCelularClienteSelecionar.BackColor = Color.Transparent;
             lblCelularClienteSelecionar.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblCelularClienteSelecionar.Location = new Point(548, 19);
+            lblCelularClienteSelecionar.Location = new Point(607, 67);
             lblCelularClienteSelecionar.Name = "lblCelularClienteSelecionar";
             lblCelularClienteSelecionar.Size = new Size(69, 22);
             lblCelularClienteSelecionar.TabIndex = 8;
@@ -254,7 +272,7 @@
             // 
             // txtNomeCliente
             // 
-            txtNomeCliente.Location = new Point(7, 100);
+            txtNomeCliente.Location = new Point(11, 91);
             txtNomeCliente.Name = "txtNomeCliente";
             txtNomeCliente.Size = new Size(337, 25);
             txtNomeCliente.TabIndex = 4;
@@ -264,7 +282,7 @@
             lblNomeCliente.AutoSize = true;
             lblNomeCliente.BackColor = Color.Transparent;
             lblNomeCliente.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblNomeCliente.Location = new Point(7, 79);
+            lblNomeCliente.Location = new Point(11, 70);
             lblNomeCliente.Name = "lblNomeCliente";
             lblNomeCliente.Size = new Size(122, 22);
             lblNomeCliente.TabIndex = 3;
@@ -275,14 +293,14 @@
             txtCodigoCliente.Location = new Point(7, 41);
             txtCodigoCliente.Name = "txtCodigoCliente";
             txtCodigoCliente.Size = new Size(137, 25);
-            txtCodigoCliente.TabIndex = 2;
+            txtCodigoCliente.TabIndex = 1;
             // 
             // btnLimparDados
             // 
             btnLimparDados.BackColor = Color.Turquoise;
             btnLimparDados.FlatStyle = FlatStyle.Popup;
             btnLimparDados.Image = (Image)resources.GetObject("btnLimparDados.Image");
-            btnLimparDados.Location = new Point(125, 204);
+            btnLimparDados.Location = new Point(125, 249);
             btnLimparDados.Name = "btnLimparDados";
             btnLimparDados.Size = new Size(204, 48);
             btnLimparDados.TabIndex = 3;
@@ -296,7 +314,7 @@
             btnSelecionarCliente.BackColor = Color.Aquamarine;
             btnSelecionarCliente.FlatStyle = FlatStyle.Popup;
             btnSelecionarCliente.Image = Properties.Resources.lupa;
-            btnSelecionarCliente.Location = new Point(482, 204);
+            btnSelecionarCliente.Location = new Point(482, 249);
             btnSelecionarCliente.Name = "btnSelecionarCliente";
             btnSelecionarCliente.Size = new Size(204, 48);
             btnSelecionarCliente.TabIndex = 4;
@@ -310,7 +328,7 @@
             btnFecharForm.BackColor = Color.LightSalmon;
             btnFecharForm.FlatStyle = FlatStyle.Popup;
             btnFecharForm.Image = Properties.Resources.close_256_icon_icons_com_75990;
-            btnFecharForm.Location = new Point(307, 757);
+            btnFecharForm.Location = new Point(305, 776);
             btnFecharForm.Name = "btnFecharForm";
             btnFecharForm.Size = new Size(204, 48);
             btnFecharForm.TabIndex = 5;
@@ -324,30 +342,12 @@
             dataGridClientes.AllowUserToAddRows = false;
             dataGridClientes.AllowUserToDeleteRows = false;
             dataGridClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridClientes.Location = new Point(14, 273);
+            dataGridClientes.Location = new Point(14, 314);
             dataGridClientes.Name = "dataGridClientes";
             dataGridClientes.ReadOnly = true;
             dataGridClientes.RowHeadersWidth = 51;
             dataGridClientes.Size = new Size(807, 456);
             dataGridClientes.TabIndex = 6;
-            // 
-            // txtCidade
-            // 
-            txtCidade.Location = new Point(381, 100);
-            txtCidade.Name = "txtCidade";
-            txtCidade.Size = new Size(337, 25);
-            txtCidade.TabIndex = 21;
-            // 
-            // lblCidade
-            // 
-            lblCidade.AutoSize = true;
-            lblCidade.BackColor = Color.Transparent;
-            lblCidade.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblCidade.Location = new Point(381, 75);
-            lblCidade.Name = "lblCidade";
-            lblCidade.Size = new Size(67, 22);
-            lblCidade.TabIndex = 22;
-            lblCidade.Text = "Cidade";
             // 
             // frmSelecionarCliente
             // 
