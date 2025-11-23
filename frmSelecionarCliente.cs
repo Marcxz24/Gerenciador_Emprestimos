@@ -71,6 +71,12 @@ namespace Gerenciador_de_Emprestimos
                 Filtrar.Parameters.AddWithValue("@cidade", "%" + txtCidade.Text + "%");
             }
 
+            if (!string.IsNullOrEmpty(ComboBoxUF.Text) && !ComboBoxUF.Text.Equals("Todos", StringComparison.OrdinalIgnoreCase))
+            {
+                filtrosPesquisa += " AND uf LIKE @uf";
+                Filtrar.Parameters.AddWithValue("@uf", ComboBoxUF.Text);
+            }
+
             if (!string.IsNullOrEmpty(txtEndereco.Text))
             {
                 filtrosPesquisa += " AND endereco LIKE @endereco";
@@ -104,7 +110,7 @@ namespace Gerenciador_de_Emprestimos
             MySqlCommand comando = conexao.CreateCommand();
             string filtrosPesquisa = QuerySelecionarCliente(comando);
 
-            string selectBd = $"SELECT codigo, nome_cliente, genero, celular, situacao_cadastral, cpf_cnpj, cidade, endereco, bairro, numero_residencia FROM emprestimosbd.cliente {filtrosPesquisa} LIMIT 10;";
+            string selectBd = $"SELECT codigo, nome_cliente, genero, celular, situacao_cadastral, cpf_cnpj, uf, cidade, endereco, bairro, numero_residencia FROM emprestimosbd.cliente {filtrosPesquisa} LIMIT 100;";
 
             comando.CommandText = selectBd;
 
@@ -156,6 +162,7 @@ namespace Gerenciador_de_Emprestimos
             btnCpfSelecionar.Checked = true;
             btnCnpjSelecionar.Checked = false;
             dataGridClientes.DataSource = null;
+            ComboBoxUF.SelectedIndex = -1;
         }
     }
 }

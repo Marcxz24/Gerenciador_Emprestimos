@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSelecionarCliente));
             lblCodigoClienteSelecionar = new Label();
             groupBoxFiltrosCliente = new GroupBox();
+            lblUf = new Label();
+            ComboBoxUF = new ComboBox();
             lblCidade = new Label();
             txtCidade = new TextBox();
             txtNumeroResidencia = new TextBox();
@@ -73,6 +75,8 @@
             // groupBoxFiltrosCliente
             // 
             groupBoxFiltrosCliente.BackColor = Color.Transparent;
+            groupBoxFiltrosCliente.Controls.Add(lblUf);
+            groupBoxFiltrosCliente.Controls.Add(ComboBoxUF);
             groupBoxFiltrosCliente.Controls.Add(lblCidade);
             groupBoxFiltrosCliente.Controls.Add(txtCidade);
             groupBoxFiltrosCliente.Controls.Add(txtNumeroResidencia);
@@ -100,6 +104,27 @@
             groupBoxFiltrosCliente.Size = new Size(807, 233);
             groupBoxFiltrosCliente.TabIndex = 2;
             groupBoxFiltrosCliente.TabStop = false;
+            // 
+            // lblUf
+            // 
+            lblUf.AutoSize = true;
+            lblUf.BackColor = Color.Transparent;
+            lblUf.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblUf.Location = new Point(366, 119);
+            lblUf.Name = "lblUf";
+            lblUf.Size = new Size(33, 22);
+            lblUf.TabIndex = 24;
+            lblUf.Text = "UF";
+            // 
+            // ComboBoxUF
+            // 
+            ComboBoxUF.DropDownStyle = ComboBoxStyle.DropDownList;
+            ComboBoxUF.FormattingEnabled = true;
+            ComboBoxUF.Items.AddRange(new object[] { "Todos", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" });
+            ComboBoxUF.Location = new Point(366, 146);
+            ComboBoxUF.Name = "ComboBoxUF";
+            ComboBoxUF.Size = new Size(141, 25);
+            ComboBoxUF.TabIndex = 23;
             // 
             // lblCidade
             // 
@@ -139,7 +164,7 @@
             // 
             // txtEndereco
             // 
-            txtEndereco.Location = new Point(365, 146);
+            txtEndereco.Location = new Point(520, 146);
             txtEndereco.Name = "txtEndereco";
             txtEndereco.Size = new Size(256, 25);
             txtEndereco.TabIndex = 18;
@@ -149,7 +174,7 @@
             lblEndereco.AutoSize = true;
             lblEndereco.BackColor = Color.Transparent;
             lblEndereco.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblEndereco.Location = new Point(365, 121);
+            lblEndereco.Location = new Point(520, 121);
             lblEndereco.Name = "lblEndereco";
             lblEndereco.Size = new Size(88, 22);
             lblEndereco.TabIndex = 17;
@@ -398,5 +423,7 @@
         private Label lblNumeroResidencia;
         private Label lblCidade;
         private TextBox txtCidade;
+        private ComboBox ComboBoxUF;
+        private Label lblUf;
     }
 }
