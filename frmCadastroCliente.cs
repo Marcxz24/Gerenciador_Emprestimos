@@ -48,15 +48,15 @@ namespace Gerenciador_de_Emprestimos
 
                     if (genero == "Feminino")
                     {
-                        btnGeneroFemi.Checked = true;
+                        btnRadioFeminino.Checked = true;
                     }
 
-                    else if (genero == "Masculino")
+                    if (genero == "Masculino")
                     {
-                        btnGeneroMasc.Checked = true;
+                        btnRadioMasculino.Checked = true;
                     }
 
-                    else
+                    if (genero == "Outros")
                     {
                         btnRadioGeneroOutros.Checked = true;
                     }
