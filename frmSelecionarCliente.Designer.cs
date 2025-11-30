@@ -373,6 +373,7 @@
             dataGridClientes.RowHeadersWidth = 51;
             dataGridClientes.Size = new Size(807, 456);
             dataGridClientes.TabIndex = 6;
+            dataGridClientes.CellDoubleClick += dataGridClientes_CellDoubleClick;
             // 
             // frmSelecionarCliente
             // 

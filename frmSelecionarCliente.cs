@@ -9,6 +9,8 @@ namespace Gerenciador_de_Emprestimos
 {
     public partial class frmSelecionarCliente : Form
     {
+        public string codigoSelecionado { get; set; }
+
         public frmSelecionarCliente()
         {
             InitializeComponent();
@@ -48,7 +50,7 @@ namespace Gerenciador_de_Emprestimos
                 dataAdapter.Fill(dataTable);
 
                 dataGridClientes.DataSource = dataTable;
-            }  
+            }
         }
 
         private string QuerySelecionarCliente(MySqlCommand Filtrar)
@@ -164,6 +166,17 @@ namespace Gerenciador_de_Emprestimos
             btnCnpjSelecionar.Checked = false;
             dataGridClientes.DataSource = null;
             ComboBoxUF.SelectedIndex = -1;
+        }
+
+        private void dataGridClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                codigoSelecionado = dataGridClientes.CurrentRow.Cells[0].Value.ToString();
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
         }
     }
 }

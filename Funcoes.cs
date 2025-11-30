@@ -38,5 +38,15 @@ namespace Gerenciador_de_Emprestimos
         {
             MessageBox.Show(mensagem, "Atenção! Analisar os seguintes critérios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
+
+        public static void MensagemErro(string mensagem)
+        {
+            MessageBox.Show(mensagem, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public static void MensagemInformation(string mensagem)
+        {
+            MessageBox.Show(mensagem, "Operação Realizada com Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

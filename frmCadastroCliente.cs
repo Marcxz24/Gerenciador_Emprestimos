@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using Mysqlx;
 using System;
+using System.Data;
 using System.Diagnostics.Eventing.Reader;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -10,6 +11,8 @@ namespace Gerenciador_de_Emprestimos
 {
     public partial class FormCadastroCliente : Form
     {
+        private string _codigoClienete;
+
         public FormCadastroCliente()
         {
             InitializeComponent();
@@ -22,6 +25,55 @@ namespace Gerenciador_de_Emprestimos
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void CarrgarDadosCliente(string codigo)
+        {
+            string selectSql = "SELECT * FROM emprestimosbd.cliente WHERE codigo = @codigo";
+
+            using (var conexao = ConexaoBancoDeDados.Conectar())
+            {
+                MySqlCommand comando = new MySqlCommand(selectSql, conexao);
+                comando.Parameters.AddWithValue("@codigo", codigo);
+
+                MySqlDataReader reader = comando.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    txtCodigoCliente.Text = reader["codigo"].ToString();
+                    txtNomeCliente.Text = reader["nome_cliente"].ToString();
+                    MaskedTxtCpfCnpjCliente.Text = reader["cpf_cnpj"].ToString();
+                    string genero = reader["genero"].ToString();
+
+                    if (genero == "Feminino")
+                    {
+                        btnGeneroFemi.Checked = true;
+                    }
+
+                    else if (genero == "Masculino")
+                    {
+                        btnGeneroMasc.Checked = true;
+                    }
+
+                    else
+                    {
+                        btnRadioGeneroOutros.Checked = true;
+                    }
+
+                    comboBoxEstadoCivil.SelectedItem = reader["estado_civil"].ToString();
+                    txtEnderecoCliente.Text = reader["endereco"].ToString();
+                    txtBairroCliente.Text = reader["bairro"].ToString();
+                    txtCidadeCliente.Text = reader["cidade"].ToString();
+                    comboBoxEstadoUF.SelectedItem = reader["uf"].ToString();
+                    txtNumeroResidencia.Text = reader["numero_residencia"].ToString();
+                    MaskedTxtCepCliente.Text = reader["cep"].ToString();
+                    MaskedTxtCelularCliente.Text = reader["celular"].ToString();
+                    txtEmailCliente.Text = reader["email"].ToString();
+                    txtObservacoes.Text = reader["observacoes"].ToString();
+                    comboBoxSituacaoCadastral.SelectedItem = reader["situacao_cadastral"].ToString();
+                    // imagens futuramente...
+                }
             }
         }
 
@@ -179,10 +231,14 @@ namespace Gerenciador_de_Emprestimos
 
                 insertBd.ExecuteNonQuery();
 
+                Funcoes.MensagemInformation("Cliente Cadastrado!");
+
                 insertBd.CommandText = "SELECT @@IDENTITY";
                 txtCodigoCliente.Text = insertBd.ExecuteScalar().ToString();
             }
         }
+
+
 
         private bool validacoesCampos()
         {
@@ -295,6 +351,10 @@ namespace Gerenciador_de_Emprestimos
         {
             frmSelecionarCliente formPesquisarCliente = new frmSelecionarCliente();
             formPesquisarCliente.ShowDialog();
+
+            string codigo = formPesquisarCliente.codigoSelecionado;
+
+            CarrgarDadosCliente(codigo);
         }
 
         private void btnFecharForm_Click(object sender, EventArgs e)
