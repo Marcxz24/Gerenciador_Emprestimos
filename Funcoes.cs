@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Gerenciador_de_Emprestimos
 {
@@ -31,6 +32,11 @@ namespace Gerenciador_de_Emprestimos
                 txt.SelectionStart = txt.Text.Length;
             }
             
+        }
+
+        public static void MensagemWarning(string mensagem)
+        {
+            MessageBox.Show(mensagem, "Atenção! Analisar os seguintes critérios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }

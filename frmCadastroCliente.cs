@@ -188,8 +188,7 @@ namespace Gerenciador_de_Emprestimos
         {
             if (string.IsNullOrEmpty(comboBoxSituacaoCadastral.Text))
             {
-                MessageBox.Show("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Situação Cadastral",
-                "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Situação Cadastral");
 
                 comboBoxSituacaoCadastral.Focus();
 
@@ -198,8 +197,7 @@ namespace Gerenciador_de_Emprestimos
 
             if (string.IsNullOrWhiteSpace(txtNomeCliente.Text))
             {
-                MessageBox.Show("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Nome do Cliente",
-                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Nome do Cliente");
 
                 txtNomeCliente.Focus();
 
@@ -208,8 +206,7 @@ namespace Gerenciador_de_Emprestimos
 
             if (btnRadioCpf.Checked == false && btnRadioCnpj.Checked == false)
             {
-                MessageBox.Show("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: CPF/CNPJ",
-                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Marque os Botões!\n\nCampo: CPF/CNPJ");
 
                 MaskedTxtCpfCnpjCliente.Focus();
                 return true;
@@ -217,8 +214,7 @@ namespace Gerenciador_de_Emprestimos
 
             if (string.IsNullOrWhiteSpace(MaskedTxtCpfCnpjCliente.Text))
             {
-                MessageBox.Show("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: CPF/CNPJ",
-                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: CPF / CNPJ");
 
                 MaskedTxtCpfCnpjCliente.Focus();
 
@@ -227,22 +223,20 @@ namespace Gerenciador_de_Emprestimos
 
             if (validarCpfCadastrado(MaskedTxtCpfCnpjCliente.Text))
             {
-                MessageBox.Show("Já Existe um Cliente com este CPF Cadastrado", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Funcoes.MensagemWarning("Já Existe um Cliente com este CPF Cadastrado");
                 return true;
             }
 
             if (btnRadioMasculino.Checked == false && btnRadioFeminino.Checked == false && btnRadioGeneroOutros.Checked == false)
             {
-                MessageBox.Show("Botão de Genêro não Marcado, por favor Marque!\n\nCampo: Gênero",
-                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Marque um dos Botões!\n\nCampo: Genêro");
 
                 return true;
             }
 
             if (string.IsNullOrWhiteSpace(txtEnderecoCliente.Text))
             {
-                MessageBox.Show("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Endereço",
-                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Endereço do Cliente");
 
                 txtEnderecoCliente.Focus();
 
@@ -251,8 +245,7 @@ namespace Gerenciador_de_Emprestimos
 
             if (string.IsNullOrWhiteSpace(txtBairroCliente.Text))
             {
-                MessageBox.Show("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Bairro",
-                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Bairro");
 
                 txtBairroCliente.Focus();
 
@@ -261,8 +254,7 @@ namespace Gerenciador_de_Emprestimos
 
             if (string.IsNullOrWhiteSpace(txtCidadeCliente.Text))
             {
-                MessageBox.Show("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Cidade",
-                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Cidade");
 
                 txtCidadeCliente.Focus();
 
@@ -271,8 +263,7 @@ namespace Gerenciador_de_Emprestimos
 
             if (string.IsNullOrWhiteSpace(comboBoxEstadoUF.Text))
             {
-                MessageBox.Show("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: UF",
-                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: UF");
 
                 comboBoxEstadoUF.Focus();
 
@@ -281,8 +272,7 @@ namespace Gerenciador_de_Emprestimos
 
             if (string.IsNullOrWhiteSpace(txtNumeroResidencia.Text))
             {
-                MessageBox.Show("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Número da Residência",
-                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Número da Residência");
 
                 txtNumeroResidencia.Focus();
 
@@ -291,8 +281,7 @@ namespace Gerenciador_de_Emprestimos
 
             if (string.IsNullOrWhiteSpace(MaskedTxtCepCliente.Text))
             {
-                MessageBox.Show("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: CEP",
-                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: CEP");
 
                 MaskedTxtCepCliente.Focus();
 
