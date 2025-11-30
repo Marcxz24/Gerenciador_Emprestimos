@@ -159,6 +159,7 @@
             txtNomeCliente.ReadOnly = true;
             txtNomeCliente.Size = new Size(284, 23);
             txtNomeCliente.TabIndex = 1;
+            txtNomeCliente.TextChanged += txtNomeCliente_TextChanged;
             // 
             // txtEnderecoCliente
             // 
@@ -167,6 +168,7 @@
             txtEnderecoCliente.ReadOnly = true;
             txtEnderecoCliente.Size = new Size(329, 25);
             txtEnderecoCliente.TabIndex = 7;
+            txtEnderecoCliente.TextChanged += txtEnderecoCliente_TextChanged;
             // 
             // txtBairroCliente
             // 
@@ -175,6 +177,7 @@
             txtBairroCliente.ReadOnly = true;
             txtBairroCliente.Size = new Size(413, 25);
             txtBairroCliente.TabIndex = 8;
+            txtBairroCliente.TextChanged += txtBairroCliente_TextChanged;
             // 
             // txtCidadeCliente
             // 
@@ -183,6 +186,7 @@
             txtCidadeCliente.ReadOnly = true;
             txtCidadeCliente.Size = new Size(225, 25);
             txtCidadeCliente.TabIndex = 9;
+            txtCidadeCliente.TextChanged += txtCidadeCliente_TextChanged;
             // 
             // txtNumeroResidencia
             // 
@@ -650,6 +654,7 @@
             // 
             // txtCodigoCliente
             // 
+            txtCodigoCliente.Enabled = false;
             txtCodigoCliente.Font = new Font("Microsoft Sans Serif", 8.25F);
             txtCodigoCliente.Location = new Point(345, 14);
             txtCodigoCliente.Name = "txtCodigoCliente";

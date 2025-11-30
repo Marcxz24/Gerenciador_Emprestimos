@@ -330,5 +330,25 @@ namespace Gerenciador_de_Emprestimos
                 MaskedTxtCpfCnpjCliente.Focus();
             }
         }
+
+        private void txtNomeCliente_TextChanged(object sender, EventArgs e)
+        {
+            Funcoes.PrimeiraLetraMaiuscula(txtNomeCliente);
+        }
+
+        private void txtEnderecoCliente_TextChanged(object sender, EventArgs e)
+        {
+            Funcoes.PrimeiraLetraMaiuscula(txtEnderecoCliente);
+        }
+
+        private void txtBairroCliente_TextChanged(object sender, EventArgs e)
+        {
+            Funcoes.PrimeiraLetraMaiuscula(txtBairroCliente);
+        }
+
+        private void txtCidadeCliente_TextChanged(object sender, EventArgs e)
+        {
+            Funcoes.PrimeiraLetraMaiuscula(txtCidadeCliente);
+        }
     }
 }

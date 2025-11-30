@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using Mysqlx;
 using System.Data;
+using System.Windows.Forms;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace Gerenciador_de_Emprestimos
@@ -24,7 +25,32 @@ namespace Gerenciador_de_Emprestimos
                 e.Handled = true;
             }
         }
-        
+
+        private void btnSelecionarCliente_Click(object sender, EventArgs e)
+        {
+            var conexao = ConexaoBancoDeDados.Conectar();
+
+            if (conexao.State != ConnectionState.Open)
+            {
+                conexao.Open();
+            }
+
+            MySqlCommand comando = conexao.CreateCommand();
+            string filtrosPesquisa = QuerySelecionarCliente(comando);
+
+            string selectBd = $"SELECT codigo, nome_cliente, genero, celular, situacao_cadastral, cpf_cnpj, uf, cidade, endereco, bairro, numero_residencia FROM emprestimosbd.cliente {filtrosPesquisa} LIMIT 100;";
+
+            comando.CommandText = selectBd;
+
+            using (var dataAdapter = new MySqlDataAdapter(comando))
+            {
+                DataTable dataTable = new DataTable();
+                dataAdapter.Fill(dataTable);
+
+                dataGridClientes.DataSource = dataTable;
+            }  
+        }
+
         private string QuerySelecionarCliente(MySqlCommand Filtrar)
         {
             string filtrosPesquisa = "WHERE 1 = 1";
@@ -35,7 +61,7 @@ namespace Gerenciador_de_Emprestimos
                 Filtrar.Parameters.AddWithValue("@codigo", txtCodigoCliente.Text);
             }
 
-            if(!string.IsNullOrEmpty(txtNomeCliente.Text))
+            if (!string.IsNullOrEmpty(txtNomeCliente.Text))
             {
                 filtrosPesquisa += " AND nome_cliente LIKE @nome_cliente";
                 Filtrar.Parameters.AddWithValue("@nome_cliente", "%" + txtNomeCliente.Text + "%");
@@ -96,31 +122,6 @@ namespace Gerenciador_de_Emprestimos
             }
 
             return filtrosPesquisa;
-        }
-
-        private void btnSelecionarCliente_Click(object sender, EventArgs e)
-        { 
-            var conexao = ConexaoBancoDeDados.Conectar();
-
-            if (conexao.State != ConnectionState.Open)
-            {
-                conexao.Open();
-            }
-
-            MySqlCommand comando = conexao.CreateCommand();
-            string filtrosPesquisa = QuerySelecionarCliente(comando);
-
-            string selectBd = $"SELECT codigo, nome_cliente, genero, celular, situacao_cadastral, cpf_cnpj, uf, cidade, endereco, bairro, numero_residencia FROM emprestimosbd.cliente {filtrosPesquisa} LIMIT 100;";
-
-            comando.CommandText = selectBd;
-
-            using (var dataAdapter = new MySqlDataAdapter(comando))
-            {
-                DataTable dataTable = new DataTable();
-                dataAdapter.Fill(dataTable);
-
-                dataGridClientes.DataSource = dataTable;
-            }
         }
 
         private void btnCpfSelecionar_CheckedChanged(object sender, EventArgs e)
