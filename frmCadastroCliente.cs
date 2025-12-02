@@ -1,11 +1,5 @@
 ﻿using Gerenciador_de_Emprestimos.Database;
 using MySql.Data.MySqlClient;
-using Mysqlx;
-using System;
-using System.Data;
-using System.Diagnostics.Eventing.Reader;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Gerenciador_de_Emprestimos
 {
@@ -152,7 +146,7 @@ namespace Gerenciador_de_Emprestimos
 
         private void btnEditarCadastro_Click(object sender, EventArgs e)
         {
-            GerenciarBotoesCampos(OcultarBotoes: true, ManifestarBotoes: true, LimparCampos: true);
+            GerenciarBotoesCampos(OcultarBotoes: true, ManifestarBotoes: true, LimparCampos: false);
         }
 
         private bool validarCpfCadastrado(string cpf)
