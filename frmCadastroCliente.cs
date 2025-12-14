@@ -195,7 +195,8 @@ namespace Gerenciador_de_Emprestimos
                                         email = @email, 
                                         observacoes = @observacoes, 
                                         situacao_cadastral = @situacao_cadastral 
-                                    WHERE codigo = @codigo";
+                                    WHERE codigo = @codigo"
+                ;
 
                 UpdateBd.Parameters.AddWithValue("@codigo", int.Parse(txtCodigoCliente.Text));
                 UpdateBd.Parameters.AddWithValue("@nome_cliente", txtNomeCliente.Text);
