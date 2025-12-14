@@ -7,6 +7,8 @@ namespace Gerenciador_de_Emprestimos
     {
         private string _codigoClienete;
 
+        private bool _EditarCadastro;
+
         public FormCadastroCliente()
         {
             InitializeComponent();
@@ -124,6 +126,8 @@ namespace Gerenciador_de_Emprestimos
 
         private void btnNovoCadastro_Click(object sender, EventArgs e)
         {
+            _EditarCadastro = false;
+
             GerenciarBotoesCampos(OcultarBotoes: true, ManifestarBotoes: true, LimparCampos: true);
         }
 
@@ -134,9 +138,12 @@ namespace Gerenciador_de_Emprestimos
 
         private void btnSalvarCadastroCliente_Click(object sender, EventArgs e)
         {
-            if (validacoesCampos() == true)
+            if (!_EditarCadastro)
             {
-                return;
+                if (validacoesCampos() == true)
+                {
+                    return;
+                }
             }
 
             SalvarCadastro();
@@ -146,6 +153,8 @@ namespace Gerenciador_de_Emprestimos
 
         private void btnEditarCadastro_Click(object sender, EventArgs e)
         {
+            _EditarCadastro = true;
+
             GerenciarBotoesCampos(OcultarBotoes: true, ManifestarBotoes: true, LimparCampos: false);
         }
 
@@ -163,9 +172,73 @@ namespace Gerenciador_de_Emprestimos
             }
         }
 
-        private void SalvarCadastro()
+        private void EditarCadastro()
         {
+            var conexao = ConexaoBancoDeDados.Conectar();
 
+            using (MySqlCommand UpdateBd = conexao.CreateCommand())
+            {
+                UpdateBd.CommandText = @"
+                                    UPDATE emprestimosbd.cliente 
+                                    SET 
+                                        nome_cliente = @nome_cliente, 
+                                        cpf_cnpj = @cpf_cnpj, 
+                                        genero = @genero, 
+                                        estado_civil = @estado_civil, 
+                                        endereco = @endereco, 
+                                        bairro = @bairro, 
+                                        cidade = @cidade, 
+                                        uf = @uf, 
+                                        numero_residencia = @numero_residencia, 
+                                        cep = @cep, 
+                                        celular = @celular, 
+                                        email = @email, 
+                                        observacoes = @observacoes, 
+                                        situacao_cadastral = @situacao_cadastral 
+                                    WHERE codigo = @codigo";
+
+                UpdateBd.Parameters.AddWithValue("@codigo", int.Parse(txtCodigoCliente.Text));
+                UpdateBd.Parameters.AddWithValue("@nome_cliente", txtNomeCliente.Text);
+                UpdateBd.Parameters.AddWithValue("@cpf_cnpj", MaskedTxtCpfCnpjCliente.Text);
+                if (btnRadioMasculino.Checked == true)
+                {
+                    UpdateBd.Parameters.AddWithValue("@genero", "MASCULINO");
+                }
+                else if (btnRadioFeminino.Checked == true)
+                {
+                    UpdateBd.Parameters.AddWithValue("@genero", "FEMININO");
+                }
+                else
+                {
+                    UpdateBd.Parameters.AddWithValue("@genero", "OUTROS");
+                }
+                UpdateBd.Parameters.AddWithValue("@estado_civil", comboBoxEstadoCivil.Text);
+                UpdateBd.Parameters.AddWithValue("@endereco", txtEnderecoCliente.Text);
+                UpdateBd.Parameters.AddWithValue("@bairro", txtBairroCliente.Text);
+                UpdateBd.Parameters.AddWithValue("@cidade", txtCidadeCliente.Text);
+                UpdateBd.Parameters.AddWithValue("@uf", comboBoxEstadoUF.Text);
+                UpdateBd.Parameters.AddWithValue("@numero_residencia", txtNumeroResidencia.Text);
+                UpdateBd.Parameters.AddWithValue("@cep", MaskedTxtCepCliente.Text);
+                UpdateBd.Parameters.AddWithValue("@celular", MaskedTxtCelularCliente.Text);
+                UpdateBd.Parameters.AddWithValue("@email", txtEmailCliente.Text);
+                UpdateBd.Parameters.AddWithValue("@observacoes", txtObservacoes.Text);
+                if (comboBoxSituacaoCadastral.Text == "ATIVO")
+                {
+                    UpdateBd.Parameters.AddWithValue("@situacao_cadastral", "ATIVO");
+                }
+                else
+                {
+                    UpdateBd.Parameters.AddWithValue("@situacao_cadastral", "INATIVO");
+                }
+
+                UpdateBd.ExecuteNonQuery();
+
+                conexao.Close();
+            }
+        }
+
+        private void InserirCadastro()
+        {
             var conexao = ConexaoBancoDeDados.Conectar();
 
             using (MySqlCommand insertBd = conexao.CreateCommand())
@@ -229,10 +302,22 @@ namespace Gerenciador_de_Emprestimos
 
                 insertBd.CommandText = "SELECT @@IDENTITY";
                 txtCodigoCliente.Text = insertBd.ExecuteScalar().ToString();
+
+                conexao.Close();
             }
         }
 
-
+        private void SalvarCadastro()
+        {
+            if (_EditarCadastro)
+            {
+                EditarCadastro();
+            }
+            else
+            {
+                InserirCadastro();
+            }
+        }
 
         private bool validacoesCampos()
         {
