@@ -116,21 +116,23 @@ namespace Gerenciador_de_Emprestimos
         {
             ValidacoesEmprestimo();
 
-            try
-            {
-                EmprestimosCliente emprestimo = new EmprestimosCliente();
+            EmprestimosCliente emprestimo = new EmprestimosCliente();
 
-                emprestimo.ValorEmprestado = decimal.Parse(txtBoxValorEmprestado.Text);
-                emprestimo.TaxaJuros = decimal.Parse(txtBoxTaxaJuros.Text);
-                decimal valorTotal = emprestimo.CalcularValorTotal();
-
-                txtBoxValorJuros.Text = emprestimo.TaxaJuros.ToString("F2");
-                txtBoxTotalPagar.Text = emprestimo.ValorTotal.ToString("F2");
-            }
-            catch (Exception ex)
+            // Retirado o uso do Método Try Catch, para testar com o comportamento do TryParse...
+            if (decimal.TryParse(txtBoxValorEmprestado.Text, out decimal valorEmprestado))
             {
-                
+                emprestimo.ValorEmprestado = valorEmprestado;
             }
+
+            if (decimal.TryParse(txtBoxTaxaJuros.Text, out decimal taxaPercentualJuros))
+            {
+                emprestimo.TaxaJuros = taxaPercentualJuros;
+            }
+
+            decimal valorTotal = emprestimo.CalcularValorTotal();
+
+            txtBoxValorJuros.Text = emprestimo.TaxaJuros.ToString("F2");
+            txtBoxTotalPagar.Text = emprestimo.ValorTotal.ToString("F2");
         }
     }
 }

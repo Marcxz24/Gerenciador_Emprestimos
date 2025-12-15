@@ -19,7 +19,8 @@ namespace Gerenciador_de_Emprestimos
 
         private decimal CalcularJuros()
         {
-            return ValorEmprestado * TaxaJuros / 100;
+            TaxaJuros = (ValorEmprestado * TaxaJuros) / 100;
+            return TaxaJuros;
         }
 
         public decimal CalcularValorTotal()
