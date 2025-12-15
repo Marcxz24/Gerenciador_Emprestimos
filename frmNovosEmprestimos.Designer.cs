@@ -183,11 +183,11 @@
             // lblTaxaJuros
             // 
             lblTaxaJuros.AutoSize = true;
-            lblTaxaJuros.Location = new Point(32, 96);
+            lblTaxaJuros.Location = new Point(6, 99);
             lblTaxaJuros.Name = "lblTaxaJuros";
-            lblTaxaJuros.Size = new Size(122, 20);
+            lblTaxaJuros.Size = new Size(161, 20);
             lblTaxaJuros.TabIndex = 9;
-            lblTaxaJuros.Text = "Taxa de Juros (%)";
+            lblTaxaJuros.Text = "Percentual de Juros (%)";
             // 
             // lblValorEmprestado
             // 
@@ -265,6 +265,7 @@
             btnCalcularEmprestimo.Text = "                  Calcular";
             btnCalcularEmprestimo.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCalcularEmprestimo.UseVisualStyleBackColor = false;
+            btnCalcularEmprestimo.Click += btnCalcularEmprestimo_Click;
             // 
             // btnCancelar
             // 
@@ -297,6 +298,7 @@
             btnGerarEmprestimos.Text = "Gerar Emprestimo";
             btnGerarEmprestimos.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnGerarEmprestimos.UseVisualStyleBackColor = false;
+            btnGerarEmprestimos.Click += btnGerarEmprestimos_Click;
             // 
             // FormEmprestimos
             // 

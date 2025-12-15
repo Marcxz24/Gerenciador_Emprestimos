@@ -635,12 +635,12 @@
             // 
             lblSituacaoCadastral.AutoSize = true;
             lblSituacaoCadastral.BackColor = Color.Transparent;
-            lblSituacaoCadastral.Location = new Point(590, 18);
+            lblSituacaoCadastral.Location = new Point(585, 17);
             lblSituacaoCadastral.Margin = new Padding(4, 0, 4, 0);
             lblSituacaoCadastral.Name = "lblSituacaoCadastral";
-            lblSituacaoCadastral.Size = new Size(77, 17);
+            lblSituacaoCadastral.Size = new Size(84, 17);
             lblSituacaoCadastral.TabIndex = 37;
-            lblSituacaoCadastral.Text = "Situação:";
+            lblSituacaoCadastral.Text = "*Situação:";
             // 
             // lblMostrarCodigoCliente
             // 
