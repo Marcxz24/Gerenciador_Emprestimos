@@ -49,6 +49,7 @@
             lblValorEmprestado = new Label();
             txtBoxValorEmprestado = new TextBox();
             groupBoxCalculo = new GroupBox();
+            lblSimularEmprestimo = new Label();
             txtBoxValorEmpresto = new TextBox();
             lblValorEmpresto = new Label();
             lblTituloGrpBoxCalculo = new Label();
@@ -61,8 +62,7 @@
             txtBoxValorJuros = new TextBox();
             btnCancelar = new Button();
             btnGerarEmprestimos = new Button();
-            lblSimularEmprestimo = new Label();
-            label2 = new Label();
+            lblBotãoGerarEmprestimo = new Label();
             groupBoxClienteEmprestimo.SuspendLayout();
             groupBoxDadosEmprestimos.SuspendLayout();
             groupBoxCalculo.SuspendLayout();
@@ -279,6 +279,16 @@
             groupBoxCalculo.TabStop = false;
             groupBoxCalculo.Text = "Cálculo";
             // 
+            // lblSimularEmprestimo
+            // 
+            lblSimularEmprestimo.AutoSize = true;
+            lblSimularEmprestimo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblSimularEmprestimo.Location = new Point(41, 65);
+            lblSimularEmprestimo.Name = "lblSimularEmprestimo";
+            lblSimularEmprestimo.Size = new Size(172, 20);
+            lblSimularEmprestimo.TabIndex = 20;
+            lblSimularEmprestimo.Text = "Simular Emprestimo ->";
+            // 
             // txtBoxValorEmpresto
             // 
             txtBoxValorEmpresto.Location = new Point(421, 146);
@@ -404,23 +414,15 @@
             btnGerarEmprestimos.UseVisualStyleBackColor = false;
             btnGerarEmprestimos.Click += btnGerarEmprestimos_Click;
             // 
-            // lblSimularEmprestimo
+            // lblBotãoGerarEmprestimo
             // 
-            lblSimularEmprestimo.AutoSize = true;
-            lblSimularEmprestimo.Location = new Point(47, 65);
-            lblSimularEmprestimo.Name = "lblSimularEmprestimo";
-            lblSimularEmprestimo.Size = new Size(163, 20);
-            lblSimularEmprestimo.TabIndex = 20;
-            lblSimularEmprestimo.Text = "Simular Emprestimo ->";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(106, 784);
-            label2.Name = "label2";
-            label2.Size = new Size(50, 20);
-            label2.TabIndex = 9;
-            label2.Text = "label2";
+            lblBotãoGerarEmprestimo.AutoSize = true;
+            lblBotãoGerarEmprestimo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblBotãoGerarEmprestimo.Location = new Point(16, 773);
+            lblBotãoGerarEmprestimo.Name = "lblBotãoGerarEmprestimo";
+            lblBotãoGerarEmprestimo.Size = new Size(161, 20);
+            lblBotãoGerarEmprestimo.TabIndex = 9;
+            lblBotãoGerarEmprestimo.Text = "Salvar Emprestimo ->";
             // 
             // FormEmprestimos
             // 
@@ -430,7 +432,7 @@
             BackgroundImage = Properties.Resources.gradience;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(833, 836);
-            Controls.Add(label2);
+            Controls.Add(lblBotãoGerarEmprestimo);
             Controls.Add(btnGerarEmprestimos);
             Controls.Add(btnCancelar);
             Controls.Add(groupBoxCalculo);
@@ -487,6 +489,6 @@
         private TextBox txtBoxValorEmpresto;
         private Label lblValorEmpresto;
         private Label lblSimularEmprestimo;
-        private Label label2;
+        private Label lblBotãoGerarEmprestimo;
     }
 }

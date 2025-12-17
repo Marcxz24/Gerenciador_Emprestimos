@@ -39,26 +39,18 @@ namespace Gerenciador_de_Emprestimos
 
         public int DividirParcelas()
         {
-            if (QuantidadeParcela == 0)
+            // Retirado o tratamento do if se QuantidadeParcela for igual a zero, para evitar divisão por zero, devido à validação já feita no formulário.
+            if (QuantidadeParcela >= 1 && QuantidadeParcela <= 20)
             {
-                Funcoes.MensagemErro("Tentativa de Divisão por Zero!\nSe o cliente não parcelou, informe 1 no campo da Parcela.");
-
-                return 0;
+                ValorParcela = ValorTotal / QuantidadeParcela;
+            }
+            else if (QuantidadeParcela > 20)
+            {
+                Funcoes.MensagemWarning("Quantidade de parcelas excede o limite máximo permitido (20).\n\nVerifique e tente novamente.");
             }
             else
             {
-                if (QuantidadeParcela >= 1 && QuantidadeParcela <= 20)
-                {
-                    ValorParcela = ValorTotal / QuantidadeParcela;
-                }
-                else if (QuantidadeParcela > 20)
-                {
-                    Funcoes.MensagemWarning("Quantidade de parcelas excede o limite máximo permitido (20). Verifique e tente novamente.");
-                }
-                else
-                {
-                    Funcoes.MensagemWarning("Quantidade de parcelas inválida. Verifique e tente novamente.");
-                }
+                Funcoes.MensagemWarning("Quantidade de parcelas inválida. Verifique e tente novamente.");
             }
 
             return QuantidadeParcela;

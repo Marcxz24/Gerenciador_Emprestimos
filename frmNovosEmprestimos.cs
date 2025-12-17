@@ -66,7 +66,13 @@ namespace Gerenciador_de_Emprestimos
                 return true;
             }
 
-            // Validação de Data do Empréstimo
+            // Adição da validação para evitar Divisão por Zero.
+            if (txtBoxQuantidadeParcela.Text == "0")
+            {
+                Funcoes.MensagemErro("Tentativa de Divisão por Zero!\n\nSe o cliente não parcelou, informe 1 no campo da Parcela.");
+                return true;
+            }
+
             DateTime dataEmprestimo;
 
             if (!DateTime.TryParse(maskTxtDataEmprestimo.Text, out dataEmprestimo))
