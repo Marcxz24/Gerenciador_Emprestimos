@@ -14,6 +14,9 @@ namespace Gerenciador_de_Emprestimos
 {
     public partial class FormEmprestimos : Form
     {
+        // criado um objeto global para a classe EmprestimosCliente.
+        EmprestimosCliente emprestimo = new EmprestimosCliente();
+
         public FormEmprestimos()
         {
             InitializeComponent();
@@ -96,6 +99,12 @@ namespace Gerenciador_de_Emprestimos
                 }
             }
 
+            if (emprestimo.ValidarClienteEmprestimo(txtBoxCodigoCliente.Text))
+            {
+                Funcoes.MensagemWarning("Este CLiente Já está com um Emprestimo 'ATIVO'");
+                return true;
+            }
+
             return false;
         }
 
@@ -146,7 +155,24 @@ namespace Gerenciador_de_Emprestimos
 
         private void btnGerarEmprestimos_Click(object sender, EventArgs e)
         {
-            ValidacoesEmprestimo();
+            if (ValidacoesEmprestimo() == true)
+            {
+                return;
+            }
+
+            if (int.TryParse(txtBoxCodigoCliente.Text, out int codigoCliente))
+            {
+                emprestimo.CodigoCliente = codigoCliente;
+            }
+            else
+            {
+                Funcoes.MensagemErro("Código do Cliente inválido. Verifique e tente novamente.");
+                return;
+            }
+
+            emprestimo.AtivarEmprestimo();
+
+            emprestimo.InserirDadosEmorestimo();
         }
 
         private void btnCalcularEmprestimo_Click(object sender, EventArgs e)
@@ -156,9 +182,6 @@ namespace Gerenciador_de_Emprestimos
                 return;
             }
 
-            EmprestimosCliente emprestimo = new EmprestimosCliente();
-
-            // Retirado o uso do Método Try Catch, para testar com o comportamento do TryParse...
             if (decimal.TryParse(txtBoxValorEmprestado.Text, out decimal valorEmprestado))
             {
                 emprestimo.ValorEmprestado = valorEmprestado;

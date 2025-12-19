@@ -1,4 +1,5 @@
 ﻿using Gerenciador_de_Emprestimos.Database;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace Gerenciador_de_Emprestimos
         public decimal ValorTotal { get; private set; }
         public DateTime DataEmprestimo { get; set; }
         public DateTime DataPagamento { get; set; }
-        public string StatusEmprestimo { get; private set; }
+        public string? StatusEmprestimo { get; private set; }
 
         private decimal CalcularJurosValorEmprestado()
         {
@@ -68,12 +69,45 @@ namespace Gerenciador_de_Emprestimos
             DataPagamento = DateTime.Now;
         }
 
+        public bool ValidarClienteEmprestimo(string SelectodigoCliente)
+        {
+            var conexao = ConexaoBancoDeDados.Conectar();
+
+            using (MySqlCommand SelectCliente = conexao.CreateCommand())
+            {
+                SelectCliente.CommandText = "SELECT COUNT(*) FROM emprestimosbd.emprestimos WHERE codigo_cliente = @codigo_cliente AND status_emprestimo = 'ATIVO'";
+                
+                SelectCliente.Parameters.AddWithValue("@codigo_cliente", SelectodigoCliente);
+
+                int quantidadeCliente = Convert.ToInt32(SelectCliente.ExecuteScalar());
+                return quantidadeCliente > 0;
+            }
+        }
+
         public void InserirDadosEmorestimo()
         {
-            // Lógica para inserir os dados do empréstimo no banco de dados
-            // Utilizando o MySQL Connector/NET, para inserir no Banco de Dados MySQL os dados do empréstimo.
+            var conexao = ConexaoBancoDeDados.Conectar();
 
-            string sqlInsertEmprestimo = "INSERT INTO emprestimosbd.cliente (codigo_cliente, valor_emprestado, valor_emprestado_total, valor_juros, data_emprestimo, data_pagar, status_emprestimo)  VALUES(@codigo_cliente, @valor_emprestado, @valor_emprestado_total, @valor_juros, @data_emprestimo, @data_pagar, @status_emprestimo)";
+            using (MySqlCommand sqlInsertEmprestimo = conexao.CreateCommand())
+            {
+                sqlInsertEmprestimo.CommandText = @"INSERT INTO emprestimosbd.emprestimos (codigo_cliente, valor_emprestado, valor_emprestado_total, quantidade_parcela, valor_parcela, valor_juros, data_emprestimo, data_pagar, status_emprestimo)  VALUES(@codigo_cliente, @valor_emprestado, @valor_emprestado_total, @quantidade_parcela, @valor_parcela, @valor_juros, @data_emprestimo, @data_pagar, @status_emprestimo)";
+
+                sqlInsertEmprestimo.Parameters.AddWithValue("@codigo_cliente", CodigoCliente);
+                sqlInsertEmprestimo.Parameters.AddWithValue("@valor_emprestado", ValorEmprestado);
+                sqlInsertEmprestimo.Parameters.AddWithValue("@valor_emprestado_total", ValorTotal);
+                sqlInsertEmprestimo.Parameters.AddWithValue("@quantidade_parcela", QuantidadeParcela);
+                sqlInsertEmprestimo.Parameters.AddWithValue("@valor_parcela", ValorParcela);
+                sqlInsertEmprestimo.Parameters.AddWithValue("@valor_juros", ValorJurosMonetario);
+                sqlInsertEmprestimo.Parameters.AddWithValue("@data_emprestimo", DataEmprestimo);
+                sqlInsertEmprestimo.Parameters.AddWithValue("@data_pagar", DataPagamento);
+                sqlInsertEmprestimo.Parameters.AddWithValue("@status_emprestimo", StatusEmprestimo);
+
+                sqlInsertEmprestimo.ExecuteNonQuery();
+
+                Funcoes.MensagemInformation("Dados do Empréstimo Inseridos com Sucesso!");
+
+                conexao.Close();
+            }
         }
     }
 }
