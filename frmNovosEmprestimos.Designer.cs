@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEmprestimos));
             groupBoxClienteEmprestimo = new GroupBox();
+            lblSituacao = new Label();
+            ComboBoxSituacaoCadastral = new ComboBox();
             lblTituloGrpBoxCliente = new Label();
             btnBuscarCliente = new Button();
             lblCpfCnpjCliente = new Label();
@@ -71,6 +73,8 @@
             // groupBoxClienteEmprestimo
             // 
             groupBoxClienteEmprestimo.BackColor = Color.Transparent;
+            groupBoxClienteEmprestimo.Controls.Add(lblSituacao);
+            groupBoxClienteEmprestimo.Controls.Add(ComboBoxSituacaoCadastral);
             groupBoxClienteEmprestimo.Controls.Add(lblTituloGrpBoxCliente);
             groupBoxClienteEmprestimo.Controls.Add(btnBuscarCliente);
             groupBoxClienteEmprestimo.Controls.Add(lblCpfCnpjCliente);
@@ -85,6 +89,24 @@
             groupBoxClienteEmprestimo.TabIndex = 0;
             groupBoxClienteEmprestimo.TabStop = false;
             groupBoxClienteEmprestimo.Text = "Cliente";
+            // 
+            // lblSituacao
+            // 
+            lblSituacao.AutoSize = true;
+            lblSituacao.Location = new Point(299, 67);
+            lblSituacao.Name = "lblSituacao";
+            lblSituacao.Size = new Size(132, 20);
+            lblSituacao.TabIndex = 21;
+            lblSituacao.Text = "Situação Cadastral";
+            // 
+            // ComboBoxSituacaoCadastral
+            // 
+            ComboBoxSituacaoCadastral.Enabled = false;
+            ComboBoxSituacaoCadastral.FormattingEnabled = true;
+            ComboBoxSituacaoCadastral.Location = new Point(435, 63);
+            ComboBoxSituacaoCadastral.Name = "ComboBoxSituacaoCadastral";
+            ComboBoxSituacaoCadastral.Size = new Size(151, 28);
+            ComboBoxSituacaoCadastral.TabIndex = 20;
             // 
             // lblTituloGrpBoxCliente
             // 
@@ -101,7 +123,7 @@
             btnBuscarCliente.BackColor = Color.PaleTurquoise;
             btnBuscarCliente.FlatStyle = FlatStyle.Popup;
             btnBuscarCliente.Image = (Image)resources.GetObject("btnBuscarCliente.Image");
-            btnBuscarCliente.Location = new Point(285, 63);
+            btnBuscarCliente.Location = new Point(618, 58);
             btnBuscarCliente.Name = "btnBuscarCliente";
             btnBuscarCliente.Size = new Size(165, 44);
             btnBuscarCliente.TabIndex = 6;
@@ -490,5 +512,7 @@
         private Label lblValorEmpresto;
         private Label lblSimularEmprestimo;
         private Label lblBotãoGerarEmprestimo;
+        private ComboBox ComboBoxSituacaoCadastral;
+        private Label lblSituacao;
     }
 }

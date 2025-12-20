@@ -1,5 +1,6 @@
 ﻿using Gerenciador_de_Emprestimos.Database;
 using MySql.Data.MySqlClient;
+using Mysqlx.Session;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -101,7 +102,13 @@ namespace Gerenciador_de_Emprestimos
 
             if (emprestimo.ValidarClienteEmprestimo(txtBoxCodigoCliente.Text))
             {
-                Funcoes.MensagemWarning("Este CLiente Já está com um Emprestimo 'ATIVO'");
+                Funcoes.MensagemWarning("Este Cliente Já está com um Emprestimo 'ATIVO'");
+                return true;
+            }
+
+            if (emprestimo.validarClienteInativo(txtBoxCodigoCliente.Text))
+            {
+                Funcoes.MensagemWarning("Não é possível realizar emprestimos para Clientes 'INATIVOS'");
                 return true;
             }
 
@@ -124,6 +131,7 @@ namespace Gerenciador_de_Emprestimos
                     txtBoxCodigoCliente.Text = reader["codigo"].ToString();
                     txtBoxNomeCliente.Text = reader["nome_cliente"].ToString();
                     maskTxtCpfCnpjCliente.Text = reader["cpf_cnpj"].ToString();
+                    ComboBoxSituacaoCadastral.Text = reader["situacao_cadastral"].ToString();
                 }
             }
         }
@@ -151,6 +159,7 @@ namespace Gerenciador_de_Emprestimos
             txtBoxTotalPagar.Clear();
             txtBoxQuantidadeParcela.Clear();
             txtBoxValorParcela.Clear();
+            ComboBoxSituacaoCadastral.Text = "";
         }
 
         private void btnGerarEmprestimos_Click(object sender, EventArgs e)

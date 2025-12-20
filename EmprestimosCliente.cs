@@ -40,7 +40,6 @@ namespace Gerenciador_de_Emprestimos
 
         public int DividirParcelas()
         {
-            // Retirado o tratamento do if se QuantidadeParcela for igual a zero, para evitar divisão por zero, devido à validação já feita no formulário.
             if (QuantidadeParcela >= 1 && QuantidadeParcela <= 20)
             {
                 ValorParcela = ValorTotal / QuantidadeParcela;
@@ -60,7 +59,7 @@ namespace Gerenciador_de_Emprestimos
         public void AtivarEmprestimo()
         {
             StatusEmprestimo = "ATIVO";
-            DataEmprestimo = DateTime.Now;
+            DataPagamento = DateTime.Now;
         }
 
         public void FinalizarEmprestimo()
@@ -69,7 +68,7 @@ namespace Gerenciador_de_Emprestimos
             DataPagamento = DateTime.Now;
         }
 
-        public bool ValidarClienteEmprestimo(string SelectodigoCliente)
+        public bool ValidarClienteEmprestimo(string codigoCliente)
         {
             var conexao = ConexaoBancoDeDados.Conectar();
 
@@ -77,11 +76,27 @@ namespace Gerenciador_de_Emprestimos
             {
                 SelectCliente.CommandText = "SELECT COUNT(*) FROM emprestimosbd.emprestimos WHERE codigo_cliente = @codigo_cliente AND status_emprestimo = 'ATIVO'";
                 
-                SelectCliente.Parameters.AddWithValue("@codigo_cliente", SelectodigoCliente);
+                SelectCliente.Parameters.AddWithValue("@codigo_cliente", codigoCliente);
 
                 int quantidadeCliente = Convert.ToInt32(SelectCliente.ExecuteScalar());
                 return quantidadeCliente > 0;
             }
+        }
+
+        public bool validarClienteInativo(string codigoClienteInativo)
+        {
+            var conexao = ConexaoBancoDeDados.Conectar();
+
+            using (MySqlCommand SelectInativo = conexao.CreateCommand())
+            {
+                SelectInativo.CommandText = "SELECT COUNT(*) FROM emprestimosbd.cliente WHERE codigo = @codigo AND situacao_cadastral = 'INATIVO'";
+
+                SelectInativo.Parameters.AddWithValue("@codigo", codigoClienteInativo);
+
+                int quantidadeClienteInativo = Convert.ToInt32(SelectInativo.ExecuteScalar());
+                return quantidadeClienteInativo > 0;
+            }
+
         }
 
         public void InserirDadosEmorestimo()
