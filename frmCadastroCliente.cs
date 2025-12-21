@@ -355,6 +355,15 @@ namespace Gerenciador_de_Emprestimos
                 return true;
             }
 
+            if (ValidacaoCpf.ValidarCpf(MaskedTxtCpfCnpjCliente.Text) == false)
+            {
+                Funcoes.MensagemWarning("CPF inválido, favor informar um CPF valido.");
+
+                MaskedTxtCpfCnpjCliente.Focus();
+
+                return true;
+            }
+
             if (btnRadioMasculino.Checked == false && btnRadioFeminino.Checked == false && btnRadioGeneroOutros.Checked == false)
             {
                 Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Marque um dos Botões!\n\nCampo: Genêro");
