@@ -21,21 +21,13 @@ namespace Gerenciador_de_Emprestimos
         public FormEmprestimos()
         {
             InitializeComponent();
-            txtBoxCodigoCliente.KeyPress += SomenteNumeros_KeyPress;
-            txtBoxTaxaJuros.KeyPress += SomenteNumeros_KeyPress;
-            txtBoxValorEmprestado.KeyPress += SomenteNumeros_KeyPress;
-            txtBoxValorJuros.KeyPress += SomenteNumeros_KeyPress;
-            txtBoxQuantidadeParcela.KeyPress += SomenteNumeros_KeyPress;
-            txtBoxValorParcela.KeyPress += SomenteNumeros_KeyPress;
-            maskTxtCpfCnpjCliente.KeyPress += SomenteNumeros_KeyPress;
-        }
-
-        private void SomenteNumeros_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',')
-            {
-                e.Handled = true;
-            }
+            txtBoxCodigoCliente.KeyPress += Funcoes.SomenteNumeros_KeyPress;
+            txtBoxTaxaJuros.KeyPress += Funcoes.SomenteNumerosComVirgula_KeyPress;
+            txtBoxValorEmprestado.KeyPress += Funcoes.SomenteNumerosComVirgula_KeyPress;
+            txtBoxValorJuros.KeyPress += Funcoes.SomenteNumerosComVirgula_KeyPress;
+            txtBoxQuantidadeParcela.KeyPress += Funcoes.SomenteNumeros_KeyPress;
+            txtBoxValorParcela.KeyPress += Funcoes.SomenteNumerosComVirgula_KeyPress;
+            maskTxtCpfCnpjCliente.KeyPress += Funcoes.SomenteNumeros_KeyPress;
         }
 
         private bool ValidacoesEmprestimo()

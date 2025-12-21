@@ -14,18 +14,10 @@ namespace Gerenciador_de_Emprestimos
         public frmSelecionarCliente()
         {
             InitializeComponent();
-            txtCodigoCliente.KeyPress += SomenteNumeros_KeyPress;
-            maskedCelularSelecionar.KeyPress += SomenteNumeros_KeyPress;
-            maskedCpfCnpj.KeyPress += SomenteNumeros_KeyPress;
-            txtNumeroResidencia.KeyPress += SomenteNumeros_KeyPress;
-        }
-
-        private void SomenteNumeros_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
-                e.Handled = true;
-            }
+            txtCodigoCliente.KeyPress += Funcoes.SomenteNumeros_KeyPress;
+            maskedCelularSelecionar.KeyPress += Funcoes.SomenteNumeros_KeyPress;
+            maskedCpfCnpj.KeyPress += Funcoes.SomenteNumeros_KeyPress;
+            txtNumeroResidencia.KeyPress += Funcoes.SomenteNumeros_KeyPress;
         }
 
         private void btnSelecionarCliente_Click(object sender, EventArgs e)

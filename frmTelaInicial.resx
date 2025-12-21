@@ -117,18 +117,254 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;btnVizualizarDebitos.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="groupInicialBtnEscolha.Location" type="System.Drawing.Point, System.Drawing">
-    <value>422, 12</value>
+  <data name="lblTituloInicial.Size" type="System.Drawing.Size, System.Drawing">
+    <value>410, 33</value>
+  </data>
+  <data name="lblInformacaoCadastroCliente.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 276</value>
+  </data>
+  <data name="&gt;&gt;lbl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblInformacaoCadastroCliente.Size" type="System.Drawing.Size, System.Drawing">
+    <value>302, 20</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnChamarFormCadastroCliente.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lblTituloInicial.Name" xml:space="preserve">
+    <value>lblTituloInicial</value>
+  </data>
+  <data name="btnChamarFormCadastroCliente.Location" type="System.Drawing.Point, System.Drawing">
+    <value>314, 251</value>
+  </data>
+  <data name="&gt;&gt;btnVizualizarDebitos.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupInicialBtnEscolha.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblSaudacoes.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="btnFecharAplicacao.Location" type="System.Drawing.Point, System.Drawing">
     <value>606, 761</value>
   </data>
+  <data name="btnChamarFormEmprestimos.Text" xml:space="preserve">
+    <value>Emprestimos/Pagamento</value>
+  </data>
+  <data name="btnVizualizarDebitos.Location" type="System.Drawing.Point, System.Drawing">
+    <value>75, 560</value>
+  </data>
+  <data name="btnChamarFormCadastroCliente.Text" xml:space="preserve">
+    <value>Cadastrar Cliente</value>
+  </data>
+  <data name="btnChamarFormEmprestimos.Location" type="System.Drawing.Point, System.Drawing">
+    <value>331, 346</value>
+  </data>
+  <data name="&gt;&gt;lblInformacaoCadastroCliente.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnChmarFormPagamento.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="lbl.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;btnChmarFormPagamento.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FormTelaIncial</value>
+  </data>
+  <data name="lblSaudacoes.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 9pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;lblSaudacoes.Name" xml:space="preserve">
+    <value>lblSaudacoes</value>
+  </data>
+  <data name="&gt;&gt;btnFecharAplicacao.Name" xml:space="preserve">
+    <value>btnFecharAplicacao</value>
+  </data>
+  <data name="&gt;&gt;lblTituloInicial.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lbl.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="btnChamarFormCadastroCliente.Size" type="System.Drawing.Size, System.Drawing">
     <value>146, 70</value>
+  </data>
+  <data name="lbl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 371</value>
+  </data>
+  <data name="lblTituloInicial.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lbl.Name" xml:space="preserve">
+    <value>lbl</value>
+  </data>
+  <data name="&gt;&gt;btnChmarFormPagamento.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lbl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 20</value>
+  </data>
+  <data name="lblTituloInicial.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblSaudacoes.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lblTituloInicial.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;lblInformacaoCadastroCliente.Parent" xml:space="preserve">
+    <value>groupInicialBtnEscolha</value>
+  </data>
+  <data name="&gt;&gt;lblSaudacoes.Parent" xml:space="preserve">
+    <value>groupInicialBtnEscolha</value>
+  </data>
+  <data name="btnChmarFormPagamento.Location" type="System.Drawing.Point, System.Drawing">
+    <value>75, 497</value>
+  </data>
+  <data name="lblSaudacoes.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;lblTituloInicial.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbl.Parent" xml:space="preserve">
+    <value>groupInicialBtnEscolha</value>
+  </data>
+  <data name="&gt;&gt;btnChamarFormCadastroCliente.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="groupInicialBtnEscolha.Location" type="System.Drawing.Point, System.Drawing">
+    <value>422, 12</value>
+  </data>
+  <data name="groupInicialBtnEscolha.Size" type="System.Drawing.Size, System.Drawing">
+    <value>688, 860</value>
+  </data>
+  <data name="&gt;&gt;btnFecharAplicacao.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblSaudacoes.Text" xml:space="preserve">
+    <value>     Olá, Seja bem vindo ao Gerenciador de Emprestimos!
+
+Escolha qualquer uma das opções abaixo para dar continuidade:</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
+  </data>
+  <data name="lblInformacaoCadastroCliente.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;btnChamarFormEmprestimos.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lblInformacaoCadastroCliente.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;lbl.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
+  <data name="btnChamarFormEmprestimos.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="btnChamarFormEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 70</value>
+  </data>
+  <data name="&gt;&gt;btnChamarFormEmprestimos.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupInicialBtnEscolha.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>1720, 927</value>
+  </data>
+  <data name="&gt;&gt;btnFecharAplicacao.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnVizualizarDebitos.Name" xml:space="preserve">
+    <value>btnVizualizarDebitos</value>
+  </data>
+  <data name="lblSaudacoes.Size" type="System.Drawing.Size, System.Drawing">
+    <value>461, 54</value>
+  </data>
+  <data name="&gt;&gt;btnChamarFormCadastroCliente.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="groupInicialBtnEscolha.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="btnFecharAplicacao.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="lblSaudacoes.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 95</value>
+  </data>
+  <data name="&gt;&gt;btnVizualizarDebitos.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>8, 20</value>
+  </data>
+  <data name="&gt;&gt;btnChmarFormPagamento.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;btnChamarFormCadastroCliente.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnFecharAplicacao.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lblInformacaoCadastroCliente.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnChamarFormCadastroCliente.Name" xml:space="preserve">
+    <value>btnChamarFormCadastroCliente</value>
+  </data>
+  <data name="&gt;&gt;lblInformacaoCadastroCliente.Name" xml:space="preserve">
+    <value>lblInformacaoCadastroCliente</value>
+  </data>
+  <data name="lblTituloInicial.Text" xml:space="preserve">
+    <value>Gerenciador de Emprestimos</value>
+  </data>
+  <data name="&gt;&gt;groupInicialBtnEscolha.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Gerenciador de Emprestimos</value>
+  </data>
+  <data name="&gt;&gt;btnVizualizarDebitos.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lblInformacaoCadastroCliente.Text" xml:space="preserve">
+    <value>Clique Neste Botão Para Cadastrar o Cliente:</value>
+  </data>
+  <data name="&gt;&gt;btnChamarFormEmprestimos.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnVizualizarDebitos.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="lblTituloInicial.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 16.2pt, style=Bold</value>
+  </data>
+  <data name="lblTituloInicial.Location" type="System.Drawing.Point, System.Drawing">
+    <value>113, 23</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -503,256 +739,20 @@
         TkSuQmCC
 </value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lbl.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="btnChamarFormCadastroCliente.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="lblTituloInicial.Text" xml:space="preserve">
-    <value>Gerenciador de Emprestimos</value>
-  </data>
-  <data name="lblSaudacoes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 95</value>
-  </data>
-  <data name="&gt;&gt;lbl.Name" xml:space="preserve">
-    <value>lbl</value>
-  </data>
-  <data name="lblSaudacoes.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 9pt, style=Bold</value>
-  </data>
-  <data name="&gt;&gt;groupInicialBtnEscolha.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="btnVizualizarDebitos.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;lblTituloInicial.Name" xml:space="preserve">
-    <value>lblTituloInicial</value>
-  </data>
-  <data name="&gt;&gt;btnChamarFormCadastroCliente.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblSaudacoes.Size" type="System.Drawing.Size, System.Drawing">
-    <value>461, 54</value>
-  </data>
-  <data name="&gt;&gt;btnChmarFormPagamento.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupInicialBtnEscolha.Name" xml:space="preserve">
-    <value>groupInicialBtnEscolha</value>
-  </data>
-  <data name="groupInicialBtnEscolha.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="btnChamarFormEmprestimos.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="lblSaudacoes.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnChmarFormPagamento.Name" xml:space="preserve">
-    <value>btnChmarFormPagamento</value>
-  </data>
-  <data name="lblInformacaoCadastroCliente.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="btnChamarFormCadastroCliente.Location" type="System.Drawing.Point, System.Drawing">
-    <value>314, 251</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>FormTelaIncial</value>
-  </data>
-  <data name="lblInformacaoCadastroCliente.Text" xml:space="preserve">
-    <value>Clique Neste Botão Para Cadastrar o Cliente:</value>
-  </data>
-  <data name="lblSaudacoes.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1720, 927</value>
-  </data>
-  <data name="lbl.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="lblSaudacoes.Text" xml:space="preserve">
-    <value>     Olá, Seja bem vindo ao Gerenciador de Emprestimos!
-
-Escolha qualquer uma das opções abaixo para dar continuidade:</value>
-  </data>
-  <data name="lbl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 371</value>
-  </data>
-  <data name="lblTituloInicial.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 16.2pt, style=Bold</value>
-  </data>
-  <data name="lblTituloInicial.Size" type="System.Drawing.Size, System.Drawing">
-    <value>410, 33</value>
-  </data>
-  <data name="btnChmarFormPagamento.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;btnChmarFormPagamento.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnFecharAplicacao.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;lblSaudacoes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnChamarFormEmprestimos.Name" xml:space="preserve">
     <value>btnChamarFormEmprestimos</value>
   </data>
-  <data name="&gt;&gt;btnVizualizarDebitos.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;btnChmarFormPagamento.Name" xml:space="preserve">
+    <value>btnChmarFormPagamento</value>
   </data>
-  <data name="&gt;&gt;lblInformacaoCadastroCliente.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lblInformacaoCadastroCliente.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnChamarFormEmprestimos.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 20</value>
-  </data>
-  <data name="btnChamarFormEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 70</value>
-  </data>
-  <data name="lblInformacaoCadastroCliente.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 276</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
-  </data>
-  <data name="lblInformacaoCadastroCliente.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;groupInicialBtnEscolha.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbl.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lblTituloInicial.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblInformacaoCadastroCliente.Parent" xml:space="preserve">
+  <data name="&gt;&gt;groupInicialBtnEscolha.Name" xml:space="preserve">
     <value>groupInicialBtnEscolha</value>
   </data>
   <data name="lbl.Text" xml:space="preserve">
     <value>Clique Neste Botão Para Realizar Emprestimos:</value>
-  </data>
-  <data name="&gt;&gt;btnVizualizarDebitos.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupInicialBtnEscolha.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lbl.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnVizualizarDebitos.Location" type="System.Drawing.Point, System.Drawing">
-    <value>75, 560</value>
-  </data>
-  <data name="btnFecharAplicacao.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;lblSaudacoes.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Gerenciador de Emprestimos</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
-  </data>
-  <data name="lbl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>319, 20</value>
-  </data>
-  <data name="&gt;&gt;btnVizualizarDebitos.Name" xml:space="preserve">
-    <value>btnVizualizarDebitos</value>
-  </data>
-  <data name="lblTituloInicial.Location" type="System.Drawing.Point, System.Drawing">
-    <value>113, 23</value>
-  </data>
-  <data name="&gt;&gt;btnChamarFormCadastroCliente.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="lblTituloInicial.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="lblTituloInicial.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;lbl.Parent" xml:space="preserve">
-    <value>groupInicialBtnEscolha</value>
-  </data>
-  <data name="groupInicialBtnEscolha.Size" type="System.Drawing.Size, System.Drawing">
-    <value>688, 860</value>
-  </data>
-  <data name="&gt;&gt;btnFecharAplicacao.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lblSaudacoes.Parent" xml:space="preserve">
-    <value>groupInicialBtnEscolha</value>
-  </data>
-  <data name="&gt;&gt;lblInformacaoCadastroCliente.Name" xml:space="preserve">
-    <value>lblInformacaoCadastroCliente</value>
-  </data>
-  <data name="&gt;&gt;lblTituloInicial.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="lblInformacaoCadastroCliente.Size" type="System.Drawing.Size, System.Drawing">
-    <value>302, 20</value>
-  </data>
-  <data name="&gt;&gt;btnFecharAplicacao.Name" xml:space="preserve">
-    <value>btnFecharAplicacao</value>
-  </data>
-  <data name="&gt;&gt;btnChmarFormPagamento.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="btnChamarFormEmprestimos.Location" type="System.Drawing.Point, System.Drawing">
-    <value>331, 346</value>
-  </data>
-  <data name="&gt;&gt;btnChamarFormEmprestimos.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnFecharAplicacao.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnChamarFormCadastroCliente.Text" xml:space="preserve">
-    <value>Cadastrar Cliente</value>
-  </data>
-  <data name="btnChmarFormPagamento.Location" type="System.Drawing.Point, System.Drawing">
-    <value>75, 497</value>
-  </data>
-  <data name="&gt;&gt;lblSaudacoes.Name" xml:space="preserve">
-    <value>lblSaudacoes</value>
-  </data>
-  <data name="&gt;&gt;lblSaudacoes.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;btnChamarFormEmprestimos.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="btnChamarFormEmprestimos.Text" xml:space="preserve">
-    <value>Emprestimos/Pagamento</value>
-  </data>
-  <data name="&gt;&gt;btnChamarFormCadastroCliente.Name" xml:space="preserve">
-    <value>btnChamarFormCadastroCliente</value>
-  </data>
-  <data name="&gt;&gt;btnChamarFormCadastroCliente.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;lblTituloInicial.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

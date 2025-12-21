@@ -91,6 +91,7 @@
             btnVizualizarDebitos.Image = Properties.Resources.lupa;
             btnVizualizarDebitos.Name = "btnVizualizarDebitos";
             btnVizualizarDebitos.UseVisualStyleBackColor = false;
+            btnVizualizarDebitos.Click += btnVizualizarDebitos_Click;
             // 
             // FormTelaIncial
             // 

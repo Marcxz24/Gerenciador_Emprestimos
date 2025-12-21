@@ -27,5 +27,11 @@ namespace Gerenciador_de_Emprestimos
         {
             Environment.Exit(0);
         }
+
+        private void btnVizualizarDebitos_Click(object sender, EventArgs e)
+        {
+            frmVisualizarEmprestimos frmVisualizarEmprestimos = new frmVisualizarEmprestimos();
+            frmVisualizarEmprestimos.Show();
+        }
     }
 }

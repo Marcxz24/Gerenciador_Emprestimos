@@ -34,6 +34,24 @@ namespace Gerenciador_de_Emprestimos
             
         }
 
+        // Posteriormente alterar o nome para PermitirApenasNumeros
+        public static void SomenteNumeros_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        // Posteriormente alterar o nome para PermitirDecimalComVirgua
+        public static void SomenteNumerosComVirgula_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && (e.KeyChar != ',' || (sender as TextBox).Text.Contains(',')))
+            {
+                e.Handled = true;
+            }
+        }
+
         public static void MensagemWarning(string mensagem)
         {
             MessageBox.Show(mensagem, "Atenção! Analisar os seguintes critérios", MessageBoxButtons.OK, MessageBoxIcon.Warning);

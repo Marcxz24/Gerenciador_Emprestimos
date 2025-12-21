@@ -12,16 +12,8 @@ namespace Gerenciador_de_Emprestimos
         public FormCadastroCliente()
         {
             InitializeComponent();
-            txtNumeroResidencia.KeyPress += SomenteNumeros_KeyPress;
-            MaskedTxtCpfCnpjCliente.KeyPress += SomenteNumeros_KeyPress;
-        }
-
-        private void SomenteNumeros_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
-                e.Handled = true;
-            }
+            txtNumeroResidencia.KeyPress += Funcoes.SomenteNumeros_KeyPress;
+            MaskedTxtCpfCnpjCliente.KeyPress += Funcoes.SomenteNumeros_KeyPress;
         }
 
         private void CarrgarDadosCliente(string codigo)
