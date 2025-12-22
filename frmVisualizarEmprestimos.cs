@@ -22,14 +22,9 @@ namespace Gerenciador_de_Emprestimos
             txtValorEmprestado.KeyPress += Funcoes.SomenteNumerosComVirgula_KeyPress;
             txtValorJurosPercentual.KeyPress += Funcoes.SomenteNumerosComVirgula_KeyPress;
             txtValorJurosMonetario.KeyPress += Funcoes.SomenteNumeros_KeyPress;
-        }
-
-        private void SomenteNumeros_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
-                e.Handled = true;
-            }
+            txtQtnParcela.KeyPress += Funcoes.SomenteNumeros_KeyPress;
+            txtValorDaParcela.KeyPress += Funcoes.SomenteNumerosComVirgula_KeyPress;
+            txtValorTotal.KeyPress += Funcoes.SomenteNumerosComVirgula_KeyPress;
         }
 
         private void btnPesquisarCliente_Click(object sender, EventArgs e)
@@ -65,16 +60,21 @@ namespace Gerenciador_de_Emprestimos
 
         private void btnVisualizarEmprestimos_Click(object sender, EventArgs e)
         {
-            var conexao = ConexaoBancoDeDados.Conectar();
+            EmprestimosConsulta consultaEmprestimos = new EmprestimosConsulta();
 
-            if (conexao.State != ConnectionState.Open)
-            {
-                conexao.Open();
-            }
+            DataTable dataTable = consultaEmprestimos.ConsultaEmprestimos();
 
-            MySqlCommand cmd = conexao.CreateCommand();
+            dataGridEmprestimos.DataSource = dataTable;
+        }
 
-            string selectBd = $"SELECT codigo, codigo_cliente, valor_emprestado, valor_emprestado_total, quantidade_parcela, valor_parcela, valor_juros, status_emprestimo FROM emprestimosbd.emprestimos";
-        }        
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnLimparDados_Click(object sender, EventArgs e)
+        {
+            dataGridEmprestimos.DataSource = null;
+        }
     }
 }

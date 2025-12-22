@@ -41,6 +41,12 @@
             btnPesquisarCliente = new Button();
             dataGridEmprestimos = new DataGridView();
             grpBoxDadosEmprestimos = new GroupBox();
+            txtValorTotal = new TextBox();
+            lblValorTotal = new Label();
+            txtValorDaParcela = new TextBox();
+            lblValorDaParcela = new Label();
+            txtQtnParcela = new TextBox();
+            lblQtnParcela = new Label();
             txtValorJurosMonetario = new TextBox();
             lblValorJurosMonetario = new Label();
             txtValorJurosPercentual = new TextBox();
@@ -50,7 +56,10 @@
             comboBoxStatusEmprestimo = new ComboBox();
             lblStatusEmprestimo = new Label();
             grpFiltrosPesquisa = new GroupBox();
+            btnLimparDados = new Button();
             btnVisualizarEmprestimos = new Button();
+            btnImprimir = new Button();
+            btnFechar = new Button();
             grpBoxCliente.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridEmprestimos).BeginInit();
             grpBoxDadosEmprestimos.SuspendLayout();
@@ -149,7 +158,7 @@
             btnPesquisarCliente.BackColor = Color.PaleTurquoise;
             btnPesquisarCliente.FlatStyle = FlatStyle.Popup;
             btnPesquisarCliente.Image = Properties.Resources.lupa;
-            btnPesquisarCliente.Location = new Point(189, 359);
+            btnPesquisarCliente.Location = new Point(189, 343);
             btnPesquisarCliente.Name = "btnPesquisarCliente";
             btnPesquisarCliente.Size = new Size(193, 43);
             btnPesquisarCliente.TabIndex = 6;
@@ -170,6 +179,12 @@
             // grpBoxDadosEmprestimos
             // 
             grpBoxDadosEmprestimos.BackColor = Color.Transparent;
+            grpBoxDadosEmprestimos.Controls.Add(txtValorTotal);
+            grpBoxDadosEmprestimos.Controls.Add(lblValorTotal);
+            grpBoxDadosEmprestimos.Controls.Add(txtValorDaParcela);
+            grpBoxDadosEmprestimos.Controls.Add(lblValorDaParcela);
+            grpBoxDadosEmprestimos.Controls.Add(txtQtnParcela);
+            grpBoxDadosEmprestimos.Controls.Add(lblQtnParcela);
             grpBoxDadosEmprestimos.Controls.Add(txtValorJurosMonetario);
             grpBoxDadosEmprestimos.Controls.Add(lblValorJurosMonetario);
             grpBoxDadosEmprestimos.Controls.Add(txtValorJurosPercentual);
@@ -180,10 +195,58 @@
             grpBoxDadosEmprestimos.Controls.Add(lblStatusEmprestimo);
             grpBoxDadosEmprestimos.Location = new Point(6, 155);
             grpBoxDadosEmprestimos.Name = "grpBoxDadosEmprestimos";
-            grpBoxDadosEmprestimos.Size = new Size(803, 158);
+            grpBoxDadosEmprestimos.Size = new Size(803, 173);
             grpBoxDadosEmprestimos.TabIndex = 2;
             grpBoxDadosEmprestimos.TabStop = false;
-            grpBoxDadosEmprestimos.Text = "Dados do Emprestimo";
+            grpBoxDadosEmprestimos.Text = "Filtro de Dados do Emprestimo";
+            // 
+            // txtValorTotal
+            // 
+            txtValorTotal.Location = new Point(413, 137);
+            txtValorTotal.Name = "txtValorTotal";
+            txtValorTotal.Size = new Size(183, 25);
+            txtValorTotal.TabIndex = 17;
+            // 
+            // lblValorTotal
+            // 
+            lblValorTotal.AutoSize = true;
+            lblValorTotal.Location = new Point(413, 107);
+            lblValorTotal.Name = "lblValorTotal";
+            lblValorTotal.Size = new Size(87, 17);
+            lblValorTotal.TabIndex = 16;
+            lblValorTotal.Text = "Valor Total";
+            // 
+            // txtValorDaParcela
+            // 
+            txtValorDaParcela.Location = new Point(211, 137);
+            txtValorDaParcela.Name = "txtValorDaParcela";
+            txtValorDaParcela.Size = new Size(183, 25);
+            txtValorDaParcela.TabIndex = 15;
+            // 
+            // lblValorDaParcela
+            // 
+            lblValorDaParcela.AutoSize = true;
+            lblValorDaParcela.Location = new Point(211, 107);
+            lblValorDaParcela.Name = "lblValorDaParcela";
+            lblValorDaParcela.Size = new Size(130, 17);
+            lblValorDaParcela.TabIndex = 14;
+            lblValorDaParcela.Text = "Valor da Parcela";
+            // 
+            // txtQtnParcela
+            // 
+            txtQtnParcela.Location = new Point(10, 137);
+            txtQtnParcela.Name = "txtQtnParcela";
+            txtQtnParcela.Size = new Size(183, 25);
+            txtQtnParcela.TabIndex = 13;
+            // 
+            // lblQtnParcela
+            // 
+            lblQtnParcela.AutoSize = true;
+            lblQtnParcela.Location = new Point(10, 107);
+            lblQtnParcela.Name = "lblQtnParcela";
+            lblQtnParcela.Size = new Size(183, 17);
+            lblQtnParcela.TabIndex = 12;
+            lblQtnParcela.Text = "Quantidade de Parcelas";
             // 
             // txtValorJurosMonetario
             // 
@@ -254,6 +317,7 @@
             // grpFiltrosPesquisa
             // 
             grpFiltrosPesquisa.BackColor = Color.Transparent;
+            grpFiltrosPesquisa.Controls.Add(btnLimparDados);
             grpFiltrosPesquisa.Controls.Add(btnVisualizarEmprestimos);
             grpFiltrosPesquisa.Controls.Add(btnPesquisarCliente);
             grpFiltrosPesquisa.Controls.Add(grpBoxCliente);
@@ -265,12 +329,26 @@
             grpFiltrosPesquisa.TabStop = false;
             grpFiltrosPesquisa.Text = "Filtros de Pesquisa";
             // 
+            // btnLimparDados
+            // 
+            btnLimparDados.BackColor = Color.Salmon;
+            btnLimparDados.FlatStyle = FlatStyle.Popup;
+            btnLimparDados.Image = Properties.Resources.close_256_icon_icons_com_75990;
+            btnLimparDados.Location = new Point(623, 343);
+            btnLimparDados.Name = "btnLimparDados";
+            btnLimparDados.Size = new Size(186, 43);
+            btnLimparDados.TabIndex = 9;
+            btnLimparDados.Text = "Limpar Dados";
+            btnLimparDados.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnLimparDados.UseVisualStyleBackColor = false;
+            btnLimparDados.Click += btnLimparDados_Click;
+            // 
             // btnVisualizarEmprestimos
             // 
-            btnVisualizarEmprestimos.BackColor = Color.PaleTurquoise;
+            btnVisualizarEmprestimos.BackColor = Color.Aqua;
             btnVisualizarEmprestimos.FlatStyle = FlatStyle.Popup;
             btnVisualizarEmprestimos.Image = Properties.Resources.lupa;
-            btnVisualizarEmprestimos.Location = new Point(388, 359);
+            btnVisualizarEmprestimos.Location = new Point(388, 343);
             btnVisualizarEmprestimos.Name = "btnVisualizarEmprestimos";
             btnVisualizarEmprestimos.Size = new Size(229, 43);
             btnVisualizarEmprestimos.TabIndex = 7;
@@ -279,6 +357,33 @@
             btnVisualizarEmprestimos.UseVisualStyleBackColor = false;
             btnVisualizarEmprestimos.Click += btnVisualizarEmprestimos_Click;
             // 
+            // btnImprimir
+            // 
+            btnImprimir.BackColor = Color.Gainsboro;
+            btnImprimir.FlatStyle = FlatStyle.Popup;
+            btnImprimir.Image = Properties.Resources.imprimir_sinal_de_ferramenta_de_interface_preenchida;
+            btnImprimir.Location = new Point(497, 788);
+            btnImprimir.Name = "btnImprimir";
+            btnImprimir.Size = new Size(110, 43);
+            btnImprimir.TabIndex = 8;
+            btnImprimir.Text = "Imprimir";
+            btnImprimir.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnImprimir.UseVisualStyleBackColor = false;
+            // 
+            // btnFechar
+            // 
+            btnFechar.BackColor = Color.Salmon;
+            btnFechar.FlatStyle = FlatStyle.Popup;
+            btnFechar.Image = Properties.Resources.close_256_icon_icons_com_75990;
+            btnFechar.Location = new Point(629, 788);
+            btnFechar.Name = "btnFechar";
+            btnFechar.Size = new Size(186, 43);
+            btnFechar.TabIndex = 10;
+            btnFechar.Text = "Fechar Tela\r\n";
+            btnFechar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnFechar.UseVisualStyleBackColor = false;
+            btnFechar.Click += btnFechar_Click;
+            // 
             // frmVisualizarEmprestimos
             // 
             AutoScaleDimensions = new SizeF(9F, 17F);
@@ -286,6 +391,8 @@
             BackColor = Color.AliceBlue;
             BackgroundImage = Properties.Resources.gra_cad_cliente;
             ClientSize = new Size(833, 836);
+            Controls.Add(btnFechar);
+            Controls.Add(btnImprimir);
             Controls.Add(grpFiltrosPesquisa);
             Controls.Add(dataGridEmprestimos);
             Font = new Font("Arial Rounded MT Bold", 9F);
@@ -327,5 +434,14 @@
         private Label lblValorJurosMonetario;
         private TextBox txtValorJurosPercentual;
         private TextBox txtValorJurosMonetario;
+        private Button btnImprimir;
+        private Button btnLimparDados;
+        private TextBox txtQtnParcela;
+        private Label lblQtnParcela;
+        private TextBox txtValorDaParcela;
+        private Label lblValorDaParcela;
+        private Button btnFechar;
+        private TextBox txtValorTotal;
+        private Label lblValorTotal;
     }
 }

@@ -173,6 +173,16 @@ namespace Gerenciador_de_Emprestimos.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap imprimir_sinal_de_ferramenta_de_interface_preenchida {
+            get {
+                object obj = ResourceManager.GetObject("imprimir-sinal-de-ferramenta-de-interface-preenchida", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap lupa {
             get {
                 object obj = ResourceManager.GetObject("lupa", resourceCulture);
