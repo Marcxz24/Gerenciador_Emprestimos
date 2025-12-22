@@ -49,8 +49,6 @@
             lblQtnParcela = new Label();
             txtValorJurosMonetario = new TextBox();
             lblValorJurosMonetario = new Label();
-            txtValorJurosPercentual = new TextBox();
-            lblValorJuros = new Label();
             txtValorEmprestado = new TextBox();
             lblValorEmprestado = new Label();
             comboBoxStatusEmprestimo = new ComboBox();
@@ -172,6 +170,7 @@
             dataGridEmprestimos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridEmprestimos.Location = new Point(12, 427);
             dataGridEmprestimos.Name = "dataGridEmprestimos";
+            dataGridEmprestimos.ReadOnly = true;
             dataGridEmprestimos.RowHeadersWidth = 51;
             dataGridEmprestimos.Size = new Size(803, 355);
             dataGridEmprestimos.TabIndex = 1;
@@ -187,8 +186,6 @@
             grpBoxDadosEmprestimos.Controls.Add(lblQtnParcela);
             grpBoxDadosEmprestimos.Controls.Add(txtValorJurosMonetario);
             grpBoxDadosEmprestimos.Controls.Add(lblValorJurosMonetario);
-            grpBoxDadosEmprestimos.Controls.Add(txtValorJurosPercentual);
-            grpBoxDadosEmprestimos.Controls.Add(lblValorJuros);
             grpBoxDadosEmprestimos.Controls.Add(txtValorEmprestado);
             grpBoxDadosEmprestimos.Controls.Add(lblValorEmprestado);
             grpBoxDadosEmprestimos.Controls.Add(comboBoxStatusEmprestimo);
@@ -202,7 +199,7 @@
             // 
             // txtValorTotal
             // 
-            txtValorTotal.Location = new Point(413, 137);
+            txtValorTotal.Location = new Point(217, 137);
             txtValorTotal.Name = "txtValorTotal";
             txtValorTotal.Size = new Size(183, 25);
             txtValorTotal.TabIndex = 17;
@@ -210,7 +207,7 @@
             // lblValorTotal
             // 
             lblValorTotal.AutoSize = true;
-            lblValorTotal.Location = new Point(413, 107);
+            lblValorTotal.Location = new Point(217, 107);
             lblValorTotal.Name = "lblValorTotal";
             lblValorTotal.Size = new Size(87, 17);
             lblValorTotal.TabIndex = 16;
@@ -218,7 +215,7 @@
             // 
             // txtValorDaParcela
             // 
-            txtValorDaParcela.Location = new Point(211, 137);
+            txtValorDaParcela.Location = new Point(15, 137);
             txtValorDaParcela.Name = "txtValorDaParcela";
             txtValorDaParcela.Size = new Size(183, 25);
             txtValorDaParcela.TabIndex = 15;
@@ -226,7 +223,7 @@
             // lblValorDaParcela
             // 
             lblValorDaParcela.AutoSize = true;
-            lblValorDaParcela.Location = new Point(211, 107);
+            lblValorDaParcela.Location = new Point(15, 107);
             lblValorDaParcela.Name = "lblValorDaParcela";
             lblValorDaParcela.Size = new Size(130, 17);
             lblValorDaParcela.TabIndex = 14;
@@ -234,7 +231,7 @@
             // 
             // txtQtnParcela
             // 
-            txtQtnParcela.Location = new Point(10, 137);
+            txtQtnParcela.Location = new Point(521, 62);
             txtQtnParcela.Name = "txtQtnParcela";
             txtQtnParcela.Size = new Size(183, 25);
             txtQtnParcela.TabIndex = 13;
@@ -242,7 +239,7 @@
             // lblQtnParcela
             // 
             lblQtnParcela.AutoSize = true;
-            lblQtnParcela.Location = new Point(10, 107);
+            lblQtnParcela.Location = new Point(521, 32);
             lblQtnParcela.Name = "lblQtnParcela";
             lblQtnParcela.Size = new Size(183, 17);
             lblQtnParcela.TabIndex = 12;
@@ -250,7 +247,7 @@
             // 
             // txtValorJurosMonetario
             // 
-            txtValorJurosMonetario.Location = new Point(520, 62);
+            txtValorJurosMonetario.Location = new Point(351, 62);
             txtValorJurosMonetario.Name = "txtValorJurosMonetario";
             txtValorJurosMonetario.Size = new Size(154, 25);
             txtValorJurosMonetario.TabIndex = 11;
@@ -258,27 +255,11 @@
             // lblValorJurosMonetario
             // 
             lblValorJurosMonetario.AutoSize = true;
-            lblValorJurosMonetario.Location = new Point(520, 32);
+            lblValorJurosMonetario.Location = new Point(351, 32);
             lblValorJurosMonetario.Name = "lblValorJurosMonetario";
             lblValorJurosMonetario.Size = new Size(157, 17);
             lblValorJurosMonetario.TabIndex = 10;
             lblValorJurosMonetario.Text = "Valor dos Juros (R$)";
-            // 
-            // txtValorJurosPercentual
-            // 
-            txtValorJurosPercentual.Location = new Point(349, 62);
-            txtValorJurosPercentual.Name = "txtValorJurosPercentual";
-            txtValorJurosPercentual.Size = new Size(154, 25);
-            txtValorJurosPercentual.TabIndex = 9;
-            // 
-            // lblValorJuros
-            // 
-            lblValorJuros.AutoSize = true;
-            lblValorJuros.Location = new Point(349, 32);
-            lblValorJuros.Name = "lblValorJuros";
-            lblValorJuros.Size = new Size(150, 17);
-            lblValorJuros.TabIndex = 8;
-            lblValorJuros.Text = "Valor dos Juros (%)";
             // 
             // txtValorEmprestado
             // 
@@ -430,9 +411,7 @@
         private ComboBox comboBoxSituacaoCliente;
         private Label lblValorEmprestado;
         private TextBox txtValorEmprestado;
-        private Label lblValorJuros;
         private Label lblValorJurosMonetario;
-        private TextBox txtValorJurosPercentual;
         private TextBox txtValorJurosMonetario;
         private Button btnImprimir;
         private Button btnLimparDados;

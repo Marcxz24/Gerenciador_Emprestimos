@@ -20,7 +20,6 @@ namespace Gerenciador_de_Emprestimos
             txtCodigoCliente.KeyPress += Funcoes.SomenteNumeros_KeyPress;
             txtCpfCnpjCliente.KeyPress += Funcoes.SomenteNumeros_KeyPress;
             txtValorEmprestado.KeyPress += Funcoes.SomenteNumerosComVirgula_KeyPress;
-            txtValorJurosPercentual.KeyPress += Funcoes.SomenteNumerosComVirgula_KeyPress;
             txtValorJurosMonetario.KeyPress += Funcoes.SomenteNumeros_KeyPress;
             txtQtnParcela.KeyPress += Funcoes.SomenteNumeros_KeyPress;
             txtValorDaParcela.KeyPress += Funcoes.SomenteNumerosComVirgula_KeyPress;
@@ -62,7 +61,50 @@ namespace Gerenciador_de_Emprestimos
         {
             EmprestimosConsulta consultaEmprestimos = new EmprestimosConsulta();
 
-            DataTable dataTable = consultaEmprestimos.ConsultaEmprestimos();
+            int? CodigoCliente = null;
+            int? QtnParcela = null;
+            decimal ValorEmprestado = 0;
+            decimal ValorParcela = 0;
+            decimal ValorJurosMonetario = 0;
+            decimal ValorTotal = 0;
+            string StatusEmprestimo = string.Empty;
+
+            if (!string.IsNullOrWhiteSpace(txtCodigoCliente.Text))
+            {
+                CodigoCliente = int.Parse(txtCodigoCliente.Text);
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtQtnParcela.Text))
+            {
+                QtnParcela = int.Parse(txtQtnParcela.Text);
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtValorEmprestado.Text))
+            {
+                ValorEmprestado = decimal.Parse(txtValorEmprestado.Text);
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtValorJurosMonetario.Text))
+            {
+                ValorJurosMonetario = decimal.Parse(txtValorJurosMonetario.Text);
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtValorDaParcela.Text))
+            {
+                ValorParcela = decimal.Parse(txtValorDaParcela.Text);
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtValorTotal.Text))
+            {
+                ValorTotal = decimal.Parse(txtValorTotal.Text);
+            }
+
+            if (!string.IsNullOrWhiteSpace(comboBoxStatusEmprestimo.Text))
+            {
+                StatusEmprestimo = comboBoxStatusEmprestimo.Text;
+            }
+
+            DataTable dataTable = consultaEmprestimos.ConsultaEmprestimos( CodigoCliente, StatusEmprestimo, ValorEmprestado, ValorParcela, ValorJurosMonetario, QtnParcela, ValorTotal);
 
             dataGridEmprestimos.DataSource = dataTable;
         }
@@ -74,6 +116,16 @@ namespace Gerenciador_de_Emprestimos
 
         private void btnLimparDados_Click(object sender, EventArgs e)
         {
+            txtCodigoCliente.Clear();
+            txtNomeCliente.Clear();
+            txtCpfCnpjCliente.Clear();
+            comboBoxSituacaoCliente.Text = "";
+            comboBoxStatusEmprestimo.Text = "";
+            txtValorTotal.Clear();
+            txtQtnParcela.Clear();
+            txtValorDaParcela.Clear();
+            txtValorJurosMonetario.Clear();
+            txtValorEmprestado.Clear();
             dataGridEmprestimos.DataSource = null;
         }
     }
