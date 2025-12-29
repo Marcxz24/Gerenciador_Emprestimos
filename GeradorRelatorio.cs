@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using iText.Kernel.Geom;
+using iText.Kernel.Colors;
 using iText.Kernel.Pdf;
 using iText.Layout.Element;
 using iText.Layout.Properties;
@@ -7,11 +8,15 @@ using System.Data;
 using Document = iText.Layout.Document;
 using Path = System.IO.Path;
 using System.Windows.Forms.Design;
+using iText.Kernel.Pdf.Canvas.Draw;
 
 namespace Gerenciador_de_Emprestimos
 {
     public class GeradorRelatorio
     {
+        public decimal ValorTotalEmprestado { get; set; }
+        public int NumeroDeRegistros { get; set; }
+
         public void RelatorioEmprestimoPdf(DataTable tabela)
         {
             var pasta = @"C:\GerenciadorEmprestimos\Gerenciador de Emprestimos\pdf";
@@ -29,9 +34,13 @@ namespace Gerenciador_de_Emprestimos
 
                 document.SetMargins(20, 20, 20, 20);
 
-                document.Add(new Paragraph("RELATÓRIO DE EMPRÉSTIMOS").SetFontSize(16));
-                document.Add(new Paragraph("------------------------------------------------------------------------------------------------------------------------------------------------------")
-                    .SetFontSize(16));
+                document.Add(new Paragraph("RELATÓRIO DE EMPRÉSTIMOS").SetFontSize(16).SetTextAlignment(TextAlignment.CENTER).SetMarginBottom(20));
+                document.Add(new LineSeparator(new SolidLine()).SetMarginTop(5).SetMarginBottom(10));
+                document.Add(new Paragraph("Listagem de empréstimos gerados no Sistema").SetFontSize(11).SetTextAlignment(TextAlignment.CENTER));
+
+                var dataGeracao = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+
+                document.Add(new Paragraph($"Relatório Gerado em: {dataGeracao}").SetFontSize(9));
 
                 document.Add(new Paragraph(" "));
 
@@ -53,7 +62,21 @@ namespace Gerenciador_de_Emprestimos
                     }
                 }
 
+                // Adiciona o Data Grid.
                 document.Add(tabelaPdf);
+
+                document.Add(new Paragraph(" "));
+
+                document.Add(new Paragraph($"Total de Registros Listados: {NumeroDeRegistros}"));
+
+                document.Add(new LineSeparator(new SolidLine()).SetMarginTop(5).SetMarginBottom(10));
+
+                document.Add(new Paragraph($"Valor total Emprestado: {ValorTotalEmprestado :c}"));
+
+                document.Add(new LineSeparator(new SolidLine()).SetMarginTop(5).SetMarginBottom(10));
+
+                document.Add(new Paragraph("Relatório Gerado automaticamente pelo Sistema Gerenciador de Empréstimos").SetFontSize(9));
+
                 document.Close();
 
                 if (File.Exists(arquivo))

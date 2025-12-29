@@ -149,6 +149,21 @@ namespace Gerenciador_de_Emprestimos
 
             GeradorRelatorio relatorio = new GeradorRelatorio();
 
+            int totalDeLinhas = dataGridEmprestimos.Rows.Cast<DataGridViewRow>().Count(r => !r.IsNewRow);
+
+            decimal somarValorTotal = 0;
+
+            foreach (DataGridViewRow row in dataGridEmprestimos.Rows)
+            {
+                if (!row.IsNewRow)
+                {
+                    somarValorTotal += Convert.ToDecimal(row.Cells["valor_emprestado_total"].Value);
+                }
+            }
+
+            relatorio.ValorTotalEmprestado = somarValorTotal;
+            relatorio.NumeroDeRegistros = totalDeLinhas;
+
             relatorio.RelatorioEmprestimoPdf(tabela);
         }
     }
