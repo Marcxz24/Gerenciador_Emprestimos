@@ -1,8 +1,6 @@
 ﻿using Gerenciador_de_Emprestimos.Database;
 using MySql.Data.MySqlClient;
 using System.Data;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
 
 namespace Gerenciador_de_Emprestimos
 {
@@ -49,6 +47,17 @@ namespace Gerenciador_de_Emprestimos
                     comboBoxSituacaoCliente.Text = Reader["situacao_cadastral"].ToString();
                 }
             }
+        }
+
+        private bool ValidacaoDataGridVazio()
+        {
+            if (dataGridEmprestimos.Rows.Count == 0 || (dataGridEmprestimos.Rows.Count == 1 && dataGridEmprestimos.Rows[0].IsNewRow))
+            {
+                Funcoes.MensagemWarning("Não é possível gerar um relatório com o DataGrid em Branco!");
+                return true;
+            }
+
+            return false;
         }
 
         private void btnVisualizarEmprestimos_Click(object sender, EventArgs e)
@@ -131,7 +140,16 @@ namespace Gerenciador_de_Emprestimos
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
+            if (ValidacaoDataGridVazio())
+            {
+                return;
+            }
 
+            DataTable tabela = (DataTable)dataGridEmprestimos.DataSource;
+
+            GeradorRelatorio relatorio = new GeradorRelatorio();
+
+            relatorio.RelatorioEmprestimoPdf(tabela);
         }
     }
 }

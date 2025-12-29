@@ -54,9 +54,13 @@
               "target": "Package",
               "version": "[9.5.0, )"
             },
-            "iTextSharp": {
+            "itext7": {
               "target": "Package",
-              "version": "[5.5.13.4, )"
+              "version": "[9.4.0, )"
+            },
+            "itext7.bouncy-castle-adapter": {
+              "target": "Package",
+              "version": "[9.4.0, )"
             }
           },
           "imports": [
