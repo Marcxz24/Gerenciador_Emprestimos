@@ -38,3 +38,4 @@ C:\GerenciadorEmprestimos\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Ge
 C:\GerenciadorEmprestimos\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador de Emprestimos.sourcelink.json
 C:\GerenciadorEmprestimos\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.frmSelecionarCliente.resources
 C:\GerenciadorEmprestimos\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.frmVisualizarEmprestimos.resources
+C:\GerenciadorEmprestimos\Gerenciador de Emprestimos\bin\Debug\net8.0-windows\itextsharp.dll

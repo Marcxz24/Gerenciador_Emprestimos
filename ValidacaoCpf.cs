@@ -84,7 +84,6 @@ namespace Gerenciador_de_Emprestimos
                     j = 0;
                     for (int i = 11; i > 1; i--)
                     {
-                        // Correção de BUG no calculo do d2, que estava multiplicando por 1 e não por i.
                         d2 += Convert.ToInt32(cpf.Substring(j,1)) * i;
                         j++;
                     }

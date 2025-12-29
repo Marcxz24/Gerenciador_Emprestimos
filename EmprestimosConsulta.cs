@@ -12,47 +12,53 @@ namespace Gerenciador_de_Emprestimos
 {
     internal class EmprestimosConsulta
     {
-        public DataTable ConsultaEmprestimos(int? CodigoCliente, string StatusEmprestimo, decimal ValorEmprestado, decimal ValorParcela, decimal ValorJurosMonetario, int? QtnParcela, decimal ValorTotal)
+        public DataTable ConsultaEmprestimos(int? CodigoCliente, string NomeCliente, string StatusEmprestimo, decimal ValorEmprestado, decimal ValorParcela, decimal ValorJurosMonetario, int? QtnParcela, decimal ValorTotal)
         {
             DataTable dataTable = new DataTable();
 
-            string sql = $@"SELECT codigo, codigo_cliente, valor_emprestado, valor_emprestado_total, quantidade_parcela, valor_parcela, valor_juros, status_emprestimo FROM emprestimosbd.emprestimos";
+            string sql = $@"SELECT e.codigo, c.nome_cliente, e.codigo_cliente, e.valor_emprestado, e.valor_emprestado_total, e.quantidade_parcela, e.valor_parcela, e.valor_juros, e.status_emprestimo 
+                            FROM emprestimosbd.emprestimos e LEFT JOIN emprestimosbd.cliente c ON e.codigo_cliente = c.codigo";
 
             string sqlFiltros = " WHERE 1 = 1";
 
             if (CodigoCliente.HasValue)
             {
-                sqlFiltros += " AND codigo_cliente = @codigo_cliente";
+                sqlFiltros += " AND e.codigo_cliente = @codigo_cliente";
+            }
+
+            if (!string.IsNullOrWhiteSpace(NomeCliente))
+            {
+                sqlFiltros += " AND c.nome_cliente LIKE @nome_cliente";
             }
 
             if (!string.IsNullOrWhiteSpace(StatusEmprestimo))
             {
-                sqlFiltros += " AND status_emprestimo = @status_emprestimo";
+                sqlFiltros += " AND e.status_emprestimo = @status_emprestimo";
             }
 
             if (ValorEmprestado > 0)
             {
-                sqlFiltros += " AND valor_emprestado = @valor_emprestado";
+                sqlFiltros += " AND e.valor_emprestado = @valor_emprestado";
             }
 
             if (ValorParcela > 0)
             {
-                sqlFiltros += " AND valor_parcela = @valor_parcela";
+                sqlFiltros += " AND e.valor_parcela = @valor_parcela";
             }
 
             if (ValorJurosMonetario > 0)
             {
-                sqlFiltros += " AND valor_juros = @valor_juros";
+                sqlFiltros += " AND e.valor_juros = @valor_juros";
             }
 
             if (QtnParcela > 0)
             {
-                sqlFiltros += " AND quantidade_parcela = @quantidade_parcela";
+                sqlFiltros += " AND e.quantidade_parcela = @quantidade_parcela";
             }
 
             if (ValorTotal > 0)
             {
-                sqlFiltros += " AND valor_emprestado_total = @valor_emprestado_total";
+                sqlFiltros += " AND e.valor_emprestado_total = @valor_emprestado_total";
             }
 
             string sqlFinal = sql + sqlFiltros;
@@ -63,6 +69,11 @@ namespace Gerenciador_de_Emprestimos
                 if (CodigoCliente.HasValue)
                 {
                     comando.Parameters.AddWithValue("@codigo_cliente", CodigoCliente);
+                }
+
+                if (!string.IsNullOrEmpty(NomeCliente))
+                {
+                    comando.Parameters.AddWithValue("@nome_cliente", NomeCliente);
                 }
 
                 if (!string.IsNullOrWhiteSpace(StatusEmprestimo))

@@ -1,14 +1,8 @@
 ﻿using Gerenciador_de_Emprestimos.Database;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace Gerenciador_de_Emprestimos
 {
@@ -62,6 +56,7 @@ namespace Gerenciador_de_Emprestimos
             EmprestimosConsulta consultaEmprestimos = new EmprestimosConsulta();
 
             int? CodigoCliente = null;
+            string? NomeCliente = null;
             int? QtnParcela = null;
             decimal ValorEmprestado = 0;
             decimal ValorParcela = 0;
@@ -72,6 +67,11 @@ namespace Gerenciador_de_Emprestimos
             if (!string.IsNullOrWhiteSpace(txtCodigoCliente.Text))
             {
                 CodigoCliente = int.Parse(txtCodigoCliente.Text);
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtNomeCliente.Text))
+            {
+                NomeCliente = txtNomeCliente.Text;
             }
 
             if (!string.IsNullOrWhiteSpace(txtQtnParcela.Text))
@@ -104,7 +104,7 @@ namespace Gerenciador_de_Emprestimos
                 StatusEmprestimo = comboBoxStatusEmprestimo.Text;
             }
 
-            DataTable dataTable = consultaEmprestimos.ConsultaEmprestimos(CodigoCliente, StatusEmprestimo, ValorEmprestado, ValorParcela, ValorJurosMonetario, QtnParcela, ValorTotal);
+            DataTable dataTable = consultaEmprestimos.ConsultaEmprestimos(CodigoCliente, NomeCliente, StatusEmprestimo, ValorEmprestado, ValorParcela, ValorJurosMonetario, QtnParcela, ValorTotal);
 
             dataGridEmprestimos.DataSource = dataTable;
         }
