@@ -350,6 +350,7 @@
             btnImprimir.Text = "Imprimir";
             btnImprimir.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnImprimir.UseVisualStyleBackColor = false;
+            btnImprimir.Click += btnImprimir_Click;
             // 
             // btnFechar
             // 

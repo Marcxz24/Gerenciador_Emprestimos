@@ -104,7 +104,7 @@ namespace Gerenciador_de_Emprestimos
                 StatusEmprestimo = comboBoxStatusEmprestimo.Text;
             }
 
-            DataTable dataTable = consultaEmprestimos.ConsultaEmprestimos( CodigoCliente, StatusEmprestimo, ValorEmprestado, ValorParcela, ValorJurosMonetario, QtnParcela, ValorTotal);
+            DataTable dataTable = consultaEmprestimos.ConsultaEmprestimos(CodigoCliente, StatusEmprestimo, ValorEmprestado, ValorParcela, ValorJurosMonetario, QtnParcela, ValorTotal);
 
             dataGridEmprestimos.DataSource = dataTable;
         }
@@ -127,6 +127,11 @@ namespace Gerenciador_de_Emprestimos
             txtValorJurosMonetario.Clear();
             txtValorEmprestado.Clear();
             dataGridEmprestimos.DataSource = null;
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
