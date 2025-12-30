@@ -136,10 +136,10 @@
     <value>True</value>
   </data>
   <data name="toolStsStripSistemVersion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1857, 20</value>
+    <value>1896, 20</value>
   </data>
   <data name="toolStsStripSistemVersion.Text" xml:space="preserve">
-    <value>Versão  do Sistema: 0.3.1</value>
+    <value>Versão  do Sistema: 0.3.2</value>
   </data>
   <data name="toolStsStripSistemVersion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>

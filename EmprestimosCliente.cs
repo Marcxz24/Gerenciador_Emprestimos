@@ -59,7 +59,7 @@ namespace Gerenciador_de_Emprestimos
         public void AtivarEmprestimo()
         {
             StatusEmprestimo = "ATIVO";
-            DataPagamento = DateTime.Now;
+            DataEmprestimo = DateTime.Now;
         }
 
         public void FinalizarEmprestimo()

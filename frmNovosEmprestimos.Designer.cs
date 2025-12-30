@@ -44,8 +44,8 @@
             lblTituloGrpBoxEmprestimo = new Label();
             lblParcelamento = new Label();
             txtBoxQuantidadeParcela = new TextBox();
-            maskTxtDataEmprestimo = new MaskedTextBox();
-            lblDataEmprestimo = new Label();
+            maskTxtDataPagamento = new MaskedTextBox();
+            lblDataPagamento = new Label();
             txtBoxTaxaJuros = new TextBox();
             lblTaxaJuros = new Label();
             lblValorEmprestado = new Label();
@@ -191,8 +191,8 @@
             groupBoxDadosEmprestimos.Controls.Add(lblTituloGrpBoxEmprestimo);
             groupBoxDadosEmprestimos.Controls.Add(lblParcelamento);
             groupBoxDadosEmprestimos.Controls.Add(txtBoxQuantidadeParcela);
-            groupBoxDadosEmprestimos.Controls.Add(maskTxtDataEmprestimo);
-            groupBoxDadosEmprestimos.Controls.Add(lblDataEmprestimo);
+            groupBoxDadosEmprestimos.Controls.Add(maskTxtDataPagamento);
+            groupBoxDadosEmprestimos.Controls.Add(lblDataPagamento);
             groupBoxDadosEmprestimos.Controls.Add(txtBoxTaxaJuros);
             groupBoxDadosEmprestimos.Controls.Add(lblTaxaJuros);
             groupBoxDadosEmprestimos.Controls.Add(lblValorEmprestado);
@@ -230,23 +230,23 @@
             txtBoxQuantidadeParcela.Size = new Size(394, 27);
             txtBoxQuantidadeParcela.TabIndex = 13;
             // 
-            // maskTxtDataEmprestimo
+            // maskTxtDataPagamento
             // 
-            maskTxtDataEmprestimo.CutCopyMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-            maskTxtDataEmprestimo.Location = new Point(216, 165);
-            maskTxtDataEmprestimo.Mask = "00/00/0000";
-            maskTxtDataEmprestimo.Name = "maskTxtDataEmprestimo";
-            maskTxtDataEmprestimo.Size = new Size(210, 27);
-            maskTxtDataEmprestimo.TabIndex = 7;
+            maskTxtDataPagamento.CutCopyMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            maskTxtDataPagamento.Location = new Point(216, 165);
+            maskTxtDataPagamento.Mask = "00/00/0000";
+            maskTxtDataPagamento.Name = "maskTxtDataPagamento";
+            maskTxtDataPagamento.Size = new Size(210, 27);
+            maskTxtDataPagamento.TabIndex = 7;
             // 
-            // lblDataEmprestimo
+            // lblDataPagamento
             // 
-            lblDataEmprestimo.AutoSize = true;
-            lblDataEmprestimo.Location = new Point(63, 168);
-            lblDataEmprestimo.Name = "lblDataEmprestimo";
-            lblDataEmprestimo.Size = new Size(147, 20);
-            lblDataEmprestimo.TabIndex = 12;
-            lblDataEmprestimo.Text = "Data do Emprestimo";
+            lblDataPagamento.AutoSize = true;
+            lblDataPagamento.Location = new Point(63, 168);
+            lblDataPagamento.Name = "lblDataPagamento";
+            lblDataPagamento.Size = new Size(142, 20);
+            lblDataPagamento.TabIndex = 12;
+            lblDataPagamento.Text = "Data do Pagamento";
             // 
             // txtBoxTaxaJuros
             // 
@@ -489,10 +489,10 @@
         private GroupBox groupBoxDadosEmprestimos;
         private Label lblValorEmprestado;
         private TextBox txtBoxValorEmprestado;
-        private Label lblDataEmprestimo;
+        private Label lblDataPagamento;
         private TextBox txtBoxTaxaJuros;
         private Label lblTaxaJuros;
-        private MaskedTextBox maskTxtDataEmprestimo;
+        private MaskedTextBox maskTxtDataPagamento;
         private GroupBox groupBoxCalculo;
         private Label lblValorJuros;
         private TextBox txtBoxValorJuros;

@@ -117,50 +117,366 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnChamarFormEmprestimos.Text" xml:space="preserve">
-    <value>Emprestimos/Pagamento</value>
-  </data>
-  <data name="&gt;&gt;visualizarEmprestimosToolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStsStripSistemVersion.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblTituloInicial.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnVizualizarDebitos.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnChamarFormEmprestimos.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lbl.Parent" xml:space="preserve">
-    <value>groupInicialBtnEscolha</value>
-  </data>
-  <data name="&gt;&gt;clienteToolStripMenuItem1.Type" xml:space="preserve">
+  <data name="&gt;&gt;clienteToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="btnChamarFormCadastroCliente.Text" xml:space="preserve">
+    <value>Cadastrar Cliente</value>
+  </data>
+  <data name="&gt;&gt;btnVizualizarDebitos.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lblInformacaoCadastroCliente.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;MenuStripRelatoriosEmprestimos.Name" xml:space="preserve">
+    <value>MenuStripRelatoriosEmprestimos</value>
+  </data>
+  <data name="&gt;&gt;btnVizualizarDebitos.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;MenuStripMenusSistema.Name" xml:space="preserve">
+    <value>MenuStripMenusSistema</value>
+  </data>
+  <data name="&gt;&gt;lblTituloInicial.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lbl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 20</value>
+  </data>
+  <data name="&gt;&gt;MenuStripEmprestimos.Name" xml:space="preserve">
+    <value>MenuStripEmprestimos</value>
+  </data>
+  <data name="&gt;&gt;cadastroToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;MenuStripCliente.Name" xml:space="preserve">
     <value>MenuStripCliente</value>
   </data>
-  <data name="&gt;&gt;btnChamarFormCadastroCliente.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;stsStripSistemVersion.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
-  <data name="&gt;&gt;MenuStripRelatoriosVisuEmprestimos.Type" xml:space="preserve">
+  <data name="&gt;&gt;stsStripSistemVersion.Type" xml:space="preserve">
+    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;MenuStripRelatorios.Name" xml:space="preserve">
+    <value>MenuStripRelatorios</value>
+  </data>
+  <data name="&gt;&gt;arquivoToolStripMenuItem.Name" xml:space="preserve">
+    <value>arquivoToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;btnChamarFormCadastroCliente.Name" xml:space="preserve">
+    <value>btnChamarFormCadastroCliente</value>
+  </data>
+  <data name="btnChmarFormPagamento.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="MenuStripRelatoriosEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 26</value>
+  </data>
+  <data name="&gt;&gt;relatóriosToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="&gt;&gt;lblTituloInicial.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblSaudacoes.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;lblSaudacoes.Parent" xml:space="preserve">
+    <value>groupInicialBtnEscolha</value>
+  </data>
+  <data name="&gt;&gt;novosEmprestimosToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lbl.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupInicialBtnEscolha.Size" type="System.Drawing.Size, System.Drawing">
+    <value>688, 860</value>
+  </data>
+  <data name="cadastroToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 24</value>
+  </data>
+  <data name="btnFecharAplicacao.Location" type="System.Drawing.Point, System.Drawing">
+    <value>606, 761</value>
+  </data>
+  <data name="&gt;&gt;btnChmarFormPagamento.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="visualizarEmprestimosToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 26</value>
+  </data>
+  <data name="clienteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 26</value>
+  </data>
+  <data name="sairDoSistemaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 26</value>
+  </data>
+  <data name="picBoxTelaInicialSistema.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;MenuStripCliente.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="imageListSistemaGerenciadorEmprestimos.ImageSize" type="System.Drawing.Size, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="&gt;&gt;groupInicialBtnEscolha.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lblTituloSistemas.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1542, 794</value>
+  </data>
+  <data name="&gt;&gt;novosEmprestimosToolStripMenuItem.Name" xml:space="preserve">
+    <value>novosEmprestimosToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MenuStripFinanceiro.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 24</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblSaudacoes.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;emprestimosToolStripMenuItem.Name" xml:space="preserve">
+    <value>emprestimosToolStripMenuItem</value>
+  </data>
+  <data name="stsStripSistemVersion.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;lblTituloInicial.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;picBoxTelaInicialSistema.Name" xml:space="preserve">
+    <value>picBoxTelaInicialSistema</value>
+  </data>
+  <data name="&gt;&gt;stsStripSistemVersion.Name" xml:space="preserve">
+    <value>stsStripSistemVersion</value>
+  </data>
+  <data name="&gt;&gt;MenuStripMenusSistema.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;lblInformacaoCadastroCliente.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="lblInformacaoCadastroCliente.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
+  </data>
+  <data name="toolStsStripSistemVersion.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1692, 20</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
+    <value>pictureBox1</value>
+  </data>
+  <data name="&gt;&gt;lblTituloSistemas.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnChamarFormEmprestimos.Name" xml:space="preserve">
+    <value>btnChamarFormEmprestimos</value>
+  </data>
+  <data name="&gt;&gt;imageListSistemaGerenciadorEmprestimos.Name" xml:space="preserve">
+    <value>imageListSistemaGerenciadorEmprestimos</value>
   </data>
   <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="&gt;&gt;clienteToolStripMenuItem.Name" xml:space="preserve">
+    <value>clienteToolStripMenuItem</value>
+  </data>
+  <data name="picBoxTelaInicialSistema.Location" type="System.Drawing.Point, System.Drawing">
+    <value>691, 432</value>
+  </data>
+  <data name="MenuStripRelatoriosVisuEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 26</value>
+  </data>
+  <data name="&gt;&gt;financeiroToolStripMenuItem.Name" xml:space="preserve">
+    <value>financeiroToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;btnChmarFormPagamento.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;MenuStripRelatorios.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblInformacaoCadastroCliente.Parent" xml:space="preserve">
+    <value>groupInicialBtnEscolha</value>
+  </data>
+  <data name="visualizarEmprestimosToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 26</value>
+  </data>
+  <data name="&gt;&gt;clienteToolStripMenuItem1.Name" xml:space="preserve">
+    <value>clienteToolStripMenuItem1</value>
+  </data>
+  <data name="lblSaudacoes.Size" type="System.Drawing.Size, System.Drawing">
+    <value>461, 54</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;btnChamarFormEmprestimos.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;visualizarEmprestimosToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnChmarFormPagamento.Name" xml:space="preserve">
+    <value>btnChmarFormPagamento</value>
+  </data>
+  <data name="&gt;&gt;lbl.Name" xml:space="preserve">
+    <value>lbl</value>
+  </data>
+  <data name="lblTituloInicial.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="groupInicialBtnEscolha.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lblInformacaoCadastroCliente.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;MenuStripMenusSistema.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="financeiroToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 24</value>
+  </data>
+  <data name="&gt;&gt;sairDoSistemaToolStripMenuItem.Name" xml:space="preserve">
+    <value>sairDoSistemaToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;MenuStripRelatoriosVisuEmprestimos.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sairDoSistemaToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MenuStripMenusSistema.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;MenuStripEmprestimos.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clienteToolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnChamarFormEmprestimos.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;MenuStripCadastro.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;imageListSistemaGerenciadorEmprestimos.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;stsStripSistemVersion.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Gerenciador de Emprestimos</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>1720, 927</value>
+  </data>
+  <data name="&gt;&gt;picBoxTelaInicialSistema.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnFecharAplicacao.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;lblTituloInicial.Name" xml:space="preserve">
+    <value>lblTituloInicial</value>
+  </data>
+  <data name="&gt;&gt;lbl.Parent" xml:space="preserve">
+    <value>groupInicialBtnEscolha</value>
+  </data>
+  <data name="btnChmarFormPagamento.Location" type="System.Drawing.Point, System.Drawing">
+    <value>75, 497</value>
+  </data>
+  <data name="&gt;&gt;lblTituloSistemas.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;visualizarEmprestimosToolStripMenuItem.Name" xml:space="preserve">
+    <value>visualizarEmprestimosToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;MenuStripFinanceiro.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblTituloSistemas.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>8, 20</value>
+  </data>
+  <data name="&gt;&gt;cadastroToolStripMenuItem.Name" xml:space="preserve">
+    <value>cadastroToolStripMenuItem</value>
+  </data>
+  <data name="groupInicialBtnEscolha.Location" type="System.Drawing.Point, System.Drawing">
+    <value>422, 12</value>
+  </data>
+  <data name="btnChamarFormEmprestimos.Text" xml:space="preserve">
+    <value>Emprestimos/Pagamento</value>
+  </data>
+  <data name="lblTituloInicial.Size" type="System.Drawing.Size, System.Drawing">
+    <value>410, 33</value>
+  </data>
+  <data name="lbl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 371</value>
+  </data>
+  <data name="clienteToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 26</value>
+  </data>
+  <data name="&gt;&gt;MenuStripNovosEmprestimos.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;picBoxTelaInicialSistema.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;visualizarEmprestimosToolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;MenuStripNovosEmprestimos.Name" xml:space="preserve">
+    <value>MenuStripNovosEmprestimos</value>
+  </data>
+  <data name="lblInformacaoCadastroCliente.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 276</value>
+  </data>
+  <data name="lbl.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblInformacaoCadastroCliente.Size" type="System.Drawing.Size, System.Drawing">
+    <value>302, 20</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 3, 4, 3</value>
+  </data>
+  <data name="btnVizualizarDebitos.Location" type="System.Drawing.Point, System.Drawing">
+    <value>75, 560</value>
+  </data>
+  <data name="arquivoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 24</value>
+  </data>
+  <data name="&gt;&gt;emprestimosToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;relatóriosToolStripMenuItem.Name" xml:space="preserve">
+    <value>relatóriosToolStripMenuItem</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAAAAAAAEAIAAwVgAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAEAAAABAAgGAAAAXHKoZgAAAAFv
@@ -534,549 +850,233 @@
         TkSuQmCC
 </value>
   </data>
-  <data name="btnChamarFormEmprestimos.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;MenuStripNovosEmprestimos.Name" xml:space="preserve">
-    <value>MenuStripNovosEmprestimos</value>
-  </data>
-  <data name="lbl.Text" xml:space="preserve">
-    <value>Clique Neste Botão Para Realizar Emprestimos:</value>
-  </data>
-  <data name="lblSaudacoes.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="MenuStripRelatorios.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 24</value>
-  </data>
-  <data name="&gt;&gt;cadastroToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;sairDoSistemaToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="MenuStripMenusSistema.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="&gt;&gt;btnVizualizarDebitos.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;MenuStripMenusSistema.Name" xml:space="preserve">
-    <value>MenuStripMenusSistema</value>
-  </data>
-  <data name="lblInformacaoCadastroCliente.Size" type="System.Drawing.Size, System.Drawing">
-    <value>302, 20</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Gerenciador de Emprestimos</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;emprestimosToolStripMenuItem.Name" xml:space="preserve">
-    <value>emprestimosToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;novosEmprestimosToolStripMenuItem.Name" xml:space="preserve">
-    <value>novosEmprestimosToolStripMenuItem</value>
-  </data>
-  <data name="lblTituloInicial.Size" type="System.Drawing.Size, System.Drawing">
-    <value>410, 33</value>
-  </data>
-  <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;MenuStripMenusSistema.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;btnFecharAplicacao.Name" xml:space="preserve">
-    <value>btnFecharAplicacao</value>
-  </data>
-  <data name="lblSaudacoes.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 9pt, style=Bold</value>
-  </data>
-  <data name="lblInformacaoCadastroCliente.Text" xml:space="preserve">
-    <value>Clique Neste Botão Para Cadastrar o Cliente:</value>
-  </data>
-  <data name="lblTituloInicial.Text" xml:space="preserve">
-    <value>Gerenciador de Emprestimos</value>
-  </data>
-  <data name="lblTituloInicial.Location" type="System.Drawing.Point, System.Drawing">
-    <value>113, 23</value>
-  </data>
-  <data name="MenuStripEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
-  </data>
-  <data name="lblTituloInicial.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;MenuStripEmprestimos.Name" xml:space="preserve">
-    <value>MenuStripEmprestimos</value>
-  </data>
-  <data name="&gt;&gt;btnFecharAplicacao.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="lblInformacaoCadastroCliente.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 20</value>
-  </data>
-  <data name="&gt;&gt;clienteToolStripMenuItem.Name" xml:space="preserve">
-    <value>clienteToolStripMenuItem</value>
-  </data>
-  <data name="MenuStripCadastroCliente.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
-  </data>
-  <data name="MenuStripCadastro.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 24</value>
-  </data>
-  <data name="&gt;&gt;MenuStripMenusSistema.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="lblTituloSistemas.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;btnFecharAplicacao.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="lblSaudacoes.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;MenuStripNovosEmprestimos.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;stsStripSistemVersion.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="toolStsStripSistemVersion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1692, 20</value>
-  </data>
-  <data name="&gt;&gt;lblTituloInicial.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="btnVizualizarDebitos.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="novosEmprestimosToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
-  </data>
-  <data name="&gt;&gt;btnChamarFormCadastroCliente.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;novosEmprestimosToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnChamarFormCadastroCliente.Location" type="System.Drawing.Point, System.Drawing">
-    <value>314, 251</value>
-  </data>
-  <data name="btnFecharAplicacao.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="lblInformacaoCadastroCliente.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 276</value>
-  </data>
-  <data name="&gt;&gt;groupInicialBtnEscolha.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btnChamarFormEmprestimos.Location" type="System.Drawing.Point, System.Drawing">
-    <value>331, 346</value>
-  </data>
-  <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="lblSaudacoes.Size" type="System.Drawing.Size, System.Drawing">
-    <value>461, 54</value>
-  </data>
-  <data name="btnVizualizarDebitos.Location" type="System.Drawing.Point, System.Drawing">
-    <value>75, 560</value>
-  </data>
-  <data name="&gt;&gt;clienteToolStripMenuItem1.Name" xml:space="preserve">
-    <value>clienteToolStripMenuItem1</value>
-  </data>
-  <data name="&gt;&gt;imageListSistemaGerenciadorEmprestimos.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupInicialBtnEscolha.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnChmarFormPagamento.Name" xml:space="preserve">
-    <value>btnChmarFormPagamento</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="relatóriosToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 24</value>
-  </data>
-  <data name="&gt;&gt;lblTituloSistemas.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;emprestimosToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="sairDoSistemaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
-  </data>
-  <data name="&gt;&gt;visualizarEmprestimosToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;sairDoSistemaToolStripMenuItem.Name" xml:space="preserve">
-    <value>sairDoSistemaToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;MenuStripRelatorios.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;MenuStripRelatorios.Name" xml:space="preserve">
-    <value>MenuStripRelatorios</value>
-  </data>
-  <data name="btnChamarFormEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 70</value>
-  </data>
-  <data name="&gt;&gt;stsStripSistemVersion.Type" xml:space="preserve">
-    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lbl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>319, 20</value>
-  </data>
-  <data name="stsStripSistemVersion.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 956</value>
-  </data>
-  <data name="&gt;&gt;picBoxTelaInicialSistema.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;MenuStripRelatoriosEmprestimos.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblTituloInicial.Name" xml:space="preserve">
-    <value>lblTituloInicial</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FormTelaIncial</value>
   </data>
   <data name="&gt;&gt;MenuStripCadastroCliente.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblSaudacoes.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;MenuStripCadastroCliente.Name" xml:space="preserve">
-    <value>MenuStripCadastroCliente</value>
-  </data>
-  <data name="lblSaudacoes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 95</value>
-  </data>
-  <data name="&gt;&gt;MenuStripRelatoriosEmprestimos.Name" xml:space="preserve">
-    <value>MenuStripRelatoriosEmprestimos</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>FormTelaIncial</value>
-  </data>
-  <data name="&gt;&gt;clienteToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblInformacaoCadastroCliente.Parent" xml:space="preserve">
-    <value>groupInicialBtnEscolha</value>
-  </data>
-  <data name="&gt;&gt;MenuStripCadastro.Name" xml:space="preserve">
-    <value>MenuStripCadastro</value>
-  </data>
-  <data name="&gt;&gt;visualizarEmprestimosToolStripMenuItem.Name" xml:space="preserve">
-    <value>visualizarEmprestimosToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;lbl.Name" xml:space="preserve">
-    <value>lbl</value>
-  </data>
-  <data name="&gt;&gt;MenuStripFinanceiro.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnChamarFormEmprestimos.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
-    <value>pictureBox1</value>
-  </data>
-  <data name="&gt;&gt;relatóriosToolStripMenuItem.Name" xml:space="preserve">
-    <value>relatóriosToolStripMenuItem</value>
-  </data>
-  <data name="MenuStripRelatoriosVisuEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 26</value>
-  </data>
-  <data name="visualizarEmprestimosToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 26</value>
-  </data>
-  <data name="&gt;&gt;lblInformacaoCadastroCliente.Name" xml:space="preserve">
-    <value>lblInformacaoCadastroCliente</value>
-  </data>
-  <data name="&gt;&gt;picBoxTelaInicialSistema.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;stsStripSistemVersion.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="lbl.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;MenuStripEmprestimos.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;MenuStripCliente.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnChamarFormCadastroCliente.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 70</value>
-  </data>
-  <data name="lblTituloInicial.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 16.2pt, style=Bold</value>
-  </data>
-  <data name="clienteToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
-  </data>
-  <data name="&gt;&gt;lblTituloSistemas.Name" xml:space="preserve">
-    <value>lblTituloSistemas</value>
-  </data>
-  <data name="&gt;&gt;btnFecharAplicacao.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnChmarFormPagamento.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;MenuStripMenusSistema.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblInformacaoCadastroCliente.ZOrder" xml:space="preserve">
+  <data name="btnChamarFormCadastroCliente.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
-  </data>
-  <data name="arquivoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 24</value>
-  </data>
-  <data name="lbl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 371</value>
-  </data>
-  <data name="&gt;&gt;imageListSistemaGerenciadorEmprestimos.Name" xml:space="preserve">
-    <value>imageListSistemaGerenciadorEmprestimos</value>
-  </data>
-  <data name="btnFecharAplicacao.Location" type="System.Drawing.Point, System.Drawing">
-    <value>606, 761</value>
-  </data>
-  <data name="btnChmarFormPagamento.Location" type="System.Drawing.Point, System.Drawing">
-    <value>75, 497</value>
-  </data>
-  <data name="groupInicialBtnEscolha.Location" type="System.Drawing.Point, System.Drawing">
-    <value>422, 12</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1720, 927</value>
-  </data>
-  <data name="&gt;&gt;btnVizualizarDebitos.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lblTituloSistemas.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;financeiroToolStripMenuItem.Name" xml:space="preserve">
-    <value>financeiroToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;MenuStripRelatoriosVisuEmprestimos.Name" xml:space="preserve">
-    <value>MenuStripRelatoriosVisuEmprestimos</value>
-  </data>
-  <data name="&gt;&gt;financeiroToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupInicialBtnEscolha.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="groupInicialBtnEscolha.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;MenuStripCadastro.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnChamarFormEmprestimos.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="lbl.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="MenuStripFinanceiro.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 24</value>
-  </data>
-  <data name="&gt;&gt;btnChamarFormEmprestimos.Name" xml:space="preserve">
-    <value>btnChamarFormEmprestimos</value>
-  </data>
-  <data name="clienteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
-  </data>
-  <data name="&gt;&gt;lblInformacaoCadastroCliente.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="groupInicialBtnEscolha.Size" type="System.Drawing.Size, System.Drawing">
-    <value>688, 860</value>
-  </data>
-  <data name="imageListSistemaGerenciadorEmprestimos.ImageSize" type="System.Drawing.Size, System.Drawing">
-    <value>16, 16</value>
-  </data>
-  <data name="&gt;&gt;groupInicialBtnEscolha.Name" xml:space="preserve">
-    <value>groupInicialBtnEscolha</value>
-  </data>
-  <data name="&gt;&gt;picBoxTelaInicialSistema.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnChamarFormEmprestimos.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="picBoxTelaInicialSistema.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;arquivoToolStripMenuItem.Name" xml:space="preserve">
-    <value>arquivoToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;lblSaudacoes.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="btnVizualizarDebitos.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>970, 691</value>
   </data>
-  <data name="btnChamarFormCadastroCliente.Text" xml:space="preserve">
-    <value>Cadastrar Cliente</value>
+  <data name="lbl.Text" xml:space="preserve">
+    <value>Clique Neste Botão Para Realizar Emprestimos:</value>
   </data>
-  <data name="&gt;&gt;relatóriosToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="stsStripSistemVersion.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 956</value>
   </data>
-  <data name="&gt;&gt;toolStsStripSistemVersion.Name" xml:space="preserve">
-    <value>toolStsStripSistemVersion</value>
-  </data>
-  <data name="lblTituloInicial.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnChmarFormPagamento.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;stsStripSistemVersion.Name" xml:space="preserve">
-    <value>stsStripSistemVersion</value>
-  </data>
-  <data name="&gt;&gt;lblSaudacoes.Parent" xml:space="preserve">
-    <value>groupInicialBtnEscolha</value>
-  </data>
-  <data name="&gt;&gt;btnVizualizarDebitos.Name" xml:space="preserve">
-    <value>btnVizualizarDebitos</value>
-  </data>
-  <data name="&gt;&gt;lbl.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="emprestimosToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="MenuStripCadastroCliente.Size" type="System.Drawing.Size, System.Drawing">
     <value>224, 26</value>
+  </data>
+  <data name="lblTituloInicial.Text" xml:space="preserve">
+    <value>Gerenciador de Emprestimos</value>
+  </data>
+  <data name="MenuStripCadastro.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 24</value>
   </data>
   <data name="&gt;&gt;lblSaudacoes.Name" xml:space="preserve">
     <value>lblSaudacoes</value>
   </data>
-  <data name="financeiroToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 24</value>
+  <data name="&gt;&gt;toolStsStripSistemVersion.Name" xml:space="preserve">
+    <value>toolStsStripSistemVersion</value>
   </data>
-  <data name="cadastroToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 24</value>
+  <data name="btnChamarFormCadastroCliente.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 70</value>
   </data>
-  <data name="stsStripSistemVersion.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+  <data name="&gt;&gt;MenuStripCadastroCliente.Name" xml:space="preserve">
+    <value>MenuStripCadastroCliente</value>
+  </data>
+  <data name="relatóriosToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 24</value>
+  </data>
+  <data name="&gt;&gt;groupInicialBtnEscolha.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblTituloInicial.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;lblTituloSistemas.Name" xml:space="preserve">
+    <value>lblTituloSistemas</value>
+  </data>
+  <data name="btnChamarFormEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 70</value>
+  </data>
+  <data name="MenuStripNovosEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 26</value>
+  </data>
+  <data name="&gt;&gt;MenuStripRelatoriosVisuEmprestimos.Name" xml:space="preserve">
+    <value>MenuStripRelatoriosVisuEmprestimos</value>
   </data>
   <data name="&gt;&gt;MenuStripFinanceiro.Name" xml:space="preserve">
     <value>MenuStripFinanceiro</value>
   </data>
-  <data name="MenuStripCliente.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
+  <data name="&gt;&gt;btnFecharAplicacao.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="btnChamarFormCadastroCliente.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="&gt;&gt;btnFecharAplicacao.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lbl.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblTituloSistemas.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1542, 794</value>
-  </data>
-  <data name="&gt;&gt;btnChamarFormCadastroCliente.Name" xml:space="preserve">
-    <value>btnChamarFormCadastroCliente</value>
-  </data>
-  <data name="picBoxTelaInicialSistema.Location" type="System.Drawing.Point, System.Drawing">
-    <value>691, 432</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
-  </data>
-  <data name="visualizarEmprestimosToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 26</value>
-  </data>
-  <data name="&gt;&gt;arquivoToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;visualizarEmprestimosToolStripMenuItem1.Name" xml:space="preserve">
-    <value>visualizarEmprestimosToolStripMenuItem1</value>
+  <data name="lblSaudacoes.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 9pt, style=Bold</value>
   </data>
   <data name="lblSaudacoes.Text" xml:space="preserve">
     <value>     Olá, Seja bem vindo ao Gerenciador de Emprestimos!
 
 Escolha qualquer uma das opções abaixo para dar continuidade:</value>
   </data>
-  <data name="&gt;&gt;lblTituloSistemas.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btnChmarFormPagamento.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;picBoxTelaInicialSistema.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="emprestimosToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 26</value>
+  </data>
+  <data name="MenuStripCliente.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 26</value>
+  </data>
+  <data name="btnFecharAplicacao.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="MenuStripMenusSistema.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="lbl.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="novosEmprestimosToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 26</value>
+  </data>
+  <data name="lblSaudacoes.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
+  </data>
+  <data name="&gt;&gt;btnChamarFormCadastroCliente.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblInformacaoCadastroCliente.Name" xml:space="preserve">
+    <value>lblInformacaoCadastroCliente</value>
+  </data>
+  <data name="lblTituloInicial.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 16.2pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;visualizarEmprestimosToolStripMenuItem1.Name" xml:space="preserve">
+    <value>visualizarEmprestimosToolStripMenuItem1</value>
+  </data>
+  <data name="lblInformacaoCadastroCliente.Text" xml:space="preserve">
+    <value>Clique Neste Botão Para Cadastrar o Cliente:</value>
+  </data>
+  <data name="&gt;&gt;MenuStripMenusSistema.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupInicialBtnEscolha.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lbl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;financeiroToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnChamarFormCadastroCliente.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+  <data name="&gt;&gt;btnChamarFormEmprestimos.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;picBoxTelaInicialSistema.Name" xml:space="preserve">
-    <value>picBoxTelaInicialSistema</value>
+  <data name="btnChamarFormEmprestimos.Location" type="System.Drawing.Point, System.Drawing">
+    <value>331, 346</value>
   </data>
-  <data name="&gt;&gt;lblTituloInicial.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnChmarFormPagamento.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="MenuStripNovosEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="MenuStripEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
     <value>224, 26</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lblSaudacoes.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 95</value>
   </data>
-  <data name="MenuStripRelatoriosEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
+  <data name="MenuStripRelatorios.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 24</value>
   </data>
-  <data name="&gt;&gt;cadastroToolStripMenuItem.Name" xml:space="preserve">
-    <value>cadastroToolStripMenuItem</value>
+  <data name="lblTituloInicial.Location" type="System.Drawing.Point, System.Drawing">
+    <value>113, 23</value>
   </data>
-  <data name="&gt;&gt;btnChmarFormPagamento.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;groupInicialBtnEscolha.Name" xml:space="preserve">
+    <value>groupInicialBtnEscolha</value>
   </data>
-  <data name="MenuStripMenusSistema.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+  <data name="&gt;&gt;MenuStripCadastro.Name" xml:space="preserve">
+    <value>MenuStripCadastro</value>
   </data>
-  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+  <data name="&gt;&gt;btnVizualizarDebitos.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
+  <data name="lblTituloSistemas.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;btnVizualizarDebitos.Name" xml:space="preserve">
+    <value>btnVizualizarDebitos</value>
+  </data>
+  <data name="&gt;&gt;MenuStripRelatoriosEmprestimos.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnChamarFormCadastroCliente.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;arquivoToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnChamarFormCadastroCliente.Location" type="System.Drawing.Point, System.Drawing">
+    <value>314, 251</value>
+  </data>
+  <data name="&gt;&gt;btnFecharAplicacao.Name" xml:space="preserve">
+    <value>btnFecharAplicacao</value>
+  </data>
+  <data name="&gt;&gt;toolStsStripSistemVersion.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <metadata name="MenuStripMenusSistema.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>217, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>58</value>
   </metadata>
   <metadata name="imageListSistemaGerenciadorEmprestimos.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>440, 17</value>
   </metadata>
-  <metadata name="stsStripSistemVersion.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <metadata name="$this.Language" type="System.Globalization.CultureInfo, System.Private.CoreLib, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
     <value>pt-BR</value>
   </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>56</value>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
-  <metadata name="MenuStripMenusSistema.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>217, 17</value>
+  <metadata name="stsStripSistemVersion.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
   </metadata>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>217, 17</value>

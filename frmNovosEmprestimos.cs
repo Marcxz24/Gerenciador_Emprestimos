@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,29 +70,32 @@ namespace Gerenciador_de_Emprestimos
                 return true;
             }
 
-            DateTime dataEmprestimo;
+            DateTime dataPagamento;
 
-            if (!DateTime.TryParse(maskTxtDataEmprestimo.Text, out dataEmprestimo))
+            if (!maskTxtDataPagamento.MaskCompleted)
             {
-                Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Data do Emprestimo");
+                Funcoes.MensagemWarning("Preecha a Data completa!");
                 return true;
             }
 
-            if (DateTime.TryParse(maskTxtDataEmprestimo.Text, out dataEmprestimo))
-            {
-                if (dataEmprestimo > DateTime.Now)
-                {
-                    Funcoes.MensagemWarning("A Data do Empréstimo não pode ser maior que a Data Atual!\n\nPor favor, verifique a Data do Empréstimo.");
-                    return true;
-                }
-
-                if (dataEmprestimo < new DateTime(2000, 1, 1))
-                {
-                    Funcoes.MensagemErro("Data de Emprestimo inválida! Por favor Preencha uma Data Válida!");
-                    return true;
-                }
+            if (!DateTime.TryParseExact(maskTxtDataPagamento.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("pt-BR"), DateTimeStyles.None, out dataPagamento))
+            { 
+                Funcoes.MensagemWarning("Data de Pagamento Inválida!\n\npreencha no formato dd/MM/yyyy");
+                return true;
             }
 
+            if (dataPagamento < new DateTime(2025, 1, 1))
+            {
+                Funcoes.MensagemErro("Data de Emprestimo inválida! Por favor Preencha uma Data Válida!");
+                return true;
+            }
+
+            if (dataPagamento < DateTime.Today)
+            {
+                Funcoes.MensagemWarning("A Data do Empréstimo não pode ser Menor que a Data Atual!\n\nPor favor, verifique a Data do Empréstimo.");
+                return true;
+            }
+            
             if (emprestimo.ValidarClienteEmprestimo(txtBoxCodigoCliente.Text))
             {
                 Funcoes.MensagemWarning("Este Cliente Já está com um Emprestimo 'ATIVO'");
@@ -147,7 +151,7 @@ namespace Gerenciador_de_Emprestimos
             txtBoxValorEmprestado.Clear();
             txtBoxValorEmpresto.Clear();
             txtBoxValorJuros.Clear();
-            maskTxtDataEmprestimo.Clear();
+            maskTxtDataPagamento.Clear();
             txtBoxTotalPagar.Clear();
             txtBoxQuantidadeParcela.Clear();
             txtBoxValorParcela.Clear();
@@ -169,6 +173,11 @@ namespace Gerenciador_de_Emprestimos
             {
                 Funcoes.MensagemErro("Código do Cliente inválido. Verifique e tente novamente.");
                 return;
+            }
+
+            if (DateTime.TryParseExact(maskTxtDataPagamento.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("pt-BR"), DateTimeStyles.None, out DateTime dataPagamento))
+            {
+                emprestimo.DataPagamento = dataPagamento;
             }
 
             emprestimo.AtivarEmprestimo();
