@@ -1,21 +1,21 @@
-﻿using System.Diagnostics;
+﻿using iText.Kernel.Colors;
 using iText.Kernel.Geom;
-using iText.Kernel.Colors;
 using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Canvas.Draw;
 using iText.Layout.Element;
 using iText.Layout.Properties;
 using System.Data;
+using System.Diagnostics;
 using Document = iText.Layout.Document;
 using Path = System.IO.Path;
-using System.Windows.Forms.Design;
-using iText.Kernel.Pdf.Canvas.Draw;
 
 namespace Gerenciador_de_Emprestimos
 {
     public class GeradorRelatorio
     {
-        public decimal ValorTotalEmprestado { get; set; }
+        public decimal ValorTotalReceber { get; set; }
         public int NumeroDeRegistros { get; set; }
+        public decimal ValorTotalEmprestado { get; set; }
 
         public void RelatorioEmprestimoPdf(DataTable tabela)
         {
@@ -71,7 +71,11 @@ namespace Gerenciador_de_Emprestimos
 
                 document.Add(new LineSeparator(new SolidLine()).SetMarginTop(5).SetMarginBottom(10));
 
-                document.Add(new Paragraph($"Valor total Emprestado: {ValorTotalEmprestado :c}"));
+                document.Add(new Paragraph($"Valor total a Receber: {ValorTotalReceber:c}").SetBackgroundColor(ColorConstants.LIGHT_GRAY));
+
+                document.Add(new LineSeparator(new SolidLine()).SetMarginTop(5).SetMarginBottom(10));
+
+                document.Add(new Paragraph($"Valor total Emprestado: {ValorTotalEmprestado:c}").SetBackgroundColor(ColorConstants.LIGHT_GRAY));
 
                 document.Add(new LineSeparator(new SolidLine()).SetMarginTop(5).SetMarginBottom(10));
 
