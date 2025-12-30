@@ -11,24 +11,30 @@ namespace Gerenciador_de_Emprestimos
             InitializeComponent();
         }
 
-        private void btnChamarFormCadastroCliente_Click(object sender, EventArgs e)
+        private void clienteToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             FormCadastroCliente formularioCadastroCliente = new FormCadastroCliente();
             formularioCadastroCliente.ShowDialog();
         }
 
-        private void btnChamarFormEmprestimos_Click_1(object sender, EventArgs e)
+        private void novosEmprestimosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormEmprestimos formularioEmprestimos = new FormEmprestimos();
             formularioEmprestimos.ShowDialog();
         }
 
-        private void btnFecharAplicacao_Click(object sender, EventArgs e)
+        private void visualizarEmprestimosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmVisualizarEmprestimos frmVisualizarEmprestimos = new frmVisualizarEmprestimos();
+            frmVisualizarEmprestimos.Show();
+        }
+
+        private void sairDoSistemaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
         }
 
-        private void btnVizualizarDebitos_Click(object sender, EventArgs e)
+        private void visualizarEmprestimosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             frmVisualizarEmprestimos frmVisualizarEmprestimos = new frmVisualizarEmprestimos();
             frmVisualizarEmprestimos.Show();

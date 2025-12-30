@@ -28,34 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTelaIncial));
-            btnChamarFormEmprestimos = new Button();
-            btnChamarFormCadastroCliente = new Button();
             lblTituloInicial = new Label();
-            btnChmarFormPagamento = new Button();
-            btnFecharAplicacao = new Button();
-            btnVizualizarDebitos = new Button();
+            stsStripSistemVersion = new StatusStrip();
+            toolStsStripSistemVersion = new ToolStripStatusLabel();
+            MenuStripMenusSistema = new MenuStrip();
+            arquivoToolStripMenuItem = new ToolStripMenuItem();
+            sairDoSistemaToolStripMenuItem = new ToolStripMenuItem();
+            MenuStripCadastro = new ToolStripMenuItem();
+            MenuStripCliente = new ToolStripMenuItem();
+            MenuStripCadastroCliente = new ToolStripMenuItem();
+            MenuStripFinanceiro = new ToolStripMenuItem();
+            MenuStripEmprestimos = new ToolStripMenuItem();
+            MenuStripNovosEmprestimos = new ToolStripMenuItem();
+            visualizarEmprestimosToolStripMenuItem = new ToolStripMenuItem();
+            MenuStripRelatorios = new ToolStripMenuItem();
+            MenuStripRelatoriosEmprestimos = new ToolStripMenuItem();
+            MenuStripRelatoriosVisuEmprestimos = new ToolStripMenuItem();
+            imageListSistemaGerenciadorEmprestimos = new ImageList(components);
+            picBoxTelaInicialSistema = new PictureBox();
+            pictureBox1 = new PictureBox();
+            lblTituloSistemas = new Label();
+            stsStripSistemVersion.SuspendLayout();
+            MenuStripMenusSistema.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picBoxTelaInicialSistema).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // btnChamarFormEmprestimos
-            // 
-            resources.ApplyResources(btnChamarFormEmprestimos, "btnChamarFormEmprestimos");
-            btnChamarFormEmprestimos.BackColor = Color.DarkTurquoise;
-            btnChamarFormEmprestimos.Cursor = Cursors.Hand;
-            btnChamarFormEmprestimos.ForeColor = Color.White;
-            btnChamarFormEmprestimos.Name = "btnChamarFormEmprestimos";
-            btnChamarFormEmprestimos.UseVisualStyleBackColor = false;
-            btnChamarFormEmprestimos.Click += btnChamarFormEmprestimos_Click_1;
-            // 
-            // btnChamarFormCadastroCliente
-            // 
-            resources.ApplyResources(btnChamarFormCadastroCliente, "btnChamarFormCadastroCliente");
-            btnChamarFormCadastroCliente.BackColor = Color.LightGreen;
-            btnChamarFormCadastroCliente.Cursor = Cursors.Hand;
-            btnChamarFormCadastroCliente.ForeColor = Color.White;
-            btnChamarFormCadastroCliente.Name = "btnChamarFormCadastroCliente";
-            btnChamarFormCadastroCliente.UseVisualStyleBackColor = false;
-            btnChamarFormCadastroCliente.Click += btnChamarFormCadastroCliente_Click;
             // 
             // lblTituloInicial
             // 
@@ -63,35 +62,123 @@
             lblTituloInicial.BackColor = Color.Transparent;
             lblTituloInicial.Name = "lblTituloInicial";
             // 
-            // btnChmarFormPagamento
+            // stsStripSistemVersion
             // 
-            resources.ApplyResources(btnChmarFormPagamento, "btnChmarFormPagamento");
-            btnChmarFormPagamento.BackColor = Color.DarkTurquoise;
-            btnChmarFormPagamento.Cursor = Cursors.Hand;
-            btnChmarFormPagamento.ForeColor = Color.White;
-            btnChmarFormPagamento.Name = "btnChmarFormPagamento";
-            btnChmarFormPagamento.UseVisualStyleBackColor = false;
+            resources.ApplyResources(stsStripSistemVersion, "stsStripSistemVersion");
+            stsStripSistemVersion.ImageScalingSize = new Size(20, 20);
+            stsStripSistemVersion.Items.AddRange(new ToolStripItem[] { toolStsStripSistemVersion });
+            stsStripSistemVersion.Name = "stsStripSistemVersion";
             // 
-            // btnFecharAplicacao
+            // toolStsStripSistemVersion
             // 
-            resources.ApplyResources(btnFecharAplicacao, "btnFecharAplicacao");
-            btnFecharAplicacao.BackColor = Color.Red;
-            btnFecharAplicacao.Cursor = Cursors.Hand;
-            btnFecharAplicacao.ForeColor = SystemColors.ButtonHighlight;
-            btnFecharAplicacao.Name = "btnFecharAplicacao";
-            btnFecharAplicacao.UseVisualStyleBackColor = false;
-            btnFecharAplicacao.Click += btnFecharAplicacao_Click;
+            resources.ApplyResources(toolStsStripSistemVersion, "toolStsStripSistemVersion");
+            toolStsStripSistemVersion.Name = "toolStsStripSistemVersion";
+            toolStsStripSistemVersion.Spring = true;
             // 
-            // btnVizualizarDebitos
+            // MenuStripMenusSistema
             // 
-            resources.ApplyResources(btnVizualizarDebitos, "btnVizualizarDebitos");
-            btnVizualizarDebitos.BackColor = Color.DarkTurquoise;
-            btnVizualizarDebitos.Cursor = Cursors.Hand;
-            btnVizualizarDebitos.ForeColor = Color.White;
-            btnVizualizarDebitos.Image = Properties.Resources.lupa;
-            btnVizualizarDebitos.Name = "btnVizualizarDebitos";
-            btnVizualizarDebitos.UseVisualStyleBackColor = false;
-            btnVizualizarDebitos.Click += btnVizualizarDebitos_Click;
+            resources.ApplyResources(MenuStripMenusSistema, "MenuStripMenusSistema");
+            MenuStripMenusSistema.ImageScalingSize = new Size(20, 20);
+            MenuStripMenusSistema.Items.AddRange(new ToolStripItem[] { arquivoToolStripMenuItem, MenuStripCadastro, MenuStripFinanceiro, MenuStripRelatorios });
+            MenuStripMenusSistema.Name = "MenuStripMenusSistema";
+            // 
+            // arquivoToolStripMenuItem
+            // 
+            resources.ApplyResources(arquivoToolStripMenuItem, "arquivoToolStripMenuItem");
+            arquivoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { sairDoSistemaToolStripMenuItem });
+            arquivoToolStripMenuItem.Name = "arquivoToolStripMenuItem";
+            // 
+            // sairDoSistemaToolStripMenuItem
+            // 
+            resources.ApplyResources(sairDoSistemaToolStripMenuItem, "sairDoSistemaToolStripMenuItem");
+            sairDoSistemaToolStripMenuItem.Name = "sairDoSistemaToolStripMenuItem";
+            sairDoSistemaToolStripMenuItem.Click += sairDoSistemaToolStripMenuItem_Click;
+            // 
+            // MenuStripCadastro
+            // 
+            resources.ApplyResources(MenuStripCadastro, "MenuStripCadastro");
+            MenuStripCadastro.DropDownItems.AddRange(new ToolStripItem[] { MenuStripCliente });
+            MenuStripCadastro.Name = "MenuStripCadastro";
+            // 
+            // MenuStripCliente
+            // 
+            resources.ApplyResources(MenuStripCliente, "MenuStripCliente");
+            MenuStripCliente.DropDownItems.AddRange(new ToolStripItem[] { MenuStripCadastroCliente });
+            MenuStripCliente.Name = "MenuStripCliente";
+            // 
+            // MenuStripCadastroCliente
+            // 
+            resources.ApplyResources(MenuStripCadastroCliente, "MenuStripCadastroCliente");
+            MenuStripCadastroCliente.Name = "MenuStripCadastroCliente";
+            MenuStripCadastroCliente.Click += clienteToolStripMenuItem1_Click;
+            // 
+            // MenuStripFinanceiro
+            // 
+            resources.ApplyResources(MenuStripFinanceiro, "MenuStripFinanceiro");
+            MenuStripFinanceiro.DropDownItems.AddRange(new ToolStripItem[] { MenuStripEmprestimos });
+            MenuStripFinanceiro.Name = "MenuStripFinanceiro";
+            // 
+            // MenuStripEmprestimos
+            // 
+            resources.ApplyResources(MenuStripEmprestimos, "MenuStripEmprestimos");
+            MenuStripEmprestimos.DropDownItems.AddRange(new ToolStripItem[] { MenuStripNovosEmprestimos, visualizarEmprestimosToolStripMenuItem });
+            MenuStripEmprestimos.Name = "MenuStripEmprestimos";
+            // 
+            // MenuStripNovosEmprestimos
+            // 
+            resources.ApplyResources(MenuStripNovosEmprestimos, "MenuStripNovosEmprestimos");
+            MenuStripNovosEmprestimos.Name = "MenuStripNovosEmprestimos";
+            MenuStripNovosEmprestimos.Click += novosEmprestimosToolStripMenuItem_Click;
+            // 
+            // visualizarEmprestimosToolStripMenuItem
+            // 
+            resources.ApplyResources(visualizarEmprestimosToolStripMenuItem, "visualizarEmprestimosToolStripMenuItem");
+            visualizarEmprestimosToolStripMenuItem.Name = "visualizarEmprestimosToolStripMenuItem";
+            visualizarEmprestimosToolStripMenuItem.Click += visualizarEmprestimosToolStripMenuItem_Click;
+            // 
+            // MenuStripRelatorios
+            // 
+            resources.ApplyResources(MenuStripRelatorios, "MenuStripRelatorios");
+            MenuStripRelatorios.DropDownItems.AddRange(new ToolStripItem[] { MenuStripRelatoriosEmprestimos });
+            MenuStripRelatorios.Name = "MenuStripRelatorios";
+            // 
+            // MenuStripRelatoriosEmprestimos
+            // 
+            resources.ApplyResources(MenuStripRelatoriosEmprestimos, "MenuStripRelatoriosEmprestimos");
+            MenuStripRelatoriosEmprestimos.DropDownItems.AddRange(new ToolStripItem[] { MenuStripRelatoriosVisuEmprestimos });
+            MenuStripRelatoriosEmprestimos.Name = "MenuStripRelatoriosEmprestimos";
+            // 
+            // MenuStripRelatoriosVisuEmprestimos
+            // 
+            resources.ApplyResources(MenuStripRelatoriosVisuEmprestimos, "MenuStripRelatoriosVisuEmprestimos");
+            MenuStripRelatoriosVisuEmprestimos.Name = "MenuStripRelatoriosVisuEmprestimos";
+            MenuStripRelatoriosVisuEmprestimos.Click += visualizarEmprestimosToolStripMenuItem1_Click;
+            // 
+            // imageListSistemaGerenciadorEmprestimos
+            // 
+            imageListSistemaGerenciadorEmprestimos.ColorDepth = ColorDepth.Depth32Bit;
+            resources.ApplyResources(imageListSistemaGerenciadorEmprestimos, "imageListSistemaGerenciadorEmprestimos");
+            imageListSistemaGerenciadorEmprestimos.TransparentColor = Color.Transparent;
+            // 
+            // picBoxTelaInicialSistema
+            // 
+            resources.ApplyResources(picBoxTelaInicialSistema, "picBoxTelaInicialSistema");
+            picBoxTelaInicialSistema.BackColor = Color.Transparent;
+            picBoxTelaInicialSistema.Name = "picBoxTelaInicialSistema";
+            picBoxTelaInicialSistema.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            resources.ApplyResources(pictureBox1, "pictureBox1");
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.TabStop = false;
+            // 
+            // lblTituloSistemas
+            // 
+            resources.ApplyResources(lblTituloSistemas, "lblTituloSistemas");
+            lblTituloSistemas.BackColor = Color.Transparent;
+            lblTituloSistemas.Name = "lblTituloSistemas";
             // 
             // FormTelaIncial
             // 
@@ -99,26 +186,46 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AliceBlue;
             BackgroundImage = Properties.Resources.gradience1;
-            Controls.Add(btnVizualizarDebitos);
-            Controls.Add(btnFecharAplicacao);
-            Controls.Add(btnChmarFormPagamento);
-            Controls.Add(btnChamarFormEmprestimos);
+            Controls.Add(picBoxTelaInicialSistema);
+            Controls.Add(lblTituloSistemas);
             Controls.Add(lblTituloInicial);
-            Controls.Add(btnChamarFormCadastroCliente);
+            Controls.Add(pictureBox1);
+            Controls.Add(stsStripSistemVersion);
+            Controls.Add(MenuStripMenusSistema);
             DoubleBuffered = true;
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
+            MainMenuStrip = MenuStripMenusSistema;
             Name = "FormTelaIncial";
+            WindowState = FormWindowState.Maximized;
+            stsStripSistemVersion.ResumeLayout(false);
+            stsStripSistemVersion.PerformLayout();
+            MenuStripMenusSistema.ResumeLayout(false);
+            MenuStripMenusSistema.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picBoxTelaInicialSistema).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
         private Label lblTituloInicial;
-        private Button btnChamarFormCadastroCliente;
-        private Button btnChamarFormEmprestimos;
-        private Button btnChmarFormPagamento;
-        private Button btnFecharAplicacao;
-        private Button btnVizualizarDebitos;
+        private StatusStrip stsStripSistemVersion;
+        private ToolStripStatusLabel toolStsStripSistemVersion;
+        private MenuStrip MenuStripMenusSistema;
+        private ToolStripMenuItem MenuStripCadastro;
+        private ToolStripMenuItem MenuStripCliente;
+        private ToolStripMenuItem MenuStripCadastroCliente;
+        private ToolStripMenuItem MenuStripFinanceiro;
+        private ToolStripMenuItem MenuStripEmprestimos;
+        private ToolStripMenuItem MenuStripNovosEmprestimos;
+        private ToolStripMenuItem visualizarEmprestimosToolStripMenuItem;
+        private ImageList imageListSistemaGerenciadorEmprestimos;
+        private PictureBox picBoxTelaInicialSistema;
+        private ToolStripMenuItem arquivoToolStripMenuItem;
+        private ToolStripMenuItem sairDoSistemaToolStripMenuItem;
+        private ToolStripMenuItem MenuStripRelatorios;
+        private ToolStripMenuItem MenuStripRelatoriosEmprestimos;
+        private ToolStripMenuItem MenuStripRelatoriosVisuEmprestimos;
+        private PictureBox pictureBox1;
+        private Label lblTituloSistemas;
     }
 }
