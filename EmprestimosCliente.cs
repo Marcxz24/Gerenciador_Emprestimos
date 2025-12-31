@@ -20,8 +20,8 @@ namespace Gerenciador_de_Emprestimos
         public decimal ValorParcela { get; private set; }
         public decimal ValorTotal { get; private set; }
         public DateTime DataEmprestimo { get; set; }
-        public DateTime DataPagamento { get; set; }
-        public string? StatusEmprestimo { get; private set; }
+        public DateTime DataVencimentoInicial { get; set; }
+        public string StatusEmprestimo { get; private set; } = "ATIVO";
 
         private decimal CalcularJurosValorEmprestado()
         {
@@ -62,12 +62,6 @@ namespace Gerenciador_de_Emprestimos
             DataEmprestimo = DateTime.Now;
         }
 
-        public void FinalizarEmprestimo()
-        {
-            StatusEmprestimo = "QUITADO";
-            DataPagamento = DateTime.Now;
-        }
-
         public bool ValidarClienteEmprestimo(string codigoCliente)
         {
             var conexao = ConexaoBancoDeDados.Conectar();
@@ -101,27 +95,74 @@ namespace Gerenciador_de_Emprestimos
 
         public void InserirDadosEmorestimo()
         {
-            var conexao = ConexaoBancoDeDados.Conectar();
-
-            using (MySqlCommand sqlInsertEmprestimo = conexao.CreateCommand())
+            using (var conexao = ConexaoBancoDeDados.Conectar())
+            using (var transacao = conexao.BeginTransaction())
             {
-                sqlInsertEmprestimo.CommandText = @"INSERT INTO emprestimosbd.emprestimos (codigo_cliente, valor_emprestado, valor_emprestado_total, quantidade_parcela, valor_parcela, valor_juros, data_emprestimo, data_pagar, status_emprestimo)  VALUES(@codigo_cliente, @valor_emprestado, @valor_emprestado_total, @quantidade_parcela, @valor_parcela, @valor_juros, @data_emprestimo, @data_pagar, @status_emprestimo)";
+                try
+                {
+                    string sqlInsertEmprestimo = @"INSERT INTO emprestimosbd.emprestimos (codigo_cliente, valor_emprestado, valor_emprestado_total, quantidade_parcela, valor_parcela, valor_juros, data_emprestimo, data_pagar, status_emprestimo)  VALUES(@codigo_cliente, @valor_emprestado, @valor_emprestado_total, @quantidade_parcela, @valor_parcela, @valor_juros, @data_emprestimo, @data_pagar, @status_emprestimo); SELECT LAST_INSERT_ID();";
 
-                sqlInsertEmprestimo.Parameters.AddWithValue("@codigo_cliente", CodigoCliente);
-                sqlInsertEmprestimo.Parameters.AddWithValue("@valor_emprestado", ValorEmprestado);
-                sqlInsertEmprestimo.Parameters.AddWithValue("@valor_emprestado_total", ValorTotal);
-                sqlInsertEmprestimo.Parameters.AddWithValue("@quantidade_parcela", QuantidadeParcela);
-                sqlInsertEmprestimo.Parameters.AddWithValue("@valor_parcela", ValorParcela);
-                sqlInsertEmprestimo.Parameters.AddWithValue("@valor_juros", ValorJurosMonetario);
-                sqlInsertEmprestimo.Parameters.AddWithValue("@data_emprestimo", DataEmprestimo);
-                sqlInsertEmprestimo.Parameters.AddWithValue("@data_pagar", DataPagamento);
-                sqlInsertEmprestimo.Parameters.AddWithValue("@status_emprestimo", StatusEmprestimo);
+                    using (var comando = new MySqlCommand(sqlInsertEmprestimo, conexao, transacao))
+                    {
+                        comando.Parameters.AddWithValue("@codigo_cliente", CodigoCliente);
+                        comando.Parameters.AddWithValue("@valor_emprestado", ValorEmprestado);
+                        comando.Parameters.AddWithValue("@valor_emprestado_total", ValorTotal);
+                        comando.Parameters.AddWithValue("@quantidade_parcela", QuantidadeParcela);
+                        comando.Parameters.AddWithValue("@valor_parcela", ValorParcela);
+                        comando.Parameters.AddWithValue("@valor_juros", ValorJurosMonetario);
+                        comando.Parameters.AddWithValue("@data_emprestimo", DataEmprestimo);
+                        comando.Parameters.AddWithValue("@data_pagar", DataVencimentoInicial);
+                        comando.Parameters.AddWithValue("@status_emprestimo", StatusEmprestimo);
 
-                sqlInsertEmprestimo.ExecuteNonQuery();
+                        Codigo = Convert.ToInt32(comando.ExecuteScalar());
+                    }
 
-                Funcoes.MensagemInformation("Dados do Empréstimo Inseridos com Sucesso!");
+                    GerarParcela(Codigo, conexao, transacao);
 
-                conexao.Close();
+                    transacao.Commit();
+
+                    Funcoes.MensagemInformation("Dados do Empréstimo Inseridos com Sucesso!");
+
+                }
+                catch (Exception ex) 
+                {
+                    transacao.Rollback();
+                    Funcoes.MensagemErro("Houve um erro ao gerar empréstimo:\n" + ex.Message);
+                }
+            }
+        }
+
+        private void GerarParcela(int codigoEmprestimo, MySqlConnection conexao, MySqlTransaction transacao)
+        {
+            string sqlParcela = @"
+                                INSERT INTO emprestimosbd.conta_receber
+                                (
+                                    codigo_emprestimo,
+                                    codigo_cliente, 
+                                    numero_parcela,
+                                    valor_parcela,
+                                    data_vencimento
+                                )
+                                VALUES
+                                (
+                                    @codigo_emprestimo,
+                                    @codigo_cliente, 
+                                    @numero_parcela,
+                                    @valor_parcela,
+                                    @data_vencimento
+                                )";
+            for (int i = 1; i <= QuantidadeParcela; i++)
+            {
+                using (var comando = new MySqlCommand(sqlParcela, conexao))
+                {
+                    comando.Parameters.AddWithValue("@codigo_emprestimo", codigoEmprestimo);
+                    comando.Parameters.AddWithValue("@codigo_cliente", CodigoCliente);
+                    comando.Parameters.AddWithValue("@numero_parcela", i);
+                    comando.Parameters.AddWithValue("@valor_parcela", ValorParcela);
+                    comando.Parameters.AddWithValue("@data_vencimento", DataVencimentoInicial.AddMonths(i - 1));
+
+                    comando.ExecuteNonQuery();
+                }
             }
         }
     }

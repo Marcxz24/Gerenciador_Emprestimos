@@ -42,7 +42,6 @@
             MenuStripFinanceiro = new ToolStripMenuItem();
             MenuStripEmprestimos = new ToolStripMenuItem();
             MenuStripNovosEmprestimos = new ToolStripMenuItem();
-            recebimentoDeParcelaToolStripMenuItem = new ToolStripMenuItem();
             visualizarEmprestimosToolStripMenuItem = new ToolStripMenuItem();
             MenuStripRelatorios = new ToolStripMenuItem();
             MenuStripRelatoriosEmprestimos = new ToolStripMenuItem();
@@ -122,7 +121,7 @@
             // MenuStripEmprestimos
             // 
             resources.ApplyResources(MenuStripEmprestimos, "MenuStripEmprestimos");
-            MenuStripEmprestimos.DropDownItems.AddRange(new ToolStripItem[] { MenuStripNovosEmprestimos, recebimentoDeParcelaToolStripMenuItem, visualizarEmprestimosToolStripMenuItem });
+            MenuStripEmprestimos.DropDownItems.AddRange(new ToolStripItem[] { MenuStripNovosEmprestimos, visualizarEmprestimosToolStripMenuItem });
             MenuStripEmprestimos.Name = "MenuStripEmprestimos";
             // 
             // MenuStripNovosEmprestimos
@@ -130,12 +129,6 @@
             resources.ApplyResources(MenuStripNovosEmprestimos, "MenuStripNovosEmprestimos");
             MenuStripNovosEmprestimos.Name = "MenuStripNovosEmprestimos";
             MenuStripNovosEmprestimos.Click += novosEmprestimosToolStripMenuItem_Click;
-            // 
-            // recebimentoDeParcelaToolStripMenuItem
-            // 
-            resources.ApplyResources(recebimentoDeParcelaToolStripMenuItem, "recebimentoDeParcelaToolStripMenuItem");
-            recebimentoDeParcelaToolStripMenuItem.Name = "recebimentoDeParcelaToolStripMenuItem";
-            recebimentoDeParcelaToolStripMenuItem.Click += recebimentoDeParcelaToolStripMenuItem_Click;
             // 
             // visualizarEmprestimosToolStripMenuItem
             // 
@@ -234,6 +227,5 @@
         private ToolStripMenuItem MenuStripRelatoriosVisuEmprestimos;
         private PictureBox pictureBox1;
         private Label lblTituloSistemas;
-        private ToolStripMenuItem recebimentoDeParcelaToolStripMenuItem;
     }
 }

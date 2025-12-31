@@ -177,7 +177,7 @@ namespace Gerenciador_de_Emprestimos
 
             if (DateTime.TryParseExact(maskTxtDataPagamento.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("pt-BR"), DateTimeStyles.None, out DateTime dataPagamento))
             {
-                emprestimo.DataPagamento = dataPagamento;
+                emprestimo.DataVencimentoInicial = dataPagamento;
             }
 
             emprestimo.AtivarEmprestimo();
