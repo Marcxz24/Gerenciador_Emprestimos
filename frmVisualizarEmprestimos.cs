@@ -1,11 +1,14 @@
 ﻿using Gerenciador_de_Emprestimos.Database;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.Windows.Forms;
 
 namespace Gerenciador_de_Emprestimos
 {
     public partial class frmVisualizarEmprestimos : Form
     {
+        public int CodigoEmprestimoSelecionado { get; set; }
+
         public frmVisualizarEmprestimos()
         {
             InitializeComponent();
@@ -168,6 +171,14 @@ namespace Gerenciador_de_Emprestimos
             relatorio.ValorTotalEmprestado = somarValorEmprestado;
 
             relatorio.RelatorioEmprestimoPdf(tabela);
+        }
+
+        private void dataGridEmprestimos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            CodigoEmprestimoSelecionado = Convert.ToInt32(dataGridEmprestimos.CurrentRow.Cells["codigo"].Value);
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }

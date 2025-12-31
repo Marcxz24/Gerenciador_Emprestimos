@@ -37,5 +37,28 @@ namespace Gerenciador_de_Emprestimos
 
             return dataTable;
         }
+
+        public DataTable ConsultarClientePorCodigo(int CodigoCliente)
+        {
+            DataTable dataTable = new DataTable();
+
+            var sqlConsulta = @"SELECT * FROM emprestimosbd.cliente WHERE codigo = @codigo";
+
+            using (var conexao = ConexaoBancoDeDados.Conectar())
+            using (var comando = new MySqlCommand(sqlConsulta, conexao))
+            {
+                if (CodigoCliente > 0)
+                {
+                    comando.Parameters.AddWithValue("@codigo", CodigoCliente);
+
+                    using (var data = new MySqlDataAdapter(comando))
+                    {
+                        data.Fill(dataTable);
+                    }
+                }
+            }
+
+            return dataTable;
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace Gerenciador_de_Emprestimos
 {
     public partial class frmSelecionarCliente : Form
     {
-        public string codigoSelecionado { get; set; }
+        public string codigoSelecionado { get; private set; }
 
         public frmSelecionarCliente()
         {
@@ -164,7 +164,7 @@ namespace Gerenciador_de_Emprestimos
         {
             if (e.RowIndex >= 0)
             {
-                codigoSelecionado = dataGridClientes.CurrentRow.Cells[0].Value.ToString();
+                codigoSelecionado = dataGridClientes.CurrentRow.Cells["codigo"].Value.ToString();
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();

@@ -174,6 +174,7 @@
             dataGridEmprestimos.RowHeadersWidth = 51;
             dataGridEmprestimos.Size = new Size(803, 355);
             dataGridEmprestimos.TabIndex = 1;
+            dataGridEmprestimos.CellDoubleClick += dataGridEmprestimos_CellDoubleClick;
             // 
             // grpBoxDadosEmprestimos
             // 
