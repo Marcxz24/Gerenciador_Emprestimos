@@ -31,7 +31,7 @@ namespace Gerenciador_de_Emprestimos
 
             if (!string.IsNullOrWhiteSpace(NomeCliente))
             {
-                SqlFiltros += " AND c.nome_cliente LIKE %@nome_cliente%";
+                SqlFiltros += " AND c.nome_cliente LIKE @nome_cliente";
             }
 
             if (!string.IsNullOrWhiteSpace(StatusParcela))
@@ -66,7 +66,7 @@ namespace Gerenciador_de_Emprestimos
 
                 if (!string.IsNullOrEmpty(NomeCliente))
                 {
-                    comando.Parameters.AddWithValue("@nome_cliente", NomeCliente);
+                    comando.Parameters.AddWithValue("@nome_cliente", "%" + NomeCliente + "%");
                 }
 
                 if (!string.IsNullOrWhiteSpace(StatusParcela))

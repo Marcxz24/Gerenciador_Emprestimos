@@ -145,7 +145,7 @@ namespace Gerenciador_de_Emprestimos
             {
                 if (!row.IsNewRow)
                 {
-                    somarValorTotal += Convert.ToDecimal(row.Cells["valor_emprestado_total"].Value);
+                    somarValorTotal += Convert.ToDecimal(row.Cells["valor_total"].Value);
                     somarValorEmprestado += Convert.ToDecimal(row.Cells["valor_emprestado"].Value);
                 }
             }

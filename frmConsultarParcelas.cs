@@ -81,6 +81,17 @@ namespace Gerenciador_de_Emprestimos
             }
         }
 
+        private bool ValidacaoDataGrid()
+        {
+            if (dataGridConsultaParcela.Rows.Count == 0 || (dataGridConsultaParcela.Rows.Count == 1 && dataGridConsultaParcela.Rows[0].IsNewRow))
+            {
+                Funcoes.MensagemWarning("Não é possível gerar um relatório com o DataGrid em Branco!");
+                return true;
+            }
+
+            return false;
+        }
+
         private void btnLimparDados_Click(object sender, EventArgs e)
         {
             dataGridConsultaParcela.DataSource = null;
@@ -90,6 +101,35 @@ namespace Gerenciador_de_Emprestimos
             txtBoxNumeroParcela.Clear();
             txtBoxValorParcela.Clear();
             cmbBoxStatusParcela.SelectedItem = null;
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            if (ValidacaoDataGrid())
+            {
+                return;
+            }
+
+            DataTable dataTable = (DataTable)dataGridConsultaParcela.DataSource;
+
+            GeradorRelatorio relatorio = new GeradorRelatorio();
+
+            int totalDeLinhas = dataGridConsultaParcela.Rows.Cast<DataGridViewRow>().Count(r => !r.IsNewRow);
+
+            decimal ValorTotalParcela = 0;
+
+            foreach (DataGridViewRow row in dataGridConsultaParcela.Rows)
+            {
+                if (!row.IsNewRow)
+                {
+                    ValorTotalParcela += Convert.ToDecimal(row.Cells["valor_parcela"].Value);
+                }
+            }
+
+            relatorio.ValorTotalReceber = ValorTotalParcela;
+            relatorio.NumeroDeRegistros = totalDeLinhas;
+
+            relatorio.RelatorioParcelas(dataTable);
         }
     }
 }
