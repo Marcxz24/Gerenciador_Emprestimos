@@ -11,7 +11,7 @@ namespace Gerenciador_de_Emprestimos
 {
     internal class ParcelaConsulta
     {
-        public DataTable ConsultaParcela(int? CodigoEmprestimo, int? CodigoCliente, string NomeCliente, string StatusParcela, decimal ValorParcela, int? NumeroParcela)
+        public DataTable ConsultaParcela(int? CodigoEmprestimo, int? CodigoCliente, string NomeCliente, string StatusParcela, decimal ValorTotal, decimal ValorParcela, int? NumeroParcela)
         {
             DataTable consultaDataTable = new DataTable();
 
@@ -42,6 +42,11 @@ namespace Gerenciador_de_Emprestimos
             if (NumeroParcela > 0)
             {
                 SqlFiltros += " AND p.numero_parcela = @numero_parcela";
+            }
+
+            if (ValorTotal > 0)
+            {
+                SqlFiltros += " AND e.valor_emprestado_total = @valor_emprestado_total";
             }
 
             if (ValorParcela > 0)
@@ -77,6 +82,11 @@ namespace Gerenciador_de_Emprestimos
                 if (NumeroParcela > 0)
                 {
                     comando.Parameters.AddWithValue("@numero_parcela", NumeroParcela);
+                }
+
+                if (ValorTotal > 0)
+                {
+                    comando.Parameters.AddWithValue("@valor_emprestado_total", ValorTotal);
                 }
 
                 if (ValorParcela > 0)

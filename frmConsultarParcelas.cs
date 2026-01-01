@@ -29,6 +29,7 @@ namespace Gerenciador_de_Emprestimos
             int? CodigoCliente = null;
             string? NomeCliente = null;
             string? StatusParcela = null;
+            decimal ValorTotal = 0;
             decimal ValorParcela = 0;
             int? NumeroParcela = null;
 
@@ -57,12 +58,17 @@ namespace Gerenciador_de_Emprestimos
                 ValorParcela = valueParcela;
             }
 
+            if (!string.IsNullOrWhiteSpace(txtBoxValorTotal.Text) && decimal.TryParse(txtBoxValorTotal.Text, out decimal valueTotal))
+            {
+                ValorTotal = valueTotal;
+            }
+
             if (!string.IsNullOrWhiteSpace(txtBoxNumeroParcela.Text) && int.TryParse(txtBoxNumeroParcela.Text, out int numParcela))
             {
                 NumeroParcela = numParcela;
             }
 
-            DataTable dataTable = parcelaConsulta.ConsultaParcela(CodigoEmprestimo, CodigoCliente, NomeCliente, StatusParcela, ValorParcela, NumeroParcela);
+            DataTable dataTable = parcelaConsulta.ConsultaParcela(CodigoEmprestimo, CodigoCliente, NomeCliente, StatusParcela, ValorTotal , ValorParcela, NumeroParcela);
 
             dataGridConsultaParcela.DataSource = dataTable;
         }
@@ -100,6 +106,7 @@ namespace Gerenciador_de_Emprestimos
             txtBoxNomeCliente.Clear();
             txtBoxNumeroParcela.Clear();
             txtBoxValorParcela.Clear();
+            txtBoxValorTotal.Clear();
             cmbBoxStatusParcela.SelectedItem = null;
         }
 

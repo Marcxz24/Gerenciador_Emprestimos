@@ -12,73 +12,78 @@ namespace Gerenciador_de_Emprestimos
 {
     public partial class frmPagamentoEmprestimo : Form
     {
-        private int _codigoEmprestimo;
-
         public frmPagamentoEmprestimo()
         {
             InitializeComponent();
-        }
-
-        private void CarregarDadosEmprestimos(int codigoEmprestimo)
-        {
-            var consulta = new EmprestimosConsulta();
-
-            DataTable dataTable = consulta.ConsultaEmprestimosPorCodigo(codigoEmprestimo);
-
-            if (dataTable.Rows.Count == 0)
-            {
-                Funcoes.MensagemWarning("Empréstimo não Encontrado.");
-                return;
-            }
-
-            DataRow linha = dataTable.Rows[0];
-
-            txtBoxCodigoEmprestimo.Text = linha["codigo"].ToString();
-            txtBoxStatusEmprestimo.Text = linha["status_emprestimo"].ToString();
-        }
-
-        private void CarregarDadosCliente(int CodigoCliente)
-        {
-            var consulta = new SelecionarCliente();
-
-            DataTable dataTable = consulta.ConsultarClientePorCodigo(CodigoCliente);
-
-            if (dataTable.Rows.Count == 0)
-            {
-                Funcoes.MensagemWarning("Cliente Não Encontrado!");
-                return;
-            }
-
-            DataRow row = dataTable.Rows[0];
-
-            txtBoxCodigoCliente.Text = row["codigo"].ToString();
-            txtBoxCliente.Text = row["nome_cliente"].ToString();
+            txtBoxTotalPagar.KeyPress += Funcoes.SomenteNumerosComVirgula_KeyPress;
+            txtBoxCodigoEmprestimo.KeyPress += Funcoes.SomenteNumeros_KeyPress;
+            txtBoxValorParcela.KeyPress += Funcoes.SomenteNumerosComVirgula_KeyPress;
+            txtBoxValorJuros.KeyPress += Funcoes.SomenteNumerosComVirgula_KeyPress;
         }
 
         private void btnLocalizarEmprestimo_Click(object sender, EventArgs e)
         {
-            using (var formVisualizarEmprestimos = new frmVisualizarEmprestimos())
-            {
-                if (formVisualizarEmprestimos.ShowDialog() == DialogResult.OK)
-                {
-                    int codigoEmprestimos = formVisualizarEmprestimos.CodigoEmprestimoSelecionado;
+            PagamentoParcelaConsulta parcelaConsulta = new PagamentoParcelaConsulta();
 
-                    CarregarDadosEmprestimos(codigoEmprestimos);
-                }
+            int codigoCliente = 0;
+            int codigoEmprestimo = 0;
+            decimal valorJuros = 0;
+            decimal valorTotal = 0;
+            decimal valorParcela = 0;
+
+            if (!string.IsNullOrWhiteSpace(txtBoxCodigoCliente.Text) && int.TryParse(txtBoxCodigoCliente.Text, out int codCliente))
+            {
+                codigoCliente = codCliente;
             }
+
+            if (!string.IsNullOrWhiteSpace(txtBoxCodigoEmprestimo.Text) && int.TryParse(txtBoxCodigoEmprestimo.Text, out int codEmprestimos))
+            {
+                codigoEmprestimo = codEmprestimos;
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtBoxValorJuros.Text) && decimal.TryParse(txtBoxValorJuros.Text, out decimal valueJuros))
+            {
+                valorJuros = valueJuros;
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtBoxValorTotal.Text) && decimal.TryParse(txtBoxValorTotal.Text, out decimal valueTotal))
+            {
+                valorTotal = valueTotal;
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtBoxValorParcela.Text) && decimal.TryParse(txtBoxValorParcela.Text, out decimal valueParcela))
+            {
+                valorParcela = valueParcela;
+            }
+
+            DataTable dateTable = parcelaConsulta.ConsultaClienteEmprestimo(codigoCliente, codigoEmprestimo, valorJuros, valorTotal, valorParcela);
+
+            dataGridParcelasAbertas.DataSource = dateTable;
         }
 
         private void btnLocalizarCliente_Click(object sender, EventArgs e)
         {
-            using (var formVisualizarCliente = new frmSelecionarCliente())
+            using (var frmSelecionarCliente = new frmSelecionarCliente())
             {
-                if (formVisualizarCliente.ShowDialog() == DialogResult.OK)
+                if (frmSelecionarCliente.ShowDialog() == DialogResult.OK)
                 {
-                    int codigoCliente = Convert.ToInt32(formVisualizarCliente.codigoSelecionado);
+                    var cliente = frmSelecionarCliente.ClienteSelecionado;
 
-                    CarregarDadosCliente(codigoCliente);
+                    txtBoxCodigoCliente.Text = cliente.codigo.ToString();
+                    txtBoxCliente.Text = cliente.nome_cliente;
                 }
             }
+        }
+
+        private bool ValidacoesCampos()
+        {
+            if (string.IsNullOrEmpty(txtBoxCodigoCliente.Text) && string.IsNullOrEmpty(txtBoxCliente.Text))
+            {
+                Funcoes.MensagemWarning("Não é possivel realizar um pagamento sem um Cliente Selecionado, Por favor Preencha!\n\nCampo: Código e Nome do Cliente!");
+                return false;
+            }
+
+            return true;
         }
 
         private void btnLimparDadosTela_Click(object sender, EventArgs e)
@@ -86,7 +91,18 @@ namespace Gerenciador_de_Emprestimos
             txtBoxCodigoCliente.Clear();
             txtBoxCliente.Clear();
             txtBoxCodigoEmprestimo.Clear();
-            txtBoxStatusEmprestimo.Clear();
+            txtBoxValorJuros.Clear();
+            txtBoxValorTotal.Clear();
+            txtBoxValorParcela.Clear();
+            dataGridParcelasAbertas.DataSource = null;
+        }
+
+        private void btnGerarPagamento_Click(object sender, EventArgs e)
+        {
+            if (ValidacoesCampos())
+            {
+                return;
+            }
         }
     }
 }

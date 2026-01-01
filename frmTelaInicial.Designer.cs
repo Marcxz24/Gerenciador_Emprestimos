@@ -42,6 +42,7 @@
             MenuStripFinanceiro = new ToolStripMenuItem();
             MenuStripEmprestimos = new ToolStripMenuItem();
             MenuStripNovosEmprestimos = new ToolStripMenuItem();
+            pagamentoDeParcelaToolStripMenuItem = new ToolStripMenuItem();
             MenuStripRelatorios = new ToolStripMenuItem();
             MenuStripRelatoriosEmprestimos = new ToolStripMenuItem();
             MenuStripRelatoriosVisuEmprestimos = new ToolStripMenuItem();
@@ -121,7 +122,7 @@
             // MenuStripEmprestimos
             // 
             resources.ApplyResources(MenuStripEmprestimos, "MenuStripEmprestimos");
-            MenuStripEmprestimos.DropDownItems.AddRange(new ToolStripItem[] { MenuStripNovosEmprestimos });
+            MenuStripEmprestimos.DropDownItems.AddRange(new ToolStripItem[] { MenuStripNovosEmprestimos, pagamentoDeParcelaToolStripMenuItem });
             MenuStripEmprestimos.Name = "MenuStripEmprestimos";
             // 
             // MenuStripNovosEmprestimos
@@ -129,6 +130,12 @@
             resources.ApplyResources(MenuStripNovosEmprestimos, "MenuStripNovosEmprestimos");
             MenuStripNovosEmprestimos.Name = "MenuStripNovosEmprestimos";
             MenuStripNovosEmprestimos.Click += novosEmprestimosToolStripMenuItem_Click;
+            // 
+            // pagamentoDeParcelaToolStripMenuItem
+            // 
+            resources.ApplyResources(pagamentoDeParcelaToolStripMenuItem, "pagamentoDeParcelaToolStripMenuItem");
+            pagamentoDeParcelaToolStripMenuItem.Name = "pagamentoDeParcelaToolStripMenuItem";
+            pagamentoDeParcelaToolStripMenuItem.Click += pagamentoDeParcelaToolStripMenuItem_Click;
             // 
             // MenuStripRelatorios
             // 
@@ -227,5 +234,6 @@
         private PictureBox pictureBox1;
         private Label lblTituloSistemas;
         private ToolStripMenuItem visualizarParcelasToolStripMenuItem;
+        private ToolStripMenuItem pagamentoDeParcelaToolStripMenuItem;
     }
 }
