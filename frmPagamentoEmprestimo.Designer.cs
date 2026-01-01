@@ -52,6 +52,18 @@
             lblTotalPagar = new Label();
             txtBoxTotalPagar = new TextBox();
             grpBoxDadosPagamento = new GroupBox();
+            lblClienteNome = new Label();
+            txtClienteNome = new TextBox();
+            label1 = new Label();
+            txtBoxParcela = new TextBox();
+            lblStatusParce = new Label();
+            lblValorJuros = new Label();
+            txtValorJuros = new TextBox();
+            lblValorEmprestimo = new Label();
+            txtValorEmprestimo = new TextBox();
+            lblNumeroParcela = new Label();
+            txtBoxNumeroParcela = new TextBox();
+            comboBoxParcelaStatus = new ComboBox();
             grpBoxDadosParcela.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridParcelasAbertas).BeginInit();
             grpBoxDadosPagamento.SuspendLayout();
@@ -266,27 +278,41 @@
             dataGridParcelasAbertas.RowHeadersWidth = 51;
             dataGridParcelasAbertas.Size = new Size(809, 268);
             dataGridParcelasAbertas.TabIndex = 18;
+            dataGridParcelasAbertas.CellDoubleClick += dataGridParcelasAbertas_CellDoubleClick;
             // 
             // lblTotalPagar
             // 
             lblTotalPagar.AutoSize = true;
             lblTotalPagar.BackColor = Color.Transparent;
-            lblTotalPagar.Location = new Point(6, 39);
+            lblTotalPagar.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTotalPagar.Location = new Point(265, 158);
             lblTotalPagar.Name = "lblTotalPagar";
-            lblTotalPagar.Size = new Size(83, 20);
+            lblTotalPagar.Size = new Size(87, 18);
             lblTotalPagar.TabIndex = 19;
             lblTotalPagar.Text = "Valor Pago:";
             // 
             // txtBoxTotalPagar
             // 
-            txtBoxTotalPagar.Location = new Point(95, 36);
+            txtBoxTotalPagar.Location = new Point(354, 153);
             txtBoxTotalPagar.Name = "txtBoxTotalPagar";
-            txtBoxTotalPagar.Size = new Size(127, 27);
+            txtBoxTotalPagar.Size = new Size(176, 27);
             txtBoxTotalPagar.TabIndex = 20;
             // 
             // grpBoxDadosPagamento
             // 
             grpBoxDadosPagamento.BackColor = Color.Transparent;
+            grpBoxDadosPagamento.Controls.Add(comboBoxParcelaStatus);
+            grpBoxDadosPagamento.Controls.Add(lblClienteNome);
+            grpBoxDadosPagamento.Controls.Add(txtClienteNome);
+            grpBoxDadosPagamento.Controls.Add(label1);
+            grpBoxDadosPagamento.Controls.Add(txtBoxParcela);
+            grpBoxDadosPagamento.Controls.Add(lblStatusParce);
+            grpBoxDadosPagamento.Controls.Add(lblValorJuros);
+            grpBoxDadosPagamento.Controls.Add(txtValorJuros);
+            grpBoxDadosPagamento.Controls.Add(lblValorEmprestimo);
+            grpBoxDadosPagamento.Controls.Add(txtValorEmprestimo);
+            grpBoxDadosPagamento.Controls.Add(lblNumeroParcela);
+            grpBoxDadosPagamento.Controls.Add(txtBoxNumeroParcela);
             grpBoxDadosPagamento.Controls.Add(lblTotalPagar);
             grpBoxDadosPagamento.Controls.Add(txtBoxTotalPagar);
             grpBoxDadosPagamento.Location = new Point(12, 551);
@@ -295,6 +321,112 @@
             grpBoxDadosPagamento.TabIndex = 21;
             grpBoxDadosPagamento.TabStop = false;
             grpBoxDadosPagamento.Text = "Dados do Pagamento";
+            // 
+            // lblClienteNome
+            // 
+            lblClienteNome.AutoSize = true;
+            lblClienteNome.Location = new Point(524, 92);
+            lblClienteNome.Name = "lblClienteNome";
+            lblClienteNome.Size = new Size(58, 20);
+            lblClienteNome.TabIndex = 23;
+            lblClienteNome.Text = "Cliente:";
+            // 
+            // txtClienteNome
+            // 
+            txtClienteNome.Location = new Point(588, 92);
+            txtClienteNome.Name = "txtClienteNome";
+            txtClienteNome.ReadOnly = true;
+            txtClienteNome.Size = new Size(204, 27);
+            txtClienteNome.TabIndex = 22;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Location = new Point(293, 92);
+            label1.Name = "label1";
+            label1.Size = new Size(97, 20);
+            label1.TabIndex = 29;
+            label1.Text = "Valor Parcela:";
+            // 
+            // txtBoxParcela
+            // 
+            txtBoxParcela.Location = new Point(391, 92);
+            txtBoxParcela.Name = "txtBoxParcela";
+            txtBoxParcela.ReadOnly = true;
+            txtBoxParcela.Size = new Size(127, 27);
+            txtBoxParcela.TabIndex = 30;
+            // 
+            // lblStatusParce
+            // 
+            lblStatusParce.AutoSize = true;
+            lblStatusParce.Location = new Point(6, 95);
+            lblStatusParce.Name = "lblStatusParce";
+            lblStatusParce.Size = new Size(124, 20);
+            lblStatusParce.TabIndex = 18;
+            lblStatusParce.Text = "Status da Parcela:";
+            // 
+            // lblValorJuros
+            // 
+            lblValorJuros.AutoSize = true;
+            lblValorJuros.BackColor = Color.Transparent;
+            lblValorJuros.Location = new Point(571, 41);
+            lblValorJuros.Name = "lblValorJuros";
+            lblValorJuros.Size = new Size(105, 20);
+            lblValorJuros.TabIndex = 25;
+            lblValorJuros.Text = "Valor do Juros:";
+            // 
+            // txtValorJuros
+            // 
+            txtValorJuros.Location = new Point(682, 38);
+            txtValorJuros.Name = "txtValorJuros";
+            txtValorJuros.ReadOnly = true;
+            txtValorJuros.Size = new Size(121, 27);
+            txtValorJuros.TabIndex = 26;
+            // 
+            // lblValorEmprestimo
+            // 
+            lblValorEmprestimo.AutoSize = true;
+            lblValorEmprestimo.BackColor = Color.Transparent;
+            lblValorEmprestimo.Location = new Point(6, 41);
+            lblValorEmprestimo.Name = "lblValorEmprestimo";
+            lblValorEmprestimo.Size = new Size(152, 20);
+            lblValorEmprestimo.TabIndex = 23;
+            lblValorEmprestimo.Text = "Valor do Emprestimo:";
+            // 
+            // txtValorEmprestimo
+            // 
+            txtValorEmprestimo.Location = new Point(164, 38);
+            txtValorEmprestimo.Name = "txtValorEmprestimo";
+            txtValorEmprestimo.ReadOnly = true;
+            txtValorEmprestimo.Size = new Size(127, 27);
+            txtValorEmprestimo.TabIndex = 24;
+            // 
+            // lblNumeroParcela
+            // 
+            lblNumeroParcela.AutoSize = true;
+            lblNumeroParcela.BackColor = Color.Transparent;
+            lblNumeroParcela.Location = new Point(297, 41);
+            lblNumeroParcela.Name = "lblNumeroParcela";
+            lblNumeroParcela.Size = new Size(138, 20);
+            lblNumeroParcela.TabIndex = 21;
+            lblNumeroParcela.Text = "Numero da Parcela:";
+            // 
+            // txtBoxNumeroParcela
+            // 
+            txtBoxNumeroParcela.Location = new Point(438, 38);
+            txtBoxNumeroParcela.Name = "txtBoxNumeroParcela";
+            txtBoxNumeroParcela.ReadOnly = true;
+            txtBoxNumeroParcela.Size = new Size(127, 27);
+            txtBoxNumeroParcela.TabIndex = 22;
+            // 
+            // comboBoxParcelaStatus
+            // 
+            comboBoxParcelaStatus.FormattingEnabled = true;
+            comboBoxParcelaStatus.Location = new Point(136, 89);
+            comboBoxParcelaStatus.Name = "comboBoxParcelaStatus";
+            comboBoxParcelaStatus.Size = new Size(151, 28);
+            comboBoxParcelaStatus.TabIndex = 31;
             // 
             // frmPagamentoEmprestimo
             // 
@@ -345,5 +477,17 @@
         private Label lblTotalPagar;
         private TextBox txtBoxTotalPagar;
         private GroupBox grpBoxDadosPagamento;
+        private Label lblNumeroParcela;
+        private TextBox txtBoxNumeroParcela;
+        private Label lblValorEmprestimo;
+        private TextBox txtValorEmprestimo;
+        private Label lblValorJuros;
+        private TextBox txtValorJuros;
+        private Label lblStatusParce;
+        private Label label1;
+        private TextBox txtBoxParcela;
+        private Label lblClienteNome;
+        private TextBox txtClienteNome;
+        private ComboBox comboBoxParcelaStatus;
     }
 }

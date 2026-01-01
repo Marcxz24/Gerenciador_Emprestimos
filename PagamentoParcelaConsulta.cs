@@ -24,6 +24,7 @@ namespace Gerenciador_de_Emprestimos
                             e.valor_emprestado_total AS valor_contrato,
                             p.codigo AS codigo_parcela,
                             e.valor_juros,
+                            p.numero_parcela,
                             p.valor_parcela,
                             p.status_parcela,
                             p.data_vencimento

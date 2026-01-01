@@ -139,7 +139,7 @@
     <value>1896, 20</value>
   </data>
   <data name="toolStsStripSistemVersion.Text" xml:space="preserve">
-    <value>Versão  do Sistema: 0.5.3</value>
+    <value>Versão  do Sistema: 0.5.4</value>
   </data>
   <data name="toolStsStripSistemVersion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>

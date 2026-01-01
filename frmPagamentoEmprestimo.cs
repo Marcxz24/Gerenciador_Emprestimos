@@ -12,6 +12,8 @@ namespace Gerenciador_de_Emprestimos
 {
     public partial class frmPagamentoEmprestimo : Form
     {
+        private int codigoParcela;
+
         public frmPagamentoEmprestimo()
         {
             InitializeComponent();
@@ -19,6 +21,7 @@ namespace Gerenciador_de_Emprestimos
             txtBoxCodigoEmprestimo.KeyPress += Funcoes.SomenteNumeros_KeyPress;
             txtBoxValorParcela.KeyPress += Funcoes.SomenteNumerosComVirgula_KeyPress;
             txtBoxValorJuros.KeyPress += Funcoes.SomenteNumerosComVirgula_KeyPress;
+            txtBoxTotalPagar.KeyPress += Funcoes.SomenteNumerosComVirgula_KeyPress;
         }
 
         private void btnLocalizarEmprestimo_Click(object sender, EventArgs e)
@@ -77,7 +80,7 @@ namespace Gerenciador_de_Emprestimos
 
         private bool ValidacoesCampos()
         {
-            if (string.IsNullOrEmpty(txtBoxCodigoCliente.Text) && string.IsNullOrEmpty(txtBoxCliente.Text))
+            if (string.IsNullOrEmpty(txtClienteNome.Text) && string.IsNullOrEmpty(txtClienteNome.Text))
             {
                 Funcoes.MensagemWarning("Não é possivel realizar um pagamento sem um Cliente Selecionado, Por favor Preencha!\n\nCampo: Código e Nome do Cliente!");
                 return false;
@@ -94,6 +97,13 @@ namespace Gerenciador_de_Emprestimos
             txtBoxValorJuros.Clear();
             txtBoxValorTotal.Clear();
             txtBoxValorParcela.Clear();
+            txtBoxTotalPagar.Clear();
+            txtValorEmprestimo.Clear();
+            txtBoxNumeroParcela.Clear();
+            txtValorJuros.Clear();
+            txtBoxParcela.Clear();
+            txtClienteNome.Clear();
+            comboBoxParcelaStatus.Text = "";
             dataGridParcelasAbertas.DataSource = null;
         }
 
@@ -104,5 +114,22 @@ namespace Gerenciador_de_Emprestimos
                 return;
             }
         }
-    }
+
+        private void dataGridParcelasAbertas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            var linha = dataGridParcelasAbertas.Rows[e.RowIndex];
+            
+            codigoParcela = Convert.ToInt32(linha.Cells["codigo_parcela"].Value);
+
+            txtValorEmprestimo.Text = linha.Cells["valor_contrato"].Value.ToString();
+            comboBoxParcelaStatus.Text = linha.Cells["status_parcela"].Value.ToString();
+            txtBoxNumeroParcela.Text = linha.Cells["numero_parcela"].Value.ToString();
+            txtValorJuros.Text = linha.Cells["valor_juros"].Value.ToString();
+            txtBoxParcela.Text = linha.Cells["valor_parcela"].Value.ToString();
+            txtClienteNome.Text = linha.Cells["nome_cliente"].Value.ToString();
+        }
+   }
 }
