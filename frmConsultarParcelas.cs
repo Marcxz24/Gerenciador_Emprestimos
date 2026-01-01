@@ -32,14 +32,14 @@ namespace Gerenciador_de_Emprestimos
             decimal ValorParcela = 0;
             int? NumeroParcela = null;
 
-            if (CodigoEmprestimo.HasValue)
+            if (!string.IsNullOrWhiteSpace(txtBoxCodigoEmprestimo.Text) && int.TryParse(txtBoxCodigoEmprestimo.Text, out int emprestimoCod))
             {
-                CodigoEmprestimo = int.Parse(txtBoxCodigoEmprestimo.Text);
+                CodigoEmprestimo = emprestimoCod;
             }
 
-            if (CodigoCliente.HasValue)
+            if (!string.IsNullOrWhiteSpace(txtBoxCodigoCliente.Text) && int.TryParse(txtBoxCodigoCliente.Text, out int clienteCod))
             {
-                CodigoCliente = int.Parse(txtBoxCodigoCliente.Text);
+                CodigoCliente = clienteCod;
             }
 
             if (!string.IsNullOrWhiteSpace(txtBoxNomeCliente.Text))
@@ -52,14 +52,14 @@ namespace Gerenciador_de_Emprestimos
                 StatusParcela = cmbBoxStatusParcela.Text;
             }
 
-            if (ValorParcela > 0)
+            if (!string.IsNullOrWhiteSpace(txtBoxValorParcela.Text) && decimal.TryParse(txtBoxValorParcela.Text, out decimal valueParcela))
             {
-                ValorParcela = decimal.Parse(txtBoxValorParcela.Text);
+                ValorParcela = valueParcela;
             }
 
-            if (NumeroParcela > 0)
+            if (!string.IsNullOrWhiteSpace(txtBoxNumeroParcela.Text) && int.TryParse(txtBoxNumeroParcela.Text, out int numParcela))
             {
-                NumeroParcela = int.Parse(txtBoxNumeroParcela.Text);
+                NumeroParcela = numParcela;
             }
 
             DataTable dataTable = parcelaConsulta.ConsultaParcela(CodigoEmprestimo, CodigoCliente, NomeCliente, StatusParcela, ValorParcela, NumeroParcela);
@@ -79,6 +79,17 @@ namespace Gerenciador_de_Emprestimos
                     txtBoxNomeCliente.Text = cliente.nome_cliente;
                 }
             }
+        }
+
+        private void btnLimparDados_Click(object sender, EventArgs e)
+        {
+            dataGridConsultaParcela.DataSource = null;
+            txtBoxCodigoCliente.Clear();
+            txtBoxCodigoEmprestimo.Clear();
+            txtBoxNomeCliente.Clear();
+            txtBoxNumeroParcela.Clear();
+            txtBoxValorParcela.Clear();
+            cmbBoxStatusParcela.SelectedItem = null;
         }
     }
 }

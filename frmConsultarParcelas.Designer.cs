@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConsultarParcelas));
             grpBoxDadosParcela = new GroupBox();
+            txtBoxValorTotal = new TextBox();
+            lblValorTotal = new Label();
+            btnLimparDados = new Button();
             txtBoxNumeroParcela = new TextBox();
             lblNumeroParcela = new Label();
             btnPesquisarParcela = new Button();
@@ -45,6 +48,7 @@
             txtBoxCodigoCliente = new TextBox();
             lblCodigoCliente = new Label();
             dataGridConsultaParcela = new DataGridView();
+            btnImprimir = new Button();
             grpBoxDadosParcela.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridConsultaParcela).BeginInit();
             SuspendLayout();
@@ -52,6 +56,9 @@
             // grpBoxDadosParcela
             // 
             grpBoxDadosParcela.BackColor = Color.Transparent;
+            grpBoxDadosParcela.Controls.Add(txtBoxValorTotal);
+            grpBoxDadosParcela.Controls.Add(lblValorTotal);
+            grpBoxDadosParcela.Controls.Add(btnLimparDados);
             grpBoxDadosParcela.Controls.Add(txtBoxNumeroParcela);
             grpBoxDadosParcela.Controls.Add(lblNumeroParcela);
             grpBoxDadosParcela.Controls.Add(btnPesquisarParcela);
@@ -68,33 +75,63 @@
             grpBoxDadosParcela.Controls.Add(lblCodigoCliente);
             grpBoxDadosParcela.Location = new Point(1, 3);
             grpBoxDadosParcela.Name = "grpBoxDadosParcela";
-            grpBoxDadosParcela.Size = new Size(828, 189);
+            grpBoxDadosParcela.Size = new Size(828, 215);
             grpBoxDadosParcela.TabIndex = 0;
             grpBoxDadosParcela.TabStop = false;
             grpBoxDadosParcela.Text = "Dados da Parcela";
             // 
+            // txtBoxValorTotal
+            // 
+            txtBoxValorTotal.Location = new Point(594, 48);
+            txtBoxValorTotal.Name = "txtBoxValorTotal";
+            txtBoxValorTotal.Size = new Size(226, 27);
+            txtBoxValorTotal.TabIndex = 16;
+            // 
+            // lblValorTotal
+            // 
+            lblValorTotal.AutoSize = true;
+            lblValorTotal.Location = new Point(505, 51);
+            lblValorTotal.Name = "lblValorTotal";
+            lblValorTotal.Size = new Size(83, 20);
+            lblValorTotal.TabIndex = 15;
+            lblValorTotal.Text = "Valor Total:";
+            // 
+            // btnLimparDados
+            // 
+            btnLimparDados.BackColor = Color.Salmon;
+            btnLimparDados.FlatStyle = FlatStyle.Popup;
+            btnLimparDados.Image = Properties.Resources.close_256_icon_icons_com_75990;
+            btnLimparDados.Location = new Point(15, 135);
+            btnLimparDados.Name = "btnLimparDados";
+            btnLimparDados.Size = new Size(170, 43);
+            btnLimparDados.TabIndex = 14;
+            btnLimparDados.Text = "Limpar";
+            btnLimparDados.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnLimparDados.UseVisualStyleBackColor = false;
+            btnLimparDados.Click += btnLimparDados_Click;
+            // 
             // txtBoxNumeroParcela
             // 
-            txtBoxNumeroParcela.Location = new Point(707, 129);
+            txtBoxNumeroParcela.Location = new Point(679, 132);
             txtBoxNumeroParcela.Name = "txtBoxNumeroParcela";
-            txtBoxNumeroParcela.Size = new Size(113, 27);
+            txtBoxNumeroParcela.Size = new Size(141, 27);
             txtBoxNumeroParcela.TabIndex = 13;
             // 
             // lblNumeroParcela
             // 
             lblNumeroParcela.AutoSize = true;
-            lblNumeroParcela.Location = new Point(591, 131);
+            lblNumeroParcela.Location = new Point(543, 135);
             lblNumeroParcela.Name = "lblNumeroParcela";
-            lblNumeroParcela.Size = new Size(118, 20);
+            lblNumeroParcela.Size = new Size(138, 20);
             lblNumeroParcela.TabIndex = 12;
-            lblNumeroParcela.Text = "Valor da Parcela:";
+            lblNumeroParcela.Text = "Numero da Parcela:";
             // 
             // btnPesquisarParcela
             // 
             btnPesquisarParcela.BackColor = Color.Cyan;
             btnPesquisarParcela.FlatStyle = FlatStyle.Popup;
             btnPesquisarParcela.Image = Properties.Resources.lupa;
-            btnPesquisarParcela.Location = new Point(381, 131);
+            btnPesquisarParcela.Location = new Point(367, 135);
             btnPesquisarParcela.Name = "btnPesquisarParcela";
             btnPesquisarParcela.Size = new Size(170, 43);
             btnPesquisarParcela.TabIndex = 11;
@@ -108,7 +145,7 @@
             btnPesquisarCliente.BackColor = Color.Cyan;
             btnPesquisarCliente.FlatStyle = FlatStyle.Popup;
             btnPesquisarCliente.Image = Properties.Resources.lupa;
-            btnPesquisarCliente.Location = new Point(118, 131);
+            btnPesquisarCliente.Location = new Point(191, 135);
             btnPesquisarCliente.Name = "btnPesquisarCliente";
             btnPesquisarCliente.Size = new Size(170, 43);
             btnPesquisarCliente.TabIndex = 10;
@@ -119,7 +156,7 @@
             // 
             // txtBoxCodigoEmprestimo
             // 
-            txtBoxCodigoEmprestimo.Location = new Point(467, 46);
+            txtBoxCodigoEmprestimo.Location = new Point(363, 50);
             txtBoxCodigoEmprestimo.Name = "txtBoxCodigoEmprestimo";
             txtBoxCodigoEmprestimo.Size = new Size(125, 27);
             txtBoxCodigoEmprestimo.TabIndex = 9;
@@ -127,23 +164,23 @@
             // lblCodigoEmprestimo
             // 
             lblCodigoEmprestimo.AutoSize = true;
-            lblCodigoEmprestimo.Location = new Point(296, 49);
+            lblCodigoEmprestimo.Location = new Point(235, 51);
             lblCodigoEmprestimo.Name = "lblCodigoEmprestimo";
-            lblCodigoEmprestimo.Size = new Size(167, 20);
+            lblCodigoEmprestimo.Size = new Size(126, 20);
             lblCodigoEmprestimo.TabIndex = 8;
-            lblCodigoEmprestimo.Text = "Código do Emprestimo:";
+            lblCodigoEmprestimo.Text = "Cód. Emprestimo:";
             // 
             // txtBoxValorParcela
             // 
-            txtBoxValorParcela.Location = new Point(707, 46);
+            txtBoxValorParcela.Location = new Point(629, 91);
             txtBoxValorParcela.Name = "txtBoxValorParcela";
-            txtBoxValorParcela.Size = new Size(113, 27);
+            txtBoxValorParcela.Size = new Size(191, 27);
             txtBoxValorParcela.TabIndex = 7;
             // 
             // lblValorParcela
             // 
             lblValorParcela.AutoSize = true;
-            lblValorParcela.Location = new Point(591, 48);
+            lblValorParcela.Location = new Point(505, 92);
             lblValorParcela.Name = "lblValorParcela";
             lblValorParcela.Size = new Size(118, 20);
             lblValorParcela.TabIndex = 6;
@@ -154,7 +191,7 @@
             cmbBoxStatusParcela.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBoxStatusParcela.FormattingEnabled = true;
             cmbBoxStatusParcela.Items.AddRange(new object[] { "ABERTA", "PAGA", "ATRASADA" });
-            cmbBoxStatusParcela.Location = new Point(668, 83);
+            cmbBoxStatusParcela.Location = new Point(669, 169);
             cmbBoxStatusParcela.Name = "cmbBoxStatusParcela";
             cmbBoxStatusParcela.Size = new Size(151, 28);
             cmbBoxStatusParcela.TabIndex = 5;
@@ -162,7 +199,7 @@
             // lblStatusEmprestimo
             // 
             lblStatusEmprestimo.AutoSize = true;
-            lblStatusEmprestimo.Location = new Point(542, 86);
+            lblStatusEmprestimo.Location = new Point(543, 172);
             lblStatusEmprestimo.Name = "lblStatusEmprestimo";
             lblStatusEmprestimo.Size = new Size(124, 20);
             lblStatusEmprestimo.TabIndex = 4;
@@ -170,16 +207,16 @@
             // 
             // txtBoxNomeCliente
             // 
-            txtBoxNomeCliente.Location = new Point(155, 86);
+            txtBoxNomeCliente.Location = new Point(137, 89);
             txtBoxNomeCliente.Name = "txtBoxNomeCliente";
             txtBoxNomeCliente.ReadOnly = true;
-            txtBoxNomeCliente.Size = new Size(381, 27);
+            txtBoxNomeCliente.Size = new Size(351, 27);
             txtBoxNomeCliente.TabIndex = 3;
             // 
             // lblNomeCliente
             // 
             lblNomeCliente.AutoSize = true;
-            lblNomeCliente.Location = new Point(24, 89);
+            lblNomeCliente.Location = new Point(6, 92);
             lblNomeCliente.Name = "lblNomeCliente";
             lblNomeCliente.Size = new Size(125, 20);
             lblNomeCliente.TabIndex = 2;
@@ -187,7 +224,7 @@
             // 
             // txtBoxCodigoCliente
             // 
-            txtBoxCodigoCliente.Location = new Point(163, 45);
+            txtBoxCodigoCliente.Location = new Point(104, 48);
             txtBoxCodigoCliente.Name = "txtBoxCodigoCliente";
             txtBoxCodigoCliente.ReadOnly = true;
             txtBoxCodigoCliente.Size = new Size(125, 27);
@@ -196,21 +233,34 @@
             // lblCodigoCliente
             // 
             lblCodigoCliente.AutoSize = true;
-            lblCodigoCliente.Location = new Point(24, 48);
+            lblCodigoCliente.Location = new Point(6, 51);
             lblCodigoCliente.Name = "lblCodigoCliente";
-            lblCodigoCliente.Size = new Size(133, 20);
+            lblCodigoCliente.Size = new Size(92, 20);
             lblCodigoCliente.TabIndex = 0;
-            lblCodigoCliente.Text = "Código do Cliente:";
+            lblCodigoCliente.Text = "Cód. Cliente:";
             // 
             // dataGridConsultaParcela
             // 
             dataGridConsultaParcela.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridConsultaParcela.Location = new Point(12, 201);
+            dataGridConsultaParcela.Location = new Point(12, 224);
             dataGridConsultaParcela.Name = "dataGridConsultaParcela";
             dataGridConsultaParcela.ReadOnly = true;
             dataGridConsultaParcela.RowHeadersWidth = 51;
-            dataGridConsultaParcela.Size = new Size(811, 563);
+            dataGridConsultaParcela.Size = new Size(811, 540);
             dataGridConsultaParcela.TabIndex = 1;
+            // 
+            // btnImprimir
+            // 
+            btnImprimir.BackColor = Color.DarkGray;
+            btnImprimir.FlatStyle = FlatStyle.Popup;
+            btnImprimir.Image = (Image)resources.GetObject("btnImprimir.Image");
+            btnImprimir.Location = new Point(651, 781);
+            btnImprimir.Name = "btnImprimir";
+            btnImprimir.Size = new Size(170, 43);
+            btnImprimir.TabIndex = 15;
+            btnImprimir.Text = "Imprimir";
+            btnImprimir.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnImprimir.UseVisualStyleBackColor = false;
             // 
             // frmConsultarParcelas
             // 
@@ -219,13 +269,14 @@
             BackColor = Color.AliceBlue;
             BackgroundImage = Properties.Resources.gra_cad_cliente;
             ClientSize = new Size(833, 836);
+            Controls.Add(btnImprimir);
             Controls.Add(dataGridConsultaParcela);
             Controls.Add(grpBoxDadosParcela);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "frmConsultarParcelas";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmConsultarParcelas";
+            Text = "Visualizar Parcelas";
             grpBoxDadosParcela.ResumeLayout(false);
             grpBoxDadosParcela.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridConsultaParcela).EndInit();
@@ -250,5 +301,9 @@
         private Button btnPesquisarParcela;
         private TextBox txtBoxNumeroParcela;
         private Label lblNumeroParcela;
+        private Button btnLimparDados;
+        private TextBox txtBoxValorTotal;
+        private Label lblValorTotal;
+        private Button btnImprimir;
     }
 }

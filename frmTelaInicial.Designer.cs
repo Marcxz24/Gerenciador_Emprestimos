@@ -42,7 +42,6 @@
             MenuStripFinanceiro = new ToolStripMenuItem();
             MenuStripEmprestimos = new ToolStripMenuItem();
             MenuStripNovosEmprestimos = new ToolStripMenuItem();
-            visualizarEmprestimosToolStripMenuItem = new ToolStripMenuItem();
             MenuStripRelatorios = new ToolStripMenuItem();
             MenuStripRelatoriosEmprestimos = new ToolStripMenuItem();
             MenuStripRelatoriosVisuEmprestimos = new ToolStripMenuItem();
@@ -122,7 +121,7 @@
             // MenuStripEmprestimos
             // 
             resources.ApplyResources(MenuStripEmprestimos, "MenuStripEmprestimos");
-            MenuStripEmprestimos.DropDownItems.AddRange(new ToolStripItem[] { MenuStripNovosEmprestimos, visualizarEmprestimosToolStripMenuItem });
+            MenuStripEmprestimos.DropDownItems.AddRange(new ToolStripItem[] { MenuStripNovosEmprestimos });
             MenuStripEmprestimos.Name = "MenuStripEmprestimos";
             // 
             // MenuStripNovosEmprestimos
@@ -130,12 +129,6 @@
             resources.ApplyResources(MenuStripNovosEmprestimos, "MenuStripNovosEmprestimos");
             MenuStripNovosEmprestimos.Name = "MenuStripNovosEmprestimos";
             MenuStripNovosEmprestimos.Click += novosEmprestimosToolStripMenuItem_Click;
-            // 
-            // visualizarEmprestimosToolStripMenuItem
-            // 
-            resources.ApplyResources(visualizarEmprestimosToolStripMenuItem, "visualizarEmprestimosToolStripMenuItem");
-            visualizarEmprestimosToolStripMenuItem.Name = "visualizarEmprestimosToolStripMenuItem";
-            visualizarEmprestimosToolStripMenuItem.Click += visualizarEmprestimosToolStripMenuItem_Click;
             // 
             // MenuStripRelatorios
             // 
@@ -224,7 +217,6 @@
         private ToolStripMenuItem MenuStripFinanceiro;
         private ToolStripMenuItem MenuStripEmprestimos;
         private ToolStripMenuItem MenuStripNovosEmprestimos;
-        private ToolStripMenuItem visualizarEmprestimosToolStripMenuItem;
         private ImageList imageListSistemaGerenciadorEmprestimos;
         private PictureBox picBoxTelaInicialSistema;
         private ToolStripMenuItem arquivoToolStripMenuItem;

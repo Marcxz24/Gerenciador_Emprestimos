@@ -16,7 +16,7 @@ namespace Gerenciador_de_Emprestimos
         {
             DataTable dataTable = new DataTable();
 
-            string sql = $@"SELECT e.codigo, e.codigo_cliente, c.nome_cliente, e.valor_emprestado, e.valor_emprestado_total, e.quantidade_parcela, e.valor_parcela, e.valor_juros, e.status_emprestimo 
+            string sql = $@"SELECT e.codigo, e.codigo_cliente, c.nome_cliente, e.valor_emprestado, e.valor_emprestado_total AS valor_total, e.quantidade_parcela, e.valor_parcela, e.valor_juros, e.status_emprestimo 
                             FROM emprestimosbd.emprestimos e LEFT JOIN emprestimosbd.cliente c ON e.codigo_cliente = c.codigo";
 
             string sqlFiltros = " WHERE 1 = 1";
