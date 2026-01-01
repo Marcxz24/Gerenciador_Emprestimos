@@ -11,6 +11,8 @@ namespace Gerenciador_de_Emprestimos
     {
         public string codigoSelecionado { get; private set; }
 
+        public SelecionarCliente ClienteSelecionado { get; private set; }
+
         public frmSelecionarCliente()
         {
             InitializeComponent();
@@ -162,13 +164,17 @@ namespace Gerenciador_de_Emprestimos
 
         private void dataGridClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                codigoSelecionado = dataGridClientes.CurrentRow.Cells["codigo"].Value.ToString();
+            if (e.RowIndex < 0)
+                return;
 
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-            }
+            int codigo = Convert.ToInt32(dataGridClientes.Rows[e.RowIndex].Cells["codigo"].Value);
+
+            var service = new SelecionarCliente();
+
+            ClienteSelecionado = service.BuscarClientePorCodigo(codigo);
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }

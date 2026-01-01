@@ -23,31 +23,15 @@ namespace Gerenciador_de_Emprestimos
 
         private void btnPesquisarCliente_Click(object sender, EventArgs e)
         {
-            frmSelecionarCliente pesquisarCliente = new frmSelecionarCliente();
-            pesquisarCliente.ShowDialog();
-
-            string codigo = pesquisarCliente.codigoSelecionado;
-
-            CarregarDadosCliente(codigo);
-        }
-
-        private void CarregarDadosCliente(string codigo)
-        {
-            string clienteSql = "SELECT * FROM emprestimosbd.cliente WHERE codigo = @codigo";
-
-            using (var conexao = ConexaoBancoDeDados.Conectar())
+            using (var frmSelecionarCliente = new frmSelecionarCliente())
             {
-                MySqlCommand sqlComando = new MySqlCommand(clienteSql, conexao);
-                sqlComando.Parameters.AddWithValue("@codigo", codigo);
-
-                MySqlDataReader Reader = sqlComando.ExecuteReader();
-
-                if (Reader.Read())
+                if (frmSelecionarCliente.ShowDialog() == DialogResult.OK)
                 {
-                    txtCodigoCliente.Text = Reader["codigo"].ToString();
-                    txtNomeCliente.Text = Reader["nome_cliente"].ToString();
-                    txtCpfCnpjCliente.Text = Reader["cpf_cnpj"].ToString();
-                    comboBoxSituacaoCliente.Text = Reader["situacao_cadastral"].ToString();
+                    var cliente = frmSelecionarCliente.ClienteSelecionado;
+
+                    txtCodigoCliente.Text = cliente.codigo.ToString();
+                    txtNomeCliente.Text = cliente.nome_cliente;
+                    txtCpfCnpjCliente.Text = cliente.cpf_cnpj.ToString();
                 }
             }
         }

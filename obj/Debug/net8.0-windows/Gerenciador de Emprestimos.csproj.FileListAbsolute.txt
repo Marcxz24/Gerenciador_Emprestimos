@@ -64,3 +64,4 @@ C:\GerenciadorEmprestimos\Gerenciador de Emprestimos\bin\Debug\net8.0-windows\Sy
 C:\GerenciadorEmprestimos\Gerenciador de Emprestimos\bin\Debug\net8.0-windows\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\GerenciadorEmprestimos\Gerenciador de Emprestimos\bin\Debug\net8.0-windows\itext.bouncy-castle-adapter.dll
 C:\GerenciadorEmprestimos\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.frmPagamentoEmprestimo.resources
+C:\GerenciadorEmprestimos\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.frmConsultarParcelas.resources

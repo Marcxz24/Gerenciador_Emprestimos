@@ -45,5 +45,11 @@ namespace Gerenciador_de_Emprestimos
             frmPagamentoEmprestimo frmPagamentoParcela = new frmPagamentoEmprestimo();
             frmPagamentoParcela.ShowDialog();
         }
+
+        private void visualizarParcelasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmConsultarParcelas frmConsultaParcela = new frmConsultarParcelas();
+            frmConsultaParcela.Show();
+        }
     }
 }

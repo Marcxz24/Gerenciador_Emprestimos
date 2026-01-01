@@ -1,0 +1,86 @@
+﻿using Gerenciador_de_Emprestimos.Database;
+using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Gerenciador_de_Emprestimos
+{
+    internal class ParcelaConsulta
+    {
+        public DataTable ConsultaParcela(int? CodigoEmprestimo, int? CodigoCliente, string NomeCliente, string StatusParcela, decimal ValorParcela, int? NumeroParcela)
+        {
+            DataTable consultaDataTable = new DataTable();
+
+            string SqlConsulta = "SELECT p.codigo, p.codigo_emprestimo, p.codigo_cliente, c.nome_cliente, p.numero_parcela, p.valor_parcela, p.valor_pago, p.data_pagamento, p.data_vencimento, p.status_parcela FROM emprestimosbd.conta_receber p LEFT JOIN emprestimosbd.cliente c ON p.codigo_cliente = c.codigo";
+
+            string SqlFiltros = " WHERE 1 = 1";
+
+            if (CodigoEmprestimo.HasValue)
+            {
+                SqlFiltros += " AND e.codigo_emprestimo = @codigo_emprestimos";
+            }
+
+            if (CodigoCliente.HasValue)
+            {
+                SqlFiltros += " AND e.codigo_cliente = @codigo_cliente";
+            }
+
+            if (!string.IsNullOrWhiteSpace(NomeCliente))
+            {
+                SqlFiltros += " AND c.nome_cliente LIKE @nome_cliente";
+            }
+
+            if (!string.IsNullOrWhiteSpace(StatusParcela))
+            {
+                SqlConsulta += " AND p.status_parcela LIKE @status_parcela";
+            }
+
+            if (ValorParcela > 0)
+            {
+                SqlConsulta += " AND p.valor_parcela = @valor_parcela";
+            }
+
+            string sqlConsultaFinal = SqlConsulta + SqlFiltros;
+
+            using (var conexao = ConexaoBancoDeDados.Conectar())
+            using (var comando = new MySqlCommand(sqlConsultaFinal, conexao))
+            {
+                if (CodigoEmprestimo.HasValue)
+                {
+                    comando.Parameters.AddWithValue("@codigo_emprestimo", CodigoEmprestimo);
+                }
+
+                if (CodigoCliente.HasValue)
+                {
+                    comando.Parameters.AddWithValue("@codigo_cliente", CodigoCliente);
+                }
+
+                if (!string.IsNullOrEmpty(NomeCliente))
+                {
+                    comando.Parameters.AddWithValue("@nome_cliente", NomeCliente);
+                }
+
+                if (!string.IsNullOrWhiteSpace(StatusParcela))
+                {
+                    comando.Parameters.AddWithValue("@status_parcela", StatusParcela);
+                }
+
+                if (ValorParcela > 0)
+                {
+                    comando.Parameters.AddWithValue("@valor_parcela", ValorParcela);
+                }
+
+                using (var dataAdapter = new MySqlDataAdapter(comando))
+                {
+                    dataAdapter.Fill(consultaDataTable);
+                }
+            }
+            
+            return consultaDataTable;
+        }
+    }
+}

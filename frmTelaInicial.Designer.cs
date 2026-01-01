@@ -46,6 +46,7 @@
             MenuStripRelatorios = new ToolStripMenuItem();
             MenuStripRelatoriosEmprestimos = new ToolStripMenuItem();
             MenuStripRelatoriosVisuEmprestimos = new ToolStripMenuItem();
+            visualizarParcelasToolStripMenuItem = new ToolStripMenuItem();
             imageListSistemaGerenciadorEmprestimos = new ImageList(components);
             picBoxTelaInicialSistema = new PictureBox();
             pictureBox1 = new PictureBox();
@@ -145,7 +146,7 @@
             // MenuStripRelatoriosEmprestimos
             // 
             resources.ApplyResources(MenuStripRelatoriosEmprestimos, "MenuStripRelatoriosEmprestimos");
-            MenuStripRelatoriosEmprestimos.DropDownItems.AddRange(new ToolStripItem[] { MenuStripRelatoriosVisuEmprestimos });
+            MenuStripRelatoriosEmprestimos.DropDownItems.AddRange(new ToolStripItem[] { MenuStripRelatoriosVisuEmprestimos, visualizarParcelasToolStripMenuItem });
             MenuStripRelatoriosEmprestimos.Name = "MenuStripRelatoriosEmprestimos";
             // 
             // MenuStripRelatoriosVisuEmprestimos
@@ -153,6 +154,12 @@
             resources.ApplyResources(MenuStripRelatoriosVisuEmprestimos, "MenuStripRelatoriosVisuEmprestimos");
             MenuStripRelatoriosVisuEmprestimos.Name = "MenuStripRelatoriosVisuEmprestimos";
             MenuStripRelatoriosVisuEmprestimos.Click += visualizarEmprestimosToolStripMenuItem1_Click;
+            // 
+            // visualizarParcelasToolStripMenuItem
+            // 
+            resources.ApplyResources(visualizarParcelasToolStripMenuItem, "visualizarParcelasToolStripMenuItem");
+            visualizarParcelasToolStripMenuItem.Name = "visualizarParcelasToolStripMenuItem";
+            visualizarParcelasToolStripMenuItem.Click += visualizarParcelasToolStripMenuItem_Click;
             // 
             // imageListSistemaGerenciadorEmprestimos
             // 
@@ -227,5 +234,6 @@
         private ToolStripMenuItem MenuStripRelatoriosVisuEmprestimos;
         private PictureBox pictureBox1;
         private Label lblTituloSistemas;
+        private ToolStripMenuItem visualizarParcelasToolStripMenuItem;
     }
 }

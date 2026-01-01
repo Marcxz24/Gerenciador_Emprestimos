@@ -16,55 +16,6 @@ namespace Gerenciador_de_Emprestimos
             MaskedTxtCpfCnpjCliente.KeyPress += Funcoes.SomenteNumeros_KeyPress;
         }
 
-        private void CarrgarDadosCliente(string codigo)
-        {
-            string selectSql = "SELECT * FROM emprestimosbd.cliente WHERE codigo = @codigo";
-
-            using (var conexao = ConexaoBancoDeDados.Conectar())
-            {
-                MySqlCommand comando = new MySqlCommand(selectSql, conexao);
-                comando.Parameters.AddWithValue("@codigo", codigo);
-
-                MySqlDataReader reader = comando.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    txtCodigoCliente.Text = reader["codigo"].ToString();
-                    txtNomeCliente.Text = reader["nome_cliente"].ToString();
-                    MaskedTxtCpfCnpjCliente.Text = reader["cpf_cnpj"].ToString();
-                    string genero = reader["genero"].ToString();
-
-                    if (genero == "Feminino")
-                    {
-                        btnRadioFeminino.Checked = true;
-                    }
-
-                    if (genero == "Masculino")
-                    {
-                        btnRadioMasculino.Checked = true;
-                    }
-
-                    if (genero == "Outros")
-                    {
-                        btnRadioGeneroOutros.Checked = true;
-                    }
-
-                    comboBoxEstadoCivil.SelectedItem = reader["estado_civil"].ToString();
-                    txtEnderecoCliente.Text = reader["endereco"].ToString();
-                    txtBairroCliente.Text = reader["bairro"].ToString();
-                    txtCidadeCliente.Text = reader["cidade"].ToString();
-                    comboBoxEstadoUF.SelectedItem = reader["uf"].ToString();
-                    txtNumeroResidencia.Text = reader["numero_residencia"].ToString();
-                    MaskedTxtCepCliente.Text = reader["cep"].ToString();
-                    MaskedTxtCelularCliente.Text = reader["celular"].ToString();
-                    txtEmailCliente.Text = reader["email"].ToString();
-                    txtObservacoes.Text = reader["observacoes"].ToString();
-                    comboBoxSituacaoCadastral.SelectedItem = reader["situacao_cadastral"].ToString();
-                    // imagens futuramente...
-                }
-            }
-        }
-
         // Função que gerencia os campos do formulário.
         private void GerenciarBotoesCampos(bool OcultarBotoes, bool ManifestarBotoes, bool LimparCampos)
         {
@@ -430,12 +381,43 @@ namespace Gerenciador_de_Emprestimos
 
         private void btnPesquisarCliente_Click(object sender, EventArgs e)
         {
-            frmSelecionarCliente formPesquisarCliente = new frmSelecionarCliente();
-            formPesquisarCliente.ShowDialog();
+            using (var formSelecionarCliente = new frmSelecionarCliente())
+            {
+                if (formSelecionarCliente.ShowDialog() == DialogResult.OK)
+                {
+                    var cliente = formSelecionarCliente.ClienteSelecionado;
 
-            string codigo = formPesquisarCliente.codigoSelecionado;
+                    txtCodigoCliente.Text = cliente.codigo.ToString();
+                    txtNomeCliente.Text = cliente.nome_cliente;
 
-            CarrgarDadosCliente(codigo);
+                    if (!string.IsNullOrWhiteSpace(cliente.cpf_cnpj) && cliente.cpf_cnpj.Length == 11)
+                    {
+                        btnRadioCpf.Checked = true;
+                    }
+                    else
+                    {
+                        btnRadioCnpj.Checked = true;
+                    }
+
+                    MaskedTxtCpfCnpjCliente.Text = cliente.cpf_cnpj;
+
+                    btnRadioMasculino.Checked = cliente.genero == "Masculino";
+                    btnRadioFeminino.Checked = cliente.genero == "Feminino";
+                    btnRadioGeneroOutros.Checked = cliente.genero == "Outros";
+
+                    comboBoxEstadoCivil.SelectedItem = cliente.estado_civil;
+                    txtEnderecoCliente.Text = cliente.endereco;
+                    txtBairroCliente.Text = cliente.bairro;
+                    txtCidadeCliente.Text = cliente.cidade;
+                    comboBoxEstadoUF.Text = cliente.uf;
+                    txtNumeroResidencia.Text = cliente.numero_residencia.ToString();
+                    MaskedTxtCepCliente.Text = cliente.cep;
+                    MaskedTxtCelularCliente.Text = cliente.celular;
+                    txtEmailCliente.Text = cliente.email;
+                    txtObservacoes.Text = cliente.observacoes;
+                    comboBoxSituacaoCadastral.Text = cliente.situacao_cadastral;
+                }
+            }
         }
 
         private void btnFecharForm_Click(object sender, EventArgs e)
