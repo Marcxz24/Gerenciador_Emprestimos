@@ -12,6 +12,8 @@ namespace Gerenciador_de_Emprestimos
 {
     public partial class frmPagamentoEmprestimo : Form
     {
+        private int codigoEmprestimo = 0;
+        private int numeroParcela = 0;
         private int codigoParcela;
 
         public frmPagamentoEmprestimo()
@@ -83,13 +85,25 @@ namespace Gerenciador_de_Emprestimos
             if (string.IsNullOrEmpty(txtClienteNome.Text) && string.IsNullOrEmpty(txtClienteNome.Text))
             {
                 Funcoes.MensagemWarning("Não é possivel realizar um pagamento sem um Cliente Selecionado, Por favor Preencha!\n\nCampo: Código e Nome do Cliente!");
-                return false;
+                return true;
             }
 
-            return true;
+            if (comboBoxParcelaStatus.Text == "PAGA")
+            {
+                Funcoes.MensagemWarning("Não é possível Receber pagamento de uma Parcela já Paga!");
+                return true;
+            }
+
+            if (string.IsNullOrEmpty(txtBoxTotalPagar.Text))
+            {
+                Funcoes.MensagemWarning("Campo obrigátorio vazio! Por favor preencha!\n\nCampo: Valor Pago");
+                return true;
+            }
+
+            return false;
         }
 
-        private void btnLimparDadosTela_Click(object sender, EventArgs e)
+        private void LimparTela()
         {
             txtBoxCodigoCliente.Clear();
             txtBoxCliente.Clear();
@@ -107,12 +121,18 @@ namespace Gerenciador_de_Emprestimos
             dataGridParcelasAbertas.DataSource = null;
         }
 
+        private void btnLimparDadosTela_Click(object sender, EventArgs e)
+        {
+            LimparTela();
+        }
+
         private void btnGerarPagamento_Click(object sender, EventArgs e)
         {
-            if (ValidacoesCampos())
-            {
-                return;
-            }
+            txtBoxTotalPagar.ReadOnly = false;
+            btnGerarPagamento.Visible = false;
+            btnSalvarPagamento.Visible = true;
+            lblInserindoDados.Visible = true;
+            btnCancelar.Visible = true;
         }
 
         private void dataGridParcelasAbertas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -121,8 +141,10 @@ namespace Gerenciador_de_Emprestimos
                 return;
 
             var linha = dataGridParcelasAbertas.Rows[e.RowIndex];
-            
+
             codigoParcela = Convert.ToInt32(linha.Cells["codigo_parcela"].Value);
+            codigoEmprestimo = Convert.ToInt32(linha.Cells["codigo_emprestimo"].Value);
+            numeroParcela = Convert.ToInt32(linha.Cells["numero_parcela"].Value);
 
             txtValorEmprestimo.Text = linha.Cells["valor_contrato"].Value.ToString();
             comboBoxParcelaStatus.Text = linha.Cells["status_parcela"].Value.ToString();
@@ -131,5 +153,53 @@ namespace Gerenciador_de_Emprestimos
             txtBoxParcela.Text = linha.Cells["valor_parcela"].Value.ToString();
             txtClienteNome.Text = linha.Cells["nome_cliente"].Value.ToString();
         }
-   }
+
+        private void btnSalvarPagamento_Click(object sender, EventArgs e)
+        {
+            if (ValidacoesCampos())
+            {
+                return;
+            }
+
+            if (codigoParcela <= 0)
+            {
+                Funcoes.MensagemWarning("Selecione uma Parcela, antes de Realizar o pagamento!");
+                return;
+            }
+
+            if (!decimal.TryParse(txtBoxTotalPagar.Text, out decimal valorPago))
+            {
+                Funcoes.MensagemWarning("Valor inválido.");
+                return;
+            }
+
+            PagamentoParcela pagamentoParcela = new PagamentoParcela();
+
+            if (pagamentoParcela.ExisteParcelaAnteriorAberta(codigoEmprestimo, numeroParcela))
+            {
+                Funcoes.MensagemWarning("Existe uma parcela anterior a esta com o Status aberto, realize o Quitamento da Parcela para receber esta parcela.");
+                return;
+            }
+
+            pagamentoParcela.RealizarPagamento(codigoParcela, valorPago);
+
+            txtBoxTotalPagar.ReadOnly = true;
+            btnSalvarPagamento.Visible = false;
+            btnGerarPagamento.Visible = true;
+            btnCancelar.Visible = false;
+            lblInserindoDados.Visible = false;
+
+            Funcoes.MensagemInformation("Pagamento de Parcela Registrado com Sucesso!");
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimparTela();
+            txtBoxTotalPagar.ReadOnly = true;
+            btnSalvarPagamento.Visible = false;
+            btnGerarPagamento.Visible = true;
+            btnCancelar.Visible = false;
+            lblInserindoDados.Visible = false;
+        }
+    }
 }

@@ -52,9 +52,10 @@
             lblTotalPagar = new Label();
             txtBoxTotalPagar = new TextBox();
             grpBoxDadosPagamento = new GroupBox();
+            comboBoxParcelaStatus = new ComboBox();
             lblClienteNome = new Label();
             txtClienteNome = new TextBox();
-            label1 = new Label();
+            lblParcelaValor = new Label();
             txtBoxParcela = new TextBox();
             lblStatusParce = new Label();
             lblValorJuros = new Label();
@@ -63,7 +64,9 @@
             txtValorEmprestimo = new TextBox();
             lblNumeroParcela = new Label();
             txtBoxNumeroParcela = new TextBox();
-            comboBoxParcelaStatus = new ComboBox();
+            btnSalvarPagamento = new Button();
+            btnCancelar = new Button();
+            lblInserindoDados = new Label();
             grpBoxDadosParcela.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridParcelasAbertas).BeginInit();
             grpBoxDadosPagamento.SuspendLayout();
@@ -257,10 +260,10 @@
             // 
             // btnGerarPagamento
             // 
-            btnGerarPagamento.BackColor = Color.SpringGreen;
+            btnGerarPagamento.BackColor = Color.LightGreen;
             btnGerarPagamento.FlatStyle = FlatStyle.Popup;
             btnGerarPagamento.Image = (Image)resources.GetObject("btnGerarPagamento.Image");
-            btnGerarPagamento.Location = new Point(322, 752);
+            btnGerarPagamento.Location = new Point(322, 756);
             btnGerarPagamento.Name = "btnGerarPagamento";
             btnGerarPagamento.Size = new Size(220, 72);
             btnGerarPagamento.TabIndex = 17;
@@ -295,6 +298,7 @@
             // 
             txtBoxTotalPagar.Location = new Point(354, 153);
             txtBoxTotalPagar.Name = "txtBoxTotalPagar";
+            txtBoxTotalPagar.ReadOnly = true;
             txtBoxTotalPagar.Size = new Size(176, 27);
             txtBoxTotalPagar.TabIndex = 20;
             // 
@@ -304,7 +308,7 @@
             grpBoxDadosPagamento.Controls.Add(comboBoxParcelaStatus);
             grpBoxDadosPagamento.Controls.Add(lblClienteNome);
             grpBoxDadosPagamento.Controls.Add(txtClienteNome);
-            grpBoxDadosPagamento.Controls.Add(label1);
+            grpBoxDadosPagamento.Controls.Add(lblParcelaValor);
             grpBoxDadosPagamento.Controls.Add(txtBoxParcela);
             grpBoxDadosPagamento.Controls.Add(lblStatusParce);
             grpBoxDadosPagamento.Controls.Add(lblValorJuros);
@@ -321,6 +325,15 @@
             grpBoxDadosPagamento.TabIndex = 21;
             grpBoxDadosPagamento.TabStop = false;
             grpBoxDadosPagamento.Text = "Dados do Pagamento";
+            // 
+            // comboBoxParcelaStatus
+            // 
+            comboBoxParcelaStatus.Enabled = false;
+            comboBoxParcelaStatus.FormattingEnabled = true;
+            comboBoxParcelaStatus.Location = new Point(136, 89);
+            comboBoxParcelaStatus.Name = "comboBoxParcelaStatus";
+            comboBoxParcelaStatus.Size = new Size(151, 28);
+            comboBoxParcelaStatus.TabIndex = 31;
             // 
             // lblClienteNome
             // 
@@ -339,15 +352,15 @@
             txtClienteNome.Size = new Size(204, 27);
             txtClienteNome.TabIndex = 22;
             // 
-            // label1
+            // lblParcelaValor
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Location = new Point(293, 92);
-            label1.Name = "label1";
-            label1.Size = new Size(97, 20);
-            label1.TabIndex = 29;
-            label1.Text = "Valor Parcela:";
+            lblParcelaValor.AutoSize = true;
+            lblParcelaValor.BackColor = Color.Transparent;
+            lblParcelaValor.Location = new Point(293, 92);
+            lblParcelaValor.Name = "lblParcelaValor";
+            lblParcelaValor.Size = new Size(97, 20);
+            lblParcelaValor.TabIndex = 29;
+            lblParcelaValor.Text = "Valor Parcela:";
             // 
             // txtBoxParcela
             // 
@@ -420,13 +433,46 @@
             txtBoxNumeroParcela.Size = new Size(127, 27);
             txtBoxNumeroParcela.TabIndex = 22;
             // 
-            // comboBoxParcelaStatus
+            // btnSalvarPagamento
             // 
-            comboBoxParcelaStatus.FormattingEnabled = true;
-            comboBoxParcelaStatus.Location = new Point(136, 89);
-            comboBoxParcelaStatus.Name = "comboBoxParcelaStatus";
-            comboBoxParcelaStatus.Size = new Size(151, 28);
-            comboBoxParcelaStatus.TabIndex = 31;
+            btnSalvarPagamento.BackColor = Color.SpringGreen;
+            btnSalvarPagamento.FlatStyle = FlatStyle.Popup;
+            btnSalvarPagamento.Image = (Image)resources.GetObject("btnSalvarPagamento.Image");
+            btnSalvarPagamento.Location = new Point(322, 756);
+            btnSalvarPagamento.Name = "btnSalvarPagamento";
+            btnSalvarPagamento.Size = new Size(220, 72);
+            btnSalvarPagamento.TabIndex = 22;
+            btnSalvarPagamento.Text = "Salvar Pagamento";
+            btnSalvarPagamento.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSalvarPagamento.UseVisualStyleBackColor = false;
+            btnSalvarPagamento.Click += btnSalvarPagamento_Click;
+            // 
+            // btnCancelar
+            // 
+            btnCancelar.BackColor = Color.Salmon;
+            btnCancelar.FlatStyle = FlatStyle.Popup;
+            btnCancelar.Image = Properties.Resources.close_256_icon_icons_com_75990;
+            btnCancelar.Location = new Point(557, 756);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(220, 72);
+            btnCancelar.TabIndex = 17;
+            btnCancelar.Text = "Cancelar Emprestimo";
+            btnCancelar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Visible = false;
+            btnCancelar.Click += btnCancelar_Click;
+            // 
+            // lblInserindoDados
+            // 
+            lblInserindoDados.AutoSize = true;
+            lblInserindoDados.BackColor = Color.Transparent;
+            lblInserindoDados.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblInserindoDados.Location = new Point(169, 784);
+            lblInserindoDados.Name = "lblInserindoDados";
+            lblInserindoDados.Size = new Size(147, 18);
+            lblInserindoDados.TabIndex = 32;
+            lblInserindoDados.Text = "Inserindo Dados -->";
+            lblInserindoDados.Visible = false;
             // 
             // frmPagamentoEmprestimo
             // 
@@ -435,10 +481,13 @@
             BackColor = Color.AliceBlue;
             BackgroundImage = Properties.Resources.gra_cad_cliente;
             ClientSize = new Size(833, 836);
+            Controls.Add(lblInserindoDados);
+            Controls.Add(btnCancelar);
             Controls.Add(grpBoxDadosPagamento);
             Controls.Add(dataGridParcelasAbertas);
             Controls.Add(btnGerarPagamento);
             Controls.Add(grpBoxDadosParcela);
+            Controls.Add(btnSalvarPagamento);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "frmPagamentoEmprestimo";
@@ -450,6 +499,7 @@
             grpBoxDadosPagamento.ResumeLayout(false);
             grpBoxDadosPagamento.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -484,10 +534,13 @@
         private Label lblValorJuros;
         private TextBox txtValorJuros;
         private Label lblStatusParce;
-        private Label label1;
+        private Label lblParcelaValor;
         private TextBox txtBoxParcela;
         private Label lblClienteNome;
         private TextBox txtClienteNome;
         private ComboBox comboBoxParcelaStatus;
+        private Button btnSalvarPagamento;
+        private Button btnCancelar;
+        private Label lblInserindoDados;
     }
 }
