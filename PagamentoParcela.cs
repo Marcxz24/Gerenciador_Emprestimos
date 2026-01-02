@@ -47,5 +47,23 @@ namespace Gerenciador_de_Emprestimos
                 comando.ExecuteNonQuery();
             }
         }
+
+        public bool ValidarParcelasAbertas(int codigoEmprestimo)
+        {
+            string sql = @"
+                           SELECT COUNT(*) FROM emprestimosbd.conta_receber
+                            WHERE codigo_emprestimo = @codigo_emprestimo 
+                            AND status_parcela = 'ABERTA'";
+
+            using (var conexao = ConexaoBancoDeDados.Conectar())
+            using (var comando = new MySqlCommand(sql, conexao))
+            {
+                comando.Parameters.AddWithValue("@codigo_emprestimo", codigoEmprestimo);
+
+                int qtnParcelasAbertas = Convert.ToInt32(comando.ExecuteScalar());
+                
+                return qtnParcelasAbertas > 0;
+            }
+        }
     }
 }

@@ -183,6 +183,19 @@ namespace Gerenciador_de_Emprestimos
 
             pagamentoParcela.RealizarPagamento(codigoParcela, valorPago);
 
+            pagamentoParcela.ValidarParcelasAbertas(codigoEmprestimo);
+
+            if (pagamentoParcela.ValidarParcelasAbertas(codigoEmprestimo) == true)
+            {
+                return;
+            }
+            else
+            {
+                EmprestimosCliente emprestimos = new EmprestimosCliente();
+
+                emprestimos.QuitarEmprestimo(codigoEmprestimo);
+            }
+
             txtBoxTotalPagar.ReadOnly = true;
             btnSalvarPagamento.Visible = false;
             btnGerarPagamento.Visible = true;

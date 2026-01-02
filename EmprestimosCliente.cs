@@ -165,5 +165,28 @@ namespace Gerenciador_de_Emprestimos
                 }
             }
         }
+
+        public void QuitarEmprestimo(int CodigoEmprestimo)
+        {
+            if (CodigoEmprestimo <= 0)
+            {
+                return;
+            }
+
+            string sql = @"
+                          UPDATE emprestimosbd.emprestimos
+                          SET
+	                        data_quitacao = now(),
+                            status_emprestimo = 'QUITADO'
+                          WHERE codigo = @codigo";
+
+            using (var conexao = ConexaoBancoDeDados.Conectar())
+            using (var comando = new MySqlCommand(sql, conexao))
+            {
+                comando.Parameters.AddWithValue("@codigo", CodigoEmprestimo);
+
+                comando.ExecuteNonQuery();
+            }
+        }
     }
 }
