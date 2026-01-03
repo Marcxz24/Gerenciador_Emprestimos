@@ -1,16 +1,4 @@
-﻿using Gerenciador_de_Emprestimos.Database;
-using MySql.Data.MySqlClient;
-using Mysqlx.Session;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Globalization;
 
 namespace Gerenciador_de_Emprestimos
 {
@@ -70,7 +58,7 @@ namespace Gerenciador_de_Emprestimos
                 return true;
             }
 
-            DateTime dataPagamento;
+            DateOnly dataPagamento;
 
             if (!maskTxtDataPagamento.MaskCompleted)
             {
@@ -78,19 +66,19 @@ namespace Gerenciador_de_Emprestimos
                 return true;
             }
 
-            if (!DateTime.TryParseExact(maskTxtDataPagamento.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("pt-BR"), DateTimeStyles.None, out dataPagamento))
+            if (!DateOnly.TryParseExact(maskTxtDataPagamento.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("pt-BR"), DateTimeStyles.None, out dataPagamento))
             { 
                 Funcoes.MensagemWarning("Data de Pagamento Inválida!\n\npreencha no formato dd/MM/yyyy");
                 return true;
             }
 
-            if (dataPagamento < new DateTime(2025, 1, 1))
+            if (dataPagamento < new DateOnly(2025, 1, 1))
             {
                 Funcoes.MensagemErro("Data de Emprestimo inválida! Por favor Preencha uma Data Válida!");
                 return true;
             }
 
-            if (dataPagamento < DateTime.Today)
+            if (dataPagamento < DateOnly.FromDateTime(DateTime.Today))
             {
                 Funcoes.MensagemWarning("A Data do Empréstimo não pode ser Menor que a Data Atual!\n\nPor favor, verifique a Data do Empréstimo.");
                 return true;
@@ -160,7 +148,7 @@ namespace Gerenciador_de_Emprestimos
                 return;
             }
 
-            if (DateTime.TryParseExact(maskTxtDataPagamento.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("pt-BR"), DateTimeStyles.None, out DateTime dataPagamento))
+            if (DateOnly.TryParseExact(maskTxtDataPagamento.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("pt-BR"), DateTimeStyles.None, out DateOnly dataPagamento))
             {
                 emprestimo.DataVencimentoInicial = dataPagamento;
             }

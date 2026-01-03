@@ -183,6 +183,12 @@ namespace Gerenciador_de_Emprestimos
 
             pagamentoParcela.RealizarPagamento(codigoParcela, valorPago);
 
+            if (pagamentoParcela.ParcelaJaPaga(codigoParcela))
+            {
+                Funcoes.MensagemWarning("Esta parcela já foi paga!");
+                return;
+            }
+
             pagamentoParcela.ValidarParcelasAbertas(codigoEmprestimo);
 
             if (pagamentoParcela.ValidarParcelasAbertas(codigoEmprestimo) == true)

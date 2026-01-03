@@ -19,8 +19,8 @@ namespace Gerenciador_de_Emprestimos
         public decimal ValorJurosMonetario { get; private set; }
         public decimal ValorParcela { get; private set; }
         public decimal ValorTotal { get; private set; }
-        public DateTime DataEmprestimo { get; set; }
-        public DateTime DataVencimentoInicial { get; set; }
+        public DateOnly DataEmprestimo { get; set; }
+        public DateOnly DataVencimentoInicial { get; set; }
         public string StatusEmprestimo { get; private set; } = "ATIVO";
 
         private decimal CalcularJurosValorEmprestado()
@@ -59,7 +59,8 @@ namespace Gerenciador_de_Emprestimos
         public void AtivarEmprestimo()
         {
             StatusEmprestimo = "ATIVO";
-            DataEmprestimo = DateTime.Now;
+            DataEmprestimo = DateOnly.FromDateTime(DateTime.Today);
+            //DataEmprestimo = DateTime.Now;
         }
 
         public bool ValidarClienteEmprestimo(string codigoCliente)
@@ -110,8 +111,12 @@ namespace Gerenciador_de_Emprestimos
                         comando.Parameters.AddWithValue("@quantidade_parcela", QuantidadeParcela);
                         comando.Parameters.AddWithValue("@valor_parcela", ValorParcela);
                         comando.Parameters.AddWithValue("@valor_juros", ValorJurosMonetario);
-                        comando.Parameters.AddWithValue("@data_emprestimo", DataEmprestimo);
-                        comando.Parameters.AddWithValue("@data_pagar", DataVencimentoInicial);
+
+                        DateTime dataEmprestimoDb = DataEmprestimo.ToDateTime(TimeOnly.MinValue);
+                        DateTime dataVencimentoDb = DataVencimentoInicial.ToDateTime(TimeOnly.MinValue);
+
+                        comando.Parameters.AddWithValue("@data_emprestimo", dataEmprestimoDb);
+                        comando.Parameters.AddWithValue("@data_pagar", dataVencimentoDb);
                         comando.Parameters.AddWithValue("@status_emprestimo", StatusEmprestimo);
 
                         Codigo = Convert.ToInt32(comando.ExecuteScalar());
@@ -159,7 +164,10 @@ namespace Gerenciador_de_Emprestimos
                     comando.Parameters.AddWithValue("@codigo_cliente", CodigoCliente);
                     comando.Parameters.AddWithValue("@numero_parcela", i);
                     comando.Parameters.AddWithValue("@valor_parcela", ValorParcela);
-                    comando.Parameters.AddWithValue("@data_vencimento", DataVencimentoInicial.AddMonths(i - 1));
+
+                    DateTime dataVencimentoDb = DataVencimentoInicial.ToDateTime(TimeOnly.MinValue);
+
+                    comando.Parameters.AddWithValue("@data_vencimento", dataVencimentoDb.AddMonths(i - 1));
 
                     comando.ExecuteNonQuery();
                 }
