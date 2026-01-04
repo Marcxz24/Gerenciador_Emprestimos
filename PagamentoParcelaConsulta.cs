@@ -26,6 +26,7 @@ namespace Gerenciador_de_Emprestimos
                             e.valor_juros,
                             p.numero_parcela,
                             p.valor_parcela,
+                            p.valor_pago,
                             p.status_parcela,
                             p.data_vencimento
                         FROM cliente c

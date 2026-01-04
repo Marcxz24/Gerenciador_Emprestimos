@@ -15,6 +15,7 @@ namespace Gerenciador_de_Emprestimos
         private int codigoEmprestimo = 0;
         private int numeroParcela = 0;
         private int codigoParcela;
+        private decimal valorParcela = 0;
 
         public frmPagamentoEmprestimo()
         {
@@ -173,42 +174,36 @@ namespace Gerenciador_de_Emprestimos
                 return;
             }
 
-            PagamentoParcela pagamentoParcela = new PagamentoParcela();
-
-            if (pagamentoParcela.ExisteParcelaAnteriorAberta(codigoEmprestimo, numeroParcela))
+            if (decimal.TryParse(txtBoxParcela.Text, out decimal valueParcela))
             {
-                Funcoes.MensagemWarning("Existe uma parcela anterior a esta com o Status aberto, realize o Quitamento da Parcela para receber esta parcela.");
-                return;
-            }
-
-            pagamentoParcela.RealizarPagamento(codigoParcela, valorPago);
-
-            if (pagamentoParcela.ParcelaJaPaga(codigoParcela))
-            {
-                Funcoes.MensagemWarning("Esta parcela já foi paga!");
-                return;
-            }
-
-            pagamentoParcela.ValidarParcelasAbertas(codigoEmprestimo);
-
-            if (pagamentoParcela.ValidarParcelasAbertas(codigoEmprestimo) == true)
-            {
-                return;
+                valorParcela = valueParcela;
             }
             else
             {
-                EmprestimosCliente emprestimos = new EmprestimosCliente();
-
-                emprestimos.QuitarEmprestimo(codigoEmprestimo);
+                Funcoes.MensagemWarning("Não foi possivel localizar o valor da parcela!");
+                return;
             }
+
+            if (int.TryParse(txtBoxNumeroParcela.Text, out int numParcelas))
+            {
+                numeroParcela = numParcelas;
+            }
+
+            PagamentoParcela parcela = new PagamentoParcela();
+
+            if (!parcela.RealizarPagamento(codigoParcela, codigoEmprestimo, numeroParcela, valorPago, valorParcela, out string mensagem))
+            {
+                Funcoes.MensagemWarning(mensagem);
+                return;
+            }
+
+            Funcoes.MensagemInformation("Pagamento realizado com sucesso!");
 
             txtBoxTotalPagar.ReadOnly = true;
             btnSalvarPagamento.Visible = false;
             btnGerarPagamento.Visible = true;
             btnCancelar.Visible = false;
             lblInserindoDados.Visible = false;
-
-            Funcoes.MensagemInformation("Pagamento de Parcela Registrado com Sucesso!");
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
