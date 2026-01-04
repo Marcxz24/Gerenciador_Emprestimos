@@ -51,6 +51,8 @@
             picBoxTelaInicialSistema = new PictureBox();
             pictureBox1 = new PictureBox();
             lblTituloSistemas = new Label();
+            empresaToolStripMenuItem = new ToolStripMenuItem();
+            funcionárioToolStripMenuItem = new ToolStripMenuItem();
             stsStripSistemVersion.SuspendLayout();
             MenuStripMenusSistema.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxTelaInicialSistema).BeginInit();
@@ -66,6 +68,7 @@
             // stsStripSistemVersion
             // 
             resources.ApplyResources(stsStripSistemVersion, "stsStripSistemVersion");
+            stsStripSistemVersion.BackColor = SystemColors.MenuBar;
             stsStripSistemVersion.ImageScalingSize = new Size(20, 20);
             stsStripSistemVersion.Items.AddRange(new ToolStripItem[] { toolStsStripSistemVersion });
             stsStripSistemVersion.Name = "stsStripSistemVersion";
@@ -73,12 +76,14 @@
             // toolStsStripSistemVersion
             // 
             resources.ApplyResources(toolStsStripSistemVersion, "toolStsStripSistemVersion");
+            toolStsStripSistemVersion.BackColor = SystemColors.Window;
             toolStsStripSistemVersion.Name = "toolStsStripSistemVersion";
             toolStsStripSistemVersion.Spring = true;
             // 
             // MenuStripMenusSistema
             // 
             resources.ApplyResources(MenuStripMenusSistema, "MenuStripMenusSistema");
+            MenuStripMenusSistema.BackColor = SystemColors.ButtonFace;
             MenuStripMenusSistema.ImageScalingSize = new Size(20, 20);
             MenuStripMenusSistema.Items.AddRange(new ToolStripItem[] { arquivoToolStripMenuItem, MenuStripCadastro, MenuStripFinanceiro, MenuStripRelatorios });
             MenuStripMenusSistema.Name = "MenuStripMenusSistema";
@@ -98,7 +103,7 @@
             // MenuStripCadastro
             // 
             resources.ApplyResources(MenuStripCadastro, "MenuStripCadastro");
-            MenuStripCadastro.DropDownItems.AddRange(new ToolStripItem[] { MenuStripCliente });
+            MenuStripCadastro.DropDownItems.AddRange(new ToolStripItem[] { MenuStripCliente, empresaToolStripMenuItem });
             MenuStripCadastro.Name = "MenuStripCadastro";
             // 
             // MenuStripCliente
@@ -178,6 +183,7 @@
             // 
             resources.ApplyResources(pictureBox1, "pictureBox1");
             pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.Image = Properties.Resources.emprestimo_seguro;
             pictureBox1.Name = "pictureBox1";
             pictureBox1.TabStop = false;
             // 
@@ -187,12 +193,24 @@
             lblTituloSistemas.BackColor = Color.Transparent;
             lblTituloSistemas.Name = "lblTituloSistemas";
             // 
+            // empresaToolStripMenuItem
+            // 
+            resources.ApplyResources(empresaToolStripMenuItem, "empresaToolStripMenuItem");
+            empresaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { funcionárioToolStripMenuItem });
+            empresaToolStripMenuItem.Name = "empresaToolStripMenuItem";
+            // 
+            // funcionárioToolStripMenuItem
+            // 
+            resources.ApplyResources(funcionárioToolStripMenuItem, "funcionárioToolStripMenuItem");
+            funcionárioToolStripMenuItem.Name = "funcionárioToolStripMenuItem";
+            funcionárioToolStripMenuItem.Click += funcionárioToolStripMenuItem_Click;
+            // 
             // FormTelaIncial
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AliceBlue;
-            BackgroundImage = Properties.Resources.gradience1;
+            BackgroundImage = Properties.Resources.gra_cad_cliente;
             Controls.Add(picBoxTelaInicialSistema);
             Controls.Add(lblTituloSistemas);
             Controls.Add(lblTituloInicial);
@@ -235,5 +253,7 @@
         private Label lblTituloSistemas;
         private ToolStripMenuItem visualizarParcelasToolStripMenuItem;
         private ToolStripMenuItem pagamentoDeParcelaToolStripMenuItem;
+        private ToolStripMenuItem empresaToolStripMenuItem;
+        private ToolStripMenuItem funcionárioToolStripMenuItem;
     }
 }

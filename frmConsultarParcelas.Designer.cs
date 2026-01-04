@@ -253,7 +253,7 @@
             // 
             btnImprimir.BackColor = Color.DarkGray;
             btnImprimir.FlatStyle = FlatStyle.Popup;
-            btnImprimir.Image = (Image)resources.GetObject("btnImprimir.Image");
+            btnImprimir.Image = Properties.Resources.imprimir_sinal_de_ferramenta_de_interface_preenchida;
             btnImprimir.Location = new Point(651, 781);
             btnImprimir.Name = "btnImprimir";
             btnImprimir.Size = new Size(170, 43);

@@ -3,42 +3,38 @@
   "WorkspaceRootPath": "C:\\Gerenciador de Emprestimos\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\frmpagamentoemprestimo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:frmpagamentoemprestimo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\frmcadastrofuncionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:frmcadastrofuncionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\frmvisualizaremprestimos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:frmvisualizaremprestimos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\funcionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:funcionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\frmtelainicial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:frmtelainicial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\frmselecionarcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:frmselecionarcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\frmcadastrofuncionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:frmcadastrofuncionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\frmcadastrocliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:frmcadastrocliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\frmconsultarparcelas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:frmconsultarparcelas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\seguranca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:seguranca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\frmnovosemprestimos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:frmnovosemprestimos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\frmcadastrocliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:frmcadastrocliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
-      "VerticalTabListWidth": 256,
+      "VerticalTabListWidth": 248,
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,93 +42,79 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "frmVisualizarEmprestimos.cs",
-              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\frmVisualizarEmprestimos.cs",
-              "RelativeDocumentMoniker": "frmVisualizarEmprestimos.cs",
-              "ToolTip": "C:\\Gerenciador de Emprestimos\\frmVisualizarEmprestimos.cs",
-              "RelativeToolTip": "frmVisualizarEmprestimos.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "Seguranca.cs",
+              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\Seguranca.cs",
+              "RelativeDocumentMoniker": "Seguranca.cs",
+              "ToolTip": "C:\\Gerenciador de Emprestimos\\Seguranca.cs",
+              "RelativeToolTip": "Seguranca.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-04T17:20:30.987Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "frmTelaInicial.cs",
-              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\frmTelaInicial.cs",
-              "RelativeDocumentMoniker": "frmTelaInicial.cs",
-              "ToolTip": "C:\\Gerenciador de Emprestimos\\frmTelaInicial.cs",
-              "RelativeToolTip": "frmTelaInicial.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-04T17:20:25.791Z",
+              "WhenOpened": "2026-01-04T22:51:38.176Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "frmSelecionarCliente.cs",
-              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\frmSelecionarCliente.cs",
-              "RelativeDocumentMoniker": "frmSelecionarCliente.cs",
-              "ToolTip": "C:\\Gerenciador de Emprestimos\\frmSelecionarCliente.cs",
-              "RelativeToolTip": "frmSelecionarCliente.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-04T17:20:21.198Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "frmCadastroCliente.cs",
               "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\frmCadastroCliente.cs",
               "RelativeDocumentMoniker": "frmCadastroCliente.cs",
               "ToolTip": "C:\\Gerenciador de Emprestimos\\frmCadastroCliente.cs",
               "RelativeToolTip": "frmCadastroCliente.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAAAQwFEAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-04T17:19:59.837Z",
+              "WhenOpened": "2026-01-04T21:01:26.57Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frmCadastroFuncionario.cs [Projeto]",
+              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\frmCadastroFuncionario.cs",
+              "RelativeDocumentMoniker": "frmCadastroFuncionario.cs",
+              "ToolTip": "C:\\Gerenciador de Emprestimos\\frmCadastroFuncionario.cs [Projeto]",
+              "RelativeToolTip": "frmCadastroFuncionario.cs [Projeto]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-04T20:46:40.986Z",
+              "EditorCaption": " [Projeto]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmCadastroFuncionario.cs",
+              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\frmCadastroFuncionario.cs",
+              "RelativeDocumentMoniker": "frmCadastroFuncionario.cs",
+              "ToolTip": "C:\\Gerenciador de Emprestimos\\frmCadastroFuncionario.cs",
+              "RelativeToolTip": "frmCadastroFuncionario.cs",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAwwKIAAABUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-04T20:45:22.785Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "frmConsultarParcelas.cs",
-              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\frmConsultarParcelas.cs",
-              "RelativeDocumentMoniker": "frmConsultarParcelas.cs",
-              "ToolTip": "C:\\Gerenciador de Emprestimos\\frmConsultarParcelas.cs",
-              "RelativeToolTip": "frmConsultarParcelas.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "frmCadastroCliente.cs [Projeto]",
+              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\frmCadastroCliente.cs",
+              "RelativeDocumentMoniker": "frmCadastroCliente.cs",
+              "ToolTip": "C:\\Gerenciador de Emprestimos\\frmCadastroCliente.cs [Projeto]",
+              "RelativeToolTip": "frmCadastroCliente.cs [Projeto]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-04T17:19:54.134Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "frmNovosEmprestimos.cs",
-              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\frmNovosEmprestimos.cs",
-              "RelativeDocumentMoniker": "frmNovosEmprestimos.cs",
-              "ToolTip": "C:\\Gerenciador de Emprestimos\\frmNovosEmprestimos.cs",
-              "RelativeToolTip": "frmNovosEmprestimos.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-04T17:19:48.661Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "frmPagamentoEmprestimo.cs [Projeto]",
-              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\frmPagamentoEmprestimo.cs",
-              "RelativeDocumentMoniker": "frmPagamentoEmprestimo.cs",
-              "ToolTip": "C:\\Gerenciador de Emprestimos\\frmPagamentoEmprestimo.cs [Projeto]",
-              "RelativeToolTip": "frmPagamentoEmprestimo.cs [Projeto]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-04T17:19:30.361Z",
+              "WhenOpened": "2026-01-04T20:38:28.947Z",
               "EditorCaption": " [Projeto]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Funcionario.cs",
+              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\Funcionario.cs",
+              "RelativeDocumentMoniker": "Funcionario.cs",
+              "ToolTip": "C:\\Gerenciador de Emprestimos\\Funcionario.cs",
+              "RelativeToolTip": "Funcionario.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAE4AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-04T20:20:52.917Z",
+              "EditorCaption": ""
             }
           ]
         }

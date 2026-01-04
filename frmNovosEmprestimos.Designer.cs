@@ -451,7 +451,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDark;
-            BackgroundImage = Properties.Resources.gradience;
+            BackgroundImage = Properties.Resources.gra_cad_cliente;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(833, 836);
             Controls.Add(lblBotãoGerarEmprestimo);

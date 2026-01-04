@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "w81DEGKtA34=",
+  "dgSpecHash": "RrELg9KB6hw=",
   "success": true,
   "projectFilePath": "C:\\Gerenciador de Emprestimos\\Gerenciador de Emprestimos.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Administrador\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Administrador\\.nuget\\packages\\bouncycastle.cryptography\\2.6.2\\bouncycastle.cryptography.2.6.2.nupkg.sha512",
     "C:\\Users\\Administrador\\.nuget\\packages\\google.protobuf\\3.32.0\\google.protobuf.3.32.0.nupkg.sha512",
     "C:\\Users\\Administrador\\.nuget\\packages\\itext\\9.4.0\\itext.9.4.0.nupkg.sha512",

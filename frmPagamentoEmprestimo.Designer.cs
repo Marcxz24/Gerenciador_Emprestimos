@@ -262,7 +262,6 @@
             // 
             btnGerarPagamento.BackColor = Color.LightGreen;
             btnGerarPagamento.FlatStyle = FlatStyle.Popup;
-            btnGerarPagamento.Image = (Image)resources.GetObject("btnGerarPagamento.Image");
             btnGerarPagamento.Location = new Point(322, 756);
             btnGerarPagamento.Name = "btnGerarPagamento";
             btnGerarPagamento.Size = new Size(220, 72);
@@ -437,7 +436,6 @@
             // 
             btnSalvarPagamento.BackColor = Color.SpringGreen;
             btnSalvarPagamento.FlatStyle = FlatStyle.Popup;
-            btnSalvarPagamento.Image = (Image)resources.GetObject("btnSalvarPagamento.Image");
             btnSalvarPagamento.Location = new Point(322, 756);
             btnSalvarPagamento.Name = "btnSalvarPagamento";
             btnSalvarPagamento.Size = new Size(220, 72);
@@ -485,8 +483,8 @@
             Controls.Add(btnCancelar);
             Controls.Add(grpBoxDadosPagamento);
             Controls.Add(dataGridParcelasAbertas);
-            Controls.Add(btnGerarPagamento);
             Controls.Add(grpBoxDadosParcela);
+            Controls.Add(btnGerarPagamento);
             Controls.Add(btnSalvarPagamento);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;

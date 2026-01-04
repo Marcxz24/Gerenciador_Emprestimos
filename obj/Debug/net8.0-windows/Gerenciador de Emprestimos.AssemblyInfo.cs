@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Gerenciador de Emprestimos")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b8326d3a2802f2f8f98dca251ce5893c9bb48591")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+882bbc76b2093e5aca90a3b409bc49025aab25ad")]
 [assembly: System.Reflection.AssemblyProductAttribute("Gerenciador de Emprestimos")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Gerenciador de Emprestimos")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -54,8 +54,14 @@ namespace Gerenciador_de_Emprestimos
 
         private void pagamentoDeParcelaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmPagamentoEmprestimo frmPagamento = new frmPagamentoEmprestimo(); 
+            frmPagamentoEmprestimo frmPagamento = new frmPagamentoEmprestimo();
             frmPagamento.ShowDialog();
+        }
+
+        private void funcionárioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCadastroFuncionario frmCadastroFuncionario = new frmCadastroFuncionario();
+            frmCadastroFuncionario.ShowDialog();
         }
     }
 }

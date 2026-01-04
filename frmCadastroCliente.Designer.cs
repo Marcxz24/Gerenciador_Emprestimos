@@ -450,7 +450,8 @@
             imagemCliente.BackColor = Color.Transparent;
             imagemCliente.BackgroundImageLayout = ImageLayout.Stretch;
             imagemCliente.BorderStyle = BorderStyle.Fixed3D;
-            imagemCliente.Image = Properties.Resources.avatar_1577909_1280;
+            imagemCliente.ErrorImage = null;
+            imagemCliente.Image = (Image)resources.GetObject("imagemCliente.Image");
             imagemCliente.Location = new Point(21, 12);
             imagemCliente.Name = "imagemCliente";
             imagemCliente.Size = new Size(196, 183);
@@ -464,7 +465,6 @@
             btnImagemCliente.BackgroundImageLayout = ImageLayout.None;
             btnImagemCliente.Cursor = Cursors.Hand;
             btnImagemCliente.FlatStyle = FlatStyle.Popup;
-            btnImagemCliente.Image = (Image)resources.GetObject("btnImagemCliente.Image");
             btnImagemCliente.Location = new Point(21, 201);
             btnImagemCliente.Name = "btnImagemCliente";
             btnImagemCliente.RightToLeft = RightToLeft.No;
@@ -481,7 +481,7 @@
             btnRemoverImagem.BackgroundImageLayout = ImageLayout.None;
             btnRemoverImagem.Cursor = Cursors.Hand;
             btnRemoverImagem.FlatStyle = FlatStyle.Popup;
-            btnRemoverImagem.Image = (Image)resources.GetObject("btnRemoverImagem.Image");
+            btnRemoverImagem.Image = Properties.Resources.close_256_icon_icons_com_75990;
             btnRemoverImagem.Location = new Point(133, 201);
             btnRemoverImagem.Name = "btnRemoverImagem";
             btnRemoverImagem.RightToLeft = RightToLeft.No;
@@ -497,7 +497,7 @@
             btnFecharForm.BackgroundImageLayout = ImageLayout.None;
             btnFecharForm.Cursor = Cursors.Hand;
             btnFecharForm.FlatStyle = FlatStyle.Popup;
-            btnFecharForm.Image = (Image)resources.GetObject("btnFecharForm.Image");
+            btnFecharForm.Image = Properties.Resources.close_256_icon_icons_com_75990;
             btnFecharForm.Location = new Point(12, 770);
             btnFecharForm.Name = "btnFecharForm";
             btnFecharForm.RightToLeft = RightToLeft.No;
@@ -531,7 +531,6 @@
             btnEditarCadastro.BackgroundImageLayout = ImageLayout.None;
             btnEditarCadastro.Cursor = Cursors.Hand;
             btnEditarCadastro.FlatStyle = FlatStyle.Popup;
-            btnEditarCadastro.Image = (Image)resources.GetObject("btnEditarCadastro.Image");
             btnEditarCadastro.Location = new Point(442, 770);
             btnEditarCadastro.Name = "btnEditarCadastro";
             btnEditarCadastro.RightToLeft = RightToLeft.No;
@@ -563,7 +562,7 @@
             btnPesquisarCliente.BackgroundImageLayout = ImageLayout.None;
             btnPesquisarCliente.Cursor = Cursors.Hand;
             btnPesquisarCliente.FlatStyle = FlatStyle.Popup;
-            btnPesquisarCliente.Image = (Image)resources.GetObject("btnPesquisarCliente.Image");
+            btnPesquisarCliente.Image = Properties.Resources.lupa;
             btnPesquisarCliente.Location = new Point(698, 770);
             btnPesquisarCliente.Name = "btnPesquisarCliente";
             btnPesquisarCliente.RightToLeft = RightToLeft.No;
@@ -580,7 +579,6 @@
             btnNovoCadastro.BackgroundImageLayout = ImageLayout.None;
             btnNovoCadastro.Cursor = Cursors.Hand;
             btnNovoCadastro.FlatStyle = FlatStyle.Popup;
-            btnNovoCadastro.Image = (Image)resources.GetObject("btnNovoCadastro.Image");
             btnNovoCadastro.Location = new Point(275, 770);
             btnNovoCadastro.Name = "btnNovoCadastro";
             btnNovoCadastro.RightToLeft = RightToLeft.No;
@@ -608,7 +606,6 @@
             btnCancelarCadastro.BackgroundImageLayout = ImageLayout.None;
             btnCancelarCadastro.Cursor = Cursors.Hand;
             btnCancelarCadastro.FlatStyle = FlatStyle.Popup;
-            btnCancelarCadastro.Image = Properties.Resources.close_256_icon_icons_com_75990;
             btnCancelarCadastro.Location = new Point(442, 770);
             btnCancelarCadastro.Name = "btnCancelarCadastro";
             btnCancelarCadastro.RightToLeft = RightToLeft.No;
@@ -667,7 +664,7 @@
             AutoScaleDimensions = new SizeF(9F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDark;
-            BackgroundImage = Properties.Resources.gradience1;
+            BackgroundImage = Properties.Resources.gra_cad_cliente;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(833, 836);
             Controls.Add(txtCodigoCliente);
