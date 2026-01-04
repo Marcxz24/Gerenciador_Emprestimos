@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\GerenciadorEmprestimos\\Gerenciador de Emprestimos\\Gerenciador de Emprestimos.csproj": {}
+    "C:\\Gerenciador de Emprestimos\\Gerenciador de Emprestimos.csproj": {}
   },
   "projects": {
-    "C:\\GerenciadorEmprestimos\\Gerenciador de Emprestimos\\Gerenciador de Emprestimos.csproj": {
+    "C:\\Gerenciador de Emprestimos\\Gerenciador de Emprestimos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GerenciadorEmprestimos\\Gerenciador de Emprestimos\\Gerenciador de Emprestimos.csproj",
+        "projectUniqueName": "C:\\Gerenciador de Emprestimos\\Gerenciador de Emprestimos.csproj",
         "projectName": "Gerenciador de Emprestimos",
-        "projectPath": "C:\\GerenciadorEmprestimos\\Gerenciador de Emprestimos\\Gerenciador de Emprestimos.csproj",
+        "projectPath": "C:\\Gerenciador de Emprestimos\\Gerenciador de Emprestimos.csproj",
         "packagesPath": "C:\\Users\\Administrador\\.nuget\\packages\\",
-        "outputPath": "C:\\GerenciadorEmprestimos\\Gerenciador de Emprestimos\\obj\\",
+        "outputPath": "C:\\Gerenciador de Emprestimos\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

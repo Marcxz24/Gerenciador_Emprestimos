@@ -196,8 +196,11 @@ namespace Gerenciador_de_Emprestimos
                 Funcoes.MensagemWarning(mensagem);
                 return;
             }
+            else
+            {
+                Funcoes.MensagemInformation("Pagamento realizado com sucesso!");
+            }
 
-            Funcoes.MensagemInformation("Pagamento realizado com sucesso!");
 
             txtBoxTotalPagar.ReadOnly = true;
             btnSalvarPagamento.Visible = false;
