@@ -67,3 +67,4 @@ C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador de Emprestimo
 C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\ref\Gerenciador de Emprestimos.dll
 C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.frmCadastroFuncionario.resources
 C:\Gerenciador de Emprestimos\bin\Debug\net8.0-windows\BCrypt.Net-Next.dll
+C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.frmLoginFuncionario.resources

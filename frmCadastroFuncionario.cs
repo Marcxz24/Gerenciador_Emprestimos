@@ -2,15 +2,7 @@
 {
     public partial class frmCadastroFuncionario : Form
     {
-        public string nome;
-        public string cpf;
-        public string sexo;
-        public string estadoCivil;
-        public string username;
-        public string telefone;
-        public string cidade;
-        public string situacao;
-
+        // Construtor do formulário de cadastro de funcionário
         public frmCadastroFuncionario()
         {
             InitializeComponent();
@@ -60,122 +52,150 @@
             btnEditarCadastro.Visible = !OcultarBotoes;
         }
 
+        /// Valida os campos do formulário de funcionário.
+        /// Retorna TRUE se encontrar algum erro (campo inválido).
+        /// Retorna FALSE se todos os campos estiverem corretos.
         private bool validacoesCampos()
         {
+            // Verifica se o Nome está vazio ou contém apenas espaços em branco
             if (string.IsNullOrWhiteSpace(txtBoxNomeFuncionario.Text))
             {
                 Funcoes.MensagemWarning("O campo Nome é obrigatório.");
-                return true;
+                return true; // Erro encontrado
             }
 
+            // Verifica se o CPF está vazio ou nulo
             if (string.IsNullOrEmpty(txtBoxCpfFuncionario.Text))
             {
                 Funcoes.MensagemWarning("Campo CPF é obrigatório! Preencha os seguintes campos\n\nCampo: CPF");
-                return true;
+                return true; // Erro encontrado
             }
 
+            // Chama o método da classe ValidacaoCpf para verificar se o dígito verificador é válido
             if (ValidacaoCpf.ValidarCpf(txtBoxCpfFuncionario.Text) == false)
             {
                 Funcoes.MensagemWarning("CPF inválido, favor informar um CPF valido.");
-                return true;
+                return true; // Erro encontrado
             }
 
+            // Verifica se o Sexo foi selecionado no ComboBox
             if (string.IsNullOrEmpty(comboBoxSexoFuncionario.Text))
             {
                 Funcoes.MensagemWarning("Campo Sexo do funcionário é obrigatório.\n\nCampo: Sexo");
-                return true;
+                return true; // Erro encontrado
             }
 
+            // Verifica se o Nome de Usuário (Login) foi preenchido
             if (string.IsNullOrWhiteSpace(txtBoxUsername.Text))
             {
                 Funcoes.MensagemWarning("O campo Login é obrigatório.\n\nCampo: Username");
-                return true;
+                return true; // Erro encontrado
             }
 
+            // Verifica se a Senha foi preenchida
             if (string.IsNullOrWhiteSpace(txtBoxSenha.Text))
             {
                 Funcoes.MensagemWarning("O campo Senha é obrigatório.\n\nCampo: Senha");
-                return true;
+                return true; // Erro encontrado
             }
 
+            // Verifica se a Cidade foi preenchida
             if (string.IsNullOrEmpty(txtBoxCidadeFuncionario.Text))
             {
                 Funcoes.MensagemWarning("Campo cidade é obrigatório\n\nCampo: cidade");
-                return true;
+                return true; // Erro encontrado
             }
 
+            // Verifica se o Estado Civil foi selecionado
             if (string.IsNullOrEmpty(comboBoxEstadoCivil.Text))
             {
                 Funcoes.MensagemWarning("Campo estado civil é obrigatório\n\nCampo: Estado Civil");
-                return true;
+                return true; // Erro encontrado
             }
 
+            // Verifica se o Telefone foi preenchido
             if (string.IsNullOrEmpty(txtBoxTelefoneFuncionario.Text))
             {
                 Funcoes.MensagemWarning("Campo Telefone do funcionário é obrigatório\n\nCampo: Telefone do Funcionário");
-                return true;
+                return true; // Erro encontrado
             }
 
+            // Se o código chegou até aqui, significa que nenhuma validação falhou
             return false;
         }
 
+        // Evento do botão para iniciar um novo cadastro de funcionário
         private void btnNovoCadastro_Click(object sender, EventArgs e)
         {
             GerenciarBotoesCampos(OcultarBotoes: true, ManifestarBotoes: true, LimparCampos: true);
         }
 
+        // Evento do botão para cancelar o cadastro de funcionário
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             GerenciarBotoesCampos(OcultarBotoes: false, ManifestarBotoes: false, LimparCampos: true);
         }
 
+        // Evento do botão para salvar o cadastro de funcionário
         private void btnSalvarCadastro_Click(object sender, EventArgs e)
         {
+            // Valida os campos do formulário antes de prosseguir com o cadastro
             if (validacoesCampos() == true)
             {
                 return;
             }
 
+            // Cria uma nova instância da classe Funcionario para realizar o cadastro
             Funcionario funcionario = new Funcionario();
 
-            nome = txtBoxNomeFuncionario.Text;
-            situacao = comboBoxSituacao.Text;
-            cpf = txtBoxCpfFuncionario.Text;
-            sexo = comboBoxSexoFuncionario.Text;
-            estadoCivil = comboBoxEstadoCivil.Text;
-            username = txtBoxUsername.Text;
-            telefone = txtBoxTelefoneFuncionario.Text;
+            // Coleta os dados dos campos do formulário
+            string? nome = txtBoxNomeFuncionario.Text;
+            string? situacao = comboBoxSituacao.Text;
+            string? cpf = txtBoxCpfFuncionario.Text;
+            string? sexo = comboBoxSexoFuncionario.Text;
+            string? estadoCivil = comboBoxEstadoCivil.Text;
+            string? username = txtBoxUsername.Text;
+            string? telefone = txtBoxTelefoneFuncionario.Text;
             string senhaHash = Seguranca.GerarHashSenha(txtBoxSenha.Text);
-            cidade = txtBoxCidadeFuncionario.Text;
+            string? cidade = txtBoxCidadeFuncionario.Text;
 
+            // Verifica se o CPF já está cadastrado no sistema
             if (funcionario.CpfJaCadastrado(cpf))
             {
                 Funcoes.MensagemWarning("Já existe um funcionário com este CPF cadastrado.");
                 return;
             }
 
+            // Tenta cadastrar o funcionário com os dados fornecidos
             try
             {
+                // Chama o método CadastrarFuncionario da classe Funcionario
                 bool sucesso = funcionario.CadastrarFuncionario(nome, cpf, sexo, estadoCivil, username, senhaHash, telefone, cidade, situacao);
 
+                // Se o cadastro foi bem-sucedido, exibe uma mensagem de sucesso
                 if (sucesso)
                 {
                     Funcoes.MensagemInformation("Funcionário cadastrado com sucesso!");
                 }
 
+                // Após o cadastro, gerencia os botões e campos da tela
                 GerenciarBotoesCampos(OcultarBotoes: false, ManifestarBotoes: false, LimparCampos: false);
             }
+            // Em caso de qualquer exceção durante o processo de cadastro, captura a exceção
             catch (Exception ex)
             {
+                // Em caso de erro durante o cadastro, exibe uma mensagem de erro
                 Funcoes.MensagemWarning("Houve um erro ao realizar o cadastro" + ex);
             }
         }
 
+        // Função para colocar a primeira letra em maiúscula no campo Nome do Funcionário
         private void txtBoxNomeFuncionario_TextChanged(object sender, EventArgs e)
         {
             Funcoes.PrimeiraLetraMaiuscula(txtBoxNomeFuncionario);
         }
 
+        // Função para colocar a primeira letra em maiúscula no campo Cidade do Funcionário
         private void txtBoxCidadeFuncionario_TextChanged(object sender, EventArgs e)
         {
             Funcoes.PrimeiraLetraMaiuscula(txtBoxCidadeFuncionario);
