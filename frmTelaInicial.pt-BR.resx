@@ -139,10 +139,10 @@
     <value>True</value>
   </data>
   <data name="toolStsStripSistemVersion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1834, 20</value>
+    <value>1795, 20</value>
   </data>
   <data name="toolStsStripSistemVersion.Text" xml:space="preserve">
-    <value>Versão  do Sistema: 0.7.0</value>
+    <value>Versão  do Sistema: 0.7.3</value>
   </data>
   <data name="toolStsStripSistemVersion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -154,16 +154,22 @@
     <value>statusStrip1</value>
   </data>
   <data name="loginToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
+    <value>136, 26</value>
   </data>
   <data name="loginToolStripMenuItem.Text" xml:space="preserve">
     <value>Login</value>
   </data>
+  <data name="logoffToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 26</value>
+  </data>
   <data name="logoffToolStripMenuItem.Text" xml:space="preserve">
     <value>Logoff</value>
   </data>
+  <data name="sairDoSistemaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 26</value>
+  </data>
   <data name="sairDoSistemaToolStripMenuItem.Text" xml:space="preserve">
-    <value>Sair do Sistema</value>
+    <value>Sair</value>
   </data>
   <data name="arquivoToolStripMenuItem.Text" xml:space="preserve">
     <value>Arquivo</value>
@@ -227,6 +233,21 @@
   </data>
   <data name="MenuStripRelatorios.Text" xml:space="preserve">
     <value>Relatórios</value>
+  </data>
+  <data name="novoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 26</value>
+  </data>
+  <data name="novoToolStripMenuItem.Text" xml:space="preserve">
+    <value>Novo (Suporte)</value>
+  </data>
+  <data name="chamadoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 26</value>
+  </data>
+  <data name="chamadoToolStripMenuItem.Text" xml:space="preserve">
+    <value>Chamado</value>
+  </data>
+  <data name="ajudaToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ajuda</value>
   </data>
   <data name="MenuStripMenusSistema.Size" type="System.Drawing.Size, System.Drawing">
     <value>1911, 28</value>

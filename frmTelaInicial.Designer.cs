@@ -33,6 +33,7 @@
             lblTituloInicial = new Label();
             stsStripSistemVersion = new StatusStrip();
             toolStripUserName = new ToolStripStatusLabel();
+            statusLabelUsername = new ToolStripStatusLabel();
             toolStsStripSistemVersion = new ToolStripStatusLabel();
             MenuStripMenusSistema = new MenuStrip();
             arquivoToolStripMenuItem = new ToolStripMenuItem();
@@ -52,6 +53,9 @@
             MenuStripRelatoriosEmprestimos = new ToolStripMenuItem();
             MenuStripRelatoriosVisuEmprestimos = new ToolStripMenuItem();
             visualizarParcelasToolStripMenuItem = new ToolStripMenuItem();
+            ajudaToolStripMenuItem = new ToolStripMenuItem();
+            chamadoToolStripMenuItem = new ToolStripMenuItem();
+            novoToolStripMenuItem = new ToolStripMenuItem();
             imageListSistemaGerenciadorEmprestimos = new ImageList(components);
             picBoxLogoSistema2 = new PictureBox();
             picBoxLogoSistema = new PictureBox();
@@ -73,7 +77,7 @@
             resources.ApplyResources(stsStripSistemVersion, "stsStripSistemVersion");
             stsStripSistemVersion.BackColor = SystemColors.MenuBar;
             stsStripSistemVersion.ImageScalingSize = new Size(20, 20);
-            stsStripSistemVersion.Items.AddRange(new ToolStripItem[] { toolStripUserName, toolStsStripSistemVersion });
+            stsStripSistemVersion.Items.AddRange(new ToolStripItem[] { toolStripUserName, statusLabelUsername, toolStsStripSistemVersion });
             stsStripSistemVersion.Name = "stsStripSistemVersion";
             // 
             // toolStripUserName
@@ -81,6 +85,12 @@
             resources.ApplyResources(toolStripUserName, "toolStripUserName");
             toolStripUserName.BackColor = SystemColors.Window;
             toolStripUserName.Name = "toolStripUserName";
+            // 
+            // statusLabelUsername
+            // 
+            resources.ApplyResources(statusLabelUsername, "statusLabelUsername");
+            statusLabelUsername.BackColor = SystemColors.Window;
+            statusLabelUsername.Name = "statusLabelUsername";
             // 
             // toolStsStripSistemVersion
             // 
@@ -94,7 +104,7 @@
             resources.ApplyResources(MenuStripMenusSistema, "MenuStripMenusSistema");
             MenuStripMenusSistema.BackColor = SystemColors.ButtonFace;
             MenuStripMenusSistema.ImageScalingSize = new Size(20, 20);
-            MenuStripMenusSistema.Items.AddRange(new ToolStripItem[] { arquivoToolStripMenuItem, MenuStripCadastro, MenuStripFinanceiro, MenuStripRelatorios });
+            MenuStripMenusSistema.Items.AddRange(new ToolStripItem[] { arquivoToolStripMenuItem, MenuStripCadastro, MenuStripFinanceiro, MenuStripRelatorios, ajudaToolStripMenuItem });
             MenuStripMenusSistema.Name = "MenuStripMenusSistema";
             // 
             // arquivoToolStripMenuItem
@@ -199,6 +209,24 @@
             visualizarParcelasToolStripMenuItem.Name = "visualizarParcelasToolStripMenuItem";
             visualizarParcelasToolStripMenuItem.Click += visualizarParcelasToolStripMenuItem_Click;
             // 
+            // ajudaToolStripMenuItem
+            // 
+            resources.ApplyResources(ajudaToolStripMenuItem, "ajudaToolStripMenuItem");
+            ajudaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { chamadoToolStripMenuItem });
+            ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
+            // 
+            // chamadoToolStripMenuItem
+            // 
+            resources.ApplyResources(chamadoToolStripMenuItem, "chamadoToolStripMenuItem");
+            chamadoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { novoToolStripMenuItem });
+            chamadoToolStripMenuItem.Name = "chamadoToolStripMenuItem";
+            // 
+            // novoToolStripMenuItem
+            // 
+            resources.ApplyResources(novoToolStripMenuItem, "novoToolStripMenuItem");
+            novoToolStripMenuItem.Name = "novoToolStripMenuItem";
+            novoToolStripMenuItem.Click += novoToolStripMenuItem_Click;
+            // 
             // imageListSistemaGerenciadorEmprestimos
             // 
             imageListSistemaGerenciadorEmprestimos.ColorDepth = ColorDepth.Depth32Bit;
@@ -280,5 +308,9 @@
         private ToolStripMenuItem logoffToolStripMenuItem;
         private ToolStripMenuItem loginToolStripMenuItem;
         private ToolStripStatusLabel toolStripUserName;
+        private ToolStripMenuItem ajudaToolStripMenuItem;
+        private ToolStripMenuItem chamadoToolStripMenuItem;
+        private ToolStripMenuItem novoToolStripMenuItem;
+        private ToolStripStatusLabel statusLabelUsername;
     }
 }

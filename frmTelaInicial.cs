@@ -25,6 +25,11 @@ namespace Gerenciador_de_Emprestimos
             ConfigurarAcesso(false);
         }
 
+        public void AtualizarUsuarioLogado(string nomeFuncionario)
+        {
+            statusLabelUsername.Text = $"{nomeFuncionario}";
+        }
+
         public void ConfigurarAcesso(bool logado)
         {
             MenuStripCadastro.Enabled = logado;
@@ -35,6 +40,9 @@ namespace Gerenciador_de_Emprestimos
 
             MenuStripRelatorios.Enabled = logado;
             MenuStripRelatorios.Visible = logado;
+
+            ajudaToolStripMenuItem.Enabled = logado;
+            ajudaToolStripMenuItem.Visible = logado;
 
             loginToolStripMenuItem.Enabled = !logado;
             loginToolStripMenuItem.Visible = !logado;
@@ -105,6 +113,8 @@ namespace Gerenciador_de_Emprestimos
             {
                 ConfigurarAcesso(false);
 
+                statusLabelUsername.Text = "";
+
                 frmLoginFuncionario loginFuncionario = new frmLoginFuncionario();
                 loginFuncionario.Owner = this;
                 loginFuncionario.Show();
@@ -118,6 +128,11 @@ namespace Gerenciador_de_Emprestimos
             loginFuncionario.Owner = this;
             loginFuncionario.Show();
 
+        }
+
+        private void novoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SupportService.AbrirChatWhatsApp();
         }
     }
 }

@@ -75,6 +75,7 @@ namespace Gerenciador_de_Emprestimos
 
                 if (this.Owner is frmTelaIncial telaPrincipal)
                 {
+                    telaPrincipal.AtualizarUsuarioLogado(txtBoxUsername.Text);
                     telaPrincipal.ConfigurarAcesso(true);
                 }
 
