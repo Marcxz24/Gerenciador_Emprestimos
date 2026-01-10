@@ -3,48 +3,20 @@
   "WorkspaceRootPath": "C:\\Gerenciador de Emprestimos\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\frmcadastrofuncionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:frmcadastrofuncionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\frmtelainicial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:frmtelainicial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\funcionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:funcionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\frmtelainicial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:frmtelainicial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\frmloginfuncionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:frmloginfuncionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\loginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:loginservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\pagamentoparcela.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:pagamentoparcela.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\selecionarcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:selecionarcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|C:\\Gerenciador de Emprestimos\\frmcadastrofuncionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:frmcadastrofuncionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\frmloginfuncionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:frmloginfuncionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\frmtelainicial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:frmtelainicial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|c:\\gerenciador de emprestimos\\frmcadastrocliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:frmcadastrocliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|C:\\Gerenciador de Emprestimos\\frmcadastrocliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C407F404-6249-4E4A-9FA7-61B0DEF165D0}|Gerenciador de Emprestimos.csproj|solutionrelative:frmcadastrocliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,37 +26,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PagamentoParcela.cs",
-              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\PagamentoParcela.cs",
-              "RelativeDocumentMoniker": "PagamentoParcela.cs",
-              "ToolTip": "C:\\Gerenciador de Emprestimos\\PagamentoParcela.cs",
-              "RelativeToolTip": "PagamentoParcela.cs",
-              "ViewState": "AgIAAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-09T23:31:17.103Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "SelecionarCliente.cs",
-              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\SelecionarCliente.cs",
-              "RelativeDocumentMoniker": "SelecionarCliente.cs",
-              "ToolTip": "C:\\Gerenciador de Emprestimos\\SelecionarCliente.cs",
-              "RelativeToolTip": "SelecionarCliente.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-09T23:31:05.837Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -94,110 +40,47 @@
               "RelativeDocumentMoniker": "frmLoginFuncionario.cs",
               "ToolTip": "C:\\Gerenciador de Emprestimos\\frmLoginFuncionario.cs",
               "RelativeToolTip": "frmLoginFuncionario.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAADMAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAiwFYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-09T22:26:58.012Z",
+              "WhenOpened": "2026-01-10T16:47:12.532Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "LoginService.cs",
-              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\LoginService.cs",
-              "RelativeDocumentMoniker": "LoginService.cs",
-              "ToolTip": "C:\\Gerenciador de Emprestimos\\LoginService.cs",
-              "RelativeToolTip": "LoginService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-09T22:08:05.867Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "frmTelaInicial.cs [Design - portugu\u00EAs (Brasil)]",
-              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\frmTelaInicial.cs",
-              "RelativeDocumentMoniker": "frmTelaInicial.cs",
-              "ToolTip": "C:\\Gerenciador de Emprestimos\\frmTelaInicial.cs [Design - portugu\u00EAs (Brasil)]",
-              "RelativeToolTip": "frmTelaInicial.cs [Design - portugu\u00EAs (Brasil)]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-09T21:56:24.394Z",
-              "EditorCaption": " [Design - portugu\u00EAs (Brasil)]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "frmLoginFuncionario.cs [Projeto]",
               "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\frmLoginFuncionario.cs",
               "RelativeDocumentMoniker": "frmLoginFuncionario.cs",
               "ToolTip": "C:\\Gerenciador de Emprestimos\\frmLoginFuncionario.cs [Projeto]",
               "RelativeToolTip": "frmLoginFuncionario.cs [Projeto]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-09T21:32:11.802Z",
-              "EditorCaption": " [Projeto]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "frmCadastroCliente.cs",
-              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\frmCadastroCliente.cs",
-              "RelativeDocumentMoniker": "frmCadastroCliente.cs",
-              "ToolTip": "C:\\Gerenciador de Emprestimos\\frmCadastroCliente.cs",
-              "RelativeToolTip": "frmCadastroCliente.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAQwFEAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-04T21:01:26.57Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "frmCadastroFuncionario.cs [Projeto]",
-              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\frmCadastroFuncionario.cs",
-              "RelativeDocumentMoniker": "frmCadastroFuncionario.cs",
-              "ToolTip": "C:\\Gerenciador de Emprestimos\\frmCadastroFuncionario.cs [Projeto]",
-              "RelativeToolTip": "frmCadastroFuncionario.cs [Projeto]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-04T20:46:40.986Z",
-              "EditorCaption": " [Projeto]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "frmCadastroFuncionario.cs",
-              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\frmCadastroFuncionario.cs",
-              "RelativeDocumentMoniker": "frmCadastroFuncionario.cs",
-              "ToolTip": "C:\\Gerenciador de Emprestimos\\frmCadastroFuncionario.cs",
-              "RelativeToolTip": "frmCadastroFuncionario.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-04T20:45:22.785Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "frmCadastroCliente.cs [Projeto]",
-              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\frmCadastroCliente.cs",
-              "RelativeDocumentMoniker": "frmCadastroCliente.cs",
-              "ToolTip": "C:\\Gerenciador de Emprestimos\\frmCadastroCliente.cs [Projeto]",
-              "RelativeToolTip": "frmCadastroCliente.cs [Projeto]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-04T20:38:28.947Z",
+              "WhenOpened": "2026-01-10T16:47:08.177Z",
               "EditorCaption": " [Projeto]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Funcionario.cs",
-              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\Funcionario.cs",
-              "RelativeDocumentMoniker": "Funcionario.cs",
-              "ToolTip": "C:\\Gerenciador de Emprestimos\\Funcionario.cs",
-              "RelativeToolTip": "Funcionario.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAABXAAAAAAAAAA==",
+              "Title": "frmTelaInicial.cs",
+              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\frmTelaInicial.cs",
+              "RelativeDocumentMoniker": "frmTelaInicial.cs",
+              "ToolTip": "C:\\Gerenciador de Emprestimos\\frmTelaInicial.cs",
+              "RelativeToolTip": "frmTelaInicial.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAAB0AAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-04T20:20:52.917Z",
+              "WhenOpened": "2026-01-10T16:47:04.505Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmTelaInicial.cs [Design - portugu\u00EAs (Brasil)]",
+              "DocumentMoniker": "C:\\Gerenciador de Emprestimos\\frmTelaInicial.cs",
+              "RelativeDocumentMoniker": "frmTelaInicial.cs",
+              "ToolTip": "C:\\Gerenciador de Emprestimos\\frmTelaInicial.cs [Design - portugu\u00EAs (Brasil)]",
+              "RelativeToolTip": "frmTelaInicial.cs [Design - portugu\u00EAs (Brasil)]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-10T16:47:00.224Z",
+              "EditorCaption": " [Design - portugu\u00EAs (Brasil)]"
             }
           ]
         }

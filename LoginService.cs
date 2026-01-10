@@ -11,9 +11,41 @@ namespace Gerenciador_de_Emprestimos
 {
     internal class LoginService
     {
-        public bool Login(string Username, string Passowrd)
+        public int CodigoUsuarioLogado { get; private set; }
+
+        public bool LoginUsuario(string Username, string Passowrd, out int CodigoFuncionario)
         {
-            
+            CodigoFuncionario = 0;
+
+            string sql = @"SELECT codigo, senha_hash, situacao_funcionario
+                            FROM emprestimosbd.funcionario
+                            WHERE username = @username";
+
+            using (var conexao = ConexaoBancoDeDados.Conectar())
+            using (var comando = new MySqlCommand(sql, conexao))
+            {
+                comando.Parameters.AddWithValue("@username", Username);
+
+                using (var leia = comando.ExecuteReader())
+                {
+                    if (!leia.Read())
+                    {
+                        return false;
+                    }
+
+                    string senhaHashBanco = leia["senha_hash"].ToString();
+
+                    bool senhaCorreta = BCrypt.Net.BCrypt.Verify(Passowrd, senhaHashBanco);
+
+                    if (!senhaCorreta)
+                    {
+                        return false;
+                    }
+
+                    CodigoFuncionario = Convert.ToInt32(leia["codigo"]);
+                    return true;
+                }
+            }
         }
 
         public bool ValidarUsuarioInativo(string usermame)

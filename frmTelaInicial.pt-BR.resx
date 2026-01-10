@@ -131,60 +131,42 @@
   <data name="lblTituloInicial.Size" type="System.Drawing.Size, System.Drawing">
     <value>574, 46</value>
   </data>
-  <data name="stsStripSistemVersion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1911, 26</value>
-  </data>
-  <data name="stsStripSistemVersion.Text" xml:space="preserve">
-    <value>statusStrip1</value>
+  <data name="toolStripUserName.Text" xml:space="preserve">
+    <value>Usuário:</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="toolStsStripSistemVersion.RightToLeftAutoMirrorImage" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="toolStsStripSistemVersion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1896, 20</value>
+    <value>1834, 20</value>
   </data>
   <data name="toolStsStripSistemVersion.Text" xml:space="preserve">
-    <value>Versão  do Sistema: 0.6.3</value>
+    <value>Versão  do Sistema: 0.7.0</value>
   </data>
   <data name="toolStsStripSistemVersion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
   </data>
-  <data name="arquivoToolStripMenuItem.Text" xml:space="preserve">
-    <value>Arquivo</value>
+  <data name="stsStripSistemVersion.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1911, 26</value>
   </data>
-  <data name="MenuStripCliente.Text" xml:space="preserve">
-    <value>Cliente</value>
+  <data name="stsStripSistemVersion.Text" xml:space="preserve">
+    <value>statusStrip1</value>
   </data>
-  <data name="funcionárioToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="loginToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>224, 26</value>
   </data>
-  <data name="funcionárioToolStripMenuItem.Text" xml:space="preserve">
-    <value>Funcionário</value>
+  <data name="loginToolStripMenuItem.Text" xml:space="preserve">
+    <value>Login</value>
   </data>
-  <data name="empresaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
-  </data>
-  <data name="empresaToolStripMenuItem.Text" xml:space="preserve">
-    <value>Empresa</value>
-  </data>
-  <data name="MenuStripCadastro.Text" xml:space="preserve">
-    <value>Cadastro</value>
-  </data>
-  <data name="MenuStripFinanceiro.Text" xml:space="preserve">
-    <value>Financeiro</value>
-  </data>
-  <data name="MenuStripRelatorios.Text" xml:space="preserve">
-    <value>Relatórios</value>
-  </data>
-  <data name="MenuStripMenusSistema.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1911, 28</value>
-  </data>
-  <data name="sairDoSistemaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 26</value>
+  <data name="logoffToolStripMenuItem.Text" xml:space="preserve">
+    <value>Logoff</value>
   </data>
   <data name="sairDoSistemaToolStripMenuItem.Text" xml:space="preserve">
     <value>Sair do Sistema</value>
+  </data>
+  <data name="arquivoToolStripMenuItem.Text" xml:space="preserve">
+    <value>Arquivo</value>
   </data>
   <data name="MenuStripCadastroCliente.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 26</value>
@@ -192,11 +174,26 @@
   <data name="MenuStripCadastroCliente.Text" xml:space="preserve">
     <value>Cliente</value>
   </data>
-  <data name="MenuStripEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 26</value>
+  <data name="MenuStripCliente.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 26</value>
   </data>
-  <data name="MenuStripEmprestimos.Text" xml:space="preserve">
-    <value>Emprestimos</value>
+  <data name="MenuStripCliente.Text" xml:space="preserve">
+    <value>Cliente</value>
+  </data>
+  <data name="funcionárioToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 26</value>
+  </data>
+  <data name="funcionárioToolStripMenuItem.Text" xml:space="preserve">
+    <value>Funcionário</value>
+  </data>
+  <data name="empresaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 26</value>
+  </data>
+  <data name="empresaToolStripMenuItem.Text" xml:space="preserve">
+    <value>Empresa</value>
+  </data>
+  <data name="MenuStripCadastro.Text" xml:space="preserve">
+    <value>Cadastro</value>
   </data>
   <data name="MenuStripNovosEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
     <value>239, 26</value>
@@ -207,11 +204,14 @@
   <data name="pagamentoDeParcelaToolStripMenuItem.Text" xml:space="preserve">
     <value>Pagamento de Parcela</value>
   </data>
-  <data name="MenuStripRelatoriosEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="MenuStripEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
     <value>178, 26</value>
   </data>
-  <data name="MenuStripRelatoriosEmprestimos.Text" xml:space="preserve">
+  <data name="MenuStripEmprestimos.Text" xml:space="preserve">
     <value>Emprestimos</value>
+  </data>
+  <data name="MenuStripFinanceiro.Text" xml:space="preserve">
+    <value>Financeiro</value>
   </data>
   <data name="MenuStripRelatoriosVisuEmprestimos.Text" xml:space="preserve">
     <value>Visualizar Emprestimos</value>
@@ -219,7 +219,19 @@
   <data name="visualizarParcelasToolStripMenuItem.Text" xml:space="preserve">
     <value>Visualizar Parcelas</value>
   </data>
-  <data name="picBoxTelaInicialSistema.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="MenuStripRelatoriosEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>178, 26</value>
+  </data>
+  <data name="MenuStripRelatoriosEmprestimos.Text" xml:space="preserve">
+    <value>Emprestimos</value>
+  </data>
+  <data name="MenuStripRelatorios.Text" xml:space="preserve">
+    <value>Relatórios</value>
+  </data>
+  <data name="MenuStripMenusSistema.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1911, 28</value>
+  </data>
+  <data name="picBoxLogoSistema2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAD
         rwAAA68BGB6xfQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAABGISURBVHhe7Z0L
@@ -300,20 +312,14 @@
         jq+TRxZ6Xl7/ry+meic5v7gt+boZPV/floPGihUrVqxYsWJVZ/0PQ1yAbB5Wm5gAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="picBoxTelaInicialSistema.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1702, 794</value>
-  </data>
-  <data name="picBoxTelaInicialSistema.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="picBoxLogoSistema2.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 146</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="picBoxLogoSistema.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1160, 693</value>
-  </data>
-  <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="picBoxLogoSistema.Size" type="System.Drawing.Size, System.Drawing">
     <value>250, 260</value>
   </data>
   <data name="lblTituloSistemas.AutoSize" type="System.Boolean, mscorlib">

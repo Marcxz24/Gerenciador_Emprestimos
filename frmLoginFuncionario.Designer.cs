@@ -121,7 +121,9 @@
             Controls.Add(lblUsername);
             Controls.Add(lblLoginFunconario);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "frmLoginFuncionario";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login - Gerenciador de Emprestimos";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

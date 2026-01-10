@@ -1,6 +1,6 @@
 ﻿namespace Gerenciador_de_Emprestimos
 {
-    partial class FormTelaIncial
+    partial class frmTelaIncial
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,16 +29,21 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTelaIncial));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTelaIncial));
             lblTituloInicial = new Label();
             stsStripSistemVersion = new StatusStrip();
+            toolStripUserName = new ToolStripStatusLabel();
             toolStsStripSistemVersion = new ToolStripStatusLabel();
             MenuStripMenusSistema = new MenuStrip();
             arquivoToolStripMenuItem = new ToolStripMenuItem();
+            loginToolStripMenuItem = new ToolStripMenuItem();
+            logoffToolStripMenuItem = new ToolStripMenuItem();
             sairDoSistemaToolStripMenuItem = new ToolStripMenuItem();
             MenuStripCadastro = new ToolStripMenuItem();
             MenuStripCliente = new ToolStripMenuItem();
             MenuStripCadastroCliente = new ToolStripMenuItem();
+            empresaToolStripMenuItem = new ToolStripMenuItem();
+            funcionárioToolStripMenuItem = new ToolStripMenuItem();
             MenuStripFinanceiro = new ToolStripMenuItem();
             MenuStripEmprestimos = new ToolStripMenuItem();
             MenuStripNovosEmprestimos = new ToolStripMenuItem();
@@ -48,15 +53,13 @@
             MenuStripRelatoriosVisuEmprestimos = new ToolStripMenuItem();
             visualizarParcelasToolStripMenuItem = new ToolStripMenuItem();
             imageListSistemaGerenciadorEmprestimos = new ImageList(components);
-            picBoxTelaInicialSistema = new PictureBox();
-            pictureBox1 = new PictureBox();
+            picBoxLogoSistema2 = new PictureBox();
+            picBoxLogoSistema = new PictureBox();
             lblTituloSistemas = new Label();
-            empresaToolStripMenuItem = new ToolStripMenuItem();
-            funcionárioToolStripMenuItem = new ToolStripMenuItem();
             stsStripSistemVersion.SuspendLayout();
             MenuStripMenusSistema.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picBoxTelaInicialSistema).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema).BeginInit();
             SuspendLayout();
             // 
             // lblTituloInicial
@@ -70,8 +73,14 @@
             resources.ApplyResources(stsStripSistemVersion, "stsStripSistemVersion");
             stsStripSistemVersion.BackColor = SystemColors.MenuBar;
             stsStripSistemVersion.ImageScalingSize = new Size(20, 20);
-            stsStripSistemVersion.Items.AddRange(new ToolStripItem[] { toolStsStripSistemVersion });
+            stsStripSistemVersion.Items.AddRange(new ToolStripItem[] { toolStripUserName, toolStsStripSistemVersion });
             stsStripSistemVersion.Name = "stsStripSistemVersion";
+            // 
+            // toolStripUserName
+            // 
+            resources.ApplyResources(toolStripUserName, "toolStripUserName");
+            toolStripUserName.BackColor = SystemColors.Window;
+            toolStripUserName.Name = "toolStripUserName";
             // 
             // toolStsStripSistemVersion
             // 
@@ -91,8 +100,20 @@
             // arquivoToolStripMenuItem
             // 
             resources.ApplyResources(arquivoToolStripMenuItem, "arquivoToolStripMenuItem");
-            arquivoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { sairDoSistemaToolStripMenuItem });
+            arquivoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { loginToolStripMenuItem, logoffToolStripMenuItem, sairDoSistemaToolStripMenuItem });
             arquivoToolStripMenuItem.Name = "arquivoToolStripMenuItem";
+            // 
+            // loginToolStripMenuItem
+            // 
+            resources.ApplyResources(loginToolStripMenuItem, "loginToolStripMenuItem");
+            loginToolStripMenuItem.Name = "loginToolStripMenuItem";
+            loginToolStripMenuItem.Click += loginToolStripMenuItem_Click;
+            // 
+            // logoffToolStripMenuItem
+            // 
+            resources.ApplyResources(logoffToolStripMenuItem, "logoffToolStripMenuItem");
+            logoffToolStripMenuItem.Name = "logoffToolStripMenuItem";
+            logoffToolStripMenuItem.Click += logoffToolStripMenuItem_Click;
             // 
             // sairDoSistemaToolStripMenuItem
             // 
@@ -117,6 +138,18 @@
             resources.ApplyResources(MenuStripCadastroCliente, "MenuStripCadastroCliente");
             MenuStripCadastroCliente.Name = "MenuStripCadastroCliente";
             MenuStripCadastroCliente.Click += clienteToolStripMenuItem1_Click;
+            // 
+            // empresaToolStripMenuItem
+            // 
+            resources.ApplyResources(empresaToolStripMenuItem, "empresaToolStripMenuItem");
+            empresaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { funcionárioToolStripMenuItem });
+            empresaToolStripMenuItem.Name = "empresaToolStripMenuItem";
+            // 
+            // funcionárioToolStripMenuItem
+            // 
+            resources.ApplyResources(funcionárioToolStripMenuItem, "funcionárioToolStripMenuItem");
+            funcionárioToolStripMenuItem.Name = "funcionárioToolStripMenuItem";
+            funcionárioToolStripMenuItem.Click += funcionárioToolStripMenuItem_Click;
             // 
             // MenuStripFinanceiro
             // 
@@ -172,20 +205,20 @@
             resources.ApplyResources(imageListSistemaGerenciadorEmprestimos, "imageListSistemaGerenciadorEmprestimos");
             imageListSistemaGerenciadorEmprestimos.TransparentColor = Color.Transparent;
             // 
-            // picBoxTelaInicialSistema
+            // picBoxLogoSistema2
             // 
-            resources.ApplyResources(picBoxTelaInicialSistema, "picBoxTelaInicialSistema");
-            picBoxTelaInicialSistema.BackColor = Color.Transparent;
-            picBoxTelaInicialSistema.Name = "picBoxTelaInicialSistema";
-            picBoxTelaInicialSistema.TabStop = false;
+            resources.ApplyResources(picBoxLogoSistema2, "picBoxLogoSistema2");
+            picBoxLogoSistema2.BackColor = Color.Transparent;
+            picBoxLogoSistema2.Name = "picBoxLogoSistema2";
+            picBoxLogoSistema2.TabStop = false;
             // 
-            // pictureBox1
+            // picBoxLogoSistema
             // 
-            resources.ApplyResources(pictureBox1, "pictureBox1");
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Image = Properties.Resources.emprestimo_seguro;
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.TabStop = false;
+            resources.ApplyResources(picBoxLogoSistema, "picBoxLogoSistema");
+            picBoxLogoSistema.BackColor = Color.Transparent;
+            picBoxLogoSistema.Image = Properties.Resources.emprestimo_seguro;
+            picBoxLogoSistema.Name = "picBoxLogoSistema";
+            picBoxLogoSistema.TabStop = false;
             // 
             // lblTituloSistemas
             // 
@@ -193,40 +226,29 @@
             lblTituloSistemas.BackColor = Color.Transparent;
             lblTituloSistemas.Name = "lblTituloSistemas";
             // 
-            // empresaToolStripMenuItem
-            // 
-            resources.ApplyResources(empresaToolStripMenuItem, "empresaToolStripMenuItem");
-            empresaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { funcionárioToolStripMenuItem });
-            empresaToolStripMenuItem.Name = "empresaToolStripMenuItem";
-            // 
-            // funcionárioToolStripMenuItem
-            // 
-            resources.ApplyResources(funcionárioToolStripMenuItem, "funcionárioToolStripMenuItem");
-            funcionárioToolStripMenuItem.Name = "funcionárioToolStripMenuItem";
-            funcionárioToolStripMenuItem.Click += funcionárioToolStripMenuItem_Click;
-            // 
-            // FormTelaIncial
+            // frmTelaIncial
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AliceBlue;
             BackgroundImage = Properties.Resources.gra_cad_cliente;
-            Controls.Add(picBoxTelaInicialSistema);
+            Controls.Add(picBoxLogoSistema2);
             Controls.Add(lblTituloSistemas);
             Controls.Add(lblTituloInicial);
-            Controls.Add(pictureBox1);
+            Controls.Add(picBoxLogoSistema);
             Controls.Add(stsStripSistemVersion);
             Controls.Add(MenuStripMenusSistema);
             DoubleBuffered = true;
             MainMenuStrip = MenuStripMenusSistema;
-            Name = "FormTelaIncial";
+            Name = "frmTelaIncial";
             WindowState = FormWindowState.Maximized;
+            Load += frmTelaIncial_Load;
             stsStripSistemVersion.ResumeLayout(false);
             stsStripSistemVersion.PerformLayout();
             MenuStripMenusSistema.ResumeLayout(false);
             MenuStripMenusSistema.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picBoxTelaInicialSistema).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -243,17 +265,20 @@
         private ToolStripMenuItem MenuStripEmprestimos;
         private ToolStripMenuItem MenuStripNovosEmprestimos;
         private ImageList imageListSistemaGerenciadorEmprestimos;
-        private PictureBox picBoxTelaInicialSistema;
+        private PictureBox picBoxLogoSistema2;
         private ToolStripMenuItem arquivoToolStripMenuItem;
         private ToolStripMenuItem sairDoSistemaToolStripMenuItem;
         private ToolStripMenuItem MenuStripRelatorios;
         private ToolStripMenuItem MenuStripRelatoriosEmprestimos;
         private ToolStripMenuItem MenuStripRelatoriosVisuEmprestimos;
-        private PictureBox pictureBox1;
+        private PictureBox picBoxLogoSistema;
         private Label lblTituloSistemas;
         private ToolStripMenuItem visualizarParcelasToolStripMenuItem;
         private ToolStripMenuItem pagamentoDeParcelaToolStripMenuItem;
         private ToolStripMenuItem empresaToolStripMenuItem;
         private ToolStripMenuItem funcionárioToolStripMenuItem;
+        private ToolStripMenuItem logoffToolStripMenuItem;
+        private ToolStripMenuItem loginToolStripMenuItem;
+        private ToolStripStatusLabel toolStripUserName;
     }
 }

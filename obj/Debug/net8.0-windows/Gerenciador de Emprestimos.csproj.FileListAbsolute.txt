@@ -3,10 +3,8 @@ C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimo
 C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.FormEmprestimos.resources
 C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.frmPagamentoEmprestimo.resources
 C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.frmSelecionarCliente.resources
-C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.FormTelaIncial.resources
 C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.frmVisualizarEmprestimos.resources
 C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.Properties.Resources.resources
-C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.FormTelaIncial.pt-BR.resources
 C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador de Emprestimos.csproj.GenerateResource.cache
 C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador de Emprestimos.GeneratedMSBuildEditorConfig.editorconfig
 C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador de Emprestimos.AssemblyInfoInputs.cache
@@ -68,3 +66,5 @@ C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\ref\Gerenciador de Empres
 C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.frmCadastroFuncionario.resources
 C:\Gerenciador de Emprestimos\bin\Debug\net8.0-windows\BCrypt.Net-Next.dll
 C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.frmLoginFuncionario.resources
+C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.frmTelaIncial.resources
+C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.frmTelaIncial.pt-BR.resources

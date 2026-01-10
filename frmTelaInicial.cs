@@ -4,12 +4,45 @@ using MySql.Data;
 
 namespace Gerenciador_de_Emprestimos
 {
-    public partial class FormTelaIncial : Form
+    public partial class frmTelaIncial : Form
     {
-        public FormTelaIncial()
+        public frmTelaIncial()
         {
             InitializeComponent();
+            ConfigurarAcesso(false);
+
+            frmLoginFuncionario loginFuncionario = new frmLoginFuncionario();
+
+            loginFuncionario.Owner = this;
+
+            loginFuncionario.StartPosition = FormStartPosition.CenterScreen;
+
+            loginFuncionario.Show();
         }
+
+        private void frmTelaIncial_Load(object sender, EventArgs e)
+        {
+            ConfigurarAcesso(false);
+        }
+
+        public void ConfigurarAcesso(bool logado)
+        {
+            MenuStripCadastro.Enabled = logado;
+            MenuStripCadastro.Visible = logado;
+
+            MenuStripFinanceiro.Enabled = logado;
+            MenuStripFinanceiro.Visible = logado;
+
+            MenuStripRelatorios.Enabled = logado;
+            MenuStripRelatorios.Visible = logado;
+
+            loginToolStripMenuItem.Enabled = !logado;
+            loginToolStripMenuItem.Visible = !logado;
+
+            logoffToolStripMenuItem.Enabled = logado;
+            logoffToolStripMenuItem.Visible = logado;
+        }
+
 
         private void clienteToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -62,6 +95,29 @@ namespace Gerenciador_de_Emprestimos
         {
             frmCadastroFuncionario frmCadastroFuncionario = new frmCadastroFuncionario();
             frmCadastroFuncionario.ShowDialog();
+        }
+
+        private void logoffToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var resultado = MessageBox.Show("Deseja realmente fazer logoff do sistema?\nAs tarefas não concluídas serão interrompidas.", "Confirmação de Logoff", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.Yes)
+            {
+                ConfigurarAcesso(false);
+
+                frmLoginFuncionario loginFuncionario = new frmLoginFuncionario();
+                loginFuncionario.Owner = this;
+                loginFuncionario.Show();
+            }
+
+        }
+
+        private void loginToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLoginFuncionario loginFuncionario = new frmLoginFuncionario();
+            loginFuncionario.Owner = this;
+            loginFuncionario.Show();
+
         }
     }
 }

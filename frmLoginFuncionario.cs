@@ -12,6 +12,8 @@ namespace Gerenciador_de_Emprestimos
 {
     public partial class frmLoginFuncionario : Form
     {
+        public bool LoginRealizado { get; private set; } = false;
+
         LoginService login = new LoginService();
 
         // Método Construtor da classe
@@ -50,7 +52,7 @@ namespace Gerenciador_de_Emprestimos
             }
 
             // Se passar por ambos, retorna false (não há erros)
-            return false; 
+            return false;
         }
 
         /// Evento disparado ao clicar no botão de "Logar".
@@ -58,13 +60,30 @@ namespace Gerenciador_de_Emprestimos
         {
             // Chama o método de validação. 
             // Se retornar true (erro), o 'return' abaixo interrompe a execução do login.
-            if (ValidarCampos() == true)
+            if (ValidarCampos())
             {
                 return; // Sai do método e não prossegue com o processo de autenticação
             }
 
-            // Caso o código continue após este IF, aqui entraria a lógica de 
-            // consultar o banco de dados para validar o usuário e a senha.
+            bool sucessoLogin = login.LoginUsuario(txtBoxUsername.Text, txtBoxSenha.Text, out int codigoFuncionario);
+
+            if (sucessoLogin)
+            {
+                Funcoes.MensagemInformation("Login Realizado com sucesso!");
+
+                LoginRealizado = true;
+
+                if (this.Owner is frmTelaIncial telaPrincipal)
+                {
+                    telaPrincipal.ConfigurarAcesso(true);
+                }
+
+                this.Close(); // Fecha o formulário de login
+            }
+            else
+            {
+                Funcoes.MensagemErro("Falha no Login! Usuário ou Senha incorretos!");
+            }
         }
     }
 }
