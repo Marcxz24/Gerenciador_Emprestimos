@@ -86,5 +86,29 @@ namespace Gerenciador_de_Emprestimos
                 Funcoes.MensagemErro("Falha no Login! Usuário ou Senha incorretos!");
             }
         }
+
+        private void txtBoxUsername_Leave(object sender, EventArgs e)
+        {
+            string textoDigitado = txtBoxUsername.Text.Trim();
+
+            if (!int.TryParse(textoDigitado, out int codigoFuncionario))
+            {
+                return;
+            }
+
+            LoginService login = new LoginService();
+
+            string username = login.ObterUsernamePorCodigo(codigoFuncionario);
+
+            if (string.IsNullOrEmpty(username))
+            {
+                Funcoes.MensagemWarning("Funcionário não encontrado ou INATIVO no Sistema.");
+                txtBoxUsername.Clear();
+                txtBoxUsername.Focus();
+                return;
+            }
+
+            txtBoxUsername.Text = username;
+        }
     }
 }

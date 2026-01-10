@@ -9,6 +9,7 @@ namespace Gerenciador_de_Emprestimos
         public frmTelaIncial()
         {
             InitializeComponent();
+            this.KeyPreview = true;
             ConfigurarAcesso(false);
 
             frmLoginFuncionario loginFuncionario = new frmLoginFuncionario();
@@ -109,17 +110,7 @@ namespace Gerenciador_de_Emprestimos
         {
             var resultado = MessageBox.Show("Deseja realmente fazer logoff do sistema?\nAs tarefas não concluídas serão interrompidas.", "Confirmação de Logoff", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (resultado == DialogResult.Yes)
-            {
-                ConfigurarAcesso(false);
-
-                statusLabelUsername.Text = "";
-
-                frmLoginFuncionario loginFuncionario = new frmLoginFuncionario();
-                loginFuncionario.Owner = this;
-                loginFuncionario.Show();
-            }
-
+            RealizarLogoff();
         }
 
         private void loginToolStripMenuItem_Click(object sender, EventArgs e)
@@ -133,6 +124,33 @@ namespace Gerenciador_de_Emprestimos
         private void novoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SupportService.AbrirChatWhatsApp();
+        }
+
+        private void RealizarLogoff()
+        {
+            ConfigurarAcesso(false);
+            statusLabelUsername.Text = "";
+            frmLoginFuncionario loginFuncionario = new frmLoginFuncionario();
+            loginFuncionario.Owner = this;
+            loginFuncionario.Show();
+        }
+
+        private void frmTelaIncial_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Home)
+                return;
+
+            bool loginAberto = Application.OpenForms.OfType<frmLoginFuncionario>().Any();
+
+            if (loginAberto)
+                return;
+
+            var resultado = MessageBox.Show("Deseja realmente fazer logoff do sistema?\nAs tarefas não concluídas serão interrompidas.", "Confirmação de Logoff", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.Yes)
+            {
+                RealizarLogoff();
+            }
         }
     }
 }

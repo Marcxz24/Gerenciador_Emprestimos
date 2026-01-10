@@ -48,6 +48,24 @@ namespace Gerenciador_de_Emprestimos
             }
         }
 
+        public string ObterUsernamePorCodigo(int codigoFuncionario)
+        {
+            string sql = @"SELECT username
+                            FROM emprestimosbd.funcionario
+                            WHERE codigo = @codigo
+                            AND situacao_funcionario = 'ATIVO'";
+
+            using (var conexao = ConexaoBancoDeDados.Conectar())
+            using (var comando = new MySqlCommand(sql, conexao))
+            {
+                comando.Parameters.AddWithValue("@codigo", codigoFuncionario);
+                
+                object resultado = comando.ExecuteScalar();
+
+                return resultado == null ? null : resultado.ToString();
+            }
+        }
+
         public bool ValidarUsuarioInativo(string usermame)
         {
             string sql = @"SELECT COUNT(*) FROM emprestimosbd.funcionario 

@@ -78,6 +78,7 @@
             txtBoxUsername.Name = "txtBoxUsername";
             txtBoxUsername.Size = new Size(421, 27);
             txtBoxUsername.TabIndex = 3;
+            txtBoxUsername.Leave += txtBoxUsername_Leave;
             // 
             // txtBoxSenha
             // 

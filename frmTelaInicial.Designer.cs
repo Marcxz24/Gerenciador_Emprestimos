@@ -271,6 +271,7 @@
             Name = "frmTelaIncial";
             WindowState = FormWindowState.Maximized;
             Load += frmTelaIncial_Load;
+            KeyDown += frmTelaIncial_KeyDown;
             stsStripSistemVersion.ResumeLayout(false);
             stsStripSistemVersion.PerformLayout();
             MenuStripMenusSistema.ResumeLayout(false);
