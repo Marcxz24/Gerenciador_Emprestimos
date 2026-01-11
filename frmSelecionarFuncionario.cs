@@ -37,7 +37,7 @@ namespace Gerenciador_de_Emprestimos
 
             if (!string.IsNullOrWhiteSpace(txtCpfFuncionario.Text))
             {
-                cpf = txtCpfFuncionario.Text;
+                cpf = txtCpfFuncionario.Text.Replace(".","").Replace("-","").Trim();
             }
 
             if (!string.IsNullOrWhiteSpace(comboBoxGeneroCliente.Text))
@@ -52,7 +52,7 @@ namespace Gerenciador_de_Emprestimos
 
             if (!string.IsNullOrWhiteSpace(txtTelefoneFuncionario.Text))
             {
-                telefoneFuncionario = txtTelefoneFuncionario.Text;
+                telefoneFuncionario = txtTelefoneFuncionario.Text.Replace("(","").Replace(")","").Replace("-","").Trim();
             }
 
             if (!string.IsNullOrWhiteSpace(txtCidadeFuncionario.Text))
