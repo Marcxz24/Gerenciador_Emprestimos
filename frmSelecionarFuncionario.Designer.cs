@@ -277,6 +277,7 @@
             dataGridFuncionarios.RowHeadersWidth = 51;
             dataGridFuncionarios.Size = new Size(811, 462);
             dataGridFuncionarios.TabIndex = 10;
+            dataGridFuncionarios.CellDoubleClick += dataGridFuncionarios_CellDoubleClick;
             // 
             // frmSelecionarFuncionario
             // 

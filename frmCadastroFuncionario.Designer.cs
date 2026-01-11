@@ -126,6 +126,7 @@
             txtBoxSenha.ReadOnly = true;
             txtBoxSenha.Size = new Size(268, 27);
             txtBoxSenha.TabIndex = 10;
+            txtBoxSenha.UseSystemPasswordChar = true;
             // 
             // lblSenhaFuncionario
             // 

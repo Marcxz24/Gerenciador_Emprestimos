@@ -7,6 +7,7 @@ namespace Gerenciador_de_Emprestimos
 {
     public class SelecionarCliente
     {
+        // --- PROPRIEDADES: Representam as colunas da tabela 'cliente' no banco de dados ---
         public int codigo { get; set; }
         public string nome_cliente { get; set; }
         public string cpf_cnpj { get; set; }
@@ -22,33 +23,37 @@ namespace Gerenciador_de_Emprestimos
         public string email { get; set; }
         public string observacoes { get; set; }
         public string situacao_cadastral { get; set; }
-        // Imagens futuramente
+        // Imagens futuramente (Lembrete para expansão do código)
 
+        // --- MÉTODO ESTÁTICO: Obtém uma lista geral de clientes para preencher o DataGrid ---
         public static DataTable GetClientes(bool ATIVOS)
         {
             var dataTable = new DataTable();
 
+            // Query que seleciona apenas as colunas principais para visualização rápida na grade
             var sql = "SELECT codigo, nome_cliente, genero, celular, situacao_cadastral, cpf_cnpj FROM emprestimosbd.cliente;";
 
             try
             {
                 using (var conexao = ConexaoBancoDeDados.Conectar())
                 {
-                    conexao.Open();
+                    conexao.Open(); // Abre a conexão com o banco
                     using (var data = new MySqlDataAdapter(sql, conexao))
                     {
-                        data.Fill(dataTable);
+                        data.Fill(dataTable); // Preenche a tabela com os dados do SELECT
                     }
                 }
             }
             catch (Exception ex)
             {
+                // Exibe uma mensagem de erro caso ocorra falha na conexão ou na query
                 MessageBox.Show("Problema execução de Query SELECT no campo dataGrid", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return dataTable;
         }
 
+        // --- MÉTODO: Consulta os dados de um cliente específico e retorna em formato de DataTable ---
         public DataTable ConsultarClientePorCodigo(int CodigoCliente)
         {
             DataTable dataTable = new DataTable();
@@ -58,13 +63,14 @@ namespace Gerenciador_de_Emprestimos
             using (var conexao = ConexaoBancoDeDados.Conectar())
             using (var comando = new MySqlCommand(sqlConsulta, conexao))
             {
+                // Verifica se o código é válido antes de tentar a busca
                 if (CodigoCliente > 0)
                 {
                     comando.Parameters.AddWithValue("@codigo", CodigoCliente);
 
                     using (var data = new MySqlDataAdapter(comando))
                     {
-                        data.Fill(dataTable);
+                        data.Fill(dataTable); // Preenche o DataTable com todas as colunas do cliente
                     }
                 }
             }
@@ -72,6 +78,7 @@ namespace Gerenciador_de_Emprestimos
             return dataTable;
         }
 
+        // --- MÉTODO: Busca os dados de um cliente e retorna um Objeto da própria classe 'SelecionarCliente' ---
         public SelecionarCliente BuscarClientePorCodigo(int codigoCliente)
         {
             var sql = @"SELECT * FROM emprestimosbd.cliente WHERE codigo = @codigo";
@@ -79,10 +86,12 @@ namespace Gerenciador_de_Emprestimos
             using (var conexao = ConexaoBancoDeDados.Conectar())
             using (var comando = new MySqlCommand(sql, conexao))
             {
+
                 comando.Parameters.AddWithValue("codigo", codigoCliente);
 
                 using (var reader = comando.ExecuteReader())
                 {
+                    // Se encontrar o registro, lê os dados e mapeia para as propriedades do objeto
                     if (reader.Read())
                     {
                         return new SelecionarCliente
@@ -107,6 +116,7 @@ namespace Gerenciador_de_Emprestimos
                 }
             }
 
+            // Retorna null se nenhum cliente for encontrado com o código fornecido
             return null;
         }
     }

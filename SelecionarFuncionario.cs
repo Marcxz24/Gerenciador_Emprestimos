@@ -1,17 +1,14 @@
 ﻿using Gerenciador_de_Emprestimos.Database;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gerenciador_de_Emprestimos
 {
-    internal class SelecionarFuncionario
+    // Define a classe que representa tanto o modelo do Funcionário quanto os métodos de busca
+    public class SelecionarFuncionario
     {
-        public int codigo { get; set; }
+        // --- PROPRIEDADES: Mapeiam as colunas da tabela 'funcionario' do banco de dados ---
+        public int CodigoFuncionario { get; set; }
         public string nome_funcionario { get; set; }
         public string cpf_funcionario { get; set; }
         public string sexo_funcionario { get; set; }
@@ -22,25 +19,32 @@ namespace Gerenciador_de_Emprestimos
         public string cidade_funcionario { get; set; }
         public string situacao_funcionario { get; set; }
 
+        // --- MÉTODO: Busca um único funcionário pelo ID (Código) ---
         public SelecionarFuncionario SelecionarFuncionarioPorCodigo(int CodigoFuncionario)
         {
+            // Define a consulta SQL para buscar todas as colunas de um registro específico
             string sql = @"SELECT * FROM emprestimosbd.funcionario WHERE codigo = @codigo";
 
+            // Gerencia a abertura da conexão e do comando com 'using' para liberar recursos automaticamente
             using (var conexao = ConexaoBancoDeDados.Conectar())
             using (var comando = new MySqlCommand(sql, conexao))
             {
+                // Vincula o parâmetro @codigo ao valor recebido para prevenir SQL Injection
                 comando.Parameters.AddWithValue("@codigo", CodigoFuncionario);
 
+                // Executa o leitor de dados (DataReader)
                 using (var reader = comando.ExecuteReader())
                 {
+                    // Se o banco não encontrar nenhum registro, retorna nulo
                     if (!reader.Read())
                     {
                         return null;
                     }
 
+                    // Cria uma nova instância da classe e preenche as propriedades com os dados do banco
                     return new SelecionarFuncionario
                     {
-                        codigo = reader.GetInt32("codigo"),
+                        CodigoFuncionario = reader.GetInt32("codigo"),
                         nome_funcionario = reader.GetString("nome_funcionario"),
                         cpf_funcionario = reader.GetString("cpf_funcionario"),
                         sexo_funcionario = reader.GetString("sexo_funcionario"),
@@ -55,24 +59,30 @@ namespace Gerenciador_de_Emprestimos
             }
         }
 
+        // --- MÉTODO: Retorna uma tabela (DataTable) filtrada para exibir no DataGridView ---
         public DataTable ListarFuncionarios(int Codigo, string nomeFuncionario, string cpf, string sexo, string estadoCivil, string telefoneFuncionario, string cidadeFuncionario, string situacaoFuncionario)
         {
+            // Instancia a tabela que armazenará os resultados na memória
             DataTable dataTable = new DataTable();
 
+            // Consulta SQL base (sem filtros)
             string sql = @"SELECT 
-                                codigo, 
-                                nome_funcionario, 
-                                cpf_funcionario, 
-                                sexo_funcionario, 
-                                funcionario_estado_civil, 
-                                username, 
-                                telefone_funcionario, 
-                                cidade_funcionario, 
-                                situacao_funcionario 
-                            FROM emprestimosbd.funcionario";
-                           
+                            codigo, 
+                            nome_funcionario, 
+                            cpf_funcionario, 
+                            sexo_funcionario, 
+                            funcionario_estado_civil, 
+                            username, 
+                            telefone_funcionario, 
+                            cidade_funcionario, 
+                            situacao_funcionario 
+                        FROM emprestimosbd.funcionario";
+
+            // Inicializa a cláusula WHERE. O '1 = 1' serve para facilitar a concatenação de múltiplos 'AND'
             string sqlFiltros = @" WHERE 1 = 1";
 
+            // --- CONSTRUÇÃO DINÂMICA DO SQL ---
+            // Verifica cada parâmetro; se contiver valor, adiciona a linha correspondente ao comando SQL
             if (Codigo > 0)
             {
                 sqlFiltros += " AND codigo = @codigo";
@@ -97,12 +107,12 @@ namespace Gerenciador_de_Emprestimos
             {
                 sqlFiltros += " AND funcionario_estado_civil = @funcionario_estado_civil";
             }
-            
+
             if (!string.IsNullOrWhiteSpace(telefoneFuncionario))
             {
                 sqlFiltros += " AND telefone_funcionario = @telefone_funcionario";
             }
-            
+
             if (!string.IsNullOrWhiteSpace(cidadeFuncionario))
             {
                 sqlFiltros += " AND cidade_funcionario = @cidade_funcionario";
@@ -113,11 +123,14 @@ namespace Gerenciador_de_Emprestimos
                 sqlFiltros += " AND situacao_funcionario = @situacao_funcionario";
             }
 
+            // Junta a base da query com os filtros gerados
             string sqlFinal = sql + sqlFiltros;
 
             using (var conexao = ConexaoBancoDeDados.Conectar())
             using (var comando = new MySqlCommand(sqlFinal, conexao))
             {
+                // --- ATRIBUIÇÃO DE PARÂMETROS AO COMANDO ---
+                // Repete as verificações para garantir que apenas parâmetros necessários sejam enviados ao banco
                 if (Codigo > 0)
                 {
                     comando.Parameters.AddWithValue("@codigo", Codigo);
@@ -125,6 +138,7 @@ namespace Gerenciador_de_Emprestimos
 
                 if (!string.IsNullOrWhiteSpace(nomeFuncionario))
                 {
+                    // Adiciona os símbolos de porcentagem para busca parcial (LIKE)
                     comando.Parameters.AddWithValue("@nome_funcionario", "%" + nomeFuncionario + "%");
                 }
 
@@ -142,12 +156,12 @@ namespace Gerenciador_de_Emprestimos
                 {
                     comando.Parameters.AddWithValue("@funcionario_estado_civil", estadoCivil);
                 }
-                
+
                 if (!string.IsNullOrWhiteSpace(telefoneFuncionario))
                 {
                     comando.Parameters.AddWithValue("@telefone_funcionario", telefoneFuncionario);
                 }
-                
+
                 if (!string.IsNullOrWhiteSpace(cidadeFuncionario))
                 {
                     comando.Parameters.AddWithValue("@cidade_funcionario", cidadeFuncionario);
@@ -158,12 +172,14 @@ namespace Gerenciador_de_Emprestimos
                     comando.Parameters.AddWithValue("@situacao_funcionario", situacaoFuncionario);
                 }
 
+                // O DataAdapter executa o comando e preenche o DataTable de uma só vez
                 using (var dataAdapter = new MySqlDataAdapter(comando))
                 {
                     dataAdapter.Fill(dataTable);
                 }
             }
 
+            // Retorna o objeto DataTable pronto para ser usado como DataSource do Grid
             return dataTable;
         }
     }

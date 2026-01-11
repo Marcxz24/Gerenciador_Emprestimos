@@ -12,15 +12,19 @@ namespace Gerenciador_de_Emprestimos
 {
     internal class EmprestimosConsulta
     {
+        // --- MÉTODO: Consulta flexível com múltiplos filtros ---
         public DataTable ConsultaEmprestimos(int? CodigoCliente, string NomeCliente, string StatusEmprestimo, decimal ValorEmprestado, decimal ValorParcela, decimal ValorJurosMonetario, int? QtnParcela, decimal ValorTotal)
         {
             DataTable dataTable = new DataTable();
 
+            // SQL Base: Busca dados do empréstimo e faz um JOIN para trazer o nome do cliente
             string sql = $@"SELECT e.codigo, e.codigo_cliente, c.nome_cliente, e.valor_emprestado, e.valor_emprestado_total AS valor_total, e.quantidade_parcela, e.valor_parcela, e.valor_juros, e.status_emprestimo 
-                            FROM emprestimosbd.emprestimos e LEFT JOIN emprestimosbd.cliente c ON e.codigo_cliente = c.codigo";
+                        FROM emprestimosbd.emprestimos e LEFT JOIN emprestimosbd.cliente c ON e.codigo_cliente = c.codigo";
 
+            // Técnica "WHERE 1 = 1": Facilita a concatenação de filtros adicionais com "AND"
             string sqlFiltros = " WHERE 1 = 1";
 
+            // Verificações condicionais: Se o parâmetro foi preenchido, adiciona a restrição no SQL
             if (CodigoCliente.HasValue)
             {
                 sqlFiltros += " AND e.codigo_cliente = @codigo_cliente";
@@ -61,11 +65,14 @@ namespace Gerenciador_de_Emprestimos
                 sqlFiltros += " AND e.valor_emprestado_total = @valor_emprestado_total";
             }
 
+            // Monta a Query final
             string sqlFinal = sql + sqlFiltros;
 
             using (var conexao = ConexaoBancoDeDados.Conectar())
             using (var comando = new MySqlCommand(sqlFinal, conexao))
             {
+                // Vinculação de parâmetros (Parameters.AddWithValue) para prevenir SQL Injection
+                // Repete as mesmas condições acima para alimentar os valores dos parâmetros
                 if (CodigoCliente.HasValue)
                 {
                     comando.Parameters.AddWithValue("@codigo_cliente", CodigoCliente);
@@ -73,6 +80,7 @@ namespace Gerenciador_de_Emprestimos
 
                 if (!string.IsNullOrEmpty(NomeCliente))
                 {
+                    // Dica: Se quiser busca parcial, use NomeCliente + "%" aqui
                     comando.Parameters.AddWithValue("@nome_cliente", NomeCliente);
                 }
 
@@ -106,6 +114,7 @@ namespace Gerenciador_de_Emprestimos
                     comando.Parameters.AddWithValue("@valor_emprestado_total", ValorTotal);
                 }
 
+                // O DataAdapter preenche o DataTable de uma só vez para ser usado no DataGridView
                 using (var dataAdapter = new MySqlDataAdapter(comando))
                 {
                     dataAdapter.Fill(dataTable);
@@ -114,6 +123,7 @@ namespace Gerenciador_de_Emprestimos
             return dataTable;
         }
 
+        // --- MÉTODO: Consulta específica para um único empréstimo ---
         public DataTable ConsultaEmprestimosPorCodigo(int codigoEmprestimo)
         {
             DataTable dataTable = new DataTable();

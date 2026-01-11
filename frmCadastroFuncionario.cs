@@ -38,6 +38,7 @@
                 comboBoxEstadoCivil.SelectedIndex = -1;
 
                 // Limpa o texto de todas as TextBoxes
+                txtBoxCodigo.Clear();
                 txtBoxNomeFuncionario.Clear();
                 txtBoxCpfFuncionario.Clear();
                 txtBoxCidadeFuncionario.Clear();
@@ -201,10 +202,42 @@
             Funcoes.PrimeiraLetraMaiuscula(txtBoxCidadeFuncionario);
         }
 
+        // Declaração do método que trata o clique no botão de pesquisar funcionário
         private void btnPesquisarFuncionario_Click(object sender, EventArgs e)
         {
-            frmSelecionarFuncionario selecionarFuncionario = new frmSelecionarFuncionario();
-            selecionarFuncionario.ShowDialog();
+            // Cria uma instância do formulário de seleção usando 'using' para garantir que 
+            // a memória do formulário seja liberada (Dispose) assim que sair deste bloco
+            using (var frmSelecionarFuncionario = new frmSelecionarFuncionario())
+            {
+                // Abre o formulário como uma janela modal (ShowDialog) e verifica 
+                // se o usuário confirmou a seleção (clicou em OK ou selecionou alguém)
+                if (frmSelecionarFuncionario.ShowDialog() == DialogResult.OK)
+                {
+                    // Recupera o objeto 'Funcionario' que foi guardado em uma propriedade 
+                    // pública dentro do formulário de seleção
+                    var funcionario = frmSelecionarFuncionario.FuncionarioSelecionado;
+
+                    // Preenche os campos da tela principal convertendo os valores do objeto para String
+                    txtBoxCodigo.Text = funcionario.CodigoFuncionario.ToString();
+                    txtBoxNomeFuncionario.Text = funcionario.nome_funcionario.ToString();
+                    txtBoxCpfFuncionario.Text = funcionario.cpf_funcionario.ToString();
+
+                    // Define o texto dos ComboBoxes com base nos dados do funcionário
+                    comboBoxSexoFuncionario.Text = funcionario.sexo_funcionario.ToString();
+                    comboBoxEstadoCivil.Text = funcionario.funcionario_estado_civil.ToString();
+
+                    // Continua o preenchimento dos campos de texto (Usuário, Telefone e Cidade)
+                    txtBoxUsername.Text = funcionario.username.ToString();
+                    txtBoxTelefoneFuncionario.Text = funcionario.telefone_funcionario.ToString();
+                    txtBoxCidadeFuncionario.Text = funcionario.cidade_funcionario.ToString();
+
+                    // Define a situação cadastral no ComboBox
+                    comboBoxSituacao.Text = funcionario.situacao_funcionario.ToString();
+
+                    // Preenche o campo de senha (geralmente o Hash armazenado)
+                    txtBoxSenha.Text = funcionario.senha_hash.ToString();
+                }
+            } // Aqui o formulário 'frmSelecionarFuncionario' é destruído da memória
         }
     }
 }

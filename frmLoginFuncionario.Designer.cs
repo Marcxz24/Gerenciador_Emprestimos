@@ -86,6 +86,7 @@
             txtBoxSenha.Name = "txtBoxSenha";
             txtBoxSenha.Size = new Size(421, 27);
             txtBoxSenha.TabIndex = 4;
+            txtBoxSenha.UseSystemPasswordChar = true;
             // 
             // btnLogarUsuario
             // 

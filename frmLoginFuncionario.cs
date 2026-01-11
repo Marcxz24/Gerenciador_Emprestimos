@@ -69,8 +69,6 @@ namespace Gerenciador_de_Emprestimos
 
             if (sucessoLogin)
             {
-                Funcoes.MensagemInformation("Login Realizado com sucesso!");
-
                 LoginRealizado = true;
 
                 if (this.Owner is frmTelaIncial telaPrincipal)

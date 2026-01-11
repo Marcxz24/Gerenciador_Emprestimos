@@ -4,6 +4,9 @@ namespace Gerenciador_de_Emprestimos
 {
     public partial class frmSelecionarFuncionario : Form
     {
+        public SelecionarFuncionario FuncionarioSelecionado { get; private set; }
+
+
         public frmSelecionarFuncionario()
         {
             InitializeComponent();
@@ -37,7 +40,7 @@ namespace Gerenciador_de_Emprestimos
 
             if (!string.IsNullOrWhiteSpace(txtCpfFuncionario.Text))
             {
-                cpf = txtCpfFuncionario.Text.Replace(".","").Replace("-","").Trim();
+                cpf = txtCpfFuncionario.Text.Replace(".", "").Replace("-", "").Trim();
             }
 
             if (!string.IsNullOrWhiteSpace(comboBoxGeneroCliente.Text))
@@ -52,7 +55,7 @@ namespace Gerenciador_de_Emprestimos
 
             if (!string.IsNullOrWhiteSpace(txtTelefoneFuncionario.Text))
             {
-                telefoneFuncionario = txtTelefoneFuncionario.Text.Replace("(","").Replace(")","").Replace("-","").Trim();
+                telefoneFuncionario = txtTelefoneFuncionario.Text.Replace("(", "").Replace(")", "").Replace("-", "").Trim();
             }
 
             if (!string.IsNullOrWhiteSpace(txtCidadeFuncionario.Text))
@@ -86,6 +89,21 @@ namespace Gerenciador_de_Emprestimos
         private void btnFecharForm_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void dataGridFuncionarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            int codigoFuncionario = Convert.ToInt32(dataGridFuncionarios.Rows[e.RowIndex].Cells["codigo"].Value);
+
+            var service = new SelecionarFuncionario();
+
+            FuncionarioSelecionado = service.SelecionarFuncionarioPorCodigo(codigoFuncionario);
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }

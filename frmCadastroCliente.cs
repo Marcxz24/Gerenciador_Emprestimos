@@ -5,8 +5,6 @@ namespace Gerenciador_de_Emprestimos
 {
     public partial class FormCadastroCliente : Form
     {
-        private string _codigoClienete;
-
         private bool _EditarCadastro;
 
         public FormCadastroCliente()
