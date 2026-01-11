@@ -86,6 +86,45 @@ namespace Gerenciador_de_Emprestimos
             }
         }
 
+        public void EditarCdastroFuncionario(int codigo, string nome, string cpf, string sexo, string estadoCivil, string username, string telefone, string cidade, string situacao)
+        {
+            string sql = @"
+                           UPDATE emprestimosbd.funcionario
+                           SET
+	                            nome_funcionario = @nome_funcionario,
+                                cpf_funcionario = @cpf_funcionario,
+                                sexo_funcionario = @sexo_funcionario,
+                                funcionario_estado_civil = @funcionario_estado_civil, 
+                                username = @username,  
+                                telefone_funcionario = @telefone_funcionario, 
+                                cidade_funcionario = @cidade_funcionario, 
+                                situacao_funcionario = @situacao_funcionario
+                           WHERE codigo = @codigo";
+
+            try 
+            {
+                using (var conexao = ConexaoBancoDeDados.Conectar())
+                using (var comando = new MySqlCommand(sql, conexao))
+                {
+                    comando.Parameters.AddWithValue("@codigo", codigo);
+                    comando.Parameters.AddWithValue("@nome_funcionario", nome);
+                    comando.Parameters.AddWithValue("@cpf_funcionario", cpf);
+                    comando.Parameters.AddWithValue("@sexo_funcionario", sexo);
+                    comando.Parameters.AddWithValue("@funcionario_estado_civil", estadoCivil);
+                    comando.Parameters.AddWithValue("@username", username);
+                    comando.Parameters.AddWithValue("@telefone_funcionario", telefone);
+                    comando.Parameters.AddWithValue("@cidade_funcionario", cidade);
+                    comando.Parameters.AddWithValue("@situacao_funcionario", situacao);
+
+                    comando.ExecuteNonQuery();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Funcoes.MensagemErro("Erro ao editar cadastro do funcionário: " +  ex.Message);
+            }
+        }
+
         // --- MÉTODO: Verifica se o CPF informado já pertence a algum funcionário ---
         public bool CpfJaCadastrado(string cpf)
         {

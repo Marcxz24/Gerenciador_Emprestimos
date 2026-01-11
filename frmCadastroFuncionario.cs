@@ -1,7 +1,12 @@
-﻿namespace Gerenciador_de_Emprestimos
+﻿using iText.StyledXmlParser.Jsoup.Nodes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+
+namespace Gerenciador_de_Emprestimos
 {
     public partial class frmCadastroFuncionario : Form
     {
+        private bool _EditarCadastro;
+
         // Construtor do formulário de cadastro de funcionário
         public frmCadastroFuncionario()
         {
@@ -128,6 +133,8 @@
         // Evento do botão para iniciar um novo cadastro de funcionário
         private void btnNovoCadastro_Click(object sender, EventArgs e)
         {
+            _EditarCadastro = false;
+
             GerenciarBotoesCampos(OcultarBotoes: true, ManifestarBotoes: true, LimparCampos: true);
         }
 
@@ -140,54 +147,20 @@
         // Evento do botão para salvar o cadastro de funcionário
         private void btnSalvarCadastro_Click(object sender, EventArgs e)
         {
-            // Valida os campos do formulário antes de prosseguir com o cadastro
-            if (validacoesCampos() == true)
+            // Se for um novo cadastro, valida todos os campos obrigatórios
+            if (!_EditarCadastro)
             {
-                return;
-            }
-
-            // Cria uma nova instância da classe Funcionario para realizar o cadastro
-            Funcionario funcionario = new Funcionario();
-
-            // Coleta os dados dos campos do formulário
-            string? nome = txtBoxNomeFuncionario.Text;
-            string? situacao = comboBoxSituacao.Text;
-            string? cpf = txtBoxCpfFuncionario.Text;
-            string? sexo = comboBoxSexoFuncionario.Text;
-            string? estadoCivil = comboBoxEstadoCivil.Text;
-            string? username = txtBoxUsername.Text;
-            string? telefone = txtBoxTelefoneFuncionario.Text;
-            string senhaHash = Seguranca.GerarHashSenha(txtBoxSenha.Text);
-            string? cidade = txtBoxCidadeFuncionario.Text;
-
-            // Verifica se o CPF já está cadastrado no sistema
-            if (funcionario.CpfJaCadastrado(cpf))
-            {
-                Funcoes.MensagemWarning("Já existe um funcionário com este CPF cadastrado.");
-                return;
-            }
-
-            // Tenta cadastrar o funcionário com os dados fornecidos
-            try
-            {
-                // Chama o método CadastrarFuncionario da classe Funcionario
-                bool sucesso = funcionario.CadastrarFuncionario(nome, cpf, sexo, estadoCivil, username, senhaHash, telefone, cidade, situacao);
-
-                // Se o cadastro foi bem-sucedido, exibe uma mensagem de sucesso
-                if (sucesso)
+                if (validacoesCampos() == true)
                 {
-                    Funcoes.MensagemInformation("Funcionário cadastrado com sucesso!");
+                    return;
                 }
+            }
 
-                // Após o cadastro, gerencia os botões e campos da tela
-                GerenciarBotoesCampos(OcultarBotoes: false, ManifestarBotoes: false, LimparCampos: false);
-            }
-            // Em caso de qualquer exceção durante o processo de cadastro, captura a exceção
-            catch (Exception ex)
-            {
-                // Em caso de erro durante o cadastro, exibe uma mensagem de erro
-                Funcoes.MensagemWarning("Houve um erro ao realizar o cadastro" + ex);
-            }
+            // Chama o método centralizado que decide entre Inserir ou Editar
+            SalvarCadastroFuncionario();
+
+            // Após salvar, bloqueia os campos e volta a exibir os botões principais
+            GerenciarBotoesCampos(OcultarBotoes: false, ManifestarBotoes: false, LimparCampos: false);
         }
 
         // Função para colocar a primeira letra em maiúscula no campo Nome do Funcionário
@@ -238,6 +211,174 @@
                     txtBoxSenha.Text = funcionario.senha_hash.ToString();
                 }
             } // Aqui o formulário 'frmSelecionarFuncionario' é destruído da memória
+        }
+
+        // Método responsável pelo INSERT de um novo funcionário
+        private void InserirNovoCadastroFuncionario()
+        {
+            if (!_EditarCadastro)
+            {
+                // Valida os campos do formulário antes de prosseguir com o cadastro
+                if (validacoesCampos() == true)
+                {
+                    return;
+                }
+            }
+
+            // Cria uma nova instância da classe Funcionario para realizar o cadastro
+            Funcionario funcionario = new Funcionario();
+
+            // Coleta os dados dos campos do formulário
+            string? nome = txtBoxNomeFuncionario.Text;
+            string? situacao = comboBoxSituacao.Text;
+            string? cpf = txtBoxCpfFuncionario.Text;
+            string? sexo = comboBoxSexoFuncionario.Text;
+            string? estadoCivil = comboBoxEstadoCivil.Text;
+            string? username = txtBoxUsername.Text;
+            string? telefone = txtBoxTelefoneFuncionario.Text;
+            string senhaHash = Seguranca.GerarHashSenha(txtBoxSenha.Text);
+            string? cidade = txtBoxCidadeFuncionario.Text;
+
+            // Verifica se o CPF já está cadastrado no sistema
+            if (funcionario.CpfJaCadastrado(cpf))
+            {
+                Funcoes.MensagemWarning("Já existe um funcionário com este CPF cadastrado.");
+                return;
+            }
+
+            // Tenta cadastrar o funcionário com os dados fornecidos
+            try
+            {
+                // Chama o método CadastrarFuncionario da classe Funcionario
+                bool sucesso = funcionario.CadastrarFuncionario(nome, cpf, sexo, estadoCivil, username, senhaHash, telefone, cidade, situacao);
+
+                // Se o cadastro foi bem-sucedido, exibe uma mensagem de sucesso
+                if (sucesso)
+                {
+                    Funcoes.MensagemInformation("Funcionário cadastrado com sucesso!");
+                }
+
+                // Após o cadastro, gerencia os botões e campos da tela
+                GerenciarBotoesCampos(OcultarBotoes: false, ManifestarBotoes: false, LimparCampos: false);
+            }
+            // Em caso de qualquer exceção durante o processo de cadastro, captura a exceção
+            catch (Exception ex)
+            {
+                // Em caso de erro durante o cadastro, exibe uma mensagem de erro
+                Funcoes.MensagemWarning("Houve um erro ao realizar o cadastro" + ex);
+            }
+        }
+
+        // Método responsável pelo UPDATE de um funcionário existente
+        private void EditarCadastroFuncionario()
+        {
+            _EditarCadastro = true;
+
+            // Verifica se há um código carregado, garantindo que um funcionário foi selecionado via pesquisa
+            if (string.IsNullOrWhiteSpace(txtBoxCodigo.Text))
+            {
+                Funcoes.MensagemWarning("Não é possível Editar um Cadastro sem o funcionário selecionado.");
+                return;
+            }
+
+            // Variáveis locais para armazenar os dados atualizados
+            int codigoFuncionario = 0;
+            string? nomeFuncionario = null;
+            string? cpf = null;
+            string? sexo = null;
+            string? estadoCivil = null;
+            string? username = null;
+            string? telefone = null;
+            string? cidade = null;
+            string? situacao = null;
+
+            // Executa as validações de preenchimento antes de enviar ao banco
+            if (validacoesCampos() == true)
+            {
+                return;
+            }
+
+            // Converte o código da tela para Inteiro
+            if (int.TryParse(txtBoxCodigo.Text, out int codFuncionario))
+            {
+                codigoFuncionario = codFuncionario;
+            }
+
+            // Atribui os valores dos controles às variáveis
+            if (!string.IsNullOrWhiteSpace(txtBoxNomeFuncionario.Text))
+            {
+                nomeFuncionario = txtBoxNomeFuncionario.Text;
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtBoxCpfFuncionario.Text))
+            {
+                cpf = txtBoxCpfFuncionario.Text;
+            }
+
+            if (!string.IsNullOrWhiteSpace(comboBoxSexoFuncionario.Text))
+            {
+                sexo = comboBoxSexoFuncionario.Text;
+            }
+
+            if (!string.IsNullOrWhiteSpace(comboBoxEstadoCivil.Text))
+            {
+                estadoCivil = comboBoxEstadoCivil.Text;
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtBoxUsername.Text))
+            {
+                username = txtBoxUsername.Text;
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtBoxTelefoneFuncionario.Text))
+            {
+                telefone = txtBoxTelefoneFuncionario.Text;
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtBoxCidadeFuncionario.Text))
+            {
+                cidade = txtBoxCidadeFuncionario.Text;
+            }
+
+            if (!string.IsNullOrWhiteSpace(comboBoxSituacao.Text))
+            {
+                situacao = comboBoxSituacao.Text;
+            }
+
+            // Instancia a classe de negócio e executa o comando de atualização
+            Funcionario funcionario = new Funcionario();
+            funcionario.EditarCdastroFuncionario(codigoFuncionario, nomeFuncionario, cpf, sexo, estadoCivil, username, telefone, cidade, situacao);
+        }
+
+        // Método que atua como um "roteador": decide se deve Chamar a Inserção ou a Edição
+        private void SalvarCadastroFuncionario()
+        {
+            // Se a flag de edição for verdadeira, chama o método de Update
+            if (_EditarCadastro == true)
+            {
+                EditarCadastroFuncionario();
+            }
+            else
+            {
+                // Caso contrário, trata-se de um novo registro
+                InserirNovoCadastroFuncionario();
+            }
+        }
+
+        // Evento do botão Editar (Prepara a tela para edição)
+        private void btnEditarCadastro_Click(object sender, EventArgs e)
+        {
+            _EditarCadastro = true;
+
+            // Valida se o usuário primeiro selecionou alguém antes de clicar em Editar
+            if (string.IsNullOrWhiteSpace(txtBoxCodigo.Text))
+            {
+                Funcoes.MensagemWarning("Não é possível Editar um Cadastro sem o funcionário selecionado.");
+                return;
+            }
+
+            // Libera os campos para alteração mas não limpa os dados existentes
+            GerenciarBotoesCampos(OcultarBotoes: true, ManifestarBotoes: true, LimparCampos: false);
         }
     }
 }

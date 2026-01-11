@@ -351,6 +351,7 @@
             btnEditarCadastro.Text = "Editar";
             btnEditarCadastro.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEditarCadastro.UseVisualStyleBackColor = false;
+            btnEditarCadastro.Click += btnEditarCadastro_Click;
             // 
             // btnPesquisarFuncionario
             // 
