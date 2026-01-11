@@ -55,57 +55,70 @@ namespace Gerenciador_de_Emprestimos
             return false;
         }
 
-        /// Evento disparado ao clicar no botão de "Logar".
+        // Evento disparado ao clicar no botão de "Logar".
         private void btnLogarUsuario_Click(object sender, EventArgs e)
         {
-            // Chama o método de validação. 
+            // Chama o método de validação interna (verifica se os campos estão vazios)
             // Se retornar true (erro), o 'return' abaixo interrompe a execução do login.
             if (ValidarCampos())
             {
                 return; // Sai do método e não prossegue com o processo de autenticação
             }
 
+            // Tenta realizar o login chamando a camada de serviço (LoginService)
+            // O parâmetro 'out' recupera o código do funcionário caso o login seja bem-sucedido
             bool sucessoLogin = login.LoginUsuario(txtBoxUsername.Text, txtBoxSenha.Text, out int codigoFuncionario);
 
             if (sucessoLogin)
             {
                 LoginRealizado = true;
 
+                // VERIFICAÇÃO DE HIERARQUIA: Tenta encontrar o formulário "pai" (Tela Inicial)
+                // Isso permite que o login "avise" a tela principal quem entrou no sistema
                 if (this.Owner is frmTelaIncial telaPrincipal)
                 {
+                    // Atualiza o nome do usuário no rodapé/cabeçalho da tela principal
                     telaPrincipal.AtualizarUsuarioLogado(txtBoxUsername.Text);
+
+                    // Libera os menus e botões do sistema que estavam bloqueados
                     telaPrincipal.ConfigurarAcesso(true);
                 }
 
-                this.Close(); // Fecha o formulário de login
+                this.Close(); // Fecha o formulário de login após o sucesso
             }
             else
             {
+                // Se a senha ou usuário estiverem errados, exibe mensagem padrão
                 Funcoes.MensagemErro("Falha no Login! Usuário ou Senha incorretos!");
             }
         }
 
+        // --- EVENTO: Acionado quando o cursor sai do campo de Usuário (Leave) ---
         private void txtBoxUsername_Leave(object sender, EventArgs e)
         {
             string textoDigitado = txtBoxUsername.Text.Trim();
 
+            // Se o que foi digitado não for um número (ID do funcionário), 
+            // entende-se que o usuário digitou o próprio "username" e não faz nada.
             if (!int.TryParse(textoDigitado, out int codigoFuncionario))
             {
                 return;
             }
 
+            // Se for um número, o sistema tenta buscar o nome de usuário vinculado àquele ID
             LoginService login = new LoginService();
-
             string username = login.ObterUsernamePorCodigo(codigoFuncionario);
 
+            // Se a busca não retornar nada, avisa que o código é inválido ou o funcionário está bloqueado
             if (string.IsNullOrEmpty(username))
             {
                 Funcoes.MensagemWarning("Funcionário não encontrado ou INATIVO no Sistema.");
                 txtBoxUsername.Clear();
-                txtBoxUsername.Focus();
+                txtBoxUsername.Focus(); // Devolve o cursor para o campo para correção
                 return;
             }
 
+            // Preenche automaticamente o campo com o nome de usuário encontrado
             txtBoxUsername.Text = username;
         }
     }

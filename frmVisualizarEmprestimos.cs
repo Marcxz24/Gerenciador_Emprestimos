@@ -7,11 +7,15 @@ namespace Gerenciador_de_Emprestimos
 {
     public partial class frmVisualizarEmprestimos : Form
     {
+        // Propriedade para armazenar o ID do empréstimo selecionado via duplo clique
         public int CodigoEmprestimoSelecionado { get; set; }
 
         public frmVisualizarEmprestimos()
         {
             InitializeComponent();
+
+            // --- RESTRIÇÕES DE ENTRADA ---
+            // Aplica validações de teclado para garantir a integridade dos dados numéricos e decimais
             txtCodigoCliente.KeyPress += Funcoes.SomenteNumeros_KeyPress;
             txtCpfCnpjCliente.KeyPress += Funcoes.SomenteNumeros_KeyPress;
             txtValorEmprestado.KeyPress += Funcoes.SomenteNumerosComVirgula_KeyPress;
@@ -21,6 +25,7 @@ namespace Gerenciador_de_Emprestimos
             txtValorTotal.KeyPress += Funcoes.SomenteNumerosComVirgula_KeyPress;
         }
 
+        // --- EVENTO: Busca e popula os campos de cliente através de uma tela de seleção ---
         private void btnPesquisarCliente_Click(object sender, EventArgs e)
         {
             using (var frmSelecionarCliente = new frmSelecionarCliente())
@@ -36,6 +41,7 @@ namespace Gerenciador_de_Emprestimos
             }
         }
 
+        // --- MÉTODO: Valida se existem dados na grade antes de processar relatórios ---
         private bool ValidacaoDataGridVazio()
         {
             if (dataGridEmprestimos.Rows.Count == 0 || (dataGridEmprestimos.Rows.Count == 1 && dataGridEmprestimos.Rows[0].IsNewRow))
@@ -47,10 +53,12 @@ namespace Gerenciador_de_Emprestimos
             return false;
         }
 
+        // --- EVENTO: Realiza a pesquisa de empréstimos com base nos filtros preenchidos ---
         private void btnVisualizarEmprestimos_Click(object sender, EventArgs e)
         {
             EmprestimosConsulta consultaEmprestimos = new EmprestimosConsulta();
 
+            // Variáveis de apoio para os filtros
             int? CodigoCliente = null;
             string? NomeCliente = null;
             int? QtnParcela = null;
@@ -60,56 +68,39 @@ namespace Gerenciador_de_Emprestimos
             decimal ValorTotal = 0;
             string StatusEmprestimo = string.Empty;
 
+            // Conversão dos campos de texto para os tipos de dados da consulta
             if (!string.IsNullOrWhiteSpace(txtCodigoCliente.Text))
-            {
                 CodigoCliente = int.Parse(txtCodigoCliente.Text);
-            }
 
             if (!string.IsNullOrWhiteSpace(txtNomeCliente.Text))
-            {
                 NomeCliente = txtNomeCliente.Text;
-            }
 
             if (!string.IsNullOrWhiteSpace(txtQtnParcela.Text))
-            {
                 QtnParcela = int.Parse(txtQtnParcela.Text);
-            }
 
             if (!string.IsNullOrWhiteSpace(txtValorEmprestado.Text))
-            {
                 ValorEmprestado = decimal.Parse(txtValorEmprestado.Text);
-            }
 
             if (!string.IsNullOrWhiteSpace(txtValorJurosMonetario.Text))
-            {
                 ValorJurosMonetario = decimal.Parse(txtValorJurosMonetario.Text);
-            }
 
             if (!string.IsNullOrWhiteSpace(txtValorDaParcela.Text))
-            {
                 ValorParcela = decimal.Parse(txtValorDaParcela.Text);
-            }
 
             if (!string.IsNullOrWhiteSpace(txtValorTotal.Text))
-            {
                 ValorTotal = decimal.Parse(txtValorTotal.Text);
-            }
 
             if (!string.IsNullOrWhiteSpace(comboBoxStatusEmprestimo.Text))
-            {
                 StatusEmprestimo = comboBoxStatusEmprestimo.Text;
-            }
 
+            // Executa a busca no banco e vincula ao DataGrid
             DataTable dataTable = consultaEmprestimos.ConsultaEmprestimos(CodigoCliente, NomeCliente, StatusEmprestimo, ValorEmprestado, ValorParcela, ValorJurosMonetario, QtnParcela, ValorTotal);
-
             dataGridEmprestimos.DataSource = dataTable;
         }
 
-        private void btnFechar_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        private void btnFechar_Click(object sender, EventArgs e) => Close();
 
+        // --- EVENTO: Reseta todos os campos de filtro e limpa a grade ---
         private void btnLimparDados_Click(object sender, EventArgs e)
         {
             txtCodigoCliente.Clear();
@@ -125,19 +116,16 @@ namespace Gerenciador_de_Emprestimos
             dataGridEmprestimos.DataSource = null;
         }
 
+        // --- EVENTO: Consolida os dados da grade e gera um relatório em PDF ---
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            if (ValidacaoDataGridVazio())
-            {
-                return;
-            }
+            if (ValidacaoDataGridVazio()) return;
 
             DataTable tabela = (DataTable)dataGridEmprestimos.DataSource;
-
             GeradorRelatorio relatorio = new GeradorRelatorio();
 
+            // Cálculos de somatória para o rodapé do relatório
             int totalDeLinhas = dataGridEmprestimos.Rows.Cast<DataGridViewRow>().Count(r => !r.IsNewRow);
-
             decimal somarValorTotal = 0;
             decimal somarValorEmprestado = 0;
 
@@ -150,13 +138,16 @@ namespace Gerenciador_de_Emprestimos
                 }
             }
 
+            // Passa os valores consolidados para a classe de relatório
             relatorio.ValorTotalReceber = somarValorTotal;
             relatorio.NumeroDeRegistros = totalDeLinhas;
             relatorio.ValorTotalEmprestado = somarValorEmprestado;
 
+            // Gera o arquivo final
             relatorio.RelatorioEmprestimoPdf(tabela);
         }
 
+        // --- EVENTO: Captura o código do empréstimo selecionado e fecha com sucesso ---
         private void dataGridEmprestimos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             CodigoEmprestimoSelecionado = Convert.ToInt32(dataGridEmprestimos.CurrentRow.Cells["codigo"].Value);
