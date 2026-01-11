@@ -50,6 +50,13 @@ namespace Gerenciador_de_Emprestimos
 
             logoffToolStripMenuItem.Enabled = logado;
             logoffToolStripMenuItem.Visible = logado;
+
+            picBoxLogoSistema.Visible = logado;
+            picBoxLogoSistema2.Visible = logado;
+
+            lblTituloInicial.Visible = logado;
+            lblTituloInicial.BringToFront();
+            lblTituloSistemas.Visible = logado;
         }
 
 

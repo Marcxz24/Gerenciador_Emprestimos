@@ -118,266 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lblTituloInicial.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 24pt, style=Bold</value>
-  </data>
-  <data name="lblTituloInicial.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1341, 747</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lblTituloInicial.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="lblTituloInicial.Size" type="System.Drawing.Size, System.Drawing">
-    <value>574, 46</value>
-  </data>
-  <data name="toolStripUserName.Text" xml:space="preserve">
-    <value>Usuário:</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="toolStsStripSistemVersion.RightToLeftAutoMirrorImage" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="toolStsStripSistemVersion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1834, 20</value>
-  </data>
-  <data name="toolStsStripSistemVersion.Text" xml:space="preserve">
-    <value>Versão  do Sistema: 0.7.4</value>
-  </data>
-  <data name="toolStsStripSistemVersion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="stsStripSistemVersion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1911, 26</value>
-  </data>
-  <data name="stsStripSistemVersion.Text" xml:space="preserve">
-    <value>statusStrip1</value>
-  </data>
-  <data name="loginToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 26</value>
-  </data>
-  <data name="loginToolStripMenuItem.Text" xml:space="preserve">
-    <value>Login</value>
-  </data>
-  <data name="logoffToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 26</value>
-  </data>
-  <data name="logoffToolStripMenuItem.Text" xml:space="preserve">
-    <value>Logoff</value>
-  </data>
-  <data name="sairDoSistemaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 26</value>
-  </data>
-  <data name="sairDoSistemaToolStripMenuItem.Text" xml:space="preserve">
-    <value>Sair</value>
-  </data>
-  <data name="arquivoToolStripMenuItem.Text" xml:space="preserve">
-    <value>Arquivo</value>
-  </data>
-  <data name="MenuStripCadastroCliente.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 26</value>
-  </data>
-  <data name="MenuStripCadastroCliente.Text" xml:space="preserve">
-    <value>Cliente</value>
-  </data>
-  <data name="MenuStripCliente.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 26</value>
-  </data>
-  <data name="MenuStripCliente.Text" xml:space="preserve">
-    <value>Cliente</value>
-  </data>
-  <data name="funcionárioToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>169, 26</value>
-  </data>
-  <data name="funcionárioToolStripMenuItem.Text" xml:space="preserve">
-    <value>Funcionário</value>
-  </data>
-  <data name="empresaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 26</value>
-  </data>
-  <data name="empresaToolStripMenuItem.Text" xml:space="preserve">
-    <value>Empresa</value>
-  </data>
-  <data name="MenuStripCadastro.Text" xml:space="preserve">
-    <value>Cadastro</value>
-  </data>
-  <data name="MenuStripNovosEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>239, 26</value>
-  </data>
-  <data name="MenuStripNovosEmprestimos.Text" xml:space="preserve">
-    <value>Novos Emprestimos</value>
-  </data>
-  <data name="pagamentoDeParcelaToolStripMenuItem.Text" xml:space="preserve">
-    <value>Pagamento de Parcela</value>
-  </data>
-  <data name="MenuStripEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 26</value>
-  </data>
-  <data name="MenuStripEmprestimos.Text" xml:space="preserve">
-    <value>Emprestimos</value>
-  </data>
-  <data name="MenuStripFinanceiro.Text" xml:space="preserve">
-    <value>Financeiro</value>
-  </data>
-  <data name="MenuStripRelatoriosVisuEmprestimos.Text" xml:space="preserve">
-    <value>Visualizar Emprestimos</value>
-  </data>
-  <data name="visualizarParcelasToolStripMenuItem.Text" xml:space="preserve">
-    <value>Visualizar Parcelas</value>
-  </data>
-  <data name="MenuStripRelatoriosEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 26</value>
-  </data>
-  <data name="MenuStripRelatoriosEmprestimos.Text" xml:space="preserve">
-    <value>Emprestimos</value>
-  </data>
-  <data name="MenuStripRelatorios.Text" xml:space="preserve">
-    <value>Relatórios</value>
-  </data>
-  <data name="novoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 26</value>
-  </data>
-  <data name="novoToolStripMenuItem.Text" xml:space="preserve">
-    <value>Novo (Suporte)</value>
-  </data>
-  <data name="chamadoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 26</value>
-  </data>
-  <data name="chamadoToolStripMenuItem.Text" xml:space="preserve">
-    <value>Chamado</value>
-  </data>
-  <data name="ajudaToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ajuda</value>
-  </data>
-  <data name="MenuStripMenusSistema.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1911, 28</value>
-  </data>
-  <data name="picBoxLogoSistema2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnLimparDados.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        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
+        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
 </value>
-  </data>
-  <data name="picBoxLogoSistema2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 146</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="picBoxLogoSistema.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="picBoxLogoSistema.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1156, 693</value>
-  </data>
-  <data name="picBoxLogoSistema.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 260</value>
-  </data>
-  <data name="lblTituloSistemas.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblTituloSistemas.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 24pt, style=Bold</value>
-  </data>
-  <data name="lblTituloSistemas.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblTituloSistemas.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1516, 794</value>
-  </data>
-  <data name="lblTituloSistemas.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="lblTituloSistemas.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 46</value>
-  </data>
-  <data name="lblTituloSistemas.Text" xml:space="preserve">
-    <value>Sistemas</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>9, 17</value>
-  </data>
-  <data name="$this.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Stretch</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1911, 982</value>
-  </data>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial Rounded MT Bold, 9pt</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

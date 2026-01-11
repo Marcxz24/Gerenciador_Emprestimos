@@ -68,3 +68,4 @@ C:\Gerenciador de Emprestimos\bin\Debug\net8.0-windows\BCrypt.Net-Next.dll
 C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.frmLoginFuncionario.resources
 C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.frmTelaIncial.resources
 C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.frmTelaIncial.pt-BR.resources
+C:\Gerenciador de Emprestimos\obj\Debug\net8.0-windows\Gerenciador_de_Emprestimos.frmSelecionarFuncionario.resources

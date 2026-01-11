@@ -363,6 +363,7 @@
             btnPesquisarFuncionario.Text = "Pesquisar";
             btnPesquisarFuncionario.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnPesquisarFuncionario.UseVisualStyleBackColor = false;
+            btnPesquisarFuncionario.Click += btnPesquisarFuncionario_Click;
             // 
             // frmCadastroFuncionario
             // 

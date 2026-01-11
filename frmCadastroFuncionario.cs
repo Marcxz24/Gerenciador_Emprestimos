@@ -200,5 +200,11 @@
         {
             Funcoes.PrimeiraLetraMaiuscula(txtBoxCidadeFuncionario);
         }
+
+        private void btnPesquisarFuncionario_Click(object sender, EventArgs e)
+        {
+            frmSelecionarFuncionario selecionarFuncionario = new frmSelecionarFuncionario();
+            selecionarFuncionario.ShowDialog();
+        }
     }
 }
