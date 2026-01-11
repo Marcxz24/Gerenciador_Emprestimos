@@ -45,6 +45,7 @@
             txtBoxCidadeFuncionario = new TextBox();
             lblCidadeFuncionario = new Label();
             grpBoxDadosLogin = new GroupBox();
+            lblLinkEditarSenha = new LinkLabel();
             lblSexoFuncionario = new Label();
             comboBoxSexoFuncionario = new ComboBox();
             lblCpfFuncionario = new Label();
@@ -225,6 +226,7 @@
             // 
             // grpBoxDadosLogin
             // 
+            grpBoxDadosLogin.Controls.Add(lblLinkEditarSenha);
             grpBoxDadosLogin.Controls.Add(lblUsername);
             grpBoxDadosLogin.Controls.Add(txtBoxSenha);
             grpBoxDadosLogin.Controls.Add(txtBoxUsername);
@@ -235,6 +237,18 @@
             grpBoxDadosLogin.TabIndex = 14;
             grpBoxDadosLogin.TabStop = false;
             grpBoxDadosLogin.Text = "Dados do Login";
+            // 
+            // lblLinkEditarSenha
+            // 
+            lblLinkEditarSenha.AutoSize = true;
+            lblLinkEditarSenha.Enabled = false;
+            lblLinkEditarSenha.Location = new Point(528, 84);
+            lblLinkEditarSenha.Name = "lblLinkEditarSenha";
+            lblLinkEditarSenha.Size = new Size(113, 20);
+            lblLinkEditarSenha.TabIndex = 11;
+            lblLinkEditarSenha.TabStop = true;
+            lblLinkEditarSenha.Text = "Redefinir Senha";
+            lblLinkEditarSenha.LinkClicked += lblLinkEditarSenha_LinkClicked;
             // 
             // lblSexoFuncionario
             // 
@@ -423,5 +437,6 @@
         private Label lblEstadoCivil;
         private ComboBox comboBoxEstadoCivil;
         private Button btnPesquisarFuncionario;
+        private LinkLabel lblLinkEditarSenha;
     }
 }

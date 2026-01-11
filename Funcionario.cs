@@ -86,7 +86,7 @@ namespace Gerenciador_de_Emprestimos
             }
         }
 
-        public void EditarCdastroFuncionario(int codigo, string nome, string cpf, string sexo, string estadoCivil, string username, string telefone, string cidade, string situacao)
+        public void EditarCadastroFuncionario(int codigo, string nome, string cpf, string sexo, string estadoCivil, string username, string telefone, string cidade, string situacao)
         {
             string sql = @"
                            UPDATE emprestimosbd.funcionario
@@ -95,7 +95,7 @@ namespace Gerenciador_de_Emprestimos
                                 cpf_funcionario = @cpf_funcionario,
                                 sexo_funcionario = @sexo_funcionario,
                                 funcionario_estado_civil = @funcionario_estado_civil, 
-                                username = @username,  
+                                username = @username,
                                 telefone_funcionario = @telefone_funcionario, 
                                 cidade_funcionario = @cidade_funcionario, 
                                 situacao_funcionario = @situacao_funcionario
@@ -122,6 +122,29 @@ namespace Gerenciador_de_Emprestimos
             catch (MySqlException ex)
             {
                 Funcoes.MensagemErro("Erro ao editar cadastro do funcionário: " +  ex.Message);
+            }
+        }
+
+        public void AtualizarSenhaFuncionario(int codigo, string novaSenhaHash)
+        {
+            string sql = @"
+                           UPDATE emprestimosbd.funcionario
+                           SET
+                                senha_hash = @senha_hash
+                           WHERE codigo = @codigo";
+            try
+            {
+                using (var conexao = ConexaoBancoDeDados.Conectar())
+                using (var comando = new MySqlCommand(sql, conexao))
+                {
+                    comando.Parameters.AddWithValue("@codigo", codigo);
+                    comando.Parameters.AddWithValue("@senha_hash", novaSenhaHash);
+                    comando.ExecuteNonQuery();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Funcoes.MensagemErro("Erro ao atualizar a senha do funcionário: " + ex.Message);
             }
         }
 

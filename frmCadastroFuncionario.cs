@@ -1,4 +1,5 @@
 ﻿using iText.StyledXmlParser.Jsoup.Nodes;
+using System.Runtime.CompilerServices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Gerenciador_de_Emprestimos
@@ -6,6 +7,8 @@ namespace Gerenciador_de_Emprestimos
     public partial class frmCadastroFuncionario : Form
     {
         private bool _EditarCadastro;
+
+        private bool _AlterarSenha = false;
 
         // Construtor do formulário de cadastro de funcionário
         public frmCadastroFuncionario()
@@ -32,7 +35,7 @@ namespace Gerenciador_de_Emprestimos
             txtBoxCidadeFuncionario.ReadOnly = !ManifestarBotoes;
             txtBoxTelefoneFuncionario.ReadOnly = !ManifestarBotoes;
             txtBoxUsername.ReadOnly = !ManifestarBotoes;
-            txtBoxSenha.ReadOnly = !ManifestarBotoes;
+            lblLinkEditarSenha.Enabled = ManifestarBotoes;
 
             // --- 2. LIMPEZA DOS CAMPOS ---
             if (LimparCampos)
@@ -272,83 +275,52 @@ namespace Gerenciador_de_Emprestimos
         // Método responsável pelo UPDATE de um funcionário existente
         private void EditarCadastroFuncionario()
         {
-            _EditarCadastro = true;
-
-            // Verifica se há um código carregado, garantindo que um funcionário foi selecionado via pesquisa
+            // 1️⃣ Garante que existe funcionário selecionado
             if (string.IsNullOrWhiteSpace(txtBoxCodigo.Text))
             {
-                Funcoes.MensagemWarning("Não é possível Editar um Cadastro sem o funcionário selecionado.");
+                Funcoes.MensagemWarning("Não é possível editar sem um funcionário selecionado.");
                 return;
             }
 
-            // Variáveis locais para armazenar os dados atualizados
+            // 2️⃣ Valida os campos obrigatórios
+            if (validacoesCampos())
+                return;
+
+            // 3️⃣ Código do funcionário
             int codigoFuncionario = 0;
-            string? nomeFuncionario = null;
-            string? cpf = null;
-            string? sexo = null;
-            string? estadoCivil = null;
-            string? username = null;
-            string? telefone = null;
-            string? cidade = null;
-            string? situacao = null;
 
-            // Executa as validações de preenchimento antes de enviar ao banco
-            if (validacoesCampos() == true)
-            {
-                return;
-            }
-
-            // Converte o código da tela para Inteiro
             if (int.TryParse(txtBoxCodigo.Text, out int codFuncionario))
             {
                 codigoFuncionario = codFuncionario;
             }
 
-            // Atribui os valores dos controles às variáveis
-            if (!string.IsNullOrWhiteSpace(txtBoxNomeFuncionario.Text))
-            {
-                nomeFuncionario = txtBoxNomeFuncionario.Text;
-            }
+            // 4️⃣ Dados do formulário
+            string nomeFuncionario = txtBoxNomeFuncionario.Text;
+            string cpf = txtBoxCpfFuncionario.Text;
+            string sexo = comboBoxSexoFuncionario.Text;
+            string estadoCivil = comboBoxEstadoCivil.Text;
+            string username = txtBoxUsername.Text;
+            string telefone = txtBoxTelefoneFuncionario.Text;
+            string cidade = txtBoxCidadeFuncionario.Text;
+            string situacao = comboBoxSituacao.Text;
 
-            if (!string.IsNullOrWhiteSpace(txtBoxCpfFuncionario.Text))
-            {
-                cpf = txtBoxCpfFuncionario.Text;
-            }
-
-            if (!string.IsNullOrWhiteSpace(comboBoxSexoFuncionario.Text))
-            {
-                sexo = comboBoxSexoFuncionario.Text;
-            }
-
-            if (!string.IsNullOrWhiteSpace(comboBoxEstadoCivil.Text))
-            {
-                estadoCivil = comboBoxEstadoCivil.Text;
-            }
-
-            if (!string.IsNullOrWhiteSpace(txtBoxUsername.Text))
-            {
-                username = txtBoxUsername.Text;
-            }
-
-            if (!string.IsNullOrWhiteSpace(txtBoxTelefoneFuncionario.Text))
-            {
-                telefone = txtBoxTelefoneFuncionario.Text;
-            }
-
-            if (!string.IsNullOrWhiteSpace(txtBoxCidadeFuncionario.Text))
-            {
-                cidade = txtBoxCidadeFuncionario.Text;
-            }
-
-            if (!string.IsNullOrWhiteSpace(comboBoxSituacao.Text))
-            {
-                situacao = comboBoxSituacao.Text;
-            }
-
-            // Instancia a classe de negócio e executa o comando de atualização
+            // 6️⃣ Atualiza dados do funcionário
             Funcionario funcionario = new Funcionario();
-            funcionario.EditarCdastroFuncionario(codigoFuncionario, nomeFuncionario, cpf, sexo, estadoCivil, username, telefone, cidade, situacao);
+
+            funcionario.EditarCadastroFuncionario(codigoFuncionario,nomeFuncionario, cpf, sexo, estadoCivil, username, telefone, cidade, situacao);
+
+            if (_AlterarSenha == true)
+            {
+                if (!string.IsNullOrWhiteSpace(txtBoxSenha.Text))
+                {
+                    string novaSenhaHash = Seguranca.GerarHashSenha(txtBoxSenha.Text);
+                    funcionario.AtualizarSenhaFuncionario(codigoFuncionario, novaSenhaHash);
+                }
+            }
+
+            Funcoes.MensagemInformation("Cadastro do funcionário atualizado com sucesso.");
         }
+
 
         // Método que atua como um "roteador": decide se deve Chamar a Inserção ou a Edição
         private void SalvarCadastroFuncionario()
@@ -380,5 +352,18 @@ namespace Gerenciador_de_Emprestimos
             // Libera os campos para alteração mas não limpa os dados existentes
             GerenciarBotoesCampos(OcultarBotoes: true, ManifestarBotoes: true, LimparCampos: false);
         }
+
+        private void lblLinkEditarSenha_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            txtBoxSenha.Clear();
+            txtBoxSenha.ReadOnly = false;
+            txtBoxSenha.Focus();
+
+            _AlterarSenha = true;
+
+            Funcoes.MensagemInformation("Digite a nova senha e clique em Salvar.");
+        }
+
     }
 }
+
