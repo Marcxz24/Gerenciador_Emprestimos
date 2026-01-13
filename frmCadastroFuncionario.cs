@@ -275,26 +275,27 @@ namespace Gerenciador_de_Emprestimos
         // Método responsável pelo UPDATE de um funcionário existente
         private void EditarCadastroFuncionario()
         {
-            // 1️⃣ Garante que existe funcionário selecionado
+            // Se o campo Código estiver vazio, não é possível editar
             if (string.IsNullOrWhiteSpace(txtBoxCodigo.Text))
             {
                 Funcoes.MensagemWarning("Não é possível editar sem um funcionário selecionado.");
                 return;
             }
 
-            // 2️⃣ Valida os campos obrigatórios
+            // Valida os campos do formulário antes de prosseguir com a edição
             if (validacoesCampos())
                 return;
 
-            // 3️⃣ Código do funcionário
+            // Define uma váriavel para armazenar o código do funcionário
             int codigoFuncionario = 0;
 
+            // Tenta converter o texto do campo Código para um número inteiro
             if (int.TryParse(txtBoxCodigo.Text, out int codFuncionario))
             {
                 codigoFuncionario = codFuncionario;
             }
 
-            // 4️⃣ Dados do formulário
+            // Coleta os dados atualizados dos campos do formulário
             string nomeFuncionario = txtBoxNomeFuncionario.Text;
             string cpf = txtBoxCpfFuncionario.Text;
             string sexo = comboBoxSexoFuncionario.Text;
@@ -304,11 +305,13 @@ namespace Gerenciador_de_Emprestimos
             string cidade = txtBoxCidadeFuncionario.Text;
             string situacao = comboBoxSituacao.Text;
 
-            // 6️⃣ Atualiza dados do funcionário
+            // Cria uma nova instância da classe Funcionario para realizar a edição
             Funcionario funcionario = new Funcionario();
 
+            // Chama o método EditarCadastroFuncionario da classe Funcionario
             funcionario.EditarCadastroFuncionario(codigoFuncionario,nomeFuncionario, cpf, sexo, estadoCivil, username, telefone, cidade, situacao);
 
+            // Se a flag de alteração de senha estiver ativa, atualiza a senha
             if (_AlterarSenha == true)
             {
                 if (!string.IsNullOrWhiteSpace(txtBoxSenha.Text))
@@ -328,11 +331,12 @@ namespace Gerenciador_de_Emprestimos
             // Se a flag de edição for verdadeira, chama o método de Update
             if (_EditarCadastro == true)
             {
+                // Se a flag de edição for verdadeira, chama o método de Update
                 EditarCadastroFuncionario();
             }
             else
             {
-                // Caso contrário, trata-se de um novo registro
+                // Caso contrário, chamar o método de Insert
                 InserirNovoCadastroFuncionario();
             }
         }
@@ -340,6 +344,7 @@ namespace Gerenciador_de_Emprestimos
         // Evento do botão Editar (Prepara a tela para edição)
         private void btnEditarCadastro_Click(object sender, EventArgs e)
         {
+            // A flag de editar cadastro recebe true (verdadeiro) para editar o cadastro.
             _EditarCadastro = true;
 
             // Valida se o usuário primeiro selecionou alguém antes de clicar em Editar
@@ -353,17 +358,31 @@ namespace Gerenciador_de_Emprestimos
             GerenciarBotoesCampos(OcultarBotoes: true, ManifestarBotoes: true, LimparCampos: false);
         }
 
+        // Evento que se clicar no link de redefinir a senha, irá alterar a senha!
         private void lblLinkEditarSenha_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            txtBoxSenha.Clear();
-            txtBoxSenha.ReadOnly = false;
-            txtBoxSenha.Focus();
+            // Variavél redefinirSenha, que recebe se foi marcado SIM ou NÂO no MessageBox.
+            var redefinirSenha = MessageBox.Show("Você Realmente deseja Redefinir a senha?", "Atenção!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            _AlterarSenha = true;
+            // Se redefinir a senha for igual a Sim. Ele executa o bloco de código Abaixo, se for não, não faz nada.
+            if (redefinirSenha == DialogResult.Yes)
+            {
+                // Limpa o campo da senha!
+                txtBoxSenha.Clear();
 
-            Funcoes.MensagemInformation("Digite a nova senha e clique em Salvar.");
+                // Libera o campo da senha para poder digitar a nova senha!
+                txtBoxSenha.ReadOnly = false;
+
+                // Foca o cursor no Text Box da senha!
+                txtBoxSenha.Focus();
+
+                // Flag de alterar a senha recebe true.
+                _AlterarSenha = true;
+
+                // Mostra a mensagem para digitar a nova senha!
+                Funcoes.MensagemInformation("Digite a nova senha e clique em Salvar.");
+            }
         }
 
     }
 }
-
