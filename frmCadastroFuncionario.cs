@@ -361,7 +361,7 @@ namespace Gerenciador_de_Emprestimos
         // Evento que se clicar no link de redefinir a senha, irá alterar a senha!
         private void lblLinkEditarSenha_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            // Variavél redefinirSenha, que recebe se foi marcado SIM ou NÂO no MessageBox.
+            // Variavél redefinirSenha, que recebe se foi marcado SIM ou NÃO no MessageBox.
             var redefinirSenha = MessageBox.Show("Você Realmente deseja Redefinir a senha?", "Atenção!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             // Se redefinir a senha for igual a Sim. Ele executa o bloco de código Abaixo, se for não, não faz nada.
@@ -383,6 +383,5 @@ namespace Gerenciador_de_Emprestimos
                 Funcoes.MensagemInformation("Digite a nova senha e clique em Salvar.");
             }
         }
-
     }
 }

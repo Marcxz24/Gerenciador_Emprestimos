@@ -118,7 +118,7 @@ namespace Gerenciador_de_Emprestimos
                 try
                 {
                     // SQL para inserir o registro pai (Empréstimo) e recuperar o ID gerado
-                    string sqlInsertEmprestimo = @"INSERT INTO emprestimosbd.emprestimos (codigo_cliente, valor_emprestado, valor_emprestado_total, quantidade_parcela, valor_parcela, valor_juros, data_emprestimo, data_pagar, status_emprestimo)  VALUES(@codigo_cliente, @valor_emprestado, @valor_emprestado_total, @quantidade_parcela, @valor_parcela, @valor_juros, @data_emprestimo, @data_pagar, @status_emprestimo); SELECT LAST_INSERT_ID();";
+                    string sqlInsertEmprestimo = @"INSERT INTO emprestimosbd.emprestimos (codigo_cliente, valor_emprestado, valor_emprestado_total, quantidade_parcela, valor_parcela, valor_juros, percentual_juros, data_emprestimo, data_pagar, status_emprestimo)  VALUES(@codigo_cliente, @valor_emprestado, @valor_emprestado_total, @quantidade_parcela, @valor_parcela, @valor_juros, @percentual_juros, @data_emprestimo, @data_pagar, @status_emprestimo); SELECT LAST_INSERT_ID();";
 
                     using (var comando = new MySqlCommand(sqlInsertEmprestimo, conexao, transacao))
                     {
@@ -128,6 +128,7 @@ namespace Gerenciador_de_Emprestimos
                         comando.Parameters.AddWithValue("@quantidade_parcela", QuantidadeParcela);
                         comando.Parameters.AddWithValue("@valor_parcela", ValorParcela);
                         comando.Parameters.AddWithValue("@valor_juros", ValorJurosMonetario);
+                        comando.Parameters.AddWithValue("@percentual_juros", ValorJurosPercentual);
 
                         // Conversão necessária de DateOnly para DateTime para o MySQL
                         DateTime dataEmprestimoDb = DataEmprestimo.ToDateTime(TimeOnly.MinValue);
@@ -168,6 +169,7 @@ namespace Gerenciador_de_Emprestimos
                                 codigo_cliente, 
                                 numero_parcela,
                                 valor_parcela,
+                                percentual_parcela,
                                 data_vencimento
                             )
                             VALUES
@@ -176,6 +178,7 @@ namespace Gerenciador_de_Emprestimos
                                 @codigo_cliente, 
                                 @numero_parcela,
                                 @valor_parcela,
+                                @percentual_parcela,
                                 @data_vencimento
                             )";
 
@@ -188,6 +191,7 @@ namespace Gerenciador_de_Emprestimos
                     comando.Parameters.AddWithValue("@codigo_cliente", CodigoCliente);
                     comando.Parameters.AddWithValue("@numero_parcela", i);
                     comando.Parameters.AddWithValue("@valor_parcela", ValorParcela);
+                    comando.Parameters.AddWithValue("@percentual_parcela", ValorJurosPercentual);
 
                     DateTime dataVencimentoDb = DataVencimentoInicial.ToDateTime(TimeOnly.MinValue);
 

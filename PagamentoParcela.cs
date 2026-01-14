@@ -152,5 +152,10 @@ namespace Gerenciador_de_Emprestimos
                 return Convert.ToInt32(comando.ExecuteScalar()) > 0;
             }
         }
+
+        public void RecalcularJurosParcela(int codigoContaRecber)
+        {
+
+        }
     }
 }
