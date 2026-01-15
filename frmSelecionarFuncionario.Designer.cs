@@ -295,7 +295,7 @@
             MaximizeBox = false;
             Name = "frmSelecionarFuncionario";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmSelecionarFuncionario";
+            Text = "Selecionar Funcionário";
             grpBoxDadosFuncionario.ResumeLayout(false);
             grpBoxDadosFuncionario.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridFuncionarios).EndInit();

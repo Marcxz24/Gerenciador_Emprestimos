@@ -153,9 +153,46 @@ namespace Gerenciador_de_Emprestimos
             }
         }
 
-        public void RecalcularJurosParcela(int codigoContaRecber)
+        public void RecalcularJurosSeNecessario(int codigoContaRecber)
         {
+            VerificarParcelaJaPaga(codigoContaRecber);
+            bool vencida = VerificarDataDeVencimento(codigoContaRecber);
+        }
 
+        // Método para verificar se a parcela já está paga, para realizar o bloqueio de calculo duplicado.
+        private bool VerificarParcelaJaPaga(int codigoParcela)
+        {
+            // Consulta SQL para verificar se a parcela já está paga
+            string sql = @"SELECT COUNT(*) FROM emprestimosbd.conta_receber
+                           WHERE codigo = @codigo
+	                        AND status_parcela = 'PAGA'";
+
+            // Executa a consulta no banco de dados
+            using (var conexao = ConexaoBancoDeDados.Conectar())
+            // cria o comando SQL
+            using (var comando = new MySqlCommand(sql, conexao))
+            {
+                // Adiciona o parâmetro ao comando
+                comando.Parameters.AddWithValue("@codigo", codigoParcela);
+
+                // Retorna true se a parcela já está paga, caso contrário, false
+                return Convert.ToInt32(comando.ExecuteScalar()) > 0;
+            }
+        }
+
+        private bool VerificarDataDeVencimento(int codigoContaRecber)
+        {
+            string sql = @"SELECT COUNT(*) FROM emprestimosbd.conta_receber 
+                            WHERE codigo = @codigo
+                            AND data_vencimento < CURRENT_DATE();";
+
+            using (var conexao = ConexaoBancoDeDados.Conectar())
+            using (var comando = new MySqlCommand(sql, conexao))
+            {
+                comando.Parameters.AddWithValue("@codigo", codigoContaRecber);
+               
+                return Convert.ToInt32(comando.ExecuteScalar()) > 0;
+            }
         }
     }
 }
