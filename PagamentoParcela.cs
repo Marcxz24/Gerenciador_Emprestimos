@@ -1,7 +1,9 @@
 ﻿using Gerenciador_de_Emprestimos.Database;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,39 @@ namespace Gerenciador_de_Emprestimos
         public int codigoEmprestimo { get; set; }
 
         // --- MÉTODOS DE APOIO (PRIVADOS) ---
+
+        // Obter os Dados da Parcela no Banco de Dados
+        public Parcela ObterDadosParcela(int codigoParcela)
+        {
+            string sql = @"SELECT codigo, valor_parcela, percentual_parcela, data_vencimento, data_ultimo_calculo_juros, status_parcela
+                            FROM emprestimosbd.conta_receber
+                            WHERE codigo = @codigo";
+
+            using (var conexao = ConexaoBancoDeDados.Conectar())
+            using (var comando = new MySqlCommand(sql, conexao))
+            {
+                comando.Parameters.AddWithValue("@codigo", codigoParcela);
+
+                using (var reader = comando.ExecuteReader())
+                {
+                    if (!reader.Read())
+                    {
+                        return null; // Parcela não encontrada
+                    }
+
+                    return new Parcela
+                    {
+                        Codigo = reader.GetInt32("codigo"),
+                        ValorParcela = reader.GetDecimal("valor_parcela"),
+                        PercentualJuros = reader.GetDecimal("percentual_parcela"),
+                        DataVencimento = reader.GetDateTime("data_vencimento"),
+                        DataUltimoCalculoJuros = reader.IsDBNull("data_ultimo_calculo_juros") ? null : reader.GetDateTime("data_ultimo_calculo_juros"),
+                    };
+                }
+            }
+        }
+
+        // --- Métodos Referente ao Processo de Pagamento ---
 
         // Verifica no banco se a parcela já possui o status 'PAGA' para evitar pagamentos duplicados
         private bool ParcelaJaPaga(int codigoParcela)
@@ -153,45 +188,43 @@ namespace Gerenciador_de_Emprestimos
             }
         }
 
-        public void RecalcularJurosSeNecessario(int codigoContaRecber)
+        // --- Métodos Referentes ao Recalculo de Juros ---
+        private bool ParcelaEmAtraso(Parcela parcela)
         {
-            VerificarParcelaJaPaga(codigoContaRecber);
-            bool vencida = VerificarDataDeVencimento(codigoContaRecber);
+            return DateTime.Now.Date > parcela.DataVencimento.Date;
         }
 
-        // Método para verificar se a parcela já está paga, para realizar o bloqueio de calculo duplicado.
-        private bool VerificarParcelaJaPaga(int codigoParcela)
+        public bool RecalcularJurosEAvancarMes(int CodigoParcela)
         {
-            // Consulta SQL para verificar se a parcela já está paga
-            string sql = @"SELECT COUNT(*) FROM emprestimosbd.conta_receber
-                           WHERE codigo = @codigo
-	                        AND status_parcela = 'PAGA'";
+            Parcela parcela = ObterDadosParcela(CodigoParcela);
 
-            // Executa a consulta no banco de dados
-            using (var conexao = ConexaoBancoDeDados.Conectar())
-            // cria o comando SQL
-            using (var comando = new MySqlCommand(sql, conexao))
-            {
-                // Adiciona o parâmetro ao comando
-                comando.Parameters.AddWithValue("@codigo", codigoParcela);
+            if (parcela == null)
+                throw new Exception("Parcela não encontrada.");
 
-                // Retorna true se a parcela já está paga, caso contrário, false
-                return Convert.ToInt32(comando.ExecuteScalar()) > 0;
-            }
-        }
+            if (!string.IsNullOrEmpty(parcela.Status) && parcela.Status.Equals("PAGA", StringComparison.OrdinalIgnoreCase))
+                return false; // Parcela já paga, não recalcula juros
 
-        private bool VerificarDataDeVencimento(int codigoContaRecber)
-        {
-            string sql = @"SELECT COUNT(*) FROM emprestimosbd.conta_receber 
-                            WHERE codigo = @codigo
-                            AND data_vencimento < CURRENT_DATE();";
+            DateTime referencia = parcela.DataUltimoCalculoJuros ?? parcela.DataVencimento;
+            DateTime novaDataUltimoCalculo = referencia.AddMonths(1); // Avança um mês
+
+            decimal taxa = parcela.PercentualJuros / 100m;
+            decimal novoValor = Math.Round(parcela.ValorParcela * (1m + taxa), 2, MidpointRounding.AwayFromZero);
+
+            string sql = @"UPDATE emprestimosbd.conta_receber 
+                           SET
+                               valor_parcela = @novo_valor, 
+                               data_ultimo_calculo_juros = @nova_data_ultimo_calculo 
+                           WHERE codigo = @codigo";
 
             using (var conexao = ConexaoBancoDeDados.Conectar())
             using (var comando = new MySqlCommand(sql, conexao))
             {
-                comando.Parameters.AddWithValue("@codigo", codigoContaRecber);
-               
-                return Convert.ToInt32(comando.ExecuteScalar()) > 0;
+                comando.Parameters.AddWithValue("@novo_valor", novoValor);
+                comando.Parameters.AddWithValue("@nova_data_ultimo_calculo", novaDataUltimoCalculo);
+                comando.Parameters.AddWithValue("@codigo", CodigoParcela);
+
+                int linhasAfetadas = comando.ExecuteNonQuery();
+                return linhasAfetadas > 0; // Retorna true se a atualização foi bem-sucedida
             }
         }
     }

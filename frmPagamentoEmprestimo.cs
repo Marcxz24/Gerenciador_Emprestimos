@@ -138,7 +138,68 @@ namespace Gerenciador_de_Emprestimos
         // --- SELEÇÃO DE REGISTRO NO GRID ---
         private void dataGridParcelasAbertas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return; // Evita erro ao clicar no cabeçalho
+            if (e.RowIndex < 0) 
+                return; // Evita erro ao clicar no cabeçalho
+
+            int SelectdCodigoParcela = Convert.ToInt32(dataGridParcelasAbertas.Rows[e.RowIndex].Cells["codigo_parcela"].Value);
+
+            PagamentoParcela logicaPagamento = new PagamentoParcela();
+
+            try
+            {
+                Parcela parcela = logicaPagamento.ObterDadosParcela(SelectdCodigoParcela);
+
+                if (parcela != null)
+                {
+                    DateTime referencia = parcela.DataUltimoCalculoJuros ?? parcela.DataVencimento;
+
+                    if (DateTime.Today > referencia.Date)
+                    {
+                        var mensagemRecalculo = "A parcela selecionada está em atraso. Deseja recalcular os juros antes de prosseguir com o pagamento?\n\nO calculo do percentual (%) Será calculado em cima do valor da Parcela";
+                        var resultado = MessageBox.Show(mensagemRecalculo, "Recalcular Juros", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (resultado == DialogResult.Yes)
+                        {
+                            bool atualizado = false;
+
+                            try
+                            {
+                                atualizado = logicaPagamento.RecalcularJurosEAvancarMes(SelectdCodigoParcela);
+                            }
+                            catch(Exception ex)
+                            {
+                                Funcoes.MensagemErro("Erro ao Recalcular Juros: " + ex.Message);
+                                return;
+                            }
+
+                            if (atualizado)
+                            {
+                                parcela = logicaPagamento.ObterDadosParcela(SelectdCodigoParcela);
+
+                                var linhasAtualizarComJuros = dataGridParcelasAbertas.Rows[e.RowIndex];
+
+                                if (dataGridParcelasAbertas.Columns["valor_parcela"] != null)
+                                    linhasAtualizarComJuros.Cells["valor_parcela"].Value = parcela.ValorParcela.ToString("F2");
+
+                                if (dataGridParcelasAbertas.Columns["status_parcela"] != null)
+                                    linhasAtualizarComJuros.Cells["status_parcela"].Value = parcela.Status ?? "ATRASADA";
+
+                                if (dataGridParcelasAbertas.Columns["data_ultimo_calculo_juros"] != null)
+                                    linhasAtualizarComJuros.Cells["data_ultimo_calculo_juros"].Value = (parcela.DataUltimoCalculoJuros.HasValue ? parcela.DataUltimoCalculoJuros.Value.ToString("yyyy/MM/dd") : "");
+
+                                // Atualiza os campos do formulário.
+                                txtBoxParcela.Text = parcela.ValorParcela.ToString("F2");
+                                txtValorJuros.Text = parcela.PercentualJuros.ToString("F2");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Funcoes.MensagemErro("Erro ao obter dados da parcela: " + ex.Message);
+                return;
+            }
 
             var linha = dataGridParcelasAbertas.Rows[e.RowIndex];
 
