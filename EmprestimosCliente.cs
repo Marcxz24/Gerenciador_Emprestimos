@@ -23,6 +23,7 @@ namespace Gerenciador_de_Emprestimos
         public decimal ValorJurosMonetario { get; private set; }
         public decimal ValorParcela { get; private set; }
         public decimal ValorTotal { get; private set; }
+        public string ObservacoesEmprestimos { get; set; }
 
         // --- PROPRIEDADES DE DATA ---
         public DateOnly DataEmprestimo { get; set; }
@@ -118,7 +119,7 @@ namespace Gerenciador_de_Emprestimos
                 try
                 {
                     // SQL para inserir o registro pai (Empréstimo) e recuperar o ID gerado
-                    string sqlInsertEmprestimo = @"INSERT INTO emprestimosbd.emprestimos (codigo_cliente, valor_emprestado, valor_emprestado_total, quantidade_parcela, valor_parcela, valor_juros, percentual_juros, data_emprestimo, data_pagar, status_emprestimo)  VALUES(@codigo_cliente, @valor_emprestado, @valor_emprestado_total, @quantidade_parcela, @valor_parcela, @valor_juros, @percentual_juros, @data_emprestimo, @data_pagar, @status_emprestimo); SELECT LAST_INSERT_ID();";
+                    string sqlInsertEmprestimo = @"INSERT INTO emprestimosbd.emprestimos (codigo_cliente, valor_emprestado, valor_emprestado_total, quantidade_parcela, valor_parcela, valor_juros, percentual_juros, data_emprestimo, data_pagar, observacoes, status_emprestimo)  VALUES(@codigo_cliente, @valor_emprestado, @valor_emprestado_total, @quantidade_parcela, @valor_parcela, @valor_juros, @percentual_juros, @data_emprestimo, @data_pagar, @observacoes, @status_emprestimo); SELECT LAST_INSERT_ID();";
 
                     using (var comando = new MySqlCommand(sqlInsertEmprestimo, conexao, transacao))
                     {
@@ -136,6 +137,7 @@ namespace Gerenciador_de_Emprestimos
 
                         comando.Parameters.AddWithValue("@data_emprestimo", dataEmprestimoDb);
                         comando.Parameters.AddWithValue("@data_pagar", dataVencimentoDb);
+                        comando.Parameters.AddWithValue("@observacoes", ObservacoesEmprestimos);
                         comando.Parameters.AddWithValue("@status_emprestimo", StatusEmprestimo);
 
                         // Executa e armazena o ID do empréstimo na propriedade Codigo

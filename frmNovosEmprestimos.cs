@@ -166,6 +166,20 @@ namespace Gerenciador_de_Emprestimos
                 emprestimo.DataVencimentoInicial = dataPagamento;
             }
 
+            string mensagem = "Você deseja informar uma Obersvação ao Emprestimo?";
+            var resultado = MessageBox.Show(mensagem, "Observações", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.Yes)
+            {
+                frmObservacoesEmprestimos frmObersvacoes = new frmObservacoesEmprestimos();
+                frmObersvacoes.ShowDialog();
+
+                string? obsEmprestimos = null;
+                obsEmprestimos = frmObersvacoes.AdquirirDadosObservacoes(obsEmprestimos);
+
+                emprestimo.ObservacoesEmprestimos = obsEmprestimos;
+            }
+
             emprestimo.AtivarEmprestimo(); // Define Status e Data de hoje
             emprestimo.InserirDadosEmorestimo(); // Executa a transação no SQL
         }

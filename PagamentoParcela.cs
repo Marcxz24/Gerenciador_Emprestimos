@@ -189,11 +189,8 @@ namespace Gerenciador_de_Emprestimos
         }
 
         // --- Métodos Referentes ao Recalculo de Juros ---
-        private bool ParcelaEmAtraso(Parcela parcela)
-        {
-            return DateTime.Now.Date > parcela.DataVencimento.Date;
-        }
 
+        // Método responsável, por recalcular o % dos juros e alterar o valor em parcelas vencidas.
         public bool RecalcularJurosEAvancarMes(int CodigoParcela)
         {
             Parcela parcela = ObterDadosParcela(CodigoParcela);
@@ -212,15 +209,16 @@ namespace Gerenciador_de_Emprestimos
 
             string sql = @"UPDATE emprestimosbd.conta_receber 
                            SET
-                               valor_parcela = @novo_valor, 
-                               data_ultimo_calculo_juros = @nova_data_ultimo_calculo 
+                               valor_parcela = @valor_parcela, 
+                               data_ultimo_calculo_juros = @data_ultimo_calculo_juros,
+                               status_parcela = 'ATRASADA'
                            WHERE codigo = @codigo";
 
             using (var conexao = ConexaoBancoDeDados.Conectar())
             using (var comando = new MySqlCommand(sql, conexao))
             {
-                comando.Parameters.AddWithValue("@novo_valor", novoValor);
-                comando.Parameters.AddWithValue("@nova_data_ultimo_calculo", novaDataUltimoCalculo);
+                comando.Parameters.AddWithValue("@valor_parcela", novoValor);
+                comando.Parameters.AddWithValue("@data_ultimo_calculo_juros", novaDataUltimoCalculo);
                 comando.Parameters.AddWithValue("@codigo", CodigoParcela);
 
                 int linhasAfetadas = comando.ExecuteNonQuery();

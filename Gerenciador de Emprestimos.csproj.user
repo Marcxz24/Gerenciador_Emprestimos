@@ -16,6 +16,9 @@
     <Compile Update="frmNovosEmprestimos.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="frmObservacoesEmprestimos.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="frmPagamentoEmprestimo.cs">
       <SubType>Form</SubType>
     </Compile>
