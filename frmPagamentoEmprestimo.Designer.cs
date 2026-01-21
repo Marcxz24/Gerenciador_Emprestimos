@@ -262,6 +262,7 @@
             // 
             btnGerarPagamento.BackColor = Color.LightGreen;
             btnGerarPagamento.FlatStyle = FlatStyle.Popup;
+            btnGerarPagamento.Image = (Image)resources.GetObject("btnGerarPagamento.Image");
             btnGerarPagamento.Location = new Point(322, 756);
             btnGerarPagamento.Name = "btnGerarPagamento";
             btnGerarPagamento.Size = new Size(220, 72);
@@ -287,7 +288,7 @@
             lblTotalPagar.AutoSize = true;
             lblTotalPagar.BackColor = Color.Transparent;
             lblTotalPagar.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTotalPagar.Location = new Point(265, 158);
+            lblTotalPagar.Location = new Point(261, 155);
             lblTotalPagar.Name = "lblTotalPagar";
             lblTotalPagar.Size = new Size(87, 18);
             lblTotalPagar.TabIndex = 19;
@@ -295,7 +296,7 @@
             // 
             // txtBoxTotalPagar
             // 
-            txtBoxTotalPagar.Location = new Point(354, 153);
+            txtBoxTotalPagar.Location = new Point(350, 150);
             txtBoxTotalPagar.Name = "txtBoxTotalPagar";
             txtBoxTotalPagar.ReadOnly = true;
             txtBoxTotalPagar.Size = new Size(176, 27);
@@ -331,13 +332,13 @@
             comboBoxParcelaStatus.FormattingEnabled = true;
             comboBoxParcelaStatus.Location = new Point(136, 89);
             comboBoxParcelaStatus.Name = "comboBoxParcelaStatus";
-            comboBoxParcelaStatus.Size = new Size(151, 28);
+            comboBoxParcelaStatus.Size = new Size(123, 28);
             comboBoxParcelaStatus.TabIndex = 31;
             // 
             // lblClienteNome
             // 
             lblClienteNome.AutoSize = true;
-            lblClienteNome.Location = new Point(524, 92);
+            lblClienteNome.Location = new Point(486, 95);
             lblClienteNome.Name = "lblClienteNome";
             lblClienteNome.Size = new Size(58, 20);
             lblClienteNome.TabIndex = 23;
@@ -345,17 +346,17 @@
             // 
             // txtClienteNome
             // 
-            txtClienteNome.Location = new Point(588, 92);
+            txtClienteNome.Location = new Point(545, 95);
             txtClienteNome.Name = "txtClienteNome";
             txtClienteNome.ReadOnly = true;
-            txtClienteNome.Size = new Size(204, 27);
+            txtClienteNome.Size = new Size(254, 27);
             txtClienteNome.TabIndex = 22;
             // 
             // lblParcelaValor
             // 
             lblParcelaValor.AutoSize = true;
             lblParcelaValor.BackColor = Color.Transparent;
-            lblParcelaValor.Location = new Point(293, 92);
+            lblParcelaValor.Location = new Point(257, 92);
             lblParcelaValor.Name = "lblParcelaValor";
             lblParcelaValor.Size = new Size(97, 20);
             lblParcelaValor.TabIndex = 29;
@@ -363,7 +364,7 @@
             // 
             // txtBoxParcela
             // 
-            txtBoxParcela.Location = new Point(391, 92);
+            txtBoxParcela.Location = new Point(355, 92);
             txtBoxParcela.Name = "txtBoxParcela";
             txtBoxParcela.ReadOnly = true;
             txtBoxParcela.Size = new Size(127, 27);

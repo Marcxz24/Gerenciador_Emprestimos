@@ -13,6 +13,7 @@ namespace Gerenciador_de_Emprestimos
     public class PagamentoParcela
     {
         public int codigoEmprestimo { get; set; }
+        public string ObservacoesParcela { get; set; }
 
         // --- MÉTODOS DE APOIO (PRIVADOS) ---
 
@@ -98,9 +99,13 @@ namespace Gerenciador_de_Emprestimos
             // CASO 2: Pagamento Total / Quitação da Parcela
             else
             {
-                string sql = @"UPDATE emprestimosbd.conta_receber SET valor_pago = @valor_pago, 
-                           data_ultimo_pagamento = NOW(), data_pagamento = NOW(), 
-                           status_parcela = 'PAGA' WHERE codigo = @codigo";
+                string sql = @"UPDATE emprestimosbd.conta_receber 
+                                SET
+                                    valor_pago = @valor_pago, 
+                                    data_ultimo_pagamento = NOW(), 
+                                    data_pagamento = NOW(), 
+                                    status_parcela = 'PAGA' 
+                                WHERE codigo = @codigo";
 
                 EmprestimosCliente emprestimo = new EmprestimosCliente();
 
@@ -223,6 +228,34 @@ namespace Gerenciador_de_Emprestimos
 
                 int linhasAfetadas = comando.ExecuteNonQuery();
                 return linhasAfetadas > 0; // Retorna true se a atualização foi bem-sucedida
+            }
+        }
+
+        // Método publico para adicionar Observações a Parcela.
+        public void AdicionarObservacoesAParcela(int codigoParcela, string observacoes)
+        {
+            // variavel tipo STRING que armazena o comando do UPDATE para adicionar a Observação a parcela.
+            string sql = @"
+                            UPDATE emprestimosbd.conta_receber
+                            SET
+	                            observacoes = @observacoes
+                            WHERE codigo = @codigo";
+
+            // Se Observação foi diferente de Nulo com Espaços em Branco, executa o algoritimo abaixo.
+            if (!string.IsNullOrWhiteSpace(observacoes))
+            {
+                // Abre a conexão com o Banco de Dados.
+                using (var conexao = ConexaoBancoDeDados.Conectar())
+                // Variavel comando recebe um novo comando MySQL passando 'sql' e 'conexao' como parametros.
+                using (var comando = new MySqlCommand(sql, conexao))
+                {
+                    // Adiciona o parametro @codigo com o valor 'codigoParcela'
+                    comando.Parameters.AddWithValue("@codigo", codigoParcela);
+                    // Adiciona o parametro @observacoes com o valor 'observacoes'
+                    comando.Parameters.AddWithValue("@observacoes", observacoes);
+                    // Roda o comando ExecuteNonQuery para rodar o comando do UPDATE.
+                    comando.ExecuteNonQuery();
+                }
             }
         }
     }

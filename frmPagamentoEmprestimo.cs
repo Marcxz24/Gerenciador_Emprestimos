@@ -17,6 +17,7 @@ namespace Gerenciador_de_Emprestimos
         private int numeroParcela = 0;
         private int codigoParcela;
         private decimal valorParcela = 0;
+        private string? observacoes;
 
         public frmPagamentoEmprestimo()
         {
@@ -248,6 +249,25 @@ namespace Gerenciador_de_Emprestimos
 
             // Instancia a classe que contém a lógica de transação no banco
             PagamentoParcela parcela = new PagamentoParcela();
+
+            // Variavel tipo string que armazena a mensagem que irá mostrar no MessageBox.
+            string mensagemYesOrNo = "Você deseja informar uma Obersvação ao Emprestimo?";
+            // Variavel resultado recebe o valor que foi marcado no MessageBox: Yes ou No (Sim ou Não)
+            var resultado = MessageBox.Show(mensagemYesOrNo, "Observações", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            // Se resultado foi igual a Yes (Sim) executa o bloco abaixo.
+            if (resultado == DialogResult.Yes)
+            {
+                // Instancia um Objeto do frmObservacoesEmprestimos.
+                frmObservacoesEmprestimos frmObservacoes = new frmObservacoesEmprestimos();
+                frmObservacoes.ShowDialog();
+
+                // Variavel publica objeto recebe o texto escrito no Formulário de Observações.
+                observacoes = frmObservacoes.ObsercacoesEmprestimos;
+
+                // Objeto da classe parcela chama o Método responsável por Alterar a linha referente a parcela, adicionando Observações.
+                parcela.AdicionarObservacoesAParcela(codigoParcela, observacoes);
+            }
 
             // Tenta realizar o pagamento e exibe o feedback vindo do banco/serviço
             if (!parcela.RealizarPagamento(codigoParcela, codigoEmprestimo, numeroParcela, valorPago, valorParcela, out string mensagem))
