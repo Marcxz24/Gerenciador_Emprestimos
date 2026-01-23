@@ -2,12 +2,12 @@
 
 namespace Gerenciador_de_Emprestimos
 {
-    public partial class FormEmprestimos : Form
+    public partial class frmNovosEmprestimos : Form
     {
         // Objeto global que carrega a lógica de negócio e cálculos financeira
         EmprestimosCliente emprestimo = new EmprestimosCliente();
 
-        public FormEmprestimos()
+        public frmNovosEmprestimos()
         {
             InitializeComponent();
 

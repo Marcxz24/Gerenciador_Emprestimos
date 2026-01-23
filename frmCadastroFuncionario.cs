@@ -309,7 +309,7 @@ namespace Gerenciador_de_Emprestimos
             Funcionario funcionario = new Funcionario();
 
             // Chama o método EditarCadastroFuncionario da classe Funcionario
-            funcionario.EditarCadastroFuncionario(codigoFuncionario,nomeFuncionario, cpf, sexo, estadoCivil, username, telefone, cidade, situacao);
+            funcionario.EditarCadastroFuncionario(codigoFuncionario, nomeFuncionario, cpf, sexo, estadoCivil, username, telefone, cidade, situacao);
 
             // Se a flag de alteração de senha estiver ativa, atualiza a senha
             if (_AlterarSenha == true)
@@ -382,6 +382,18 @@ namespace Gerenciador_de_Emprestimos
                 // Mostra a mensagem para digitar a nova senha!
                 Funcoes.MensagemInformation("Digite a nova senha e clique em Salvar.");
             }
+        }
+
+        private void lblLinkCadastroCliente_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            grpBoxEmpresa.Visible = false;
+            grpBoxCliente.Visible = true;
+        }
+
+        private void lblLinkCadastroFuncionario_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            grpBoxCliente.Visible = false;
+            grpBoxEmpresa.Visible = true;
         }
     }
 }

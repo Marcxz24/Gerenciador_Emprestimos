@@ -1,6 +1,6 @@
 ﻿namespace Gerenciador_de_Emprestimos
 {
-    partial class FormEmprestimos
+    partial class frmNovosEmprestimos
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEmprestimos));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNovosEmprestimos));
             groupBoxClienteEmprestimo = new GroupBox();
             lblSituacao = new Label();
             ComboBoxSituacaoCadastral = new ComboBox();
@@ -446,7 +446,7 @@
             lblBotãoGerarEmprestimo.TabIndex = 9;
             lblBotãoGerarEmprestimo.Text = "Salvar Emprestimo ->";
             // 
-            // FormEmprestimos
+            // frmNovosEmprestimos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -463,7 +463,7 @@
             DoubleBuffered = true;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
-            Name = "FormEmprestimos";
+            Name = "frmNovosEmprestimos";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gerenciador de Emprestimos";
             groupBoxClienteEmprestimo.ResumeLayout(false);

@@ -3,11 +3,11 @@ using MySql.Data.MySqlClient;
 
 namespace Gerenciador_de_Emprestimos
 {
-    public partial class FormCadastroCliente : Form
+    public partial class frmCadastroCliente : Form
     {
         private bool _EditarCadastro;
 
-        public FormCadastroCliente()
+        public frmCadastroCliente()
         {
             InitializeComponent();
             txtNumeroResidencia.KeyPress += Funcoes.SomenteNumeros_KeyPress;

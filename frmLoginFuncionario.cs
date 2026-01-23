@@ -73,6 +73,9 @@ namespace Gerenciador_de_Emprestimos
             {
                 LoginRealizado = true;
 
+                // Chama o método da classe Controle de Acesso, que carrega os privilegios do usuário logado.
+                ControleAcesso.CarregarPrivilegios(codigoFuncionario);
+
                 // VERIFICAÇÃO DE HIERARQUIA: Tenta encontrar o formulário "pai" (Tela Inicial)
                 // Isso permite que o login "avise" a tela principal quem entrou no sistema
                 if (this.Owner is frmTelaIncial telaPrincipal)

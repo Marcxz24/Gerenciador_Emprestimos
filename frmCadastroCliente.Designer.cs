@@ -1,6 +1,6 @@
 ﻿namespace Gerenciador_de_Emprestimos
 {
-    partial class FormCadastroCliente
+    partial class frmCadastroCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCadastroCliente));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCadastroCliente));
             lblNomeCliente = new Label();
             lblEndereco = new Label();
             lblEstadoCivil = new Label();
@@ -659,7 +659,7 @@
             txtCodigoCliente.Size = new Size(83, 23);
             txtCodigoCliente.TabIndex = 37;
             // 
-            // FormCadastroCliente
+            // frmCadastroCliente
             // 
             AutoScaleDimensions = new SizeF(9F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -693,7 +693,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 3, 4, 3);
             MaximizeBox = false;
-            Name = "FormCadastroCliente";
+            Name = "frmCadastroCliente";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cadastro de Cliente";
             groupBoxGenero.ResumeLayout(false);

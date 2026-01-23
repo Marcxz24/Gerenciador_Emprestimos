@@ -72,18 +72,36 @@ namespace Gerenciador_de_Emprestimos
 
         private void clienteToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FormCadastroCliente formularioCadastroCliente = new FormCadastroCliente();
+            if (!ControleAcesso.PodeAcessar("frmCadastroCliente"))
+            {
+                Funcoes.MensagemWarning("Você não tem Privilégio para Realizar esta operação.");
+                return;
+            }
+
+            frmCadastroCliente formularioCadastroCliente = new frmCadastroCliente();
             formularioCadastroCliente.ShowDialog();
         }
 
         private void novosEmprestimosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormEmprestimos formularioEmprestimos = new FormEmprestimos();
+            if (!ControleAcesso.PodeAcessar("frmNovosEmprestimos"))
+            {
+                Funcoes.MensagemWarning("Você não tem Privilégio para Realizar esta operação.");
+                return;
+            }
+
+            frmNovosEmprestimos formularioEmprestimos = new frmNovosEmprestimos();
             formularioEmprestimos.ShowDialog();
         }
 
         private void visualizarEmprestimosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!ControleAcesso.PodeAcessar("frmVisualizarEmprestimos"))
+            {
+                Funcoes.MensagemWarning("Você não tem Privilégio para Realizar esta operação.");
+                return;
+            }
+
             frmVisualizarEmprestimos frmVisualizarEmprestimos = new frmVisualizarEmprestimos();
             frmVisualizarEmprestimos.Show();
         }
@@ -95,30 +113,60 @@ namespace Gerenciador_de_Emprestimos
 
         private void visualizarEmprestimosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (!ControleAcesso.PodeAcessar("frmVisualizarEmprestimos"))
+            {
+                Funcoes.MensagemWarning("Você não tem Privilégio para Realizar esta operação.");
+                return;
+            }
+
             frmVisualizarEmprestimos frmVisualizarEmprestimos = new frmVisualizarEmprestimos();
             frmVisualizarEmprestimos.Show();
         }
 
         private void recebimentoDeParcelaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!ControleAcesso.PodeAcessar("frmPagamentoEmprestimo"))
+            {
+                Funcoes.MensagemWarning("Você não tem Privilégio para Realizar esta operação.");
+                return;
+            }
+
             frmPagamentoEmprestimo frmPagamentoParcela = new frmPagamentoEmprestimo();
             frmPagamentoParcela.ShowDialog();
         }
 
         private void visualizarParcelasToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!ControleAcesso.PodeAcessar("frmConsultarParcelas"))
+            {
+                Funcoes.MensagemWarning("Você não tem Privilégio para Realizar esta operação.");
+                return;
+            }
+
             frmConsultarParcelas frmConsultaParcela = new frmConsultarParcelas();
             frmConsultaParcela.Show();
         }
 
         private void pagamentoDeParcelaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!ControleAcesso.PodeAcessar("frmPagamentoEmprestimo"))
+            {
+                Funcoes.MensagemWarning("Você não tem Privilégio para Realizar esta operação.");
+                return;
+            }
+
             frmPagamentoEmprestimo frmPagamento = new frmPagamentoEmprestimo();
             frmPagamento.ShowDialog();
         }
 
         private void funcionárioToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!ControleAcesso.PodeAcessar("frmCadastroFuncionario"))
+            {
+                Funcoes.MensagemWarning("Você não tem Privilégio para Realizar esta operação.");
+                return;
+            }
+
             frmCadastroFuncionario frmCadastroFuncionario = new frmCadastroFuncionario();
             frmCadastroFuncionario.ShowDialog();
         }
