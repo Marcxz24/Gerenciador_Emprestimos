@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gerenciador_de_Emprestimos
+namespace Gerenciador_de_Emprestimos.Services
 {
     // Classe responsável por consultar parcelas que estão pendentes para pagamento
     public class PagamentoParcelaConsulta

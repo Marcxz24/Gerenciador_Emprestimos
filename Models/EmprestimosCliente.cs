@@ -1,4 +1,5 @@
 ﻿using Gerenciador_de_Emprestimos.Database;
+using Gerenciador_de_Emprestimos.Utils;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gerenciador_de_Emprestimos
+namespace Gerenciador_de_Emprestimos.Models
 {
     internal class EmprestimosCliente
     {
@@ -34,7 +35,7 @@ namespace Gerenciador_de_Emprestimos
         // Calcula o valor real em dinheiro dos juros sobre o montante emprestado
         private decimal CalcularJurosValorEmprestado()
         {
-            ValorJurosMonetario = (ValorEmprestado * ValorJurosPercentual) / 100;
+            ValorJurosMonetario = ValorEmprestado * ValorJurosPercentual / 100;
             return ValorJurosMonetario;
         }
 

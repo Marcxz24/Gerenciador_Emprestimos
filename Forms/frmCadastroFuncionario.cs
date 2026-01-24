@@ -1,4 +1,7 @@
-﻿using iText.StyledXmlParser.Jsoup.Nodes;
+﻿using Gerenciador_de_Emprestimos.Models;
+using Gerenciador_de_Emprestimos.Security;
+using Gerenciador_de_Emprestimos.Utils;
+using iText.StyledXmlParser.Jsoup.Nodes;
 using System.Runtime.CompilerServices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -212,6 +215,10 @@ namespace Gerenciador_de_Emprestimos
 
                     // Preenche o campo de senha (geralmente o Hash armazenado)
                     txtBoxSenha.Text = funcionario.senha_hash.ToString();
+
+                    int codigoFuncionario = Convert.ToInt32(txtBoxCodigo.Text);
+
+                    CarregarPrivilegiosFuncionario(codigoFuncionario);
                 }
             } // Aqui o formulário 'frmSelecionarFuncionario' é destruído da memória
         }
@@ -384,12 +391,32 @@ namespace Gerenciador_de_Emprestimos
             }
         }
 
+        private void CarregarPrivilegiosFuncionario(int codigoFuncionario)
+        {
+            ControleAcesso.CarregarPrivilegios(codigoFuncionario);
+
+            foreach (Control controle in this.Controls)
+            {
+                if (controle is CheckBox chk)
+                {
+                    if (chk.Checked == null)
+                        continue;
+
+                    string formName = chk.Tag.ToString();
+
+                    chk.Checked = ControleAcesso.PodeAcessar(formName);
+                }
+            }
+        }
+
+        // Label Link que acessa os privilegios do cadastro de cliente.
         private void lblLinkCadastroCliente_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             grpBoxEmpresa.Visible = false;
             grpBoxCliente.Visible = true;
         }
 
+        // Label Link que acessa os privilegios do cadastro de Funcionário.
         private void lblLinkCadastroFuncionario_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             grpBoxCliente.Visible = false;

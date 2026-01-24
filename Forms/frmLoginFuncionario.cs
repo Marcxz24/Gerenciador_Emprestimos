@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Gerenciador_de_Emprestimos.Security;
+using Gerenciador_de_Emprestimos.Services;
+using Gerenciador_de_Emprestimos.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -72,6 +75,8 @@ namespace Gerenciador_de_Emprestimos
             if (sucessoLogin)
             {
                 LoginRealizado = true;
+
+                Sessao.CodigoFuncionarioLogado = codigoFuncionario;
 
                 // Chama o método da classe Controle de Acesso, que carrega os privilegios do usuário logado.
                 ControleAcesso.CarregarPrivilegios(codigoFuncionario);

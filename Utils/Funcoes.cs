@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Gerenciador_de_Emprestimos
+namespace Gerenciador_de_Emprestimos.Utils
 {
     // Define uma classe interna para funções utilitárias que podem ser usadas em qualquer formulário
     internal class Funcoes

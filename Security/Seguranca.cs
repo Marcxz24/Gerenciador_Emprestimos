@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 // Define o agrupamento lógico (namespace) do projeto
-namespace Gerenciador_de_Emprestimos
+namespace Gerenciador_de_Emprestimos.Security
 {
     // Declara a classe 'Seguranca', que centraliza as regras de criptografia
     public class Seguranca

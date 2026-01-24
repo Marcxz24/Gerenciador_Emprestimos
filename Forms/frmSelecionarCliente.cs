@@ -1,4 +1,6 @@
 ﻿using Gerenciador_de_Emprestimos.Database;
+using Gerenciador_de_Emprestimos.Services;
+using Gerenciador_de_Emprestimos.Utils;
 using MySql.Data.MySqlClient;
 using Mysqlx;
 using System.Data;

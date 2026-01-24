@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gerenciador_de_Emprestimos
+namespace Gerenciador_de_Emprestimos.Security
 {
     public static class ControleAcesso
     {

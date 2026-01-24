@@ -71,9 +71,9 @@
             chkBoxFuncionario = new CheckBox();
             tabPageFinanceiro = new TabPage();
             grpBoxEmprestimos = new GroupBox();
-            tabPageRelatorios = new TabPage();
-            chkBoxNovosEmprestimos = new CheckBox();
             chkBoxPagamentoParcela = new CheckBox();
+            chkBoxNovosEmprestimos = new CheckBox();
+            tabPageRelatorios = new TabPage();
             tabPageLogin.SuspendLayout();
             tabPageCadastroFuncionario.SuspendLayout();
             grpBoxDadosPessoaisFuncionario.SuspendLayout();
@@ -467,7 +467,6 @@
             grpBoxCliente.TabIndex = 2;
             grpBoxCliente.TabStop = false;
             grpBoxCliente.Text = "Cliente";
-            grpBoxCliente.Visible = false;
             // 
             // chkBoxBloquearEdicao
             // 
@@ -488,6 +487,7 @@
             chkBoxAcessarCadastro.Name = "chkBoxAcessarCadastro";
             chkBoxAcessarCadastro.Size = new Size(142, 24);
             chkBoxAcessarCadastro.TabIndex = 0;
+            chkBoxAcessarCadastro.Tag = "1";
             chkBoxAcessarCadastro.Text = "Acessar cadastro";
             chkBoxAcessarCadastro.UseVisualStyleBackColor = true;
             // 
@@ -502,7 +502,6 @@
             grpBoxEmpresa.TabIndex = 3;
             grpBoxEmpresa.TabStop = false;
             grpBoxEmpresa.Text = "Empresa";
-            grpBoxEmpresa.Visible = false;
             // 
             // chkBoxEdicaoPrivilegio
             // 
@@ -532,6 +531,7 @@
             chkBoxFuncionario.Name = "chkBoxFuncionario";
             chkBoxFuncionario.Size = new Size(108, 24);
             chkBoxFuncionario.TabIndex = 1;
+            chkBoxFuncionario.Tag = "2";
             chkBoxFuncionario.Text = "Funcionário";
             chkBoxFuncionario.UseVisualStyleBackColor = true;
             // 
@@ -557,15 +557,15 @@
             grpBoxEmprestimos.TabStop = false;
             grpBoxEmprestimos.Text = "Emprestimos";
             // 
-            // tabPageRelatorios
+            // chkBoxPagamentoParcela
             // 
-            tabPageRelatorios.Location = new Point(4, 29);
-            tabPageRelatorios.Name = "tabPageRelatorios";
-            tabPageRelatorios.Padding = new Padding(3);
-            tabPageRelatorios.Size = new Size(842, 427);
-            tabPageRelatorios.TabIndex = 2;
-            tabPageRelatorios.Text = "Relatórios";
-            tabPageRelatorios.UseVisualStyleBackColor = true;
+            chkBoxPagamentoParcela.AutoSize = true;
+            chkBoxPagamentoParcela.Location = new Point(20, 66);
+            chkBoxPagamentoParcela.Name = "chkBoxPagamentoParcela";
+            chkBoxPagamentoParcela.Size = new Size(184, 24);
+            chkBoxPagamentoParcela.TabIndex = 1;
+            chkBoxPagamentoParcela.Text = "Pagamento de Parcelas";
+            chkBoxPagamentoParcela.UseVisualStyleBackColor = true;
             // 
             // chkBoxNovosEmprestimos
             // 
@@ -577,15 +577,15 @@
             chkBoxNovosEmprestimos.Text = "Novos Emprestimos";
             chkBoxNovosEmprestimos.UseVisualStyleBackColor = true;
             // 
-            // chkBoxPagamentoParcela
+            // tabPageRelatorios
             // 
-            chkBoxPagamentoParcela.AutoSize = true;
-            chkBoxPagamentoParcela.Location = new Point(20, 66);
-            chkBoxPagamentoParcela.Name = "chkBoxPagamentoParcela";
-            chkBoxPagamentoParcela.Size = new Size(184, 24);
-            chkBoxPagamentoParcela.TabIndex = 1;
-            chkBoxPagamentoParcela.Text = "Pagamento de Parcelas";
-            chkBoxPagamentoParcela.UseVisualStyleBackColor = true;
+            tabPageRelatorios.Location = new Point(4, 29);
+            tabPageRelatorios.Name = "tabPageRelatorios";
+            tabPageRelatorios.Padding = new Padding(3);
+            tabPageRelatorios.Size = new Size(842, 427);
+            tabPageRelatorios.TabIndex = 2;
+            tabPageRelatorios.Text = "Relatórios";
+            tabPageRelatorios.UseVisualStyleBackColor = true;
             // 
             // frmCadastroFuncionario
             // 

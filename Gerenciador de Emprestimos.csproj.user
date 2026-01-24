@@ -1,37 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="frmCadastroCliente.cs">
+    <Compile Update="Forms\frmCadastroCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frmCadastroFuncionario.cs">
+    <Compile Update="Forms\frmCadastroFuncionario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frmConsultarParcelas.cs">
+    <Compile Update="Forms\frmConsultarParcelas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frmLoginFuncionario.cs">
+    <Compile Update="Forms\frmLoginFuncionario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frmNovosEmprestimos.cs">
+    <Compile Update="Forms\frmNovosEmprestimos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frmObservacoesEmprestimos.cs">
+    <Compile Update="Forms\frmObservacoesEmprestimos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frmPagamentoEmprestimo.cs">
+    <Compile Update="Forms\frmPagamentoEmprestimo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frmSelecionarCliente.cs">
+    <Compile Update="Forms\frmSelecionarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frmSelecionarFuncionario.cs">
+    <Compile Update="Forms\frmSelecionarFuncionario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frmTelaInicial.cs">
+    <Compile Update="Forms\frmTelaInicial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frmVisualizarEmprestimos.cs">
+    <Compile Update="Forms\frmVisualizarEmprestimos.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

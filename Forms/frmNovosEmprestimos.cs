@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using Gerenciador_de_Emprestimos.Models;
+using Gerenciador_de_Emprestimos.Utils;
+using System.Globalization;
 
 namespace Gerenciador_de_Emprestimos
 {

@@ -7,7 +7,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gerenciador_de_Emprestimos
+namespace Gerenciador_de_Emprestimos.Services
 {
     // Define a classe interna responsável pelos serviços de autenticação e validação de login
     internal class LoginService

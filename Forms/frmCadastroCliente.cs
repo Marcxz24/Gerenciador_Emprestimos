@@ -1,4 +1,5 @@
 ﻿using Gerenciador_de_Emprestimos.Database;
+using Gerenciador_de_Emprestimos.Utils;
 using MySql.Data.MySqlClient;
 
 namespace Gerenciador_de_Emprestimos

@@ -10,7 +10,7 @@ using System.Security.Cryptography.X509Certificates;
 using Document = iText.Layout.Document;
 using Path = System.IO.Path;
 
-namespace Gerenciador_de_Emprestimos
+namespace Gerenciador_de_Emprestimos.Services
 {
     public class GeradorRelatorio
     {

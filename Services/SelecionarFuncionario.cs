@@ -2,7 +2,7 @@
 using MySql.Data.MySqlClient;
 using System.Data;
 
-namespace Gerenciador_de_Emprestimos
+namespace Gerenciador_de_Emprestimos.Services
 {
     // Define a classe que representa tanto o modelo do Funcionário quanto os métodos de busca
     public class SelecionarFuncionario

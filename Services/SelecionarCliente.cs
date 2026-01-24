@@ -3,7 +3,7 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using System.Reflection.Metadata.Ecma335;
 
-namespace Gerenciador_de_Emprestimos
+namespace Gerenciador_de_Emprestimos.Services
 {
     public class SelecionarCliente
     {

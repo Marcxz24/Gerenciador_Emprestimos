@@ -5,7 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gerenciador_de_Emprestimos
+namespace Gerenciador_de_Emprestimos.Utils
 {
     public class ValidacaoCpf
     {
@@ -66,7 +66,7 @@ namespace Gerenciador_de_Emprestimos
                 }
 
                 // Resto da Divisão
-                d1 = (d1 * 10) % 11;
+                d1 = d1 * 10 % 11;
                 if (d1 == 10)
                 {
                     d1 = 0;
@@ -89,7 +89,7 @@ namespace Gerenciador_de_Emprestimos
                     }
 
                     // Resto da Divisão
-                    d2 = (d2 * 10) % 11;
+                    d2 = d2 * 10 % 11;
                     if (d2 == 10)
                     {
                         d2 = 0; 
