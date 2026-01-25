@@ -1,6 +1,5 @@
 using System;
 using System.Windows.Forms;
-using Gerenciador_de_Emprestimos.Security;
 using Gerenciador_de_Emprestimos.Services;
 using Gerenciador_de_Emprestimos.Utils;
 using MySql.Data;

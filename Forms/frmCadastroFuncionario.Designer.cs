@@ -63,11 +63,8 @@
             tabControlPrivilegios = new TabControl();
             tabPageCadastro = new TabPage();
             grpBoxCliente = new GroupBox();
-            chkBoxBloquearEdicao = new CheckBox();
             chkBoxAcessarCadastroCliente = new CheckBox();
             grpBoxEmpresa = new GroupBox();
-            chkBoxEdicaoPrivilegio = new CheckBox();
-            lblSeparadorFuncionario = new Label();
             chkBoxCadastroFuncionario = new CheckBox();
             tabPageFinanceiro = new TabPage();
             grpBoxEmprestimos = new GroupBox();
@@ -464,7 +461,6 @@
             // 
             // grpBoxCliente
             // 
-            grpBoxCliente.Controls.Add(chkBoxBloquearEdicao);
             grpBoxCliente.Controls.Add(chkBoxAcessarCadastroCliente);
             grpBoxCliente.Location = new Point(6, 3);
             grpBoxCliente.Name = "grpBoxCliente";
@@ -472,17 +468,6 @@
             grpBoxCliente.TabIndex = 4;
             grpBoxCliente.TabStop = false;
             grpBoxCliente.Text = "Cliente";
-            // 
-            // chkBoxBloquearEdicao
-            // 
-            chkBoxBloquearEdicao.AutoSize = true;
-            chkBoxBloquearEdicao.Enabled = false;
-            chkBoxBloquearEdicao.Location = new Point(60, 74);
-            chkBoxBloquearEdicao.Name = "chkBoxBloquearEdicao";
-            chkBoxBloquearEdicao.Size = new Size(140, 24);
-            chkBoxBloquearEdicao.TabIndex = 1;
-            chkBoxBloquearEdicao.Text = "Bloquear Edição";
-            chkBoxBloquearEdicao.UseVisualStyleBackColor = true;
             // 
             // chkBoxAcessarCadastroCliente
             // 
@@ -498,8 +483,6 @@
             // 
             // grpBoxEmpresa
             // 
-            grpBoxEmpresa.Controls.Add(chkBoxEdicaoPrivilegio);
-            grpBoxEmpresa.Controls.Add(lblSeparadorFuncionario);
             grpBoxEmpresa.Controls.Add(chkBoxCadastroFuncionario);
             grpBoxEmpresa.Location = new Point(395, 3);
             grpBoxEmpresa.Name = "grpBoxEmpresa";
@@ -508,31 +491,11 @@
             grpBoxEmpresa.TabStop = false;
             grpBoxEmpresa.Text = "Empresa";
             // 
-            // chkBoxEdicaoPrivilegio
-            // 
-            chkBoxEdicaoPrivilegio.AutoSize = true;
-            chkBoxEdicaoPrivilegio.Enabled = false;
-            chkBoxEdicaoPrivilegio.Location = new Point(248, 68);
-            chkBoxEdicaoPrivilegio.Name = "chkBoxEdicaoPrivilegio";
-            chkBoxEdicaoPrivilegio.Size = new Size(148, 24);
-            chkBoxEdicaoPrivilegio.TabIndex = 3;
-            chkBoxEdicaoPrivilegio.Text = "Edição Privilégios";
-            chkBoxEdicaoPrivilegio.UseVisualStyleBackColor = true;
-            // 
-            // lblSeparadorFuncionario
-            // 
-            lblSeparadorFuncionario.AutoSize = true;
-            lblSeparadorFuncionario.Location = new Point(181, 69);
-            lblSeparadorFuncionario.Name = "lblSeparadorFuncionario";
-            lblSeparadorFuncionario.Size = new Size(25, 20);
-            lblSeparadorFuncionario.TabIndex = 2;
-            lblSeparadorFuncionario.Text = "->";
-            // 
             // chkBoxCadastroFuncionario
             // 
             chkBoxCadastroFuncionario.AutoSize = true;
             chkBoxCadastroFuncionario.Enabled = false;
-            chkBoxCadastroFuncionario.Location = new Point(52, 65);
+            chkBoxCadastroFuncionario.Location = new Point(16, 35);
             chkBoxCadastroFuncionario.Name = "chkBoxCadastroFuncionario";
             chkBoxCadastroFuncionario.Size = new Size(108, 24);
             chkBoxCadastroFuncionario.TabIndex = 1;
@@ -718,11 +681,8 @@
         private TabPage tabPageFinanceiro;
         private TabPage tabPageRelatorios;
         private CheckBox chkBoxAcessarCadastroCliente;
-        private CheckBox chkBoxBloquearEdicao;
         private GroupBox grpBoxEmpresa;
         private CheckBox chkBoxCadastroFuncionario;
-        private Label lblSeparadorFuncionario;
-        private CheckBox chkBoxEdicaoPrivilegio;
         private GroupBox grpBoxEmprestimos;
         private CheckBox chkBoxPagamentoParcela;
         private CheckBox chkBoxNovosEmprestimos;
