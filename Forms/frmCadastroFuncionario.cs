@@ -1,7 +1,9 @@
 ﻿using Gerenciador_de_Emprestimos.Models;
 using Gerenciador_de_Emprestimos.Security;
+using Gerenciador_de_Emprestimos.Services;
 using Gerenciador_de_Emprestimos.Utils;
 using iText.StyledXmlParser.Jsoup.Nodes;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -40,6 +42,17 @@ namespace Gerenciador_de_Emprestimos
             txtBoxUsername.ReadOnly = !ManifestarBotoes;
             lblLinkEditarSenha.Enabled = ManifestarBotoes;
 
+            // Habilitar os CheckBox Referentes aos Privilégios.
+            // CheckBox usam .Enabled (Habilitado/Desabilitado)
+            chkBoxAcessarCadastroCliente.Enabled = ManifestarBotoes;
+            chkBoxCadastroFuncionario.Enabled = ManifestarBotoes;
+            chkBoxNovosEmprestimos.Enabled = ManifestarBotoes;
+            chkBoxPagamentoParcela.Enabled = ManifestarBotoes;
+            chkBoxBloquearEdicao.Enabled = ManifestarBotoes;
+            chkBoxEdicaoPrivilegio.Enabled = ManifestarBotoes;
+            chkBoxVizualizarEmprestimos.Enabled = ManifestarBotoes;
+            chkBoxConsultarParcela.Enabled = ManifestarBotoes;
+
             // --- 2. LIMPEZA DOS CAMPOS ---
             if (LimparCampos)
             {
@@ -56,6 +69,16 @@ namespace Gerenciador_de_Emprestimos
                 txtBoxTelefoneFuncionario.Clear();
                 txtBoxUsername.Clear();
                 txtBoxSenha.Clear();
+
+                // Limpa os CheckBox referentes aos privilégios.
+                chkBoxCadastroFuncionario.Checked = false;
+                chkBoxAcessarCadastroCliente.Checked = false;
+                chkBoxNovosEmprestimos.Checked = false;
+                chkBoxPagamentoParcela.Checked = false;
+                chkBoxBloquearEdicao.Checked = false;
+                chkBoxEdicaoPrivilegio.Checked = false;
+                chkBoxConsultarParcela.Checked = false;
+                chkBoxVizualizarEmprestimos.Checked = false;
             }
 
             // --- 3. VISIBILIDADE DOS BOTÕES ---
@@ -165,8 +188,53 @@ namespace Gerenciador_de_Emprestimos
             // Chama o método centralizado que decide entre Inserir ou Editar
             SalvarCadastroFuncionario();
 
+            // Chama o método de responsável por salvar os privilegios no Banco.
+            SalvarPrivilegiosFuncionario();
+
             // Após salvar, bloqueia os campos e volta a exibir os botões principais
             GerenciarBotoesCampos(OcultarBotoes: false, ManifestarBotoes: false, LimparCampos: false);
+        }
+
+        private void SalvarPrivilegiosFuncionario()
+        {
+            // Obtém o ID do funcionário a partir da caixa de texto, convertendo para inteiro
+            int codigoFuncionario = Convert.ToInt32(txtBoxCodigo.Text);
+
+            // Cria um dicionário temporário para armazenar o par (Código da Tela, Marcado ou Não)
+            var privilegios = new Dictionary<int, bool>();
+
+            // Inicia a busca pelos CheckBoxes dentro de todos os controles do formulário
+            PercorrerCheckBox(this.Controls, privilegios);
+
+            // Instancia a camada de serviço para processar as regras de negócio
+            var service = new FuncionarioPrivilegioService();
+
+            // Envia o dicionário preenchido para ser persistido no banco de dados
+            service.SalvarPrivilegios(codigoFuncionario, privilegios);
+        }
+
+        // Método recursivo que varre a árvore de componentes da interface
+        private void PercorrerCheckBox(Control.ControlCollection controles, Dictionary<int, bool> privilegios)
+        {
+            foreach (Control control in controles)
+            {
+                // Verifica se o controle atual é um CheckBox e se possui um valor na propriedade Tag
+                if (control is CheckBox chk && chk.Tag != null)
+                {
+                    // Converte a Tag (que deve conter o ID da tela) para inteiro
+                    int codigoTela = Convert.ToInt32(chk.Tag);
+
+                    // Adiciona ou atualiza no dicionário: ID da Tela -> true (marcado) ou false (desmarcado)
+                    privilegios[codigoTela] = chk.Checked;
+                }
+
+                // Se o controle atual for um container (Panel, GroupBox, TabPage), chama o método novamente
+                // Isso garante que CheckBoxes "escondidos" dentro de painéis também sejam lidos
+                if (control.HasChildren)
+                {
+                    PercorrerCheckBox(control.Controls, privilegios);
+                }
+            }
         }
 
         // Função para colocar a primeira letra em maiúscula no campo Nome do Funcionário
@@ -218,7 +286,7 @@ namespace Gerenciador_de_Emprestimos
 
                     int codigoFuncionario = Convert.ToInt32(txtBoxCodigo.Text);
 
-                    CarregarPrivilegiosFuncionario(codigoFuncionario);
+                    MarcarPrivilegiosFuncionario(codigoFuncionario);
                 }
             } // Aqui o formulário 'frmSelecionarFuncionario' é destruído da memória
         }
@@ -391,24 +459,6 @@ namespace Gerenciador_de_Emprestimos
             }
         }
 
-        private void CarregarPrivilegiosFuncionario(int codigoFuncionario)
-        {
-            ControleAcesso.CarregarPrivilegios(codigoFuncionario);
-
-            foreach (Control controle in this.Controls)
-            {
-                if (controle is CheckBox chk)
-                {
-                    if (chk.Checked == null)
-                        continue;
-
-                    string formName = chk.Tag.ToString();
-
-                    chk.Checked = ControleAcesso.PodeAcessar(formName);
-                }
-            }
-        }
-
         // Label Link que acessa os privilegios do cadastro de cliente.
         private void lblLinkCadastroCliente_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -421,6 +471,43 @@ namespace Gerenciador_de_Emprestimos
         {
             grpBoxCliente.Visible = false;
             grpBoxEmpresa.Visible = true;
+        }
+
+        private void MarcarPrivilegiosFuncionario(int codigoFuncionario)
+        {
+            // Instancia o serviço para acessar a lógica de busca
+            var service = new FuncionarioPrivilegioService();
+
+            // Obtém do banco de dados apenas a lista de IDs das telas que o funcionário tem acesso
+            var telasPermitidas = service.BuscarTelasPermitidas(codigoFuncionario);
+
+            // Inicia a varredura dos controles da tela para marcar os CheckBoxes correspondentes
+            MarcarCheckBox(this.Controls, telasPermitidas);
+        }
+
+        // Método recursivo que percorre a hierarquia de componentes do formulário
+        private void MarcarCheckBox(Control.ControlCollection controles, List<int> telasPermitidas)
+        {
+            foreach (Control control in controles)
+            {
+                // Se o controle for um CheckBox e possuir um ID de tela na Tag
+                if (control is CheckBox chk && chk.Tag != null)
+                {
+                    // Converte a Tag para inteiro para comparação
+                    int codigoTela = Convert.ToInt32(chk.Tag);
+
+                    // Define o estado do CheckBox: 
+                    // Fica Marcado (true) se o ID da tela estiver na lista vinda do banco
+                    // Fica Desmarcado (false) caso contrário
+                    chk.Checked = telasPermitidas.Contains(codigoTela);
+                }
+
+                // Se encontrar um container (como Panel ou GroupBox), entra nele para buscar mais CheckBoxes
+                if (control.HasChildren)
+                {
+                    MarcarCheckBox(control.Controls, telasPermitidas);
+                }
+            }
         }
     }
 }

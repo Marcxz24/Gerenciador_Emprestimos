@@ -64,16 +64,19 @@
             tabPageCadastro = new TabPage();
             grpBoxCliente = new GroupBox();
             chkBoxBloquearEdicao = new CheckBox();
-            chkBoxAcessarCadastro = new CheckBox();
+            chkBoxAcessarCadastroCliente = new CheckBox();
             grpBoxEmpresa = new GroupBox();
             chkBoxEdicaoPrivilegio = new CheckBox();
             lblSeparadorFuncionario = new Label();
-            chkBoxFuncionario = new CheckBox();
+            chkBoxCadastroFuncionario = new CheckBox();
             tabPageFinanceiro = new TabPage();
             grpBoxEmprestimos = new GroupBox();
             chkBoxPagamentoParcela = new CheckBox();
             chkBoxNovosEmprestimos = new CheckBox();
             tabPageRelatorios = new TabPage();
+            grpBoxRelatorioEmprestimos = new GroupBox();
+            chkBoxConsultarParcela = new CheckBox();
+            chkBoxVizualizarEmprestimos = new CheckBox();
             tabPageLogin.SuspendLayout();
             tabPageCadastroFuncionario.SuspendLayout();
             grpBoxDadosPessoaisFuncionario.SuspendLayout();
@@ -85,6 +88,8 @@
             grpBoxEmpresa.SuspendLayout();
             tabPageFinanceiro.SuspendLayout();
             grpBoxEmprestimos.SuspendLayout();
+            tabPageRelatorios.SuspendLayout();
+            grpBoxRelatorioEmprestimos.SuspendLayout();
             SuspendLayout();
             // 
             // lblCodigoFuncionario
@@ -460,11 +465,11 @@
             // grpBoxCliente
             // 
             grpBoxCliente.Controls.Add(chkBoxBloquearEdicao);
-            grpBoxCliente.Controls.Add(chkBoxAcessarCadastro);
-            grpBoxCliente.Location = new Point(3, 3);
+            grpBoxCliente.Controls.Add(chkBoxAcessarCadastroCliente);
+            grpBoxCliente.Location = new Point(6, 3);
             grpBoxCliente.Name = "grpBoxCliente";
-            grpBoxCliente.Size = new Size(386, 188);
-            grpBoxCliente.TabIndex = 2;
+            grpBoxCliente.Size = new Size(383, 186);
+            grpBoxCliente.TabIndex = 4;
             grpBoxCliente.TabStop = false;
             grpBoxCliente.Text = "Cliente";
             // 
@@ -472,30 +477,30 @@
             // 
             chkBoxBloquearEdicao.AutoSize = true;
             chkBoxBloquearEdicao.Enabled = false;
-            chkBoxBloquearEdicao.Location = new Point(52, 65);
+            chkBoxBloquearEdicao.Location = new Point(60, 74);
             chkBoxBloquearEdicao.Name = "chkBoxBloquearEdicao";
             chkBoxBloquearEdicao.Size = new Size(140, 24);
             chkBoxBloquearEdicao.TabIndex = 1;
             chkBoxBloquearEdicao.Text = "Bloquear Edição";
             chkBoxBloquearEdicao.UseVisualStyleBackColor = true;
             // 
-            // chkBoxAcessarCadastro
+            // chkBoxAcessarCadastroCliente
             // 
-            chkBoxAcessarCadastro.AutoSize = true;
-            chkBoxAcessarCadastro.Enabled = false;
-            chkBoxAcessarCadastro.Location = new Point(12, 26);
-            chkBoxAcessarCadastro.Name = "chkBoxAcessarCadastro";
-            chkBoxAcessarCadastro.Size = new Size(142, 24);
-            chkBoxAcessarCadastro.TabIndex = 0;
-            chkBoxAcessarCadastro.Tag = "1";
-            chkBoxAcessarCadastro.Text = "Acessar cadastro";
-            chkBoxAcessarCadastro.UseVisualStyleBackColor = true;
+            chkBoxAcessarCadastroCliente.AutoSize = true;
+            chkBoxAcessarCadastroCliente.Enabled = false;
+            chkBoxAcessarCadastroCliente.Location = new Point(20, 35);
+            chkBoxAcessarCadastroCliente.Name = "chkBoxAcessarCadastroCliente";
+            chkBoxAcessarCadastroCliente.Size = new Size(142, 24);
+            chkBoxAcessarCadastroCliente.TabIndex = 0;
+            chkBoxAcessarCadastroCliente.Tag = "1";
+            chkBoxAcessarCadastroCliente.Text = "Acessar cadastro";
+            chkBoxAcessarCadastroCliente.UseVisualStyleBackColor = true;
             // 
             // grpBoxEmpresa
             // 
             grpBoxEmpresa.Controls.Add(chkBoxEdicaoPrivilegio);
             grpBoxEmpresa.Controls.Add(lblSeparadorFuncionario);
-            grpBoxEmpresa.Controls.Add(chkBoxFuncionario);
+            grpBoxEmpresa.Controls.Add(chkBoxCadastroFuncionario);
             grpBoxEmpresa.Location = new Point(395, 3);
             grpBoxEmpresa.Name = "grpBoxEmpresa";
             grpBoxEmpresa.Size = new Size(441, 188);
@@ -523,17 +528,17 @@
             lblSeparadorFuncionario.TabIndex = 2;
             lblSeparadorFuncionario.Text = "->";
             // 
-            // chkBoxFuncionario
+            // chkBoxCadastroFuncionario
             // 
-            chkBoxFuncionario.AutoSize = true;
-            chkBoxFuncionario.Enabled = false;
-            chkBoxFuncionario.Location = new Point(52, 65);
-            chkBoxFuncionario.Name = "chkBoxFuncionario";
-            chkBoxFuncionario.Size = new Size(108, 24);
-            chkBoxFuncionario.TabIndex = 1;
-            chkBoxFuncionario.Tag = "2";
-            chkBoxFuncionario.Text = "Funcionário";
-            chkBoxFuncionario.UseVisualStyleBackColor = true;
+            chkBoxCadastroFuncionario.AutoSize = true;
+            chkBoxCadastroFuncionario.Enabled = false;
+            chkBoxCadastroFuncionario.Location = new Point(52, 65);
+            chkBoxCadastroFuncionario.Name = "chkBoxCadastroFuncionario";
+            chkBoxCadastroFuncionario.Size = new Size(108, 24);
+            chkBoxCadastroFuncionario.TabIndex = 1;
+            chkBoxCadastroFuncionario.Tag = "2";
+            chkBoxCadastroFuncionario.Text = "Funcionário";
+            chkBoxCadastroFuncionario.UseVisualStyleBackColor = true;
             // 
             // tabPageFinanceiro
             // 
@@ -560,25 +565,30 @@
             // chkBoxPagamentoParcela
             // 
             chkBoxPagamentoParcela.AutoSize = true;
+            chkBoxPagamentoParcela.Enabled = false;
             chkBoxPagamentoParcela.Location = new Point(20, 66);
             chkBoxPagamentoParcela.Name = "chkBoxPagamentoParcela";
             chkBoxPagamentoParcela.Size = new Size(184, 24);
             chkBoxPagamentoParcela.TabIndex = 1;
+            chkBoxPagamentoParcela.Tag = "5";
             chkBoxPagamentoParcela.Text = "Pagamento de Parcelas";
             chkBoxPagamentoParcela.UseVisualStyleBackColor = true;
             // 
             // chkBoxNovosEmprestimos
             // 
             chkBoxNovosEmprestimos.AutoSize = true;
+            chkBoxNovosEmprestimos.Enabled = false;
             chkBoxNovosEmprestimos.Location = new Point(20, 26);
             chkBoxNovosEmprestimos.Name = "chkBoxNovosEmprestimos";
             chkBoxNovosEmprestimos.Size = new Size(163, 24);
             chkBoxNovosEmprestimos.TabIndex = 0;
+            chkBoxNovosEmprestimos.Tag = "4";
             chkBoxNovosEmprestimos.Text = "Novos Emprestimos";
             chkBoxNovosEmprestimos.UseVisualStyleBackColor = true;
             // 
             // tabPageRelatorios
             // 
+            tabPageRelatorios.Controls.Add(grpBoxRelatorioEmprestimos);
             tabPageRelatorios.Location = new Point(4, 29);
             tabPageRelatorios.Name = "tabPageRelatorios";
             tabPageRelatorios.Padding = new Padding(3);
@@ -586,6 +596,41 @@
             tabPageRelatorios.TabIndex = 2;
             tabPageRelatorios.Text = "Relatórios";
             tabPageRelatorios.UseVisualStyleBackColor = true;
+            // 
+            // grpBoxRelatorioEmprestimos
+            // 
+            grpBoxRelatorioEmprestimos.Controls.Add(chkBoxConsultarParcela);
+            grpBoxRelatorioEmprestimos.Controls.Add(chkBoxVizualizarEmprestimos);
+            grpBoxRelatorioEmprestimos.Location = new Point(6, 3);
+            grpBoxRelatorioEmprestimos.Name = "grpBoxRelatorioEmprestimos";
+            grpBoxRelatorioEmprestimos.Size = new Size(830, 200);
+            grpBoxRelatorioEmprestimos.TabIndex = 0;
+            grpBoxRelatorioEmprestimos.TabStop = false;
+            grpBoxRelatorioEmprestimos.Text = "Relatório Emprestimos";
+            // 
+            // chkBoxConsultarParcela
+            // 
+            chkBoxConsultarParcela.AutoSize = true;
+            chkBoxConsultarParcela.Enabled = false;
+            chkBoxConsultarParcela.Location = new Point(25, 36);
+            chkBoxConsultarParcela.Name = "chkBoxConsultarParcela";
+            chkBoxConsultarParcela.Size = new Size(144, 24);
+            chkBoxConsultarParcela.TabIndex = 1;
+            chkBoxConsultarParcela.Tag = "3";
+            chkBoxConsultarParcela.Text = "Consultar Parcela";
+            chkBoxConsultarParcela.UseVisualStyleBackColor = true;
+            // 
+            // chkBoxVizualizarEmprestimos
+            // 
+            chkBoxVizualizarEmprestimos.AutoSize = true;
+            chkBoxVizualizarEmprestimos.Enabled = false;
+            chkBoxVizualizarEmprestimos.Location = new Point(25, 80);
+            chkBoxVizualizarEmprestimos.Name = "chkBoxVizualizarEmprestimos";
+            chkBoxVizualizarEmprestimos.Size = new Size(184, 24);
+            chkBoxVizualizarEmprestimos.TabIndex = 0;
+            chkBoxVizualizarEmprestimos.Tag = "6";
+            chkBoxVizualizarEmprestimos.Text = "Visualizar Emprestimos";
+            chkBoxVizualizarEmprestimos.UseVisualStyleBackColor = true;
             // 
             // frmCadastroFuncionario
             // 
@@ -626,6 +671,9 @@
             tabPageFinanceiro.ResumeLayout(false);
             grpBoxEmprestimos.ResumeLayout(false);
             grpBoxEmprestimos.PerformLayout();
+            tabPageRelatorios.ResumeLayout(false);
+            grpBoxRelatorioEmprestimos.ResumeLayout(false);
+            grpBoxRelatorioEmprestimos.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -669,15 +717,18 @@
         private TabPage tabPageCadastro;
         private TabPage tabPageFinanceiro;
         private TabPage tabPageRelatorios;
-        private GroupBox grpBoxCliente;
-        private CheckBox chkBoxAcessarCadastro;
+        private CheckBox chkBoxAcessarCadastroCliente;
         private CheckBox chkBoxBloquearEdicao;
         private GroupBox grpBoxEmpresa;
-        private CheckBox chkBoxFuncionario;
+        private CheckBox chkBoxCadastroFuncionario;
         private Label lblSeparadorFuncionario;
         private CheckBox chkBoxEdicaoPrivilegio;
         private GroupBox grpBoxEmprestimos;
         private CheckBox chkBoxPagamentoParcela;
         private CheckBox chkBoxNovosEmprestimos;
+        private GroupBox grpBoxCliente;
+        private GroupBox grpBoxRelatorioEmprestimos;
+        private CheckBox chkBoxVizualizarEmprestimos;
+        private CheckBox chkBoxConsultarParcela;
     }
 }
