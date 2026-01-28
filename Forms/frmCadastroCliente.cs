@@ -1,4 +1,5 @@
 ﻿using Gerenciador_de_Emprestimos.Database;
+using Gerenciador_de_Emprestimos.Models;
 using Gerenciador_de_Emprestimos.Utils;
 using MySql.Data.MySqlClient;
 
@@ -182,72 +183,37 @@ namespace Gerenciador_de_Emprestimos
 
         private void InserirCadastro()
         {
-            var conexao = ConexaoBancoDeDados.Conectar();
+            string? nomeCliente = txtNomeCliente.Text; ;
+            string? cpfCnpj = MaskedTxtCpfCnpjCliente.Text;
+            string? genero = null;
+            string? estadoCivil = comboBoxEstadoCivil.Text;
+            string? endereco = txtEnderecoCliente.Text;
+            string? bairro = txtEnderecoCliente.Text;
+            string? cidade = txtCidadeCliente.Text;
+            string? uf = comboBoxEstadoUF.Text;
+            int numeroResidencia = 0;
+            string? cep = MaskedTxtCepCliente.Text;
+            string? celular = MaskedTxtCelularCliente.Text;
+            string? email = txtEmailCliente.Text;
+            string? observacoes = txtObservacoes.Text;
+            string? situacaoCadastral = comboBoxSituacaoCadastral.Text;
 
-            using (MySqlCommand insertBd = conexao.CreateCommand())
-            {
-                insertBd.CommandText = "INSERT INTO emprestimosbd.cliente (nome_cliente, cpf_cnpj, genero, estado_civil, endereco, bairro, cidade, uf, numero_residencia, cep, celular, email, observacoes, situacao_cadastral, imagem, data_cadastro) VALUES(@nome_cliente, @cpf_cnpj, @genero, @estado_civil, @endereco, @bairro, @cidade, @uf, @numero_residencia, @cep, @celular, @email, @observacoes, @situacao_cadastral, @imagem, @data_cadastro)";
+            if (btnRadioMasculino.Checked == true)
+                genero = "MASCULINO";
 
+            if (btnRadioFeminino.Checked == true)
+                genero = "FEMININO";
 
-                insertBd.Parameters.AddWithValue("@nome_cliente", txtNomeCliente.Text);
+            if (btnRadioGeneroOutros.Checked == true)
+                genero = "OUTROS";
 
-                insertBd.Parameters.AddWithValue("@cpf_cnpj", MaskedTxtCpfCnpjCliente.Text);
+            if (!int.TryParse(txtNumeroResidencia.Text, out numeroResidencia)) ;
 
-                if (btnRadioMasculino.Checked == true)
-                {
-                    insertBd.Parameters.AddWithValue("@genero", "MASCULINO");
-                }
-                else if (btnRadioFeminino.Checked == true)
-                {
-                    insertBd.Parameters.AddWithValue("@genero", "FEMININO");
-                }
-                else
-                {
-                    insertBd.Parameters.AddWithValue("@genero", "OUTROS");
-                }
+            Cliente cliente = new Cliente();
 
-                insertBd.Parameters.AddWithValue("@estado_civil", comboBoxEstadoCivil.Text);
+            cliente.cadastrarCliente(nomeCliente, cpfCnpj, genero, estadoCivil, endereco, bairro, cidade, uf, numeroResidencia, cep, celular, email, observacoes, situacaoCadastral);
 
-                insertBd.Parameters.AddWithValue("@endereco", txtEnderecoCliente.Text);
-
-                insertBd.Parameters.AddWithValue("@bairro", txtBairroCliente.Text);
-
-                insertBd.Parameters.AddWithValue("@cidade", txtCidadeCliente.Text);
-
-                insertBd.Parameters.AddWithValue("@uf", comboBoxEstadoUF.Text);
-
-                insertBd.Parameters.AddWithValue("@numero_residencia", txtNumeroResidencia.Text);
-
-                insertBd.Parameters.AddWithValue("@cep", MaskedTxtCepCliente.Text);
-
-                insertBd.Parameters.AddWithValue("@celular", MaskedTxtCelularCliente.Text);
-
-                insertBd.Parameters.AddWithValue("@email", txtEmailCliente.Text);
-
-                insertBd.Parameters.AddWithValue("@observacoes", txtObservacoes.Text);
-
-                if (comboBoxSituacaoCadastral.Text == "ATIVO")
-                {
-                    insertBd.Parameters.AddWithValue("@situacao_cadastral", "ATIVO");
-                }
-                else
-                {
-                    insertBd.Parameters.AddWithValue("@situacao_cadastral", "INATIVO");
-                }
-
-                insertBd.Parameters.AddWithValue("@imagem", DBNull.Value);
-
-                insertBd.Parameters.AddWithValue("@data_cadastro", DateTime.Now);
-
-                insertBd.ExecuteNonQuery();
-
-                Funcoes.MensagemInformation("Cliente Cadastrado!");
-
-                insertBd.CommandText = "SELECT @@IDENTITY";
-                txtCodigoCliente.Text = insertBd.ExecuteScalar().ToString();
-
-                conexao.Close();
-            }
+            txtCodigoCliente.Text = cliente.CodigoCliente.ToString();
         }
 
         private void SalvarCadastro()

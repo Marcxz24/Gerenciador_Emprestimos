@@ -48,8 +48,6 @@ namespace Gerenciador_de_Emprestimos
             chkBoxCadastroFuncionario.Enabled = ManifestarBotoes;
             chkBoxNovosEmprestimos.Enabled = ManifestarBotoes;
             chkBoxPagamentoParcela.Enabled = ManifestarBotoes;
-            chkBoxBloquearEdicao.Enabled = ManifestarBotoes;
-            chkBoxEdicaoPrivilegio.Enabled = ManifestarBotoes;
             chkBoxVizualizarEmprestimos.Enabled = ManifestarBotoes;
             chkBoxConsultarParcela.Enabled = ManifestarBotoes;
 
@@ -75,8 +73,6 @@ namespace Gerenciador_de_Emprestimos
                 chkBoxAcessarCadastroCliente.Checked = false;
                 chkBoxNovosEmprestimos.Checked = false;
                 chkBoxPagamentoParcela.Checked = false;
-                chkBoxBloquearEdicao.Checked = false;
-                chkBoxEdicaoPrivilegio.Checked = false;
                 chkBoxConsultarParcela.Checked = false;
                 chkBoxVizualizarEmprestimos.Checked = false;
             }
