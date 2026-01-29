@@ -7,6 +7,8 @@ namespace Gerenciador_de_Emprestimos
 {
     public partial class frmCadastroCliente : Form
     {
+        Cliente cliente = new Cliente();
+
         private bool _EditarCadastro;
 
         public frmCadastroCliente()
@@ -101,20 +103,6 @@ namespace Gerenciador_de_Emprestimos
             GerenciarBotoesCampos(OcultarBotoes: true, ManifestarBotoes: true, LimparCampos: false);
         }
 
-        private bool validarCpfCadastrado(string cpf)
-        {
-            var conexao = ConexaoBancoDeDados.Conectar();
-
-            using (var selectBd = conexao.CreateCommand())
-            {
-                selectBd.CommandText = "SELECT COUNT(*) FROM emprestimosbd.cliente WHERE cpf_cnpj = @cpf";
-                selectBd.Parameters.AddWithValue("@cpf", cpf);
-
-                int quantidadeCpf = Convert.ToInt32(selectBd.ExecuteScalar());
-                return quantidadeCpf > 0;
-            }
-        }
-
         private void EditarCadastro()
         {
             string? nomeCliente = txtNomeCliente.Text; ;
@@ -176,8 +164,6 @@ namespace Gerenciador_de_Emprestimos
 
             if (!int.TryParse(txtNumeroResidencia.Text, out numeroResidencia)) ;
 
-            Cliente cliente = new Cliente();
-
             cliente.cadastrarCliente(nomeCliente, cpfCnpj, genero, estadoCivil, endereco, bairro, cidade, uf, numeroResidencia, cep, celular, email, observacoes, situacaoCadastral);
 
             txtCodigoCliente.Text = cliente.CodigoCliente.ToString();
@@ -232,7 +218,7 @@ namespace Gerenciador_de_Emprestimos
                 return true;
             }
 
-            if (validarCpfCadastrado(MaskedTxtCpfCnpjCliente.Text))
+            if (cliente.CpfJaCadastrado(MaskedTxtCpfCnpjCliente.Text))
             {
                 Funcoes.MensagemWarning("Já Existe um Cliente com este CPF Cadastrado");
                 return true;
