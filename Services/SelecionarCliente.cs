@@ -17,12 +17,13 @@ namespace Gerenciador_de_Emprestimos.Services
         public string bairro { get; set; }
         public string cidade { get; set; }
         public string uf { get; set; }
-        public int numero_residencia { get; set; }
+        public int? numero_residencia { get; set; }
         public string cep { get; set; }
         public string celular { get; set; }
         public string email { get; set; }
         public string observacoes { get; set; }
         public string situacao_cadastral { get; set; }
+        public DateTime data_cadastro { get; set; }
         // Imagens futuramente (Lembrete para expansão do código)
 
         // --- MÉTODO ESTÁTICO: Obtém uma lista geral de clientes para preencher o DataGrid ---
@@ -81,12 +82,29 @@ namespace Gerenciador_de_Emprestimos.Services
         // --- MÉTODO: Busca os dados de um cliente e retorna um Objeto da própria classe 'SelecionarCliente' ---
         public SelecionarCliente BuscarClientePorCodigo(int codigoCliente)
         {
-            var sql = @"SELECT * FROM emprestimosbd.cliente WHERE codigo = @codigo";
+            var sql = @"SELECT 
+                            codigo, 
+                            nome_cliente, 
+                            cpf_cnpj, 
+                            genero, 
+                            estado_civil, 
+                            endereco, 
+                            bairro, 
+                            cidade, 
+                            uf, 
+                            numero_residencia, 
+                            cep, 
+                            celular, 
+                            email, 
+                            observacoes, 
+                            situacao_cadastral, 
+                            imagem, 
+                            data_cadastro 
+                        FROM emprestimosbd.cliente WHERE codigo = @codigo";
 
             using (var conexao = ConexaoBancoDeDados.Conectar())
             using (var comando = new MySqlCommand(sql, conexao))
             {
-
                 comando.Parameters.AddWithValue("codigo", codigoCliente);
 
                 using (var reader = comando.ExecuteReader())
@@ -111,6 +129,7 @@ namespace Gerenciador_de_Emprestimos.Services
                             email = reader.GetString("email"),
                             observacoes = reader.GetString("observacoes"),
                             situacao_cadastral = reader.GetString("situacao_cadastral"),
+                            data_cadastro = reader.GetDateTime("data_cadastro")
                         };
                     }
                 }

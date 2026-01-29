@@ -117,68 +117,35 @@ namespace Gerenciador_de_Emprestimos
 
         private void EditarCadastro()
         {
-            var conexao = ConexaoBancoDeDados.Conectar();
+            string? nomeCliente = txtNomeCliente.Text; ;
+            string? cpfCnpj = MaskedTxtCpfCnpjCliente.Text;
+            string? genero = null;
+            string? estadoCivil = comboBoxEstadoCivil.Text;
+            string? endereco = txtEnderecoCliente.Text;
+            string? bairro = txtBairroCliente.Text;
+            string? cidade = txtCidadeCliente.Text;
+            string? uf = comboBoxEstadoUF.Text;
+            int numeroResidencia = Convert.ToInt32(txtNumeroResidencia.Text);
+            string? cep = MaskedTxtCepCliente.Text;
+            string? celular = MaskedTxtCelularCliente.Text;
+            string? email = txtEmailCliente.Text;
+            string? observacoes = txtObservacoes.Text;
+            string? situacaoCadastral = comboBoxSituacaoCadastral.Text;
 
-            using (MySqlCommand UpdateBd = conexao.CreateCommand())
-            {
-                UpdateBd.CommandText = @"
-                                    UPDATE emprestimosbd.cliente 
-                                    SET 
-                                        nome_cliente = @nome_cliente, 
-                                        cpf_cnpj = @cpf_cnpj, 
-                                        genero = @genero, 
-                                        estado_civil = @estado_civil, 
-                                        endereco = @endereco, 
-                                        bairro = @bairro, 
-                                        cidade = @cidade, 
-                                        uf = @uf, 
-                                        numero_residencia = @numero_residencia, 
-                                        cep = @cep, 
-                                        celular = @celular, 
-                                        email = @email, 
-                                        observacoes = @observacoes, 
-                                        situacao_cadastral = @situacao_cadastral 
-                                    WHERE codigo = @codigo"
-                ;
+            if (btnRadioMasculino.Checked == true)
+                genero = "MASCULINO";
 
-                UpdateBd.Parameters.AddWithValue("@codigo", int.Parse(txtCodigoCliente.Text));
-                UpdateBd.Parameters.AddWithValue("@nome_cliente", txtNomeCliente.Text);
-                UpdateBd.Parameters.AddWithValue("@cpf_cnpj", MaskedTxtCpfCnpjCliente.Text);
-                if (btnRadioMasculino.Checked == true)
-                {
-                    UpdateBd.Parameters.AddWithValue("@genero", "MASCULINO");
-                }
-                else if (btnRadioFeminino.Checked == true)
-                {
-                    UpdateBd.Parameters.AddWithValue("@genero", "FEMININO");
-                }
-                else
-                {
-                    UpdateBd.Parameters.AddWithValue("@genero", "OUTROS");
-                }
-                UpdateBd.Parameters.AddWithValue("@estado_civil", comboBoxEstadoCivil.Text);
-                UpdateBd.Parameters.AddWithValue("@endereco", txtEnderecoCliente.Text);
-                UpdateBd.Parameters.AddWithValue("@bairro", txtBairroCliente.Text);
-                UpdateBd.Parameters.AddWithValue("@cidade", txtCidadeCliente.Text);
-                UpdateBd.Parameters.AddWithValue("@uf", comboBoxEstadoUF.Text);
-                UpdateBd.Parameters.AddWithValue("@numero_residencia", txtNumeroResidencia.Text);
-                UpdateBd.Parameters.AddWithValue("@cep", MaskedTxtCepCliente.Text);
-                UpdateBd.Parameters.AddWithValue("@celular", MaskedTxtCelularCliente.Text);
-                UpdateBd.Parameters.AddWithValue("@email", txtEmailCliente.Text);
-                UpdateBd.Parameters.AddWithValue("@observacoes", txtObservacoes.Text);
-                if (comboBoxSituacaoCadastral.Text == "ATIVO")
-                {
-                    UpdateBd.Parameters.AddWithValue("@situacao_cadastral", "ATIVO");
-                }
-                else
-                {
-                    UpdateBd.Parameters.AddWithValue("@situacao_cadastral", "INATIVO");
-                }
+            if (btnRadioFeminino.Checked == true)
+                genero = "FEMININO";
 
-                UpdateBd.ExecuteNonQuery();
+            if (btnRadioGeneroOutros.Checked == true)
+                genero = "OUTROS";
 
-                conexao.Close();
-            }
+            Cliente cliente = new Cliente();
+
+            cliente.CodigoCliente = Convert.ToInt32(txtCodigoCliente.Text);
+
+            cliente.EditarCliente(cliente.CodigoCliente, nomeCliente, cpfCnpj, genero, estadoCivil, endereco, bairro, cidade, uf, numeroResidencia, cep, celular, email, observacoes, situacaoCadastral);
         }
 
         private void InserirCadastro()

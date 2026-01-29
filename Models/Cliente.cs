@@ -97,6 +97,60 @@ namespace Gerenciador_de_Emprestimos.Models
             return false;
         }
 
+        public bool EditarCliente(int codigoCliente, string nomeCliente, string cpfCnpj, string genero, string estadoCivil, string endereco, string bairro, string cidade, string uf, int numeroResidencia, string cep, string celular, string email, string observacoes, string situacaoCadastral)
+        {
+            string sqlUpdate = @"UPDATE emprestimosbd.cliente 
+                                    SET 
+                                        nome_cliente = @nome_cliente, 
+                                        cpf_cnpj = @cpf_cnpj, 
+                                        genero = @genero, 
+                                        estado_civil = @estado_civil, 
+                                        endereco = @endereco, 
+                                        bairro = @bairro, 
+                                        cidade = @cidade, 
+                                        uf = @uf, 
+                                        numero_residencia = @numero_residencia, 
+                                        cep = @cep, 
+                                        celular = @celular, 
+                                        email = @email, 
+                                        observacoes = @observacoes, 
+                                        situacao_cadastral = @situacao_cadastral 
+                                    WHERE codigo = @codigo";
+
+            codigoCliente = CodigoCliente;
+
+            try
+            {
+                using (var conexao = ConexaoBancoDeDados.Conectar())
+                using (var cmd = new MySqlCommand(sqlUpdate, conexao))
+                {
+                    cmd.Parameters.AddWithValue("@codigo", codigoCliente);
+                    cmd.Parameters.AddWithValue("@nome_cliente", nomeCliente);
+                    cmd.Parameters.AddWithValue("@cpf_cnpj", cpfCnpj);
+                    cmd.Parameters.AddWithValue("@genero", genero);
+                    cmd.Parameters.AddWithValue("@estado_civil", estadoCivil);
+                    cmd.Parameters.AddWithValue("@endereco", endereco);
+                    cmd.Parameters.AddWithValue("@bairro", bairro);
+                    cmd.Parameters.AddWithValue("@cidade", cidade);
+                    cmd.Parameters.AddWithValue("@uf", uf);
+                    cmd.Parameters.AddWithValue("@numero_residencia", numeroResidencia);
+                    cmd.Parameters.AddWithValue("@cep", cep);
+                    cmd.Parameters.AddWithValue("@celular", celular);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@observacoes", observacoes);
+                    cmd.Parameters.AddWithValue("@situacao_cadastral", situacaoCadastral);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (MySqlException)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         // --- MÉTODO: Verifica se o CPF informado já pertence a algum funcionário ---
         public bool CpfJaCadastrado(string cpf)
         {
