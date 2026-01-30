@@ -2,10 +2,6 @@
 using Gerenciador_de_Emprestimos.Security;
 using Gerenciador_de_Emprestimos.Services;
 using Gerenciador_de_Emprestimos.Utils;
-using iText.StyledXmlParser.Jsoup.Nodes;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Gerenciador_de_Emprestimos
 {
@@ -160,25 +156,35 @@ namespace Gerenciador_de_Emprestimos
         {
             _EditarCadastro = false;
 
+            // Foi adicionado o campo para a liberação do Text Box referente a senha.
+            // devido ao cadastrar um novo funcionáriodevido ao cadastrar um novo funcionário estar sendo tratado como redefinir a senha, e não como digitar a senha.
+            if (_EditarCadastro == false)
+            {
+                txtBoxSenha.ReadOnly = false;
+            }
+
             GerenciarBotoesCampos(OcultarBotoes: true, ManifestarBotoes: true, LimparCampos: true);
         }
 
         // Evento do botão para cancelar o cadastro de funcionário
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            // Se a Flag de editar cadastro estiver falsa. bloqueia o campo novamente ao Cancelar.
+            if (_EditarCadastro == false)
+            {
+                txtBoxSenha.ReadOnly = true;
+            }
+
             GerenciarBotoesCampos(OcultarBotoes: false, ManifestarBotoes: false, LimparCampos: true);
         }
 
         // Evento do botão para salvar o cadastro de funcionário
         private void btnSalvarCadastro_Click(object sender, EventArgs e)
         {
-            // Se for um novo cadastro, valida todos os campos obrigatórios
-            if (!_EditarCadastro)
+            // Validações dos campos obrigatorios
+            if (validacoesCampos() == true)
             {
-                if (validacoesCampos() == true)
-                {
-                    return;
-                }
+                return;
             }
 
             // Chama o método centralizado que decide entre Inserir ou Editar
@@ -186,6 +192,12 @@ namespace Gerenciador_de_Emprestimos
 
             // Chama o método de responsável por salvar os privilegios no Banco.
             SalvarPrivilegiosFuncionario();
+
+            // Se a Flag de edição de cadastro estiver false, bloqueia novamente o campo referente a senha o Salvar.
+            if (_EditarCadastro == false)
+            {
+                txtBoxSenha.ReadOnly = true;
+            }
 
             // Após salvar, bloqueia os campos e volta a exibir os botões principais
             GerenciarBotoesCampos(OcultarBotoes: false, ManifestarBotoes: false, LimparCampos: false);

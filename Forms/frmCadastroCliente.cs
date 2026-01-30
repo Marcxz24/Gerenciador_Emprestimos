@@ -452,7 +452,7 @@ namespace Gerenciador_de_Emprestimos
             Funcoes.PrimeiraLetraMaiuscula(txtBairroCliente);
         }
 
-        // Text Box Bairro recebe a função de deixar a primeira letra maiúscula.
+        // Text Box Cidade recebe a função de deixar a primeira letra maiúscula.
         private void txtCidadeCliente_TextChanged(object sender, EventArgs e)
         {
             Funcoes.PrimeiraLetraMaiuscula(txtCidadeCliente);
