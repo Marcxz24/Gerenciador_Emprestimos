@@ -7,6 +7,8 @@ namespace Gerenciador_de_Emprestimos
 {
     public partial class frmCadastroFuncionario : Form
     {
+        Funcionario funcionario = new Funcionario();
+
         private bool _EditarCadastro;
 
         private bool _AlterarSenha = false;
@@ -36,7 +38,7 @@ namespace Gerenciador_de_Emprestimos
             txtBoxCidadeFuncionario.ReadOnly = !ManifestarBotoes;
             txtBoxTelefoneFuncionario.ReadOnly = !ManifestarBotoes;
             txtBoxUsername.ReadOnly = !ManifestarBotoes;
-            lblLinkEditarSenha.Enabled = ManifestarBotoes;
+            //lblLinkEditarSenha.Enabled = ManifestarBotoes;
 
             // Habilitar os CheckBox Referentes aos Privilégios.
             // CheckBox usam .Enabled (Habilitado/Desabilitado)
@@ -161,6 +163,7 @@ namespace Gerenciador_de_Emprestimos
             if (_EditarCadastro == false)
             {
                 txtBoxSenha.ReadOnly = false;
+                lblLinkEditarSenha.Enabled = false;
             }
 
             GerenciarBotoesCampos(OcultarBotoes: true, ManifestarBotoes: true, LimparCampos: true);
@@ -173,6 +176,13 @@ namespace Gerenciador_de_Emprestimos
             if (_EditarCadastro == false)
             {
                 txtBoxSenha.ReadOnly = true;
+                lblLinkEditarSenha.Enabled = false;
+            }
+
+            if (_EditarCadastro == true)
+            {
+                txtBoxSenha.ReadOnly = true;
+                lblLinkEditarSenha.Enabled = false;
             }
 
             GerenciarBotoesCampos(OcultarBotoes: false, ManifestarBotoes: false, LimparCampos: true);
@@ -311,9 +321,6 @@ namespace Gerenciador_de_Emprestimos
                 }
             }
 
-            // Cria uma nova instância da classe Funcionario para realizar o cadastro
-            Funcionario funcionario = new Funcionario();
-
             // Coleta os dados dos campos do formulário
             string? nome = txtBoxNomeFuncionario.Text;
             string? situacao = comboBoxSituacao.Text;
@@ -341,7 +348,7 @@ namespace Gerenciador_de_Emprestimos
                 // Se o cadastro foi bem-sucedido, exibe uma mensagem de sucesso
                 if (sucesso)
                 {
-                    Funcoes.MensagemInformation("Funcionário cadastrado com sucesso!");
+                    txtBoxCodigo.Text = Convert.ToString(funcionario.CodigoFuncionario);
                 }
 
                 // Após o cadastro, gerencia os botões e campos da tela
@@ -388,9 +395,6 @@ namespace Gerenciador_de_Emprestimos
             string cidade = txtBoxCidadeFuncionario.Text;
             string situacao = comboBoxSituacao.Text;
 
-            // Cria uma nova instância da classe Funcionario para realizar a edição
-            Funcionario funcionario = new Funcionario();
-
             // Chama o método EditarCadastroFuncionario da classe Funcionario
             funcionario.EditarCadastroFuncionario(codigoFuncionario, nomeFuncionario, cpf, sexo, estadoCivil, username, telefone, cidade, situacao);
 
@@ -435,6 +439,11 @@ namespace Gerenciador_de_Emprestimos
             {
                 Funcoes.MensagemWarning("Não é possível Editar um Cadastro sem o funcionário selecionado.");
                 return;
+            }
+
+            if (_EditarCadastro == true)
+            {
+                lblLinkEditarSenha.Enabled = true;
             }
 
             // Libera os campos para alteração mas não limpa os dados existentes

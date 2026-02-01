@@ -13,7 +13,7 @@ namespace Gerenciador_de_Emprestimos.Models
     public class Funcionario
     {
         // Propriedade para identificar o funcionário (útil para carregar dados posteriormente)
-        public int Codigo { get; set; }
+        public int CodigoFuncionario { get; set; }
 
         // --- MÉTODO: Realiza a inserção de um novo funcionário no banco ---
         public bool CadastrarFuncionario(string nome, string cpf, string sexo, string estadoCivil, string username, string senha, string telefone, string cidade, string situacao)
@@ -74,10 +74,10 @@ namespace Gerenciador_de_Emprestimos.Models
                     // Executa a inserção
                     comando.ExecuteNonQuery();
 
-                    // Usa sua classe de utilitários para exibir o sucesso
-                    Funcoes.MensagemInformation("Cliente Cadastrado com Sucesso!");
+                    // cmd cria um novo comando de texto, para receber o Código do ultimo cliente adicionado.
+                    comando.CommandText = "SELECT @@IDENTITY";
 
-                    return true;
+                    CodigoFuncionario = Convert.ToInt32(comando.ExecuteScalar()); 
                 }
             }
             catch (MySqlException)
@@ -85,6 +85,8 @@ namespace Gerenciador_de_Emprestimos.Models
                 // Se houver qualquer erro de banco de dados, retorna falso
                 return false;
             }
+
+            return true;
         }
 
         public void EditarCadastroFuncionario(int codigo, string nome, string cpf, string sexo, string estadoCivil, string username, string telefone, string cidade, string situacao)
