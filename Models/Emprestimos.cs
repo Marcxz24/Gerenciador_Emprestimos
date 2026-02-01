@@ -1,16 +1,10 @@
 ﻿using Gerenciador_de_Emprestimos.Database;
 using Gerenciador_de_Emprestimos.Utils;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Permissions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gerenciador_de_Emprestimos.Models
 {
-    internal class EmprestimosCliente
+    internal class Emprestimos
     {
         // --- PROPRIEDADES DE IDENTIFICAÇÃO E ESTADO ---
         public int Codigo { get; set; }
@@ -25,6 +19,7 @@ namespace Gerenciador_de_Emprestimos.Models
         public decimal ValorParcela { get; private set; }
         public decimal ValorTotal { get; private set; }
         public string ObservacoesEmprestimos { get; set; }
+        public string TipoJuros { get; set; } // "Mensal" ou "Diario"
 
         // --- PROPRIEDADES DE DATA ---
         public DateOnly DataEmprestimo { get; set; }
@@ -35,7 +30,7 @@ namespace Gerenciador_de_Emprestimos.Models
         // Calcula o valor real em dinheiro dos juros sobre o montante emprestado
         private decimal CalcularJurosValorEmprestado()
         {
-            ValorJurosMonetario = ValorEmprestado * ValorJurosPercentual / 100;
+            ValorJurosMonetario = ValorEmprestado * (ValorJurosPercentual / 100);
             return ValorJurosMonetario;
         }
 
@@ -52,13 +47,9 @@ namespace Gerenciador_de_Emprestimos.Models
         // Realiza a divisão do total pela quantidade de parcelas, respeitando o limite de 20
         public int DividirParcelas()
         {
-            if (QuantidadeParcela >= 1 && QuantidadeParcela <= 20)
+            if (QuantidadeParcela >= 1 && QuantidadeParcela <= 100)
             {
                 ValorParcela = ValorTotal / QuantidadeParcela;
-            }
-            else if (QuantidadeParcela > 20)
-            {
-                Funcoes.MensagemWarning("Quantidade de parcelas excede o limite máximo permitido (20).\n\nVerifique e tente novamente.");
             }
             else
             {
@@ -120,7 +111,7 @@ namespace Gerenciador_de_Emprestimos.Models
                 try
                 {
                     // SQL para inserir o registro pai (Empréstimo) e recuperar o ID gerado
-                    string sqlInsertEmprestimo = @"INSERT INTO emprestimosbd.emprestimos (codigo_cliente, valor_emprestado, valor_emprestado_total, quantidade_parcela, valor_parcela, valor_juros, percentual_juros, data_emprestimo, data_pagar, observacoes, status_emprestimo)  VALUES(@codigo_cliente, @valor_emprestado, @valor_emprestado_total, @quantidade_parcela, @valor_parcela, @valor_juros, @percentual_juros, @data_emprestimo, @data_pagar, @observacoes, @status_emprestimo); SELECT LAST_INSERT_ID();";
+                    string sqlInsertEmprestimo = @"INSERT INTO emprestimosbd.emprestimos (codigo_cliente, valor_emprestado, valor_emprestado_total, quantidade_parcela, valor_parcela, valor_juros, percentual_juros, tipo_juros, data_emprestimo, data_pagar, observacoes, status_emprestimo)  VALUES(@codigo_cliente, @valor_emprestado, @valor_emprestado_total, @quantidade_parcela, @valor_parcela, @valor_juros, @percentual_juros, @tipo_juros, @data_emprestimo, @data_pagar, @observacoes, @status_emprestimo); SELECT LAST_INSERT_ID();";
 
                     using (var comando = new MySqlCommand(sqlInsertEmprestimo, conexao, transacao))
                     {
@@ -131,6 +122,7 @@ namespace Gerenciador_de_Emprestimos.Models
                         comando.Parameters.AddWithValue("@valor_parcela", ValorParcela);
                         comando.Parameters.AddWithValue("@valor_juros", ValorJurosMonetario);
                         comando.Parameters.AddWithValue("@percentual_juros", ValorJurosPercentual);
+                        comando.Parameters.AddWithValue("@tipo_juros", TipoJuros);
 
                         // Conversão necessária de DateOnly para DateTime para o MySQL
                         DateTime dataEmprestimoDb = DataEmprestimo.ToDateTime(TimeOnly.MinValue);
@@ -198,8 +190,10 @@ namespace Gerenciador_de_Emprestimos.Models
 
                     DateTime dataVencimentoDb = DataVencimentoInicial.ToDateTime(TimeOnly.MinValue);
 
-                    // Incrementa os meses conforme o número da parcela (i-1 para a primeira ser no mês inicial)
-                    comando.Parameters.AddWithValue("@data_vencimento", dataVencimentoDb.AddMonths(i - 1));
+                    if (TipoJuros == "DIARIO")
+                        comando.Parameters.AddWithValue("@data_vencimento", dataVencimentoDb.AddDays(i - 1));
+                    else
+                        comando.Parameters.AddWithValue("@data_vencimento", dataVencimentoDb.AddMonths(i - 1));
 
                     comando.ExecuteNonQuery();
                 }

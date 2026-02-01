@@ -45,7 +45,7 @@ namespace Gerenciador_de_Emprestimos.Services
             // O '1 = 1' ajuda na concatenação dos próximos 'AND'
             string? filtro = @"
                             WHERE 1 = 1
-                            AND p.status_parcela = 'ABERTA'
+                            AND p.status_parcela IN ('ABERTA', 'ATRASADA')
                             ";
 
             // --- ADIÇÃO DINÂMICA DE FILTROS ---

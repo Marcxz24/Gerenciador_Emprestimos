@@ -41,6 +41,8 @@
             lblCodigoCliente = new Label();
             txtBoxCodigoCliente = new TextBox();
             groupBoxDadosEmprestimos = new GroupBox();
+            cmbBoxTipoJuros = new ComboBox();
+            lblTipoJuros = new Label();
             lblTituloGrpBoxEmprestimo = new Label();
             lblParcelamento = new Label();
             txtBoxQuantidadeParcela = new TextBox();
@@ -188,6 +190,8 @@
             // groupBoxDadosEmprestimos
             // 
             groupBoxDadosEmprestimos.BackColor = Color.Transparent;
+            groupBoxDadosEmprestimos.Controls.Add(cmbBoxTipoJuros);
+            groupBoxDadosEmprestimos.Controls.Add(lblTipoJuros);
             groupBoxDadosEmprestimos.Controls.Add(lblTituloGrpBoxEmprestimo);
             groupBoxDadosEmprestimos.Controls.Add(lblParcelamento);
             groupBoxDadosEmprestimos.Controls.Add(txtBoxQuantidadeParcela);
@@ -203,6 +207,25 @@
             groupBoxDadosEmprestimos.TabIndex = 1;
             groupBoxDadosEmprestimos.TabStop = false;
             groupBoxDadosEmprestimos.Text = "Dados do Empréstimo";
+            // 
+            // cmbBoxTipoJuros
+            // 
+            cmbBoxTipoJuros.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbBoxTipoJuros.FormattingEnabled = true;
+            cmbBoxTipoJuros.Items.AddRange(new object[] { "MENSAL", "DIARIO" });
+            cmbBoxTipoJuros.Location = new Point(459, 164);
+            cmbBoxTipoJuros.Name = "cmbBoxTipoJuros";
+            cmbBoxTipoJuros.Size = new Size(151, 28);
+            cmbBoxTipoJuros.TabIndex = 20;
+            // 
+            // lblTipoJuros
+            // 
+            lblTipoJuros.AutoSize = true;
+            lblTipoJuros.Location = new Point(356, 168);
+            lblTipoJuros.Name = "lblTipoJuros";
+            lblTipoJuros.Size = new Size(97, 20);
+            lblTipoJuros.TabIndex = 19;
+            lblTipoJuros.Text = "Tipo de Juros";
             // 
             // lblTituloGrpBoxEmprestimo
             // 
@@ -236,7 +259,7 @@
             maskTxtDataPagamento.Location = new Point(216, 165);
             maskTxtDataPagamento.Mask = "00/00/0000";
             maskTxtDataPagamento.Name = "maskTxtDataPagamento";
-            maskTxtDataPagamento.Size = new Size(210, 27);
+            maskTxtDataPagamento.Size = new Size(134, 27);
             maskTxtDataPagamento.TabIndex = 7;
             // 
             // lblDataPagamento
@@ -514,5 +537,7 @@
         private Label lblBotãoGerarEmprestimo;
         private ComboBox ComboBoxSituacaoCadastral;
         private Label lblSituacao;
+        private ComboBox cmbBoxTipoJuros;
+        private Label lblTipoJuros;
     }
 }

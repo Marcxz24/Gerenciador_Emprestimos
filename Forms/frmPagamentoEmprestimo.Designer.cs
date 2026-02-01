@@ -274,6 +274,8 @@
             // 
             // dataGridParcelasAbertas
             // 
+            dataGridParcelasAbertas.AllowUserToAddRows = false;
+            dataGridParcelasAbertas.AllowUserToDeleteRows = false;
             dataGridParcelasAbertas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridParcelasAbertas.Location = new Point(12, 277);
             dataGridParcelasAbertas.Name = "dataGridParcelasAbertas";

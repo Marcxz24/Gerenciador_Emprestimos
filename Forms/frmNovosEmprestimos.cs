@@ -7,7 +7,7 @@ namespace Gerenciador_de_Emprestimos
     public partial class frmNovosEmprestimos : Form
     {
         // Objeto global que carrega a lógica de negócio e cálculos financeira
-        EmprestimosCliente emprestimo = new EmprestimosCliente();
+        Emprestimos emprestimo = new Emprestimos();
 
         public frmNovosEmprestimos()
         {
@@ -91,6 +91,13 @@ namespace Gerenciador_de_Emprestimos
             if (dataPagamento < DateOnly.FromDateTime(DateTime.Today))
             {
                 Funcoes.MensagemWarning("A Data do Empréstimo não pode ser Menor que a Data Atual!\n\nPor favor, verifique a Data do Empréstimo.");
+                return true;
+            }
+
+            // Validação para verificar se o tipo de emprestimo está selecionado.
+            if (cmbBoxTipoJuros.SelectedIndex == -1)
+            {
+                Funcoes.MensagemWarning("Selecione o tipo de emprestimo antes de realizar o calculo ou salvar.");
                 return true;
             }
 
@@ -189,7 +196,7 @@ namespace Gerenciador_de_Emprestimos
         // --- MÉTODO: Realiza os cálculos financeiros em memória e exibe nos campos ---
         private void btnCalcularEmprestimo_Click(object sender, EventArgs e)
         {
-            if (ValidacoesEmprestimo() == true) return;
+            if (ValidacoesEmprestimo()) return;
 
             // Envia os dados digitados para as propriedades da classe EmprestimosCliente
             if (decimal.TryParse(txtBoxValorEmprestado.Text, out decimal valorEmprestado))
@@ -208,6 +215,7 @@ namespace Gerenciador_de_Emprestimos
             }
 
             // Executa os cálculos matemáticos na classe de negócio
+            emprestimo.TipoJuros = cmbBoxTipoJuros.Text;
             emprestimo.SomarJurosAoTotal();
             emprestimo.DividirParcelas();
 

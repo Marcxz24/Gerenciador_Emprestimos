@@ -21,9 +21,12 @@ namespace Gerenciador_de_Emprestimos.Services
         // Obter os Dados da Parcela no Banco de Dados
         public Parcela ObterDadosParcela(int codigoParcela)
         {
-            string sql = @"SELECT codigo, valor_parcela, percentual_parcela, data_vencimento, data_ultimo_calculo_juros, status_parcela
-                            FROM emprestimosbd.conta_receber
-                            WHERE codigo = @codigo";
+            string sql = @"SELECT 
+                                p.*, 
+                                e.tipo_juros
+                            FROM emprestimosbd.conta_receber p
+                            INNER JOIN emprestimosbd.emprestimos e ON p.codigo_emprestimo = e.codigo
+                            WHERE p.codigo = @codigo";
 
             using (var conexao = ConexaoBancoDeDados.Conectar())
             using (var comando = new MySqlCommand(sql, conexao))
@@ -43,6 +46,7 @@ namespace Gerenciador_de_Emprestimos.Services
                         ValorParcela = reader.GetDecimal("valor_parcela"),
                         PercentualJuros = reader.GetDecimal("percentual_parcela"),
                         DataVencimento = reader.GetDateTime("data_vencimento"),
+                        TipoJuros = reader.GetString("tipo_juros"),
                         DataUltimoCalculoJuros = reader.IsDBNull("data_ultimo_calculo_juros") ? null : reader.GetDateTime("data_ultimo_calculo_juros"),
                     };
                 }
@@ -108,7 +112,7 @@ namespace Gerenciador_de_Emprestimos.Services
                                     status_parcela = 'PAGA' 
                                 WHERE codigo = @codigo";
 
-                EmprestimosCliente emprestimo = new EmprestimosCliente();
+                Emprestimos emprestimo = new Emprestimos();
 
                 using (var conexao = ConexaoBancoDeDados.Conectar())
                 using (var comando = new MySqlCommand(sql, conexao))
@@ -211,7 +215,19 @@ namespace Gerenciador_de_Emprestimos.Services
             DateTime novaDataUltimoCalculo = referencia.AddMonths(1); // Avança um mês
 
             decimal taxa = parcela.PercentualJuros / 100m;
-            decimal novoValor = Math.Round(parcela.ValorParcela * (1m + taxa), 2, MidpointRounding.AwayFromZero);
+            decimal novoValor;
+
+            if (parcela.TipoJuros == "DIARIO")
+            {
+                novaDataUltimoCalculo = referencia.AddDays(1);
+
+                novoValor = Math.Round(parcela.ValorParcela * (1m + taxa), 2, MidpointRounding.AwayFromZero);
+            }
+            else
+            {
+                novaDataUltimoCalculo = referencia.AddMonths(1);
+                novoValor = Math.Round(parcela.ValorParcela * (1m + taxa), 2, MidpointRounding.AwayFromZero);
+            }
 
             string sql = @"UPDATE emprestimosbd.conta_receber 
                            SET
