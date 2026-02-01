@@ -2,6 +2,7 @@
 using Gerenciador_de_Emprestimos.Security;
 using Gerenciador_de_Emprestimos.Services;
 using Gerenciador_de_Emprestimos.Utils;
+using MySql.Data.MySqlClient;
 
 namespace Gerenciador_de_Emprestimos
 {
@@ -20,6 +21,8 @@ namespace Gerenciador_de_Emprestimos
             txtBoxCodigo.KeyPress += Funcoes.SomenteNumeros_KeyPress;
             txtBoxCpfFuncionario.KeyPress += Funcoes.SomenteNumeros_KeyPress;
             txtBoxTelefoneFuncionario.KeyPress += Funcoes.SomenteNumeros_KeyPress;
+            txtBoxNumeroResidencia.KeyPress += Funcoes.SomenteNumeros_KeyPress;
+            txtBoxCep.KeyPress += Funcoes.SomenteNumeros_KeyPress;
         }
 
         // Controla o estado dos controles da tela (Habilitar/Desabilitar, Limpar e Visibilidade).
@@ -30,6 +33,7 @@ namespace Gerenciador_de_Emprestimos
             comboBoxSituacao.Enabled = ManifestarBotoes;
             comboBoxSexoFuncionario.Enabled = ManifestarBotoes;
             comboBoxEstadoCivil.Enabled = ManifestarBotoes;
+            comboBoxUf.Enabled = ManifestarBotoes;
 
             // TextBoxes usam .ReadOnly (Somente Leitura)
             // O operador '!' inverte o valor: se ManifestarBotoes for true, ReadOnly será false.
@@ -38,7 +42,10 @@ namespace Gerenciador_de_Emprestimos
             txtBoxCidadeFuncionario.ReadOnly = !ManifestarBotoes;
             txtBoxTelefoneFuncionario.ReadOnly = !ManifestarBotoes;
             txtBoxUsername.ReadOnly = !ManifestarBotoes;
-            //lblLinkEditarSenha.Enabled = ManifestarBotoes;
+            txtBoxBairro.ReadOnly = !ManifestarBotoes;
+            txtBoxEndereco.ReadOnly = !ManifestarBotoes;
+            txtBoxCep.ReadOnly = !ManifestarBotoes;
+            txtBoxNumeroResidencia.ReadOnly = !ManifestarBotoes;
 
             // Habilitar os CheckBox Referentes aos Privilégios.
             // CheckBox usam .Enabled (Habilitado/Desabilitado)
@@ -56,6 +63,7 @@ namespace Gerenciador_de_Emprestimos
                 comboBoxSituacao.SelectedIndex = -1;
                 comboBoxSexoFuncionario.SelectedIndex = -1;
                 comboBoxEstadoCivil.SelectedIndex = -1;
+                comboBoxUf.SelectedIndex = -1;
 
                 // Limpa o texto de todas as TextBoxes
                 txtBoxCodigo.Clear();
@@ -65,6 +73,10 @@ namespace Gerenciador_de_Emprestimos
                 txtBoxTelefoneFuncionario.Clear();
                 txtBoxUsername.Clear();
                 txtBoxSenha.Clear();
+                txtBoxBairro.Clear();
+                txtBoxEndereco.Clear();
+                txtBoxCep.Clear();
+                txtBoxNumeroResidencia.Clear();
 
                 // Limpa os CheckBox referentes aos privilégios.
                 chkBoxCadastroFuncionario.Checked = false;
@@ -133,6 +145,36 @@ namespace Gerenciador_de_Emprestimos
             {
                 Funcoes.MensagemWarning("Campo cidade é obrigatório\n\nCampo: cidade");
                 return true; // Erro encontrado
+            }
+
+            if (string.IsNullOrEmpty(txtBoxEndereco.Text))
+            {
+                Funcoes.MensagemWarning("Campo Endereço é obrigatório\n\nCampo: Endereço");
+                return true;
+            }
+
+            if (string.IsNullOrEmpty(txtBoxBairro.Text))
+            {
+                Funcoes.MensagemWarning("Campo Bairro é obrigatório\n\nCampo: Bairro");
+                return true;
+            }
+
+            if (string.IsNullOrEmpty(txtBoxNumeroResidencia.Text))
+            {
+                Funcoes.MensagemWarning("Campo número de residência é obrigatório\n\nCampo: Número de Residência");
+                return true;
+            }
+
+            if (string.IsNullOrEmpty(txtBoxCep.Text))
+            {
+                Funcoes.MensagemWarning("Campo CEP é Obrigatório\n\nCampo: CEP");
+                return true;
+            }
+
+            if (string.IsNullOrEmpty(comboBoxUf.Text))
+            {
+                Funcoes.MensagemWarning("Campo UF é Obrigatório\n\nCampo: UF");
+                return true;
             }
 
             // Verifica se o Estado Civil foi selecionado
@@ -290,11 +332,16 @@ namespace Gerenciador_de_Emprestimos
                     // Define o texto dos ComboBoxes com base nos dados do funcionário
                     comboBoxSexoFuncionario.Text = funcionario.sexo_funcionario.ToString();
                     comboBoxEstadoCivil.Text = funcionario.funcionario_estado_civil.ToString();
+                    comboBoxUf.Text = funcionario.uf_funcionario.ToString();
 
                     // Continua o preenchimento dos campos de texto (Usuário, Telefone e Cidade)
                     txtBoxUsername.Text = funcionario.username.ToString();
                     txtBoxTelefoneFuncionario.Text = funcionario.telefone_funcionario.ToString();
                     txtBoxCidadeFuncionario.Text = funcionario.cidade_funcionario.ToString();
+                    txtBoxEndereco.Text = funcionario.endereco_funcionario.ToString();
+                    txtBoxBairro.Text = funcionario.bairro_funcionario.ToString();
+                    txtBoxCep.Text = funcionario.cep_funcionario.ToString();
+                    txtBoxNumeroResidencia.Text = funcionario.numero_residencia.ToString();
 
                     // Define a situação cadastral no ComboBox
                     comboBoxSituacao.Text = funcionario.situacao_funcionario.ToString();
@@ -331,6 +378,11 @@ namespace Gerenciador_de_Emprestimos
             string? telefone = txtBoxTelefoneFuncionario.Text;
             string senhaHash = Seguranca.GerarHashSenha(txtBoxSenha.Text);
             string? cidade = txtBoxCidadeFuncionario.Text;
+            string? endereco = txtBoxEndereco.Text;
+            string? bairro = txtBoxBairro.Text;
+            int.TryParse(txtBoxNumeroResidencia.Text, out int numeroResidencia);
+            string? cep = txtBoxCep.Text;
+            string? uf = comboBoxUf.Text;
 
             // Verifica se o CPF já está cadastrado no sistema
             if (funcionario.CpfJaCadastrado(cpf))
@@ -343,7 +395,7 @@ namespace Gerenciador_de_Emprestimos
             try
             {
                 // Chama o método CadastrarFuncionario da classe Funcionario
-                bool sucesso = funcionario.CadastrarFuncionario(nome, cpf, sexo, estadoCivil, username, senhaHash, telefone, cidade, situacao);
+                bool sucesso = funcionario.CadastrarFuncionario(nome, cpf, sexo, estadoCivil, username, senhaHash, telefone, cidade, endereco, bairro, numeroResidencia, cep, uf, situacao);
 
                 // Se o cadastro foi bem-sucedido, exibe uma mensagem de sucesso
                 if (sucesso)
@@ -394,23 +446,38 @@ namespace Gerenciador_de_Emprestimos
             string telefone = txtBoxTelefoneFuncionario.Text;
             string cidade = txtBoxCidadeFuncionario.Text;
             string situacao = comboBoxSituacao.Text;
+            string? endereco = txtBoxEndereco.Text;
+            string? bairro = txtBoxBairro.Text;
+            int.TryParse(txtBoxNumeroResidencia.Text, out int numeroResidencia);
+            string? cep = txtBoxCep.Text;
+            string? uf = comboBoxUf.Text;
 
-            // Chama o método EditarCadastroFuncionario da classe Funcionario
-            funcionario.EditarCadastroFuncionario(codigoFuncionario, nomeFuncionario, cpf, sexo, estadoCivil, username, telefone, cidade, situacao);
-
-            // Se a flag de alteração de senha estiver ativa, atualiza a senha
-            if (_AlterarSenha == true)
+            try
             {
-                if (!string.IsNullOrWhiteSpace(txtBoxSenha.Text))
+                bool editouComSucesso = funcionario.EditarCadastroFuncionario(codigoFuncionario, nomeFuncionario, cpf, sexo, estadoCivil, username, telefone, cidade, endereco, bairro, numeroResidencia, cep, uf, situacao);
+
+                if (editouComSucesso)
                 {
-                    string novaSenhaHash = Seguranca.GerarHashSenha(txtBoxSenha.Text);
-                    funcionario.AtualizarSenhaFuncionario(codigoFuncionario, novaSenhaHash);
+                    // Se a flag de alteração de senha estiver ativa, atualiza a senha
+                    if (_AlterarSenha == true && !string.IsNullOrWhiteSpace(txtBoxSenha.Text))
+                    {
+                        string novaSenhaHash = Seguranca.GerarHashSenha(txtBoxSenha.Text);
+                        funcionario.AtualizarSenhaFuncionario(codigoFuncionario, novaSenhaHash);
+                    }
+
+                    GerenciarBotoesCampos(OcultarBotoes: false, ManifestarBotoes: false, LimparCampos: false);
+                }
+                else
+                {
+                    Funcoes.MensagemWarning("Não foi possivel Editar o cadastro, verifique os dados.");
                 }
             }
-
-            Funcoes.MensagemInformation("Cadastro do funcionário atualizado com sucesso.");
+            catch (MySqlException ex)
+            {
+                // Em caso de erro durante o cadastro, exibe uma mensagem de erro
+                Funcoes.MensagemWarning("Houve um erro ao realizar o cadastro: " + ex.Message);
+            }
         }
-
 
         // Método que atua como um "roteador": decide se deve Chamar a Inserção ou a Edição
         private void SalvarCadastroFuncionario()
@@ -525,6 +592,18 @@ namespace Gerenciador_de_Emprestimos
                     MarcarCheckBox(control.Controls, telasPermitidas);
                 }
             }
+        }
+
+        // Método responsável por deixar as primeiras letras de uma palavra Maiuscula.
+        private void txtBoxEndereco_TextChanged(object sender, EventArgs e)
+        {
+            Funcoes.PrimeiraLetraMaiuscula(txtBoxEndereco);
+        }
+
+        // Método responsável por deixar as primeiras letras de uma palavra Maiuscula.
+        private void txtBoxBairro_TextChanged(object sender, EventArgs e)
+        {
+            Funcoes.PrimeiraLetraMaiuscula(txtBoxBairro);
         }
     }
 }

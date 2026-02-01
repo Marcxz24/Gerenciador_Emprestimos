@@ -1,5 +1,6 @@
 ﻿using Gerenciador_de_Emprestimos.Database;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.X509;
 using System.Data;
 
 namespace Gerenciador_de_Emprestimos.Services
@@ -17,6 +18,11 @@ namespace Gerenciador_de_Emprestimos.Services
         public string senha_hash { get; set; }
         public string telefone_funcionario { get; set; }
         public string cidade_funcionario { get; set; }
+        public string endereco_funcionario { get; set; }
+        public string bairro_funcionario { get; set; }
+        public int numero_residencia { get; set; }
+        public string cep_funcionario { get; set; }
+        public string uf_funcionario { get; set; }
         public string situacao_funcionario { get; set; }
 
         // --- MÉTODO: Busca um único funcionário pelo ID (Código) ---
@@ -53,6 +59,11 @@ namespace Gerenciador_de_Emprestimos.Services
                         senha_hash = reader.GetString("senha_hash"),
                         telefone_funcionario = reader.GetString("telefone_funcionario"),
                         cidade_funcionario = reader.GetString("cidade_funcionario"),
+                        endereco_funcionario = reader.GetString("endereco_funcionario"),
+                        bairro_funcionario = reader.GetString("bairro_funcionario"),
+                        numero_residencia = reader.GetInt32("numero_residencia"),
+                        cep_funcionario = reader.GetString("cep_funcionario"),
+                        uf_funcionario = reader.GetString("uf_funcionario"),
                         situacao_funcionario = reader.GetString("situacao_funcionario"),
                     };
                 }
@@ -67,16 +78,20 @@ namespace Gerenciador_de_Emprestimos.Services
 
             // Consulta SQL base (sem filtros)
             string sql = @"SELECT 
-                            codigo, 
-                            nome_funcionario, 
-                            cpf_funcionario, 
-                            sexo_funcionario, 
-                            funcionario_estado_civil, 
-                            username, 
-                            telefone_funcionario, 
-                            cidade_funcionario, 
-                            situacao_funcionario 
-                        FROM emprestimosbd.funcionario";
+	                            codigo, 
+	                            nome_funcionario, 
+	                            cpf_funcionario, 
+	                            sexo_funcionario, 
+	                            funcionario_estado_civil, 
+	                            username, 
+	                            telefone_funcionario, 
+	                            cidade_funcionario, 
+                                endereco_funcionario,
+                                bairro_funcionario,
+                                numero_residencia,
+                                uf_funcionario,
+	                            situacao_funcionario 
+                            FROM emprestimosbd.funcionario";
 
             // Inicializa a cláusula WHERE. O '1 = 1' serve para facilitar a concatenação de múltiplos 'AND'
             string sqlFiltros = @" WHERE 1 = 1";

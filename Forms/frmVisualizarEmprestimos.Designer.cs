@@ -167,6 +167,8 @@
             // 
             // dataGridEmprestimos
             // 
+            dataGridEmprestimos.AllowUserToAddRows = false;
+            dataGridEmprestimos.AllowUserToDeleteRows = false;
             dataGridEmprestimos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridEmprestimos.Location = new Point(12, 427);
             dataGridEmprestimos.Name = "dataGridEmprestimos";

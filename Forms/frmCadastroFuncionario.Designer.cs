@@ -48,6 +48,16 @@
             txtBoxUsername = new TextBox();
             tabPageCadastroFuncionario = new TabPage();
             grpBoxDadosPessoaisFuncionario = new GroupBox();
+            label1 = new Label();
+            txtBoxNumeroResidencia = new TextBox();
+            lblUf = new Label();
+            comboBoxUf = new ComboBox();
+            lblCep = new Label();
+            txtBoxCep = new MaskedTextBox();
+            txtBoxBairro = new TextBox();
+            lblBairro = new Label();
+            txtBoxEndereco = new TextBox();
+            lblEndereco = new Label();
             lblEstadoCivil = new Label();
             comboBoxEstadoCivil = new ComboBox();
             txtBoxCidadeFuncionario = new TextBox();
@@ -237,7 +247,7 @@
             // 
             lblLinkEditarSenha.AutoSize = true;
             lblLinkEditarSenha.Enabled = false;
-            lblLinkEditarSenha.Location = new Point(332, 229);
+            lblLinkEditarSenha.Location = new Point(358, 229);
             lblLinkEditarSenha.Name = "lblLinkEditarSenha";
             lblLinkEditarSenha.Size = new Size(113, 20);
             lblLinkEditarSenha.TabIndex = 11;
@@ -247,7 +257,7 @@
             // 
             // txtBoxSenha
             // 
-            txtBoxSenha.Location = new Point(264, 199);
+            txtBoxSenha.Location = new Point(290, 199);
             txtBoxSenha.Name = "txtBoxSenha";
             txtBoxSenha.ReadOnly = true;
             txtBoxSenha.Size = new Size(268, 27);
@@ -258,7 +268,7 @@
             // 
             lblUsername.AutoSize = true;
             lblUsername.BackColor = Color.Transparent;
-            lblUsername.Location = new Point(173, 146);
+            lblUsername.Location = new Point(199, 146);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(84, 20);
             lblUsername.TabIndex = 7;
@@ -268,7 +278,7 @@
             // 
             lblSenhaFuncionario.AutoSize = true;
             lblSenhaFuncionario.BackColor = Color.Transparent;
-            lblSenhaFuncionario.Location = new Point(199, 202);
+            lblSenhaFuncionario.Location = new Point(225, 202);
             lblSenhaFuncionario.Name = "lblSenhaFuncionario";
             lblSenhaFuncionario.Size = new Size(58, 20);
             lblSenhaFuncionario.TabIndex = 9;
@@ -276,7 +286,7 @@
             // 
             // txtBoxUsername
             // 
-            txtBoxUsername.Location = new Point(263, 143);
+            txtBoxUsername.Location = new Point(289, 143);
             txtBoxUsername.Name = "txtBoxUsername";
             txtBoxUsername.ReadOnly = true;
             txtBoxUsername.Size = new Size(268, 27);
@@ -296,6 +306,16 @@
             // grpBoxDadosPessoaisFuncionario
             // 
             grpBoxDadosPessoaisFuncionario.BackColor = Color.Transparent;
+            grpBoxDadosPessoaisFuncionario.Controls.Add(label1);
+            grpBoxDadosPessoaisFuncionario.Controls.Add(txtBoxNumeroResidencia);
+            grpBoxDadosPessoaisFuncionario.Controls.Add(lblUf);
+            grpBoxDadosPessoaisFuncionario.Controls.Add(comboBoxUf);
+            grpBoxDadosPessoaisFuncionario.Controls.Add(lblCep);
+            grpBoxDadosPessoaisFuncionario.Controls.Add(txtBoxCep);
+            grpBoxDadosPessoaisFuncionario.Controls.Add(txtBoxBairro);
+            grpBoxDadosPessoaisFuncionario.Controls.Add(lblBairro);
+            grpBoxDadosPessoaisFuncionario.Controls.Add(txtBoxEndereco);
+            grpBoxDadosPessoaisFuncionario.Controls.Add(lblEndereco);
             grpBoxDadosPessoaisFuncionario.Controls.Add(lblEstadoCivil);
             grpBoxDadosPessoaisFuncionario.Controls.Add(comboBoxEstadoCivil);
             grpBoxDadosPessoaisFuncionario.Controls.Add(txtBoxCidadeFuncionario);
@@ -312,6 +332,103 @@
             grpBoxDadosPessoaisFuncionario.TabIndex = 7;
             grpBoxDadosPessoaisFuncionario.TabStop = false;
             grpBoxDadosPessoaisFuncionario.Text = "Dados do Funcionário (Obrigatórios)";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Location = new Point(512, 265);
+            label1.Name = "label1";
+            label1.Size = new Size(104, 20);
+            label1.TabIndex = 28;
+            label1.Text = "N° Residencia:";
+            // 
+            // txtBoxNumeroResidencia
+            // 
+            txtBoxNumeroResidencia.Location = new Point(617, 260);
+            txtBoxNumeroResidencia.Name = "txtBoxNumeroResidencia";
+            txtBoxNumeroResidencia.ReadOnly = true;
+            txtBoxNumeroResidencia.Size = new Size(152, 27);
+            txtBoxNumeroResidencia.TabIndex = 27;
+            // 
+            // lblUf
+            // 
+            lblUf.AutoSize = true;
+            lblUf.BackColor = Color.Transparent;
+            lblUf.Location = new Point(314, 265);
+            lblUf.Name = "lblUf";
+            lblUf.Size = new Size(35, 20);
+            lblUf.TabIndex = 26;
+            lblUf.Text = "*UF:";
+            // 
+            // comboBoxUf
+            // 
+            comboBoxUf.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxUf.Enabled = false;
+            comboBoxUf.FormattingEnabled = true;
+            comboBoxUf.Items.AddRange(new object[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" });
+            comboBoxUf.Location = new Point(355, 262);
+            comboBoxUf.Name = "comboBoxUf";
+            comboBoxUf.Size = new Size(151, 28);
+            comboBoxUf.TabIndex = 25;
+            // 
+            // lblCep
+            // 
+            lblCep.AutoSize = true;
+            lblCep.BackColor = Color.Transparent;
+            lblCep.Location = new Point(24, 261);
+            lblCep.Name = "lblCep";
+            lblCep.Size = new Size(43, 20);
+            lblCep.TabIndex = 24;
+            lblCep.Text = "*CEP:";
+            // 
+            // txtBoxCep
+            // 
+            txtBoxCep.Location = new Point(73, 258);
+            txtBoxCep.Mask = "00,000-000";
+            txtBoxCep.Name = "txtBoxCep";
+            txtBoxCep.ReadOnly = true;
+            txtBoxCep.Size = new Size(206, 27);
+            txtBoxCep.TabIndex = 23;
+            txtBoxCep.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            // 
+            // txtBoxBairro
+            // 
+            txtBoxBairro.Location = new Point(73, 200);
+            txtBoxBairro.Name = "txtBoxBairro";
+            txtBoxBairro.ReadOnly = true;
+            txtBoxBairro.Size = new Size(253, 27);
+            txtBoxBairro.TabIndex = 22;
+            txtBoxBairro.TextChanged += txtBoxBairro_TextChanged;
+            // 
+            // lblBairro
+            // 
+            lblBairro.AutoSize = true;
+            lblBairro.BackColor = Color.Transparent;
+            lblBairro.Location = new Point(15, 200);
+            lblBairro.Name = "lblBairro";
+            lblBairro.Size = new Size(58, 20);
+            lblBairro.TabIndex = 21;
+            lblBairro.Text = "*Bairro:";
+            // 
+            // txtBoxEndereco
+            // 
+            txtBoxEndereco.Location = new Point(418, 152);
+            txtBoxEndereco.Name = "txtBoxEndereco";
+            txtBoxEndereco.ReadOnly = true;
+            txtBoxEndereco.Size = new Size(351, 27);
+            txtBoxEndereco.TabIndex = 20;
+            txtBoxEndereco.TextChanged += txtBoxEndereco_TextChanged;
+            // 
+            // lblEndereco
+            // 
+            lblEndereco.AutoSize = true;
+            lblEndereco.BackColor = Color.Transparent;
+            lblEndereco.Location = new Point(332, 155);
+            lblEndereco.Name = "lblEndereco";
+            lblEndereco.Size = new Size(80, 20);
+            lblEndereco.TabIndex = 19;
+            lblEndereco.Text = "*Endereço:";
             // 
             // lblEstadoCivil
             // 
@@ -336,7 +453,7 @@
             // 
             // txtBoxCidadeFuncionario
             // 
-            txtBoxCidadeFuncionario.Location = new Point(384, 151);
+            txtBoxCidadeFuncionario.Location = new Point(397, 200);
             txtBoxCidadeFuncionario.Name = "txtBoxCidadeFuncionario";
             txtBoxCidadeFuncionario.ReadOnly = true;
             txtBoxCidadeFuncionario.Size = new Size(373, 27);
@@ -347,7 +464,7 @@
             // 
             lblCidadeFuncionario.AutoSize = true;
             lblCidadeFuncionario.BackColor = Color.Transparent;
-            lblCidadeFuncionario.Location = new Point(319, 151);
+            lblCidadeFuncionario.Location = new Point(332, 200);
             lblCidadeFuncionario.Name = "lblCidadeFuncionario";
             lblCidadeFuncionario.Size = new Size(65, 20);
             lblCidadeFuncionario.TabIndex = 15;
@@ -690,5 +807,15 @@
         private GroupBox grpBoxRelatorioEmprestimos;
         private CheckBox chkBoxVizualizarEmprestimos;
         private CheckBox chkBoxConsultarParcela;
+        private TextBox txtBoxEndereco;
+        private Label lblEndereco;
+        private TextBox txtBoxBairro;
+        private Label lblBairro;
+        private Label lblCep;
+        private MaskedTextBox txtBoxCep;
+        private Label lblUf;
+        private ComboBox comboBoxUf;
+        private TextBox txtBoxNumeroResidencia;
+        private Label label1;
     }
 }

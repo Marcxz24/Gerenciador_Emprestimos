@@ -241,6 +241,8 @@
             // 
             // dataGridConsultaParcela
             // 
+            dataGridConsultaParcela.AllowUserToAddRows = false;
+            dataGridConsultaParcela.AllowUserToDeleteRows = false;
             dataGridConsultaParcela.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridConsultaParcela.Location = new Point(12, 224);
             dataGridConsultaParcela.Name = "dataGridConsultaParcela";

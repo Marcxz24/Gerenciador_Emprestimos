@@ -270,6 +270,8 @@
             // 
             // dataGridFuncionarios
             // 
+            dataGridFuncionarios.AllowUserToAddRows = false;
+            dataGridFuncionarios.AllowUserToDeleteRows = false;
             dataGridFuncionarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridFuncionarios.Location = new Point(10, 231);
             dataGridFuncionarios.Name = "dataGridFuncionarios";

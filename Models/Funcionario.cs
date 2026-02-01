@@ -16,7 +16,7 @@ namespace Gerenciador_de_Emprestimos.Models
         public int CodigoFuncionario { get; set; }
 
         // --- MÉTODO: Realiza a inserção de um novo funcionário no banco ---
-        public bool CadastrarFuncionario(string nome, string cpf, string sexo, string estadoCivil, string username, string senha, string telefone, string cidade, string situacao)
+        public bool CadastrarFuncionario(string nome, string cpf, string sexo, string estadoCivil, string username, string senha, string telefone, string cidade, string endereco, string bairro, int numeroResidencia, string cep, string uf, string situacao)
         {
             // VALIDAÇÃO DE INTEGRIDADE: Chama o método abaixo para verificar se o CPF já existe
             // Isso evita que o banco gere um erro de chave duplicada ou dados inconsistentes
@@ -36,6 +36,11 @@ namespace Gerenciador_de_Emprestimos.Models
                         senha_hash,
                         telefone_funcionario,
                         cidade_funcionario,
+                        endereco_funcionario,
+                        bairro_funcionario,
+                        numero_residencia,
+                        cep_funcionario,
+                        uf_funcionario
                         situacao_funcionario,
                         data_cadastro
                         )
@@ -49,6 +54,11 @@ namespace Gerenciador_de_Emprestimos.Models
                         @senha_hash,
                         @telefone_funcionario,
                         @cidade_funcionario,
+                        @endereco_funcionario,
+                        @bairro_funcionario,
+                        @numero_residencia,
+                        @cep_funcionario,
+                        @uf_funcionario,
                         @situacao_funcionario,
                         @data_cadastro
                         )";
@@ -68,6 +78,11 @@ namespace Gerenciador_de_Emprestimos.Models
                     comando.Parameters.AddWithValue("@senha_hash", senha); // Aqui deve entrar o Hash do BCrypt
                     comando.Parameters.AddWithValue("@telefone_funcionario", telefone);
                     comando.Parameters.AddWithValue("@cidade_funcionario", cidade);
+                    comando.Parameters.AddWithValue("@endereco_funcionario", endereco);
+                    comando.Parameters.AddWithValue("@bairro_funcionario", bairro);
+                    comando.Parameters.AddWithValue("@numero_residencia", numeroResidencia);
+                    comando.Parameters.AddWithValue("@cep_funcionario", cep);
+                    comando.Parameters.AddWithValue("@uf_funcionario", uf);
                     comando.Parameters.AddWithValue("@situacao_funcionario", situacao);
                     comando.Parameters.AddWithValue("@data_cadastro", DateTime.Now); // Registra o momento exato do cadastro
 
@@ -89,7 +104,7 @@ namespace Gerenciador_de_Emprestimos.Models
             return true;
         }
 
-        public void EditarCadastroFuncionario(int codigo, string nome, string cpf, string sexo, string estadoCivil, string username, string telefone, string cidade, string situacao)
+        public bool EditarCadastroFuncionario(int codigo, string nome, string cpf, string sexo, string estadoCivil, string username, string telefone, string cidade, string endereco, string bairro, int numeroResidencia, string cep, string uf, string situacao)
         {
             string sql = @"
                            UPDATE emprestimosbd.funcionario
@@ -100,7 +115,12 @@ namespace Gerenciador_de_Emprestimos.Models
                                 funcionario_estado_civil = @funcionario_estado_civil, 
                                 username = @username,
                                 telefone_funcionario = @telefone_funcionario, 
-                                cidade_funcionario = @cidade_funcionario, 
+                                cidade_funcionario = @cidade_funcionario,
+                                endereco_funcionario = @endereco_funcionario,
+                                bairro_funcionario = @bairro_funcionario,
+                                numero_residencia = @numero_residencia,
+                                cep_funcionario = @cep_funcionario,
+                                uf_funcionario = @uf_funcionario,
                                 situacao_funcionario = @situacao_funcionario
                            WHERE codigo = @codigo";
 
@@ -117,6 +137,11 @@ namespace Gerenciador_de_Emprestimos.Models
                     comando.Parameters.AddWithValue("@username", username);
                     comando.Parameters.AddWithValue("@telefone_funcionario", telefone);
                     comando.Parameters.AddWithValue("@cidade_funcionario", cidade);
+                    comando.Parameters.AddWithValue("@endereco_funcionario", endereco);
+                    comando.Parameters.AddWithValue("@bairro_funcionario", bairro);
+                    comando.Parameters.AddWithValue("@numero_residencia", numeroResidencia);
+                    comando.Parameters.AddWithValue("@cep_funcionario", cep);
+                    comando.Parameters.AddWithValue("@uf_funcionario", uf);
                     comando.Parameters.AddWithValue("@situacao_funcionario", situacao);
 
                     comando.ExecuteNonQuery();
@@ -124,8 +149,10 @@ namespace Gerenciador_de_Emprestimos.Models
             }
             catch (MySqlException ex)
             {
-                Funcoes.MensagemErro("Erro ao editar cadastro do funcionário: " +  ex.Message);
+                return false;
             }
+
+            return true;
         }
 
         public void AtualizarSenhaFuncionario(int codigo, string novaSenhaHash)
