@@ -29,75 +29,91 @@ namespace Gerenciador_de_Emprestimos
         // --- MÉTODO: Pesquisa as parcelas com base nos filtros preenchidos ---
         private void btnPesquisarParcela_Click(object sender, EventArgs e)
         {
-            ParcelaConsulta parcelaConsulta = new ParcelaConsulta();
-
-            // Inicializa variáveis nulas para filtros opcionais
-            int? CodigoEmprestimo = null;
-            int? CodigoCliente = null;
-            string? NomeCliente = null;
-            string? StatusParcela = null;
-            decimal ValorTotal = 0;
-            decimal ValorParcela = 0;
-            int? NumeroParcela = null;
-
-            // --- BLOCO DE CAPTURA E CONVERSÃO DE FILTROS ---
-            // Tenta converter os textos dos campos apenas se não estiverem vazios
-            if (!string.IsNullOrWhiteSpace(txtBoxCodigoEmprestimo.Text) && int.TryParse(txtBoxCodigoEmprestimo.Text, out int emprestimoCod))
+            try
             {
-                CodigoEmprestimo = emprestimoCod;
-            }
+                ParcelaConsulta parcelaConsulta = new ParcelaConsulta();
 
-            if (!string.IsNullOrWhiteSpace(txtBoxCodigoCliente.Text) && int.TryParse(txtBoxCodigoCliente.Text, out int clienteCod))
+                // Inicializa variáveis nulas para filtros opcionais
+                int? CodigoEmprestimo = null;
+                int? CodigoCliente = null;
+                string? NomeCliente = null;
+                string? StatusParcela = null;
+                decimal ValorTotal = 0;
+                decimal ValorParcela = 0;
+                int? NumeroParcela = null;
+
+                // --- BLOCO DE CAPTURA E CONVERSÃO DE FILTROS ---
+                // Tenta converter os textos dos campos apenas se não estiverem vazios
+                if (!string.IsNullOrWhiteSpace(txtBoxCodigoEmprestimo.Text) && int.TryParse(txtBoxCodigoEmprestimo.Text, out int emprestimoCod))
+                {
+                    CodigoEmprestimo = emprestimoCod;
+                }
+
+                if (!string.IsNullOrWhiteSpace(txtBoxCodigoCliente.Text) && int.TryParse(txtBoxCodigoCliente.Text, out int clienteCod))
+                {
+                    CodigoCliente = clienteCod;
+                }
+
+                if (!string.IsNullOrWhiteSpace(txtBoxNomeCliente.Text))
+                {
+                    NomeCliente = txtBoxNomeCliente.Text;
+                }
+
+                if (!string.IsNullOrWhiteSpace(cmbBoxStatusParcela.Text))
+                {
+                    StatusParcela = cmbBoxStatusParcela.Text;
+                }
+
+                if (!string.IsNullOrWhiteSpace(txtBoxValorParcela.Text) && decimal.TryParse(txtBoxValorParcela.Text, out decimal valueParcela))
+                {
+                    ValorParcela = valueParcela;
+                }
+
+                if (!string.IsNullOrWhiteSpace(txtBoxValorTotal.Text) && decimal.TryParse(txtBoxValorTotal.Text, out decimal valueTotal))
+                {
+                    ValorTotal = valueTotal;
+                }
+
+                if (!string.IsNullOrWhiteSpace(txtBoxNumeroParcela.Text) && int.TryParse(txtBoxNumeroParcela.Text, out int numParcela))
+                {
+                    NumeroParcela = numParcela;
+                }
+
+                // Chama o método de consulta enviando todos os filtros capturados
+                DataTable dataTable = parcelaConsulta.ConsultaParcela(CodigoEmprestimo, CodigoCliente, NomeCliente, StatusParcela, ValorTotal, ValorParcela, NumeroParcela);
+
+                // Exibe o resultado na grade (DataGrid)
+                dataGridConsultaParcela.DataSource = dataTable;
+            }
+            catch(Exception ex)
             {
-                CodigoCliente = clienteCod;
+                Funcoes.MensagemErro("Ocorreu um erro ao consultar as parcelas. Verifique os filtros e tente novamente." + ex.Message);
+                Serilog.Log.Error("Erro ao consultar parcelas: ", ex.Message);
             }
-
-            if (!string.IsNullOrWhiteSpace(txtBoxNomeCliente.Text))
-            {
-                NomeCliente = txtBoxNomeCliente.Text;
-            }
-
-            if (!string.IsNullOrWhiteSpace(cmbBoxStatusParcela.Text))
-            {
-                StatusParcela = cmbBoxStatusParcela.Text;
-            }
-
-            if (!string.IsNullOrWhiteSpace(txtBoxValorParcela.Text) && decimal.TryParse(txtBoxValorParcela.Text, out decimal valueParcela))
-            {
-                ValorParcela = valueParcela;
-            }
-
-            if (!string.IsNullOrWhiteSpace(txtBoxValorTotal.Text) && decimal.TryParse(txtBoxValorTotal.Text, out decimal valueTotal))
-            {
-                ValorTotal = valueTotal;
-            }
-
-            if (!string.IsNullOrWhiteSpace(txtBoxNumeroParcela.Text) && int.TryParse(txtBoxNumeroParcela.Text, out int numParcela))
-            {
-                NumeroParcela = numParcela;
-            }
-
-            // Chama o método de consulta enviando todos os filtros capturados
-            DataTable dataTable = parcelaConsulta.ConsultaParcela(CodigoEmprestimo, CodigoCliente, NomeCliente, StatusParcela, ValorTotal, ValorParcela, NumeroParcela);
-
-            // Exibe o resultado na grade (DataGrid)
-            dataGridConsultaParcela.DataSource = dataTable;
         }
 
         // --- MÉTODO: Abre a tela de seleção de cliente para preencher os campos automaticamente ---
         private void btnPesquisarCliente_Click(object sender, EventArgs e)
         {
-            using (var formSelecionarCliente = new frmSelecionarCliente())
+            try
             {
-                // Abre como caixa de diálogo (bloqueia a tela de trás)
-                if (formSelecionarCliente.ShowDialog() == DialogResult.OK)
+                using (var formSelecionarCliente = new frmSelecionarCliente())
                 {
-                    // Se o usuário selecionou um cliente, recupera o objeto e preenche os campos
-                    var cliente = formSelecionarCliente.ClienteSelecionado;
+                    // Abre como caixa de diálogo (bloqueia a tela de trás)
+                    if (formSelecionarCliente.ShowDialog() == DialogResult.OK)
+                    {
+                        // Se o usuário selecionou um cliente, recupera o objeto e preenche os campos
+                        var cliente = formSelecionarCliente.ClienteSelecionado;
 
-                    txtBoxCodigoCliente.Text = cliente.codigo.ToString();
-                    txtBoxNomeCliente.Text = cliente.nome_cliente;
+                        txtBoxCodigoCliente.Text = cliente.codigo.ToString();
+                        txtBoxNomeCliente.Text = cliente.nome_cliente;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Funcoes.MensagemErro("Ocorreu um erro ao abrir a tela de seleção de cliente. Tente novamente." + ex.Message);
+                Serilog.Log.Error("Erro ao abrir a tela de seleção de cliente: ", ex.Message);
             }
         }
 
@@ -129,35 +145,43 @@ namespace Gerenciador_de_Emprestimos
         // --- MÉTODO: Gera e abre o relatório PDF com base no que está na grade ---
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            if (ValidacaoDataGrid())
+            try
             {
-                return; // Interrompe se não houver dados
-            }
-
-            // Obtém o DataTable que está vinculado ao DataGrid
-            DataTable dataTable = (DataTable)dataGridConsultaParcela.DataSource;
-
-            GeradorRelatorio relatorio = new GeradorRelatorio();
-
-            // Calcula estatísticas para o rodapé do relatório
-            int totalDeLinhas = dataGridConsultaParcela.Rows.Cast<DataGridViewRow>().Count(r => !r.IsNewRow);
-            decimal ValorTotalParcela = 0;
-
-            // Soma o valor de todas as parcelas visíveis na grade
-            foreach (DataGridViewRow row in dataGridConsultaParcela.Rows)
-            {
-                if (!row.IsNewRow)
+                if (ValidacaoDataGrid())
                 {
-                    ValorTotalParcela += Convert.ToDecimal(row.Cells["valor_parcela"].Value);
+                    return; // Interrompe se não houver dados
                 }
+
+                // Obtém o DataTable que está vinculado ao DataGrid
+                DataTable dataTable = (DataTable)dataGridConsultaParcela.DataSource;
+
+                GeradorRelatorio relatorio = new GeradorRelatorio();
+
+                // Calcula estatísticas para o rodapé do relatório
+                int totalDeLinhas = dataGridConsultaParcela.Rows.Cast<DataGridViewRow>().Count(r => !r.IsNewRow);
+                decimal ValorTotalParcela = 0;
+
+                // Soma o valor de todas as parcelas visíveis na grade
+                foreach (DataGridViewRow row in dataGridConsultaParcela.Rows)
+                {
+                    if (!row.IsNewRow)
+                    {
+                        ValorTotalParcela += Convert.ToDecimal(row.Cells["valor_parcela"].Value);
+                    }
+                }
+
+                // Alimenta as propriedades da classe de relatório
+                relatorio.ValorTotalReceber = ValorTotalParcela;
+                relatorio.NumeroDeRegistros = totalDeLinhas;
+
+                // Gera o PDF
+                relatorio.RelatorioParcelas(dataTable);
             }
-
-            // Alimenta as propriedades da classe de relatório
-            relatorio.ValorTotalReceber = ValorTotalParcela;
-            relatorio.NumeroDeRegistros = totalDeLinhas;
-
-            // Gera o PDF
-            relatorio.RelatorioParcelas(dataTable);
+            catch (Exception ex)
+            {
+                Funcoes.MensagemErro("Ocorreu um erro ao gerar o relatório de parcelas. Verifique os dados e tente novamente." + ex.Message);
+                Serilog.Log.Error("Erro ao gerar o relatório de parcelas: ", ex.Message);
+            }
         }
     }
 }

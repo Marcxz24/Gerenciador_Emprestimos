@@ -27,96 +27,104 @@ namespace Gerenciador_de_Emprestimos
         // --- MÉTODO: Centraliza todas as regras que impedem um empréstimo inválido ---
         private bool ValidacoesEmprestimo()
         {
-            // 1. Verificação de Campos Vazios
-            if (string.IsNullOrEmpty(txtBoxNomeCliente.Text))
+            try
             {
-                Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Nome do Cliente");
-                return true;
-            }
+                // 1. Verificação de Campos Vazios
+                if (string.IsNullOrEmpty(txtBoxNomeCliente.Text))
+                {
+                    Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Nome do Cliente");
+                    return true;
+                }
 
-            if (string.IsNullOrEmpty(maskTxtCpfCnpjCliente.Text))
+                if (string.IsNullOrEmpty(maskTxtCpfCnpjCliente.Text))
+                {
+                    Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: CPF do Cliente");
+                    return true;
+                }
+
+                if (string.IsNullOrEmpty(txtBoxValorEmprestado.Text))
+                {
+                    Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Valor Emprestado");
+                    return true;
+                }
+
+                if (string.IsNullOrEmpty(txtBoxTaxaJuros.Text))
+                {
+                    Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Percentual dos Juros");
+                    return true;
+                }
+
+                if (string.IsNullOrEmpty(txtBoxQuantidadeParcela.Text))
+                {
+                    Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Quantidade das Parcelas");
+                    return true;
+                }
+
+                // 2. Proteção contra erro matemático (Divisão por zero)
+                if (txtBoxQuantidadeParcela.Text == "0")
+                {
+                    Funcoes.MensagemErro("Tentativa de Divisão por Zero!\n\nSe o cliente não parcelou, informe 1 no campo da Parcela.");
+                    return true;
+                }
+
+                // 3. Validação de Data de Pagamento
+                DateOnly dataPagamento;
+
+                if (!maskTxtDataPagamento.MaskCompleted)
+                {
+                    Funcoes.MensagemWarning("Preecha a Data completa!");
+                    return true;
+                }
+
+                // Tenta converter o texto da máscara para uma data real brasileira
+                if (!DateOnly.TryParseExact(maskTxtDataPagamento.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("pt-BR"), DateTimeStyles.None, out dataPagamento))
+                {
+                    Funcoes.MensagemWarning("Data de Pagamento Inválida!\n\npreencha no formato dd/MM/yyyy");
+                    return true;
+                }
+
+                // Regra de retroatividade (Não aceita datas muito antigas ou passadas)
+                if (dataPagamento < new DateOnly(2025, 1, 1))
+                {
+                    Funcoes.MensagemErro("Data de Emprestimo inválida! Por favor Preencha uma Data Válida!");
+                    return true;
+                }
+
+                if (dataPagamento < DateOnly.FromDateTime(DateTime.Today))
+                {
+                    Funcoes.MensagemWarning("A Data do Empréstimo não pode ser Menor que a Data Atual!\n\nPor favor, verifique a Data do Empréstimo.");
+                    return true;
+                }
+
+                // Validação para verificar se o tipo de emprestimo está selecionado.
+                if (cmbBoxTipoJuros.SelectedIndex == -1)
+                {
+                    Funcoes.MensagemWarning("Selecione o tipo de emprestimo antes de realizar o calculo ou salvar.");
+                    return true;
+                }
+
+                // 4. Regras de Negócio no Banco de Dados
+                // Impede que um cliente pegue dois empréstimos ao mesmo tempo
+                if (emprestimo.ValidarClienteEmprestimo(txtBoxCodigoCliente.Text))
+                {
+                    Funcoes.MensagemWarning("Este Cliente Já está com um Emprestimo 'ATIVO'");
+                    return true;
+                }
+
+                // Impede que clientes bloqueados/inativos operem
+                if (emprestimo.validarClienteInativo(txtBoxCodigoCliente.Text))
+                {
+                    Funcoes.MensagemWarning("Não é possível realizar emprestimos para Clientes 'INATIVOS'");
+                    return true;
+                }
+
+                return false; // Se passar por tudo, retorna falso (não há erros)
+            }
+            catch (Exception ex)
             {
-                Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: CPF do Cliente");
-                return true;
+                Serilog.Log.Error("Ocorreu um erro durante as validações do empréstimo.\n\nDetalhes: " + ex.Message);
+                return true; // Retorna true para indicar que houve um erro
             }
-
-            if (string.IsNullOrEmpty(txtBoxValorEmprestado.Text))
-            {
-                Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Valor Emprestado");
-                return true;
-            }
-
-            if (string.IsNullOrEmpty(txtBoxTaxaJuros.Text))
-            {
-                Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Percentual dos Juros");
-                return true;
-            }
-
-            if (string.IsNullOrEmpty(txtBoxQuantidadeParcela.Text))
-            {
-                Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: Quantidade das Parcelas");
-                return true;
-            }
-
-            // 2. Proteção contra erro matemático (Divisão por zero)
-            if (txtBoxQuantidadeParcela.Text == "0")
-            {
-                Funcoes.MensagemErro("Tentativa de Divisão por Zero!\n\nSe o cliente não parcelou, informe 1 no campo da Parcela.");
-                return true;
-            }
-
-            // 3. Validação de Data de Pagamento
-            DateOnly dataPagamento;
-
-            if (!maskTxtDataPagamento.MaskCompleted)
-            {
-                Funcoes.MensagemWarning("Preecha a Data completa!");
-                return true;
-            }
-
-            // Tenta converter o texto da máscara para uma data real brasileira
-            if (!DateOnly.TryParseExact(maskTxtDataPagamento.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("pt-BR"), DateTimeStyles.None, out dataPagamento))
-            {
-                Funcoes.MensagemWarning("Data de Pagamento Inválida!\n\npreencha no formato dd/MM/yyyy");
-                return true;
-            }
-
-            // Regra de retroatividade (Não aceita datas muito antigas ou passadas)
-            if (dataPagamento < new DateOnly(2025, 1, 1))
-            {
-                Funcoes.MensagemErro("Data de Emprestimo inválida! Por favor Preencha uma Data Válida!");
-                return true;
-            }
-
-            if (dataPagamento < DateOnly.FromDateTime(DateTime.Today))
-            {
-                Funcoes.MensagemWarning("A Data do Empréstimo não pode ser Menor que a Data Atual!\n\nPor favor, verifique a Data do Empréstimo.");
-                return true;
-            }
-
-            // Validação para verificar se o tipo de emprestimo está selecionado.
-            if (cmbBoxTipoJuros.SelectedIndex == -1)
-            {
-                Funcoes.MensagemWarning("Selecione o tipo de emprestimo antes de realizar o calculo ou salvar.");
-                return true;
-            }
-
-            // 4. Regras de Negócio no Banco de Dados
-            // Impede que um cliente pegue dois empréstimos ao mesmo tempo
-            if (emprestimo.ValidarClienteEmprestimo(txtBoxCodigoCliente.Text))
-            {
-                Funcoes.MensagemWarning("Este Cliente Já está com um Emprestimo 'ATIVO'");
-                return true;
-            }
-
-            // Impede que clientes bloqueados/inativos operem
-            if (emprestimo.validarClienteInativo(txtBoxCodigoCliente.Text))
-            {
-                Funcoes.MensagemWarning("Não é possível realizar emprestimos para Clientes 'INATIVOS'");
-                return true;
-            }
-
-            return false; // Se passar por tudo, retorna falso (não há erros)
         }
 
         // --- MÉTODO: Abre a busca de clientes e popula os campos com o retorno ---

@@ -54,31 +54,6 @@ namespace Gerenciador_de_Emprestimos.Services
             return dataTable;
         }
 
-        // --- MÉTODO: Consulta os dados de um cliente específico e retorna em formato de DataTable ---
-        public DataTable ConsultarClientePorCodigo(int CodigoCliente)
-        {
-            DataTable dataTable = new DataTable();
-
-            var sqlConsulta = @"SELECT * FROM emprestimosbd.cliente WHERE codigo = @codigo";
-
-            using (var conexao = ConexaoBancoDeDados.Conectar())
-            using (var comando = new MySqlCommand(sqlConsulta, conexao))
-            {
-                // Verifica se o código é válido antes de tentar a busca
-                if (CodigoCliente > 0)
-                {
-                    comando.Parameters.AddWithValue("@codigo", CodigoCliente);
-
-                    using (var data = new MySqlDataAdapter(comando))
-                    {
-                        data.Fill(dataTable); // Preenche o DataTable com todas as colunas do cliente
-                    }
-                }
-            }
-
-            return dataTable;
-        }
-
         // --- MÉTODO: Busca os dados de um cliente e retorna um Objeto da própria classe 'SelecionarCliente' ---
         public SelecionarCliente BuscarClientePorCodigo(int codigoCliente)
         {
@@ -137,6 +112,65 @@ namespace Gerenciador_de_Emprestimos.Services
 
             // Retorna null se nenhum cliente for encontrado com o código fornecido
             return null;
+        }
+
+        // Método para listar os cliente no dataGrid.
+        public DataTable ListarClientes()
+        {
+            // Cria um DataTable para armazenar os resultados da consulta
+            DataTable dt = new DataTable();
+
+            // Query SQL para selecionar todos os campos da tabela 'cliente'
+            var sql = @"SELECT 
+                            codigo, 
+                            nome_cliente, 
+                            cpf_cnpj, 
+                            genero, 
+                            estado_civil, 
+                            endereco, 
+                            bairro, 
+                            cidade, 
+                            uf, 
+                            numero_residencia, 
+                            cep, 
+                            celular, 
+                            email, 
+                            observacoes, 
+                            situacao_cadastral, 
+                            imagem, 
+                            data_cadastro 
+                        FROM emprestimosbd.cliente";
+
+            // Executa a consulta e preenche o DataTable
+            using (var conexao = ConexaoBancoDeDados.Conectar())
+            using (var comando = new MySqlCommand(sql, conexao))
+            {
+                comando.Parameters.AddWithValue("codigo", codigo);
+                comando.Parameters.AddWithValue("nome_cliente", nome_cliente);
+                comando.Parameters.AddWithValue("cpf_cnpj", cpf_cnpj);
+                comando.Parameters.AddWithValue("genero", genero);
+                comando.Parameters.AddWithValue("estado_civil", estado_civil);
+                comando.Parameters.AddWithValue("endereco", endereco);
+                comando.Parameters.AddWithValue("bairro", bairro);
+                comando.Parameters.AddWithValue("cidade", cidade);
+                comando.Parameters.AddWithValue("uf", uf);
+                comando.Parameters.AddWithValue("numero_residencia", numero_residencia);
+                comando.Parameters.AddWithValue("cep", cep);
+                comando.Parameters.AddWithValue("celular", celular);
+                comando.Parameters.AddWithValue("email", email);
+                comando.Parameters.AddWithValue("observacoes", observacoes);
+                comando.Parameters.AddWithValue("situacao_cadastral", situacao_cadastral);
+                comando.Parameters.AddWithValue("data_cadastro", data_cadastro);
+
+                // Usa MySqlDataAdapter para preencher o DataTable com os resultados da consulta
+                using (var data = new MySqlDataAdapter(comando))
+                {
+                    data.Fill(dt); // Preenche o DataTable com os dados do SELECT
+                }
+            }
+
+            // Retorna o DataTable preenchido
+            return dt;
         }
     }
 }

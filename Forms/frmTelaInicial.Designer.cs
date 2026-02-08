@@ -32,8 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTelaIncial));
             lblTituloInicial = new Label();
             stsStripSistemVersion = new StatusStrip();
-            toolStripUserName = new ToolStripStatusLabel();
             statusLabelUsername = new ToolStripStatusLabel();
+            toolStripUserName = new ToolStripStatusLabel();
+            lblEspacoVazio = new ToolStripStatusLabel();
             toolStsStripSistemVersion = new ToolStripStatusLabel();
             MenuStripMenusSistema = new MenuStrip();
             arquivoToolStripMenuItem = new ToolStripMenuItem();
@@ -60,10 +61,12 @@
             picBoxLogoSistema2 = new PictureBox();
             picBoxLogoSistema = new PictureBox();
             lblTituloSistemas = new Label();
+            painelLogoSistema = new Panel();
             stsStripSistemVersion.SuspendLayout();
             MenuStripMenusSistema.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema).BeginInit();
+            painelLogoSistema.SuspendLayout();
             SuspendLayout();
             // 
             // lblTituloInicial
@@ -75,16 +78,10 @@
             // stsStripSistemVersion
             // 
             resources.ApplyResources(stsStripSistemVersion, "stsStripSistemVersion");
-            stsStripSistemVersion.BackColor = SystemColors.MenuBar;
+            stsStripSistemVersion.BackColor = SystemColors.Window;
             stsStripSistemVersion.ImageScalingSize = new Size(20, 20);
-            stsStripSistemVersion.Items.AddRange(new ToolStripItem[] { toolStripUserName, statusLabelUsername, toolStsStripSistemVersion });
+            stsStripSistemVersion.Items.AddRange(new ToolStripItem[] { statusLabelUsername, toolStripUserName, lblEspacoVazio, toolStsStripSistemVersion });
             stsStripSistemVersion.Name = "stsStripSistemVersion";
-            // 
-            // toolStripUserName
-            // 
-            resources.ApplyResources(toolStripUserName, "toolStripUserName");
-            toolStripUserName.BackColor = SystemColors.Window;
-            toolStripUserName.Name = "toolStripUserName";
             // 
             // statusLabelUsername
             // 
@@ -92,12 +89,23 @@
             statusLabelUsername.BackColor = SystemColors.Window;
             statusLabelUsername.Name = "statusLabelUsername";
             // 
+            // toolStripUserName
+            // 
+            resources.ApplyResources(toolStripUserName, "toolStripUserName");
+            toolStripUserName.BackColor = SystemColors.Window;
+            toolStripUserName.Name = "toolStripUserName";
+            // 
+            // lblEspacoVazio
+            // 
+            resources.ApplyResources(lblEspacoVazio, "lblEspacoVazio");
+            lblEspacoVazio.Name = "lblEspacoVazio";
+            lblEspacoVazio.Spring = true;
+            // 
             // toolStsStripSistemVersion
             // 
             resources.ApplyResources(toolStsStripSistemVersion, "toolStsStripSistemVersion");
             toolStsStripSistemVersion.BackColor = SystemColors.Window;
             toolStsStripSistemVersion.Name = "toolStsStripSistemVersion";
-            toolStsStripSistemVersion.Spring = true;
             // 
             // MenuStripMenusSistema
             // 
@@ -254,16 +262,23 @@
             lblTituloSistemas.BackColor = Color.Transparent;
             lblTituloSistemas.Name = "lblTituloSistemas";
             // 
+            // painelLogoSistema
+            // 
+            resources.ApplyResources(painelLogoSistema, "painelLogoSistema");
+            painelLogoSistema.BackColor = Color.Transparent;
+            painelLogoSistema.Controls.Add(picBoxLogoSistema2);
+            painelLogoSistema.Controls.Add(lblTituloInicial);
+            painelLogoSistema.Controls.Add(lblTituloSistemas);
+            painelLogoSistema.Controls.Add(picBoxLogoSistema);
+            painelLogoSistema.Name = "painelLogoSistema";
+            // 
             // frmTelaIncial
             // 
             resources.ApplyResources(this, "$this");
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.AliceBlue;
             BackgroundImage = Properties.Resources.gra_cad_cliente;
-            Controls.Add(picBoxLogoSistema2);
-            Controls.Add(lblTituloSistemas);
-            Controls.Add(lblTituloInicial);
-            Controls.Add(picBoxLogoSistema);
+            Controls.Add(painelLogoSistema);
             Controls.Add(stsStripSistemVersion);
             Controls.Add(MenuStripMenusSistema);
             DoubleBuffered = true;
@@ -272,12 +287,15 @@
             WindowState = FormWindowState.Maximized;
             Load += frmTelaIncial_Load;
             KeyDown += frmTelaIncial_KeyDown;
+            Resize += frmTelaIncial_Resize;
             stsStripSistemVersion.ResumeLayout(false);
             stsStripSistemVersion.PerformLayout();
             MenuStripMenusSistema.ResumeLayout(false);
             MenuStripMenusSistema.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema2).EndInit();
             ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema).EndInit();
+            painelLogoSistema.ResumeLayout(false);
+            painelLogoSistema.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -313,5 +331,7 @@
         private ToolStripMenuItem chamadoToolStripMenuItem;
         private ToolStripMenuItem novoToolStripMenuItem;
         private ToolStripStatusLabel statusLabelUsername;
+        private Panel painelLogoSistema;
+        private ToolStripStatusLabel lblEspacoVazio;
     }
 }

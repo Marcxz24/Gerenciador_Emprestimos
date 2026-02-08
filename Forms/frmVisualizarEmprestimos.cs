@@ -30,16 +30,23 @@ namespace Gerenciador_de_Emprestimos
         // --- EVENTO: Busca e popula os campos de cliente através de uma tela de seleção ---
         private void btnPesquisarCliente_Click(object sender, EventArgs e)
         {
-            using (var frmSelecionarCliente = new frmSelecionarCliente())
+            try
             {
-                if (frmSelecionarCliente.ShowDialog() == DialogResult.OK)
+                using (var frmSelecionarCliente = new frmSelecionarCliente())
                 {
-                    var cliente = frmSelecionarCliente.ClienteSelecionado;
+                    if (frmSelecionarCliente.ShowDialog() == DialogResult.OK)
+                    {
+                        var cliente = frmSelecionarCliente.ClienteSelecionado;
 
-                    txtCodigoCliente.Text = cliente.codigo.ToString();
-                    txtNomeCliente.Text = cliente.nome_cliente;
-                    txtCpfCnpjCliente.Text = cliente.cpf_cnpj.ToString();
+                        txtCodigoCliente.Text = cliente.codigo.ToString();
+                        txtNomeCliente.Text = cliente.nome_cliente;
+                        txtCpfCnpjCliente.Text = cliente.cpf_cnpj.ToString();
+                    }
                 }
+            }
+            catch (Exception ex) 
+            {
+                Serilog.Log.Error("Ocorreu um erro ao pesquisar o cliente.\n\nDetalhes: " + ex.Message);
             }
         }
 
@@ -58,46 +65,54 @@ namespace Gerenciador_de_Emprestimos
         // --- EVENTO: Realiza a pesquisa de empréstimos com base nos filtros preenchidos ---
         private void btnVisualizarEmprestimos_Click(object sender, EventArgs e)
         {
-            EmprestimosConsulta consultaEmprestimos = new EmprestimosConsulta();
+            try
+            {
+                EmprestimosConsulta consultaEmprestimos = new EmprestimosConsulta();
 
-            // Variáveis de apoio para os filtros
-            int? CodigoCliente = null;
-            string? NomeCliente = null;
-            int? QtnParcela = null;
-            decimal ValorEmprestado = 0;
-            decimal ValorParcela = 0;
-            decimal ValorJurosMonetario = 0;
-            decimal ValorTotal = 0;
-            string StatusEmprestimo = string.Empty;
+                // Variáveis de apoio para os filtros
+                int? CodigoCliente = null;
+                string? NomeCliente = null;
+                int? QtnParcela = null;
+                decimal ValorEmprestado = 0;
+                decimal ValorParcela = 0;
+                decimal ValorJurosMonetario = 0;
+                decimal ValorTotal = 0;
+                string StatusEmprestimo = string.Empty;
 
-            // Conversão dos campos de texto para os tipos de dados da consulta
-            if (!string.IsNullOrWhiteSpace(txtCodigoCliente.Text))
-                CodigoCliente = int.Parse(txtCodigoCliente.Text);
+                // Conversão dos campos de texto para os tipos de dados da consulta
+                if (!string.IsNullOrWhiteSpace(txtCodigoCliente.Text))
+                    CodigoCliente = int.Parse(txtCodigoCliente.Text);
 
-            if (!string.IsNullOrWhiteSpace(txtNomeCliente.Text))
-                NomeCliente = txtNomeCliente.Text;
+                if (!string.IsNullOrWhiteSpace(txtNomeCliente.Text))
+                    NomeCliente = txtNomeCliente.Text;
 
-            if (!string.IsNullOrWhiteSpace(txtQtnParcela.Text))
-                QtnParcela = int.Parse(txtQtnParcela.Text);
+                if (!string.IsNullOrWhiteSpace(txtQtnParcela.Text))
+                    QtnParcela = int.Parse(txtQtnParcela.Text);
 
-            if (!string.IsNullOrWhiteSpace(txtValorEmprestado.Text))
-                ValorEmprestado = decimal.Parse(txtValorEmprestado.Text);
+                if (!string.IsNullOrWhiteSpace(txtValorEmprestado.Text))
+                    ValorEmprestado = decimal.Parse(txtValorEmprestado.Text);
 
-            if (!string.IsNullOrWhiteSpace(txtValorJurosMonetario.Text))
-                ValorJurosMonetario = decimal.Parse(txtValorJurosMonetario.Text);
+                if (!string.IsNullOrWhiteSpace(txtValorJurosMonetario.Text))
+                    ValorJurosMonetario = decimal.Parse(txtValorJurosMonetario.Text);
 
-            if (!string.IsNullOrWhiteSpace(txtValorDaParcela.Text))
-                ValorParcela = decimal.Parse(txtValorDaParcela.Text);
+                if (!string.IsNullOrWhiteSpace(txtValorDaParcela.Text))
+                    ValorParcela = decimal.Parse(txtValorDaParcela.Text);
 
-            if (!string.IsNullOrWhiteSpace(txtValorTotal.Text))
-                ValorTotal = decimal.Parse(txtValorTotal.Text);
+                if (!string.IsNullOrWhiteSpace(txtValorTotal.Text))
+                    ValorTotal = decimal.Parse(txtValorTotal.Text);
 
-            if (!string.IsNullOrWhiteSpace(comboBoxStatusEmprestimo.Text))
-                StatusEmprestimo = comboBoxStatusEmprestimo.Text;
+                if (!string.IsNullOrWhiteSpace(comboBoxStatusEmprestimo.Text))
+                    StatusEmprestimo = comboBoxStatusEmprestimo.Text;
 
-            // Executa a busca no banco e vincula ao DataGrid
-            DataTable dataTable = consultaEmprestimos.ConsultaEmprestimos(CodigoCliente, NomeCliente, StatusEmprestimo, ValorEmprestado, ValorParcela, ValorJurosMonetario, QtnParcela, ValorTotal);
-            dataGridEmprestimos.DataSource = dataTable;
+                // Executa a busca no banco e vincula ao DataGrid
+                DataTable dataTable = consultaEmprestimos.ConsultaEmprestimos(CodigoCliente, NomeCliente, StatusEmprestimo, ValorEmprestado, ValorParcela, ValorJurosMonetario, QtnParcela, ValorTotal);
+                dataGridEmprestimos.DataSource = dataTable;
+            }
+            catch (Exception ex)
+            {
+                Funcoes.MensagemErro("Ocorreu um erro ao visualizar os empréstimos. Por favor, tente novamente." + ex.Message);
+                Serilog.Log.Error("Ocorreu um erro ao visualizar os empréstimos.\n\nDetalhes: " + ex.Message);
+            }
         }
 
         private void btnFechar_Click(object sender, EventArgs e) => Close();
@@ -121,41 +136,55 @@ namespace Gerenciador_de_Emprestimos
         // --- EVENTO: Consolida os dados da grade e gera um relatório em PDF ---
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            if (ValidacaoDataGridVazio()) return;
-
-            DataTable tabela = (DataTable)dataGridEmprestimos.DataSource;
-            GeradorRelatorio relatorio = new GeradorRelatorio();
-
-            // Cálculos de somatória para o rodapé do relatório
-            int totalDeLinhas = dataGridEmprestimos.Rows.Cast<DataGridViewRow>().Count(r => !r.IsNewRow);
-            decimal somarValorTotal = 0;
-            decimal somarValorEmprestado = 0;
-
-            foreach (DataGridViewRow row in dataGridEmprestimos.Rows)
+            try
             {
-                if (!row.IsNewRow)
+                if (ValidacaoDataGridVazio()) return;
+
+                DataTable tabela = (DataTable)dataGridEmprestimos.DataSource;
+                GeradorRelatorio relatorio = new GeradorRelatorio();
+
+                // Cálculos de somatória para o rodapé do relatório
+                int totalDeLinhas = dataGridEmprestimos.Rows.Cast<DataGridViewRow>().Count(r => !r.IsNewRow);
+                decimal somarValorTotal = 0;
+                decimal somarValorEmprestado = 0;
+
+                foreach (DataGridViewRow row in dataGridEmprestimos.Rows)
                 {
-                    somarValorTotal += Convert.ToDecimal(row.Cells["valor_total"].Value);
-                    somarValorEmprestado += Convert.ToDecimal(row.Cells["valor_emprestado"].Value);
+                    if (!row.IsNewRow)
+                    {
+                        somarValorTotal += Convert.ToDecimal(row.Cells["valor_total"].Value);
+                        somarValorEmprestado += Convert.ToDecimal(row.Cells["valor_emprestado"].Value);
+                    }
                 }
+
+                // Passa os valores consolidados para a classe de relatório
+                relatorio.ValorTotalReceber = somarValorTotal;
+                relatorio.NumeroDeRegistros = totalDeLinhas;
+                relatorio.ValorTotalEmprestado = somarValorEmprestado;
+
+                // Gera o arquivo final
+                relatorio.RelatorioEmprestimoPdf(tabela);
             }
-
-            // Passa os valores consolidados para a classe de relatório
-            relatorio.ValorTotalReceber = somarValorTotal;
-            relatorio.NumeroDeRegistros = totalDeLinhas;
-            relatorio.ValorTotalEmprestado = somarValorEmprestado;
-
-            // Gera o arquivo final
-            relatorio.RelatorioEmprestimoPdf(tabela);
+            catch(Exception ex)
+            {
+                Serilog.Log.Error("Ocorreu um erro ao gerar o relatório de empréstimos.\n\nDetalhes: " + ex.Message);
+            }
         }
 
         // --- EVENTO: Captura o código do empréstimo selecionado e fecha com sucesso ---
         private void dataGridEmprestimos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            CodigoEmprestimoSelecionado = Convert.ToInt32(dataGridEmprestimos.CurrentRow.Cells["codigo"].Value);
+            try
+            {
+                CodigoEmprestimoSelecionado = Convert.ToInt32(dataGridEmprestimos.CurrentRow.Cells["codigo"].Value);
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch(Exception ex)
+            {
+                Serilog.Log.Error("Ocorreu um erro ao selecionar o empréstimo.\n\nDetalhes: " + ex.Message);
+            }
         }
     }
 }

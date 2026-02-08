@@ -28,116 +28,27 @@ namespace Gerenciador_de_Emprestimos
         // --- EVENTO: Executa a busca de clientes no banco de dados ---
         private void btnSelecionarCliente_Click(object sender, EventArgs e)
         {
-            var conexao = ConexaoBancoDeDados.Conectar();
-
-            // Garante que a conexão esteja aberta antes de prosseguir
-            if (conexao.State != ConnectionState.Open)
+            try
             {
-                conexao.Open();
+                SelecionarCliente selecionarCliente = new SelecionarCliente();
+
+                int codigoCliente = string.IsNullOrWhiteSpace(txtCodigoCliente.Text) ? 0 : int.Parse(txtCodigoCliente.Text);
+                string nomeCliente = txtNomeCliente.Text.Trim();
+                string bairro = txtBairro.Text.Trim();
+                string endereco = txtEndereco.Text.Trim();
+                int numeroResidencia = string.IsNullOrWhiteSpace(txtNumeroResidencia.Text) ? 0 : int.Parse(txtNumeroResidencia.Text);
+                string celular = maskedCelularSelecionar.Text.Replace(",", "").Trim();
+                string cpfCnpj = maskedCpfCnpj.Text.Replace(",", "").Replace("-", "").Replace("/", "").Trim();  
+                string genero = comboBoxGeneroCliente.SelectedItem?.ToString() ?? string.Empty; 
+                string situacaoCadastral = comboBoxSituacaoCadastralSelecionar.SelectedItem?.ToString() ?? string.Empty;
+                string uf = ComboBoxUF.SelectedItem?.ToString() ?? string.Empty;
+
+                dataGridClientes.DataSource = selecionarCliente.ListarClientes();
             }
-
-            MySqlCommand comando = conexao.CreateCommand();
-            // Chama o método auxiliar para construir a cláusula WHERE e adicionar parâmetros
-            string filtrosPesquisa = QuerySelecionarCliente(comando);
-
-            // Define a query completa com limite de 100 registros para performance
-            string selectBd = $"SELECT codigo, nome_cliente, genero, celular, situacao_cadastral, cpf_cnpj, uf, cidade, endereco, bairro, numero_residencia FROM emprestimosbd.cliente {filtrosPesquisa} LIMIT 100;";
-
-            comando.CommandText = selectBd;
-
-            using (var dataAdapter = new MySqlDataAdapter(comando))
+            catch (Exception ex)
             {
-                DataTable dataTable = new DataTable();
-                dataAdapter.Fill(dataTable);
-
-                // Exibe os dados retornados na grade
-                dataGridClientes.DataSource = dataTable;
+                Serilog.Log.Error("Ocorreu um erro ao Selecionar cliente.\n\nDetalhes: " + ex.Message);
             }
-        }
-
-        // --- MÉTODO: Construtor dinâmico da Query SQL baseada nos filtros preenchidos ---
-        private string QuerySelecionarCliente(MySqlCommand Filtrar)
-        {
-            string filtrosPesquisa = "WHERE 1 = 1";
-
-            // Filtro por Código
-            if (!string.IsNullOrWhiteSpace(txtCodigoCliente.Text))
-            {
-                filtrosPesquisa += " AND codigo = @codigo";
-                Filtrar.Parameters.AddWithValue("@codigo", txtCodigoCliente.Text);
-            }
-
-            // Filtro por Nome (utiliza LIKE para buscas parciais)
-            if (!string.IsNullOrEmpty(txtNomeCliente.Text))
-            {
-                filtrosPesquisa += " AND nome_cliente LIKE @nome_cliente";
-                Filtrar.Parameters.AddWithValue("@nome_cliente", "%" + txtNomeCliente.Text + "%");
-            }
-
-            // Filtro por Gênero
-            if (!string.IsNullOrEmpty(comboBoxGeneroCliente.Text) && !comboBoxGeneroCliente.Text.Equals("Todos", StringComparison.OrdinalIgnoreCase))
-            {
-                filtrosPesquisa += " AND genero = @genero";
-                Filtrar.Parameters.AddWithValue("@genero", comboBoxGeneroCliente.Text);
-            }
-
-            // Filtro por Celular
-            if (!string.IsNullOrEmpty(maskedCelularSelecionar.Text))
-            {
-                filtrosPesquisa += " AND celular = @celular";
-                Filtrar.Parameters.AddWithValue("@celular", maskedCelularSelecionar.Text);
-            }
-
-            // Filtro por Situação Cadastral
-            if (!string.IsNullOrEmpty(comboBoxSituacaoCadastralSelecionar.Text) && !comboBoxSituacaoCadastralSelecionar.Text.Equals("Todos", StringComparison.OrdinalIgnoreCase))
-            {
-                filtrosPesquisa += " AND situacao_cadastral = @situacao_cadastral";
-                Filtrar.Parameters.AddWithValue("@situacao_cadastral", comboBoxSituacaoCadastralSelecionar.Text);
-            }
-
-            // Filtro por CPF ou CNPJ
-            if (!string.IsNullOrEmpty(maskedCpfCnpj.Text))
-            {
-                filtrosPesquisa += " AND cpf_cnpj = @cpf_cnpj";
-                Filtrar.Parameters.AddWithValue("@cpf_cnpj", maskedCpfCnpj.Text);
-            }
-
-            // Filtro por Cidade
-            if (!string.IsNullOrEmpty(txtCidade.Text))
-            {
-                filtrosPesquisa += " AND cidade LIKE @cidade";
-                Filtrar.Parameters.AddWithValue("@cidade", "%" + txtCidade.Text + "%");
-            }
-
-            // Filtro por UF
-            if (!string.IsNullOrEmpty(ComboBoxUF.Text) && !ComboBoxUF.Text.Equals("Todos", StringComparison.OrdinalIgnoreCase))
-            {
-                filtrosPesquisa += " AND uf LIKE @uf";
-                Filtrar.Parameters.AddWithValue("@uf", ComboBoxUF.Text);
-            }
-
-            // Filtro por Endereço
-            if (!string.IsNullOrEmpty(txtEndereco.Text))
-            {
-                filtrosPesquisa += " AND endereco LIKE @endereco";
-                Filtrar.Parameters.AddWithValue("@endereco", "%" + txtEndereco.Text + "%");
-            }
-
-            // Filtro por Bairro
-            if (!string.IsNullOrEmpty(txtBairro.Text))
-            {
-                filtrosPesquisa += " AND bairro LIKE @bairro";
-                Filtrar.Parameters.AddWithValue("@bairro", "%" + txtBairro.Text + "%");
-            }
-
-            // Filtro por Número da Residência
-            if (!string.IsNullOrEmpty(txtNumeroResidencia.Text))
-            {
-                filtrosPesquisa += " AND numero_residencia LIKE @numero_residencia";
-                Filtrar.Parameters.AddWithValue("@numero_residencia", "%" + txtNumeroResidencia.Text + "%");
-            }
-
-            return filtrosPesquisa;
         }
 
         // --- EVENTO: Altera a máscara do campo para formato de CPF ---
@@ -189,20 +100,27 @@ namespace Gerenciador_de_Emprestimos
         // --- EVENTO: Seleciona o cliente com duplo clique, retornando o objeto para o formulário chamador ---
         private void dataGridClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0)
-                return;
+            try
+            {
+                if (e.RowIndex < 0)
+                    return;
 
-            // Captura o código da linha selecionada
-            int codigo = Convert.ToInt32(dataGridClientes.Rows[e.RowIndex].Cells["codigo"].Value);
+                // Captura o código da linha selecionada
+                int codigo = Convert.ToInt32(dataGridClientes.Rows[e.RowIndex].Cells["codigo"].Value);
 
-            var service = new SelecionarCliente();
+                var service = new SelecionarCliente();
 
-            // Busca os dados completos do cliente e preenche a propriedade pública
-            ClienteSelecionado = service.BuscarClientePorCodigo(codigo);
+                // Busca os dados completos do cliente e preenche a propriedade pública
+                ClienteSelecionado = service.BuscarClientePorCodigo(codigo);
 
-            // Define o resultado como OK para sinalizar ao formulário pai que houve seleção
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+                // Define o resultado como OK para sinalizar ao formulário pai que houve seleção
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                Serilog.Log.Error("Ocorreu um erro ao selecionar o cliente.\n\nDetalhes: " + ex.Message);
+            }
         }
     }
 }

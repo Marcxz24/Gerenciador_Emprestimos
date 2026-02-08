@@ -98,101 +98,109 @@ namespace Gerenciador_de_Emprestimos
         /// Retorna FALSE se todos os campos estiverem corretos.
         private bool validacoesCampos()
         {
-            // Verifica se o Nome está vazio ou contém apenas espaços em branco
-            if (string.IsNullOrWhiteSpace(txtBoxNomeFuncionario.Text))
+            try
             {
-                Funcoes.MensagemWarning("O campo Nome é obrigatório.");
-                return true; // Erro encontrado
-            }
+                // Verifica se o Nome está vazio ou contém apenas espaços em branco
+                if (string.IsNullOrWhiteSpace(txtBoxNomeFuncionario.Text))
+                {
+                    Funcoes.MensagemWarning("O campo Nome é obrigatório.");
+                    return true; // Erro encontrado
+                }
 
-            // Verifica se o CPF está vazio ou nulo
-            if (string.IsNullOrEmpty(txtBoxCpfFuncionario.Text))
-            {
-                Funcoes.MensagemWarning("Campo CPF é obrigatório! Preencha os seguintes campos\n\nCampo: CPF");
-                return true; // Erro encontrado
-            }
+                // Verifica se o CPF está vazio ou nulo
+                if (string.IsNullOrEmpty(txtBoxCpfFuncionario.Text))
+                {
+                    Funcoes.MensagemWarning("Campo CPF é obrigatório! Preencha os seguintes campos\n\nCampo: CPF");
+                    return true; // Erro encontrado
+                }
 
-            // Chama o método da classe ValidacaoCpf para verificar se o dígito verificador é válido
-            if (ValidacaoCpf.ValidarCpf(txtBoxCpfFuncionario.Text) == false)
-            {
-                Funcoes.MensagemWarning("CPF inválido, favor informar um CPF valido.");
-                return true; // Erro encontrado
-            }
+                // Chama o método da classe ValidacaoCpf para verificar se o dígito verificador é válido
+                if (ValidacaoCpf.ValidarCpf(txtBoxCpfFuncionario.Text) == false)
+                {
+                    Funcoes.MensagemWarning("CPF inválido, favor informar um CPF valido.");
+                    return true; // Erro encontrado
+                }
 
-            // Verifica se o Sexo foi selecionado no ComboBox
-            if (string.IsNullOrEmpty(comboBoxSexoFuncionario.Text))
-            {
-                Funcoes.MensagemWarning("Campo Sexo do funcionário é obrigatório.\n\nCampo: Sexo");
-                return true; // Erro encontrado
-            }
+                // Verifica se o Sexo foi selecionado no ComboBox
+                if (string.IsNullOrEmpty(comboBoxSexoFuncionario.Text))
+                {
+                    Funcoes.MensagemWarning("Campo Sexo do funcionário é obrigatório.\n\nCampo: Sexo");
+                    return true; // Erro encontrado
+                }
 
-            // Verifica se o Nome de Usuário (Login) foi preenchido
-            if (string.IsNullOrWhiteSpace(txtBoxUsername.Text))
-            {
-                Funcoes.MensagemWarning("O campo Login é obrigatório.\n\nCampo: Username");
-                return true; // Erro encontrado
-            }
+                // Verifica se o Nome de Usuário (Login) foi preenchido
+                if (string.IsNullOrWhiteSpace(txtBoxUsername.Text))
+                {
+                    Funcoes.MensagemWarning("O campo Login é obrigatório.\n\nCampo: Username");
+                    return true; // Erro encontrado
+                }
 
-            // Verifica se a Senha foi preenchida
-            if (string.IsNullOrWhiteSpace(txtBoxSenha.Text))
-            {
-                Funcoes.MensagemWarning("O campo Senha é obrigatório.\n\nCampo: Senha");
-                return true; // Erro encontrado
-            }
+                // Verifica se a Senha foi preenchida
+                if (string.IsNullOrWhiteSpace(txtBoxSenha.Text))
+                {
+                    Funcoes.MensagemWarning("O campo Senha é obrigatório.\n\nCampo: Senha");
+                    return true; // Erro encontrado
+                }
 
-            // Verifica se a Cidade foi preenchida
-            if (string.IsNullOrEmpty(txtBoxCidadeFuncionario.Text))
-            {
-                Funcoes.MensagemWarning("Campo cidade é obrigatório\n\nCampo: cidade");
-                return true; // Erro encontrado
-            }
+                // Verifica se a Cidade foi preenchida
+                if (string.IsNullOrEmpty(txtBoxCidadeFuncionario.Text))
+                {
+                    Funcoes.MensagemWarning("Campo cidade é obrigatório\n\nCampo: cidade");
+                    return true; // Erro encontrado
+                }
 
-            if (string.IsNullOrEmpty(txtBoxEndereco.Text))
+                if (string.IsNullOrEmpty(txtBoxEndereco.Text))
+                {
+                    Funcoes.MensagemWarning("Campo Endereço é obrigatório\n\nCampo: Endereço");
+                    return true;
+                }
+
+                if (string.IsNullOrEmpty(txtBoxBairro.Text))
+                {
+                    Funcoes.MensagemWarning("Campo Bairro é obrigatório\n\nCampo: Bairro");
+                    return true;
+                }
+
+                if (string.IsNullOrEmpty(txtBoxNumeroResidencia.Text))
+                {
+                    Funcoes.MensagemWarning("Campo número de residência é obrigatório\n\nCampo: Número de Residência");
+                    return true;
+                }
+
+                if (string.IsNullOrEmpty(txtBoxCep.Text))
+                {
+                    Funcoes.MensagemWarning("Campo CEP é Obrigatório\n\nCampo: CEP");
+                    return true;
+                }
+
+                if (string.IsNullOrEmpty(comboBoxUf.Text))
+                {
+                    Funcoes.MensagemWarning("Campo UF é Obrigatório\n\nCampo: UF");
+                    return true;
+                }
+
+                // Verifica se o Estado Civil foi selecionado
+                if (string.IsNullOrEmpty(comboBoxEstadoCivil.Text))
+                {
+                    Funcoes.MensagemWarning("Campo estado civil é obrigatório\n\nCampo: Estado Civil");
+                    return true; // Erro encontrado
+                }
+
+                // Verifica se o Telefone foi preenchido
+                if (string.IsNullOrEmpty(txtBoxTelefoneFuncionario.Text))
+                {
+                    Funcoes.MensagemWarning("Campo Telefone do funcionário é obrigatório\n\nCampo: Telefone do Funcionário");
+                    return true; // Erro encontrado
+                }
+
+                // Se o código chegou até aqui, significa que nenhuma validação falhou
+                return false;
+            }
+            catch (Exception ex) 
             {
-                Funcoes.MensagemWarning("Campo Endereço é obrigatório\n\nCampo: Endereço");
+                Serilog.Log.Error(ex, "Erro durante a execução das validações de campos.");
                 return true;
             }
-
-            if (string.IsNullOrEmpty(txtBoxBairro.Text))
-            {
-                Funcoes.MensagemWarning("Campo Bairro é obrigatório\n\nCampo: Bairro");
-                return true;
-            }
-
-            if (string.IsNullOrEmpty(txtBoxNumeroResidencia.Text))
-            {
-                Funcoes.MensagemWarning("Campo número de residência é obrigatório\n\nCampo: Número de Residência");
-                return true;
-            }
-
-            if (string.IsNullOrEmpty(txtBoxCep.Text))
-            {
-                Funcoes.MensagemWarning("Campo CEP é Obrigatório\n\nCampo: CEP");
-                return true;
-            }
-
-            if (string.IsNullOrEmpty(comboBoxUf.Text))
-            {
-                Funcoes.MensagemWarning("Campo UF é Obrigatório\n\nCampo: UF");
-                return true;
-            }
-
-            // Verifica se o Estado Civil foi selecionado
-            if (string.IsNullOrEmpty(comboBoxEstadoCivil.Text))
-            {
-                Funcoes.MensagemWarning("Campo estado civil é obrigatório\n\nCampo: Estado Civil");
-                return true; // Erro encontrado
-            }
-
-            // Verifica se o Telefone foi preenchido
-            if (string.IsNullOrEmpty(txtBoxTelefoneFuncionario.Text))
-            {
-                Funcoes.MensagemWarning("Campo Telefone do funcionário é obrigatório\n\nCampo: Telefone do Funcionário");
-                return true; // Erro encontrado
-            }
-
-            // Se o código chegou até aqui, significa que nenhuma validação falhou
-            return false;
         }
 
         // Evento do botão para iniciar um novo cadastro de funcionário
@@ -233,44 +241,60 @@ namespace Gerenciador_de_Emprestimos
         // Evento do botão para salvar o cadastro de funcionário
         private void btnSalvarCadastro_Click(object sender, EventArgs e)
         {
-            // Validações dos campos obrigatorios
-            if (validacoesCampos() == true)
+            try
             {
-                return;
+                // Validações dos campos obrigatorios
+                if (validacoesCampos() == true)
+                {
+                    return;
+                }
+
+                // Chama o método centralizado que decide entre Inserir ou Editar
+                SalvarCadastroFuncionario();
+
+                // Chama o método de responsável por salvar os privilegios no Banco.
+                SalvarPrivilegiosFuncionario();
+
+                // Se a Flag de edição de cadastro estiver false, bloqueia novamente o campo referente a senha o Salvar.
+                if (_EditarCadastro == false)
+                {
+                    txtBoxSenha.ReadOnly = true;
+                }
+
+                // Após salvar, bloqueia os campos e volta a exibir os botões principais
+                GerenciarBotoesCampos(OcultarBotoes: false, ManifestarBotoes: false, LimparCampos: false);
             }
-
-            // Chama o método centralizado que decide entre Inserir ou Editar
-            SalvarCadastroFuncionario();
-
-            // Chama o método de responsável por salvar os privilegios no Banco.
-            SalvarPrivilegiosFuncionario();
-
-            // Se a Flag de edição de cadastro estiver false, bloqueia novamente o campo referente a senha o Salvar.
-            if (_EditarCadastro == false)
+            catch (Exception ex)
             {
-                txtBoxSenha.ReadOnly = true;
+                Serilog.Log.Error(ex, "Houve um erro ao Salvar o Cadastro de Funcionário");
+                throw;
             }
-
-            // Após salvar, bloqueia os campos e volta a exibir os botões principais
-            GerenciarBotoesCampos(OcultarBotoes: false, ManifestarBotoes: false, LimparCampos: false);
         }
 
         private void SalvarPrivilegiosFuncionario()
         {
-            // Obtém o ID do funcionário a partir da caixa de texto, convertendo para inteiro
-            int codigoFuncionario = Convert.ToInt32(txtBoxCodigo.Text);
+            try
+            {
+                // Obtém o ID do funcionário a partir da caixa de texto, convertendo para inteiro
+                int codigoFuncionario = Convert.ToInt32(txtBoxCodigo.Text);
 
-            // Cria um dicionário temporário para armazenar o par (Código da Tela, Marcado ou Não)
-            var privilegios = new Dictionary<int, bool>();
+                // Cria um dicionário temporário para armazenar o par (Código da Tela, Marcado ou Não)
+                var privilegios = new Dictionary<int, bool>();
 
-            // Inicia a busca pelos CheckBoxes dentro de todos os controles do formulário
-            PercorrerCheckBox(this.Controls, privilegios);
+                // Inicia a busca pelos CheckBoxes dentro de todos os controles do formulário
+                PercorrerCheckBox(this.Controls, privilegios);
 
-            // Instancia a camada de serviço para processar as regras de negócio
-            var service = new FuncionarioPrivilegioService();
+                // Instancia a camada de serviço para processar as regras de negócio
+                var service = new FuncionarioPrivilegioService();
 
-            // Envia o dicionário preenchido para ser persistido no banco de dados
-            service.SalvarPrivilegios(codigoFuncionario, privilegios);
+                // Envia o dicionário preenchido para ser persistido no banco de dados
+                service.SalvarPrivilegios(codigoFuncionario, privilegios);
+            }
+            catch (Exception ex)
+            {
+                Serilog.Log.Error(ex, "Houve um Erro ao Salvar os Privilégios do funcionário.");
+                Funcoes.MensagemErro("Não foi possível salvar as permissões do funcionário.");
+            }
         }
 
         // Método recursivo que varre a árvore de componentes da interface
@@ -278,18 +302,29 @@ namespace Gerenciador_de_Emprestimos
         {
             foreach (Control control in controles)
             {
-                // Verifica se o controle atual é um CheckBox e se possui um valor na propriedade Tag
-                if (control is CheckBox chk && chk.Tag != null)
+                if (control is CheckBox chk)
                 {
-                    // Converte a Tag (que deve conter o ID da tela) para inteiro
-                    int codigoTela = Convert.ToInt32(chk.Tag);
-
-                    // Adiciona ou atualiza no dicionário: ID da Tela -> true (marcado) ou false (desmarcado)
-                    privilegios[codigoTela] = chk.Checked;
+                    try
+                    {
+                        // Se a Tag estiver vazia, o Convert vai dar erro. 
+                        if (chk.Tag != null)
+                        {
+                            int codigoTela = Convert.ToInt32(chk.Tag);
+                            privilegios[codigoTela] = chk.Checked;
+                        }
+                        else
+                        {
+                            // Isso não trava o programa, mas avisa no log que você esqueceu a Tag no Designer
+                            Serilog.Log.Warning("O CheckBox '{Nome}' não possui um código de tela na propriedade Tag.", chk.Name);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Serilog.Log.Error(ex, "Falha ao converter a Tag do CheckBox '{Nome}' para Inteiro.", chk.Name);
+                        // Não damos 'throw' aqui para não parar o loop dos outros CheckBoxes
+                    }
                 }
 
-                // Se o controle atual for um container (Panel, GroupBox, TabPage), chama o método novamente
-                // Isso garante que CheckBoxes "escondidos" dentro de painéis também sejam lidos
                 if (control.HasChildren)
                 {
                     PercorrerCheckBox(control.Controls, privilegios);
@@ -312,88 +347,94 @@ namespace Gerenciador_de_Emprestimos
         // Declaração do método que trata o clique no botão de pesquisar funcionário
         private void btnPesquisarFuncionario_Click(object sender, EventArgs e)
         {
-            // Cria uma instância do formulário de seleção usando 'using' para garantir que 
-            // a memória do formulário seja liberada (Dispose) assim que sair deste bloco
-            using (var frmSelecionarFuncionario = new frmSelecionarFuncionario())
+            try
             {
-                // Abre o formulário como uma janela modal (ShowDialog) e verifica 
-                // se o usuário confirmou a seleção (clicou em OK ou selecionou alguém)
-                if (frmSelecionarFuncionario.ShowDialog() == DialogResult.OK)
+                // Cria uma instância do formulário de seleção usando 'using' para garantir que 
+                // a memória do formulário seja liberada (Dispose) assim que sair deste bloco
+                using (var frmSelecionarFuncionario = new frmSelecionarFuncionario())
                 {
-                    // Recupera o objeto 'Funcionario' que foi guardado em uma propriedade 
-                    // pública dentro do formulário de seleção
-                    var funcionario = frmSelecionarFuncionario.FuncionarioSelecionado;
+                    // Abre o formulário como uma janela modal (ShowDialog) e verifica 
+                    // se o usuário confirmou a seleção (clicou em OK ou selecionou alguém)
+                    if (frmSelecionarFuncionario.ShowDialog() == DialogResult.OK)
+                    {
+                        // Recupera o objeto 'Funcionario' que foi guardado em uma propriedade 
+                        // pública dentro do formulário de seleção
+                        var funcionario = frmSelecionarFuncionario.FuncionarioSelecionado;
 
-                    // Preenche os campos da tela principal convertendo os valores do objeto para String
-                    txtBoxCodigo.Text = funcionario.CodigoFuncionario.ToString();
-                    txtBoxNomeFuncionario.Text = funcionario.nome_funcionario.ToString();
-                    txtBoxCpfFuncionario.Text = funcionario.cpf_funcionario.ToString();
+                        // Preenche os campos da tela principal convertendo os valores do objeto para String
+                        txtBoxCodigo.Text = funcionario.CodigoFuncionario.ToString();
+                        txtBoxNomeFuncionario.Text = funcionario.nome_funcionario.ToString();
+                        txtBoxCpfFuncionario.Text = funcionario.cpf_funcionario.ToString();
 
-                    // Define o texto dos ComboBoxes com base nos dados do funcionário
-                    comboBoxSexoFuncionario.Text = funcionario.sexo_funcionario.ToString();
-                    comboBoxEstadoCivil.Text = funcionario.funcionario_estado_civil.ToString();
-                    comboBoxUf.Text = funcionario.uf_funcionario.ToString();
+                        // Define o texto dos ComboBoxes com base nos dados do funcionário
+                        comboBoxSexoFuncionario.Text = funcionario.sexo_funcionario.ToString();
+                        comboBoxEstadoCivil.Text = funcionario.funcionario_estado_civil.ToString();
+                        comboBoxUf.Text = funcionario.uf_funcionario.ToString();
 
-                    // Continua o preenchimento dos campos de texto (Usuário, Telefone e Cidade)
-                    txtBoxUsername.Text = funcionario.username.ToString();
-                    txtBoxTelefoneFuncionario.Text = funcionario.telefone_funcionario.ToString();
-                    txtBoxCidadeFuncionario.Text = funcionario.cidade_funcionario.ToString();
-                    txtBoxEndereco.Text = funcionario.endereco_funcionario.ToString();
-                    txtBoxBairro.Text = funcionario.bairro_funcionario.ToString();
-                    txtBoxCep.Text = funcionario.cep_funcionario.ToString();
-                    txtBoxNumeroResidencia.Text = funcionario.numero_residencia.ToString();
+                        // Continua o preenchimento dos campos de texto (Usuário, Telefone e Cidade)
+                        txtBoxUsername.Text = funcionario.username.ToString();
+                        txtBoxTelefoneFuncionario.Text = funcionario.telefone_funcionario.ToString();
+                        txtBoxCidadeFuncionario.Text = funcionario.cidade_funcionario.ToString();
+                        txtBoxEndereco.Text = funcionario.endereco_funcionario.ToString();
+                        txtBoxBairro.Text = funcionario.bairro_funcionario.ToString();
+                        txtBoxCep.Text = funcionario.cep_funcionario.ToString();
+                        txtBoxNumeroResidencia.Text = funcionario.numero_residencia.ToString();
 
-                    // Define a situação cadastral no ComboBox
-                    comboBoxSituacao.Text = funcionario.situacao_funcionario.ToString();
+                        // Define a situação cadastral no ComboBox
+                        comboBoxSituacao.Text = funcionario.situacao_funcionario.ToString();
 
-                    // Preenche o campo de senha (geralmente o Hash armazenado)
-                    txtBoxSenha.Text = funcionario.senha_hash.ToString();
+                        // Preenche o campo de senha (geralmente o Hash armazenado)
+                        txtBoxSenha.Text = funcionario.senha_hash.ToString();
 
-                    int codigoFuncionario = Convert.ToInt32(txtBoxCodigo.Text);
+                        int codigoFuncionario = Convert.ToInt32(txtBoxCodigo.Text);
 
-                    MarcarPrivilegiosFuncionario(codigoFuncionario);
-                }
-            } // Aqui o formulário 'frmSelecionarFuncionario' é destruído da memória
+                        MarcarPrivilegiosFuncionario(codigoFuncionario);
+                    }
+                } // Aqui o formulário 'frmSelecionarFuncionario' é destruído da memória
+            }
+            catch (Exception ex)
+            {
+                Serilog.Log.Error(ex, "Houve um Erro ao Selecionar o Cadastro de funcionário.");
+            }
         }
 
         // Método responsável pelo INSERT de um novo funcionário
         private void InserirNovoCadastroFuncionario()
         {
-            if (!_EditarCadastro)
-            {
-                // Valida os campos do formulário antes de prosseguir com o cadastro
-                if (validacoesCampos() == true)
-                {
-                    return;
-                }
-            }
-
-            // Coleta os dados dos campos do formulário
-            string? nome = txtBoxNomeFuncionario.Text;
-            string? situacao = comboBoxSituacao.Text;
-            string? cpf = txtBoxCpfFuncionario.Text;
-            string? sexo = comboBoxSexoFuncionario.Text;
-            string? estadoCivil = comboBoxEstadoCivil.Text;
-            string? username = txtBoxUsername.Text;
-            string? telefone = txtBoxTelefoneFuncionario.Text;
-            string senhaHash = Seguranca.GerarHashSenha(txtBoxSenha.Text);
-            string? cidade = txtBoxCidadeFuncionario.Text;
-            string? endereco = txtBoxEndereco.Text;
-            string? bairro = txtBoxBairro.Text;
-            int.TryParse(txtBoxNumeroResidencia.Text, out int numeroResidencia);
-            string? cep = txtBoxCep.Text;
-            string? uf = comboBoxUf.Text;
-
-            // Verifica se o CPF já está cadastrado no sistema
-            if (funcionario.CpfJaCadastrado(cpf))
-            {
-                Funcoes.MensagemWarning("Já existe um funcionário com este CPF cadastrado.");
-                return;
-            }
-
-            // Tenta cadastrar o funcionário com os dados fornecidos
             try
             {
+                if (!_EditarCadastro)
+                {
+                    // Valida os campos do formulário antes de prosseguir com o cadastro
+                    if (validacoesCampos() == true)
+                    {
+                        return;
+                    }
+                }
+
+                // Coleta os dados dos campos do formulário
+                string? nome = txtBoxNomeFuncionario.Text;
+                string? situacao = comboBoxSituacao.Text;
+                string? cpf = txtBoxCpfFuncionario.Text;
+                string? sexo = comboBoxSexoFuncionario.Text;
+                string? estadoCivil = comboBoxEstadoCivil.Text;
+                string? username = txtBoxUsername.Text;
+                string? telefone = txtBoxTelefoneFuncionario.Text;
+                string senhaHash = Seguranca.GerarHashSenha(txtBoxSenha.Text);
+                string? cidade = txtBoxCidadeFuncionario.Text;
+                string? endereco = txtBoxEndereco.Text;
+                string? bairro = txtBoxBairro.Text;
+                int.TryParse(txtBoxNumeroResidencia.Text, out int numeroResidencia);
+                string? cep = txtBoxCep.Text;
+                string? uf = comboBoxUf.Text;
+
+                // Verifica se o CPF já está cadastrado no sistema
+                if (funcionario.CpfJaCadastrado(cpf))
+                {
+                    Funcoes.MensagemWarning("Já existe um funcionário com este CPF cadastrado.");
+                    return;
+                }
+
                 // Chama o método CadastrarFuncionario da classe Funcionario
                 bool sucesso = funcionario.CadastrarFuncionario(nome, cpf, sexo, estadoCivil, username, senhaHash, telefone, cidade, endereco, bairro, numeroResidencia, cep, uf, situacao);
 
@@ -406,54 +447,53 @@ namespace Gerenciador_de_Emprestimos
                 // Após o cadastro, gerencia os botões e campos da tela
                 GerenciarBotoesCampos(OcultarBotoes: false, ManifestarBotoes: false, LimparCampos: false);
             }
-            // Em caso de qualquer exceção durante o processo de cadastro, captura a exceção
             catch (Exception ex)
             {
-                // Em caso de erro durante o cadastro, exibe uma mensagem de erro
-                Funcoes.MensagemWarning("Houve um erro ao realizar o cadastro" + ex);
+                Serilog.Log.Error(ex, "Erro ao inserir funcionário: {Funcionario}", txtBoxNomeFuncionario.Text);
+                throw;
             }
         }
 
         // Método responsável pelo UPDATE de um funcionário existente
         private void EditarCadastroFuncionario()
         {
-            // Se o campo Código estiver vazio, não é possível editar
-            if (string.IsNullOrWhiteSpace(txtBoxCodigo.Text))
-            {
-                Funcoes.MensagemWarning("Não é possível editar sem um funcionário selecionado.");
-                return;
-            }
-
-            // Valida os campos do formulário antes de prosseguir com a edição
-            if (validacoesCampos())
-                return;
-
-            // Define uma váriavel para armazenar o código do funcionário
-            int codigoFuncionario = 0;
-
-            // Tenta converter o texto do campo Código para um número inteiro
-            if (int.TryParse(txtBoxCodigo.Text, out int codFuncionario))
-            {
-                codigoFuncionario = codFuncionario;
-            }
-
-            // Coleta os dados atualizados dos campos do formulário
-            string nomeFuncionario = txtBoxNomeFuncionario.Text;
-            string cpf = txtBoxCpfFuncionario.Text;
-            string sexo = comboBoxSexoFuncionario.Text;
-            string estadoCivil = comboBoxEstadoCivil.Text;
-            string username = txtBoxUsername.Text;
-            string telefone = txtBoxTelefoneFuncionario.Text;
-            string cidade = txtBoxCidadeFuncionario.Text;
-            string situacao = comboBoxSituacao.Text;
-            string? endereco = txtBoxEndereco.Text;
-            string? bairro = txtBoxBairro.Text;
-            int.TryParse(txtBoxNumeroResidencia.Text, out int numeroResidencia);
-            string? cep = txtBoxCep.Text;
-            string? uf = comboBoxUf.Text;
-
             try
             {
+                // Se o campo Código estiver vazio, não é possível editar
+                if (string.IsNullOrWhiteSpace(txtBoxCodigo.Text))
+                {
+                    Funcoes.MensagemWarning("Não é possível editar sem um funcionário selecionado.");
+                    return;
+                }
+
+                // Valida os campos do formulário antes de prosseguir com a edição
+                if (validacoesCampos())
+                    return;
+
+                // Define uma váriavel para armazenar o código do funcionário
+                int codigoFuncionario = 0;
+
+                // Tenta converter o texto do campo Código para um número inteiro
+                if (int.TryParse(txtBoxCodigo.Text, out int codFuncionario))
+                {
+                    codigoFuncionario = codFuncionario;
+                }
+
+                // Coleta os dados atualizados dos campos do formulário
+                string nomeFuncionario = txtBoxNomeFuncionario.Text;
+                string cpf = txtBoxCpfFuncionario.Text;
+                string sexo = comboBoxSexoFuncionario.Text;
+                string estadoCivil = comboBoxEstadoCivil.Text;
+                string username = txtBoxUsername.Text;
+                string telefone = txtBoxTelefoneFuncionario.Text;
+                string cidade = txtBoxCidadeFuncionario.Text;
+                string situacao = comboBoxSituacao.Text;
+                string? endereco = txtBoxEndereco.Text;
+                string? bairro = txtBoxBairro.Text;
+                int.TryParse(txtBoxNumeroResidencia.Text, out int numeroResidencia);
+                string? cep = txtBoxCep.Text;
+                string? uf = comboBoxUf.Text;
+
                 bool editouComSucesso = funcionario.EditarCadastroFuncionario(codigoFuncionario, nomeFuncionario, cpf, sexo, estadoCivil, username, telefone, cidade, endereco, bairro, numeroResidencia, cep, uf, situacao);
 
                 if (editouComSucesso)
@@ -472,10 +512,9 @@ namespace Gerenciador_de_Emprestimos
                     Funcoes.MensagemWarning("Não foi possivel Editar o cadastro, verifique os dados.");
                 }
             }
-            catch (MySqlException ex)
+            catch (Exception ex)
             {
-                // Em caso de erro durante o cadastro, exibe uma mensagem de erro
-                Funcoes.MensagemWarning("Houve um erro ao realizar o cadastro: " + ex.Message);
+                Serilog.Log.Error(ex, "Erro ao Editar funcionário: {Funcionario}", txtBoxNomeFuncionario.Text);
             }
         }
 
@@ -559,14 +598,22 @@ namespace Gerenciador_de_Emprestimos
 
         private void MarcarPrivilegiosFuncionario(int codigoFuncionario)
         {
-            // Instancia o serviço para acessar a lógica de busca
-            var service = new FuncionarioPrivilegioService();
+            try
+            {
+                // Instancia o serviço para acessar a lógica de busca
+                var service = new FuncionarioPrivilegioService();
 
-            // Obtém do banco de dados apenas a lista de IDs das telas que o funcionário tem acesso
-            var telasPermitidas = service.BuscarTelasPermitidas(codigoFuncionario);
+                // Obtém do banco de dados apenas a lista de IDs das telas que o funcionário tem acesso
+                var telasPermitidas = service.BuscarTelasPermitidas(codigoFuncionario);
 
-            // Inicia a varredura dos controles da tela para marcar os CheckBoxes correspondentes
-            MarcarCheckBox(this.Controls, telasPermitidas);
+                // Inicia a varredura dos controles da tela para marcar os CheckBoxes correspondentes
+                MarcarCheckBox(this.Controls, telasPermitidas);
+            }
+            catch (Exception ex)
+            {
+                Serilog.Log.Error(ex, "Houve um Erro ao carregar privilégios do funcionário.");
+                Funcoes.MensagemErro("Não foi possível carregar as permissões do funcionário.");
+            }
         }
 
         // Método recursivo que percorre a hierarquia de componentes do formulário

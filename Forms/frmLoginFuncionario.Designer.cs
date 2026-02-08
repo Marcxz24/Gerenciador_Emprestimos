@@ -35,8 +35,10 @@
             txtBoxUsername = new TextBox();
             txtBoxSenha = new TextBox();
             btnLogarUsuario = new Button();
-            pictureBox1 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            picBoxLogoLogin = new PictureBox();
+            panelLogoSistem = new Panel();
+            ((System.ComponentModel.ISupportInitialize)picBoxLogoLogin).BeginInit();
+            panelLogoSistem.SuspendLayout();
             SuspendLayout();
             // 
             // lblLoginFunconario
@@ -44,7 +46,7 @@
             lblLoginFunconario.AutoSize = true;
             lblLoginFunconario.BackColor = Color.Transparent;
             lblLoginFunconario.Font = new Font("Arial", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblLoginFunconario.Location = new Point(186, 29);
+            lblLoginFunconario.Location = new Point(142, 29);
             lblLoginFunconario.Name = "lblLoginFunconario";
             lblLoginFunconario.Size = new Size(301, 33);
             lblLoginFunconario.TabIndex = 0;
@@ -55,7 +57,7 @@
             lblUsername.AutoSize = true;
             lblUsername.BackColor = Color.Transparent;
             lblUsername.Font = new Font("Arial", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblUsername.Location = new Point(63, 326);
+            lblUsername.Location = new Point(8, 360);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(67, 18);
             lblUsername.TabIndex = 1;
@@ -66,7 +68,7 @@
             lblSenha.AutoSize = true;
             lblSenha.BackColor = Color.Transparent;
             lblSenha.Font = new Font("Arial", 9F, FontStyle.Bold);
-            lblSenha.Location = new Point(73, 371);
+            lblSenha.Location = new Point(18, 405);
             lblSenha.Name = "lblSenha";
             lblSenha.Size = new Size(57, 18);
             lblSenha.TabIndex = 2;
@@ -74,7 +76,7 @@
             // 
             // txtBoxUsername
             // 
-            txtBoxUsername.Location = new Point(136, 321);
+            txtBoxUsername.Location = new Point(81, 354);
             txtBoxUsername.Name = "txtBoxUsername";
             txtBoxUsername.Size = new Size(421, 27);
             txtBoxUsername.TabIndex = 3;
@@ -82,7 +84,7 @@
             // 
             // txtBoxSenha
             // 
-            txtBoxSenha.Location = new Point(136, 366);
+            txtBoxSenha.Location = new Point(81, 399);
             txtBoxSenha.Name = "txtBoxSenha";
             txtBoxSenha.Size = new Size(421, 27);
             txtBoxSenha.TabIndex = 4;
@@ -91,7 +93,7 @@
             // btnLogarUsuario
             // 
             btnLogarUsuario.BackColor = Color.PaleTurquoise;
-            btnLogarUsuario.Location = new Point(186, 444);
+            btnLogarUsuario.Location = new Point(131, 437);
             btnLogarUsuario.Name = "btnLogarUsuario";
             btnLogarUsuario.Size = new Size(301, 77);
             btnLogarUsuario.TabIndex = 5;
@@ -99,35 +101,51 @@
             btnLogarUsuario.UseVisualStyleBackColor = false;
             btnLogarUsuario.Click += btnLogarUsuario_Click;
             // 
-            // pictureBox1
+            // picBoxLogoLogin
             // 
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Image = Properties.Resources.emprestimo_seguro;
-            pictureBox1.Location = new Point(232, 65);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(236, 250);
-            pictureBox1.TabIndex = 6;
-            pictureBox1.TabStop = false;
+            picBoxLogoLogin.BackColor = Color.Transparent;
+            picBoxLogoLogin.Dock = DockStyle.Fill;
+            picBoxLogoLogin.Image = Properties.Resources.emprestimo_seguro;
+            picBoxLogoLogin.Location = new Point(0, 0);
+            picBoxLogoLogin.Name = "picBoxLogoLogin";
+            picBoxLogoLogin.Size = new Size(274, 283);
+            picBoxLogoLogin.SizeMode = PictureBoxSizeMode.Zoom;
+            picBoxLogoLogin.TabIndex = 6;
+            picBoxLogoLogin.TabStop = false;
+            // 
+            // panelLogoSistem
+            // 
+            panelLogoSistem.BackColor = Color.Transparent;
+            panelLogoSistem.Controls.Add(picBoxLogoLogin);
+            panelLogoSistem.Location = new Point(142, 65);
+            panelLogoSistem.Name = "panelLogoSistem";
+            panelLogoSistem.Size = new Size(274, 283);
+            panelLogoSistem.TabIndex = 7;
             // 
             // frmLoginFuncionario
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.gra_cad_cliente;
-            ClientSize = new Size(704, 551);
-            Controls.Add(pictureBox1);
+            ClientSize = new Size(532, 549);
+            Controls.Add(panelLogoSistem);
             Controls.Add(btnLogarUsuario);
             Controls.Add(txtBoxSenha);
             Controls.Add(txtBoxUsername);
             Controls.Add(lblSenha);
             Controls.Add(lblUsername);
             Controls.Add(lblLoginFunconario);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
+            MinimizeBox = false;
             Name = "frmLoginFuncionario";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login - Gerenciador de Emprestimos";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            TopMost = true;
+            Load += frmLoginFuncionario_Load;
+            ((System.ComponentModel.ISupportInitialize)picBoxLogoLogin).EndInit();
+            panelLogoSistem.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -140,6 +158,7 @@
         private TextBox txtBoxUsername;
         private TextBox txtBoxSenha;
         private Button btnLogarUsuario;
-        private PictureBox pictureBox1;
+        private PictureBox picBoxLogoLogin;
+        private Panel panelLogoSistem;
     }
 }

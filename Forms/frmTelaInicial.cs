@@ -27,14 +27,14 @@ namespace Gerenciador_de_Emprestimos
         // --- EVENTO: Load do Formulário ---
         private void frmTelaIncial_Load(object sender, EventArgs e)
         {
-            // Garante que o acesso esteja bloqueado ao carregar a tela
+            // 1. Garante que o acesso esteja bloqueado
             ConfigurarAcesso(false);
         }
 
         // --- MÉTODO: Atualiza o nome do funcionário no rodapé (StatusStrip) ---
         public void AtualizarUsuarioLogado(string nomeFuncionario)
         {
-            statusLabelUsername.Text = $"{nomeFuncionario}";
+            statusLabelUsername.Text = $"Usuário: {nomeFuncionario}";
         }
 
         // --- MÉTODO: Controla a visibilidade e permissão de todos os menus e elementos visuais ---
@@ -225,6 +225,12 @@ namespace Gerenciador_de_Emprestimos
             {
                 RealizarLogoff();
             }
+        }
+
+        private void frmTelaIncial_Resize(object sender, EventArgs e)
+        {
+            painelLogoSistema.Left = this.ClientSize.Width - painelLogoSistema.Width - 20; // 20 de margem da direita
+            painelLogoSistema.Top = this.ClientSize.Height - painelLogoSistema.Height - stsStripSistemVersion.Height - 10; // 10 acima da barra
         }
     }
 }
