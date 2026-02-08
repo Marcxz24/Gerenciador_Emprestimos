@@ -23,7 +23,8 @@ namespace Gerenciador_de_Emprestimos.Services
         public void RelatorioEmprestimoPdf(DataTable tabela)
         {
             // Define o caminho onde o PDF será salvo
-            var pasta = @"C:\GerenciadorEmprestimos\Gerenciador de Emprestimos\pdf";
+            var pastaRaiz = AppDomain.CurrentDomain.BaseDirectory;
+            var pasta = Path.Combine(pastaRaiz, "pdf");
             var arquivo = Path.Combine(pasta, "Relatorios.pdf");
 
             // Verifica se a pasta existe; caso contrário, a cria
@@ -105,7 +106,8 @@ namespace Gerenciador_de_Emprestimos.Services
         public void RelatorioParcelas(DataTable dataTable)
         {
             // Lógica idêntica ao método anterior, mas personalizada para o contexto de parcelas
-            var pasta = @"C:\GerenciadorEmprestimos\Gerenciador de Emprestimos\pdf";
+            var pastaRaiz = AppDomain.CurrentDomain.BaseDirectory;
+            var pasta = Path.Combine(pastaRaiz, "pdf");
             var arquivo = Path.Combine(pasta, "Relatorios.pdf");
 
             if (!Directory.Exists(pasta))
@@ -133,6 +135,8 @@ namespace Gerenciador_de_Emprestimos.Services
                 // --- CRIAÇÃO DA TABELA DE DADOS ---
                 Table tabelaParcelas = new Table(dataTable.Columns.Count);
                 tabelaParcelas.SetWidth(UnitValue.CreatePercentValue(100));
+
+                tabelaParcelas.SetFixedLayout(); // Garante que as colunas tenham largura fixa para melhor formatação
 
                 // Percorre as colunas do DataTable para criar o cabeçalho da tabela no PDF
                 foreach (DataColumn coluna in dataTable.Columns)
