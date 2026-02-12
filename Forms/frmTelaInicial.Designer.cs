@@ -81,6 +81,7 @@
             stsStripSistemVersion.BackColor = SystemColors.Window;
             stsStripSistemVersion.ImageScalingSize = new Size(20, 20);
             stsStripSistemVersion.Items.AddRange(new ToolStripItem[] { statusLabelUsername, toolStripUserName, lblEspacoVazio, toolStsStripSistemVersion });
+            stsStripSistemVersion.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             stsStripSistemVersion.Name = "stsStripSistemVersion";
             // 
             // statusLabelUsername
@@ -104,8 +105,11 @@
             // toolStsStripSistemVersion
             // 
             resources.ApplyResources(toolStsStripSistemVersion, "toolStsStripSistemVersion");
+            toolStsStripSistemVersion.AutoToolTip = true;
             toolStsStripSistemVersion.BackColor = SystemColors.Window;
             toolStsStripSistemVersion.Name = "toolStsStripSistemVersion";
+            toolStsStripSistemVersion.Padding = new Padding(0, 0, 10, 0);
+            toolStsStripSistemVersion.TextDirection = ToolStripTextDirection.Horizontal;
             // 
             // MenuStripMenusSistema
             // 

@@ -140,27 +140,27 @@
   <data name="toolStripUserName.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lblEspacoVazio.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="lblEspacoVazio.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1724, 20</value>
+    <value>0, 20</value>
   </data>
   <data name="toolStsStripSistemVersion.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
   </data>
-  <data name="toolStsStripSistemVersion.RightToLeftAutoMirrorImage" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="toolStsStripSistemVersion.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
   </data>
   <data name="toolStsStripSistemVersion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 20</value>
+    <value>178, 20</value>
   </data>
   <data name="toolStsStripSistemVersion.Text" xml:space="preserve">
-    <value>Versão  do Sistema: 1.1.5</value>
+    <value>Versão do Sistema: 1.1.6</value>
   </data>
   <data name="toolStsStripSistemVersion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
+  </data>
+  <data name="stsStripSistemVersion.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 10, 0</value>
   </data>
   <data name="stsStripSistemVersion.Size" type="System.Drawing.Size, System.Drawing">
     <value>1911, 26</value>
@@ -351,7 +351,6 @@
   <data name="picBoxLogoSistema2.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 194</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="picBoxLogoSistema.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -367,6 +366,7 @@
   <data name="picBoxLogoSistema.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>Zoom</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lblTituloSistemas.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>

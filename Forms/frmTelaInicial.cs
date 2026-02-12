@@ -29,6 +29,26 @@ namespace Gerenciador_de_Emprestimos
         {
             // 1. Garante que o acesso esteja bloqueado
             ConfigurarAcesso(false);
+
+            // 1. Força o layout da barra para aceitar o empilhamento correto
+            this.stsStripSistemVersion.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
+
+            // 2. Configura o Usuário (Esquerda)
+            this.statusLabelUsername.Spring = false;
+            this.statusLabelUsername.AutoSize = true;
+
+            // 3. Configura o Espaçador (Meio)
+            // Se você não tiver nomeado ele, use o índice (ex: Items[1]) ou dê um nome no Designer
+            this.lblEspacoVazio.Spring = true;
+            this.lblEspacoVazio.Text = "";
+
+            // 4. Configura a Versão (Direita)
+            this.toolStsStripSistemVersion.Spring = false;
+            this.toolStsStripSistemVersion.AutoSize = true;
+            this.toolStsStripSistemVersion.TextAlign = ContentAlignment.MiddleRight;
+
+            // TRUQUE EXTRA: Define o alinhamento do ITEM na barra, não só do texto
+            this.toolStsStripSistemVersion.Alignment = ToolStripItemAlignment.Right;
         }
 
         // --- MÉTODO: Atualiza o nome do funcionário no rodapé (StatusStrip) ---

@@ -99,7 +99,7 @@
             // 
             lblEndereco.AutoSize = true;
             lblEndereco.BackColor = Color.Transparent;
-            lblEndereco.Location = new Point(20, 15);
+            lblEndereco.Location = new Point(24, 96);
             lblEndereco.Margin = new Padding(4, 0, 4, 0);
             lblEndereco.Name = "lblEndereco";
             lblEndereco.Size = new Size(91, 17);
@@ -114,14 +114,14 @@
             lblEstadoCivil.Margin = new Padding(4, 0, 4, 0);
             lblEstadoCivil.Name = "lblEstadoCivil";
             lblEstadoCivil.Size = new Size(98, 17);
-            lblEstadoCivil.TabIndex = 5;
+            lblEstadoCivil.TabIndex = 0;
             lblEstadoCivil.Text = "Estado Civil:";
             // 
             // lblBairroCliente
             // 
             lblBairroCliente.AutoSize = true;
             lblBairroCliente.BackColor = Color.Transparent;
-            lblBairroCliente.Location = new Point(383, 15);
+            lblBairroCliente.Location = new Point(389, 96);
             lblBairroCliente.Margin = new Padding(4, 0, 4, 0);
             lblBairroCliente.Name = "lblBairroCliente";
             lblBairroCliente.Size = new Size(67, 17);
@@ -132,7 +132,7 @@
             // 
             lblCidadeCliente.AutoSize = true;
             lblCidadeCliente.BackColor = Color.Transparent;
-            lblCidadeCliente.Location = new Point(24, 92);
+            lblCidadeCliente.Location = new Point(370, 21);
             lblCidadeCliente.Margin = new Padding(4, 0, 4, 0);
             lblCidadeCliente.Name = "lblCidadeCliente";
             lblCidadeCliente.RightToLeft = RightToLeft.No;
@@ -144,7 +144,7 @@
             // 
             lblNumeroResidencia.AutoSize = true;
             lblNumeroResidencia.BackColor = Color.Transparent;
-            lblNumeroResidencia.Location = new Point(379, 92);
+            lblNumeroResidencia.Location = new Point(670, 96);
             lblNumeroResidencia.Margin = new Padding(4, 0, 4, 0);
             lblNumeroResidencia.Name = "lblNumeroResidencia";
             lblNumeroResidencia.Size = new Size(122, 17);
@@ -163,44 +163,44 @@
             // 
             // txtEnderecoCliente
             // 
-            txtEnderecoCliente.Location = new Point(20, 40);
+            txtEnderecoCliente.Location = new Point(24, 120);
             txtEnderecoCliente.Name = "txtEnderecoCliente";
             txtEnderecoCliente.ReadOnly = true;
-            txtEnderecoCliente.Size = new Size(329, 25);
-            txtEnderecoCliente.TabIndex = 7;
+            txtEnderecoCliente.Size = new Size(340, 25);
+            txtEnderecoCliente.TabIndex = 3;
             txtEnderecoCliente.TextChanged += txtEnderecoCliente_TextChanged;
             // 
             // txtBairroCliente
             // 
-            txtBairroCliente.Location = new Point(379, 40);
+            txtBairroCliente.Location = new Point(385, 121);
             txtBairroCliente.Name = "txtBairroCliente";
             txtBairroCliente.ReadOnly = true;
-            txtBairroCliente.Size = new Size(413, 25);
-            txtBairroCliente.TabIndex = 8;
+            txtBairroCliente.Size = new Size(265, 25);
+            txtBairroCliente.TabIndex = 4;
             txtBairroCliente.TextChanged += txtBairroCliente_TextChanged;
             // 
             // txtCidadeCliente
             // 
-            txtCidadeCliente.Location = new Point(20, 125);
+            txtCidadeCliente.Location = new Point(370, 45);
             txtCidadeCliente.Name = "txtCidadeCliente";
             txtCidadeCliente.ReadOnly = true;
-            txtCidadeCliente.Size = new Size(225, 25);
-            txtCidadeCliente.TabIndex = 9;
+            txtCidadeCliente.Size = new Size(407, 25);
+            txtCidadeCliente.TabIndex = 2;
             txtCidadeCliente.TextChanged += txtCidadeCliente_TextChanged;
             // 
             // txtNumeroResidencia
             // 
-            txtNumeroResidencia.Location = new Point(379, 125);
+            txtNumeroResidencia.Location = new Point(673, 120);
             txtNumeroResidencia.Name = "txtNumeroResidencia";
             txtNumeroResidencia.ReadOnly = true;
-            txtNumeroResidencia.Size = new Size(188, 25);
-            txtNumeroResidencia.TabIndex = 11;
+            txtNumeroResidencia.Size = new Size(122, 25);
+            txtNumeroResidencia.TabIndex = 5;
             // 
             // lblCepCliente
             // 
             lblCepCliente.AutoSize = true;
             lblCepCliente.BackColor = Color.Transparent;
-            lblCepCliente.Location = new Point(586, 92);
+            lblCepCliente.Location = new Point(24, 21);
             lblCepCliente.Margin = new Padding(4, 0, 4, 0);
             lblCepCliente.Name = "lblCepCliente";
             lblCepCliente.Size = new Size(51, 17);
@@ -235,7 +235,7 @@
             txtEmailCliente.Name = "txtEmailCliente";
             txtEmailCliente.ReadOnly = true;
             txtEmailCliente.Size = new Size(501, 25);
-            txtEmailCliente.TabIndex = 14;
+            txtEmailCliente.TabIndex = 2;
             // 
             // lblObservacoes
             // 
@@ -255,7 +255,7 @@
             txtObservacoes.Name = "txtObservacoes";
             txtObservacoes.ReadOnly = true;
             txtObservacoes.Size = new Size(772, 112);
-            txtObservacoes.TabIndex = 4;
+            txtObservacoes.TabIndex = 5;
             // 
             // btnRadioGeneroOutros
             // 
@@ -265,7 +265,8 @@
             btnRadioGeneroOutros.Location = new Point(229, 24);
             btnRadioGeneroOutros.Name = "btnRadioGeneroOutros";
             btnRadioGeneroOutros.Size = new Size(76, 21);
-            btnRadioGeneroOutros.TabIndex = 5;
+            btnRadioGeneroOutros.TabIndex = 2;
+            btnRadioGeneroOutros.TabStop = true;
             btnRadioGeneroOutros.Text = "outros";
             btnRadioGeneroOutros.UseVisualStyleBackColor = false;
             // 
@@ -277,17 +278,17 @@
             MaskedTxtCpfCnpjCliente.Name = "MaskedTxtCpfCnpjCliente";
             MaskedTxtCpfCnpjCliente.ReadOnly = true;
             MaskedTxtCpfCnpjCliente.Size = new Size(249, 25);
-            MaskedTxtCpfCnpjCliente.TabIndex = 3;
+            MaskedTxtCpfCnpjCliente.TabIndex = 2;
             MaskedTxtCpfCnpjCliente.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             // 
             // MaskedTxtCepCliente
             // 
-            MaskedTxtCepCliente.Location = new Point(586, 125);
+            MaskedTxtCepCliente.Location = new Point(24, 46);
             MaskedTxtCepCliente.Mask = "00,000-000";
             MaskedTxtCepCliente.Name = "MaskedTxtCepCliente";
             MaskedTxtCepCliente.ReadOnly = true;
             MaskedTxtCepCliente.Size = new Size(206, 25);
-            MaskedTxtCepCliente.TabIndex = 12;
+            MaskedTxtCepCliente.TabIndex = 0;
             MaskedTxtCepCliente.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             // 
             // MaskedTxtCelularCliente
@@ -297,7 +298,7 @@
             MaskedTxtCelularCliente.Name = "MaskedTxtCelularCliente";
             MaskedTxtCelularCliente.ReadOnly = true;
             MaskedTxtCelularCliente.Size = new Size(225, 25);
-            MaskedTxtCelularCliente.TabIndex = 13;
+            MaskedTxtCelularCliente.TabIndex = 1;
             MaskedTxtCelularCliente.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             // 
             // lblEstadoCliente
@@ -305,7 +306,7 @@
             lblEstadoCliente.AutoSize = true;
             lblEstadoCliente.BackColor = Color.Transparent;
             lblEstadoCliente.ForeColor = SystemColors.ControlText;
-            lblEstadoCliente.Location = new Point(263, 92);
+            lblEstadoCliente.Location = new Point(245, 21);
             lblEstadoCliente.Name = "lblEstadoCliente";
             lblEstadoCliente.Size = new Size(40, 17);
             lblEstadoCliente.TabIndex = 34;
@@ -347,7 +348,8 @@
             btnRadioFeminino.Location = new Point(20, 24);
             btnRadioFeminino.Name = "btnRadioFeminino";
             btnRadioFeminino.Size = new Size(95, 21);
-            btnRadioFeminino.TabIndex = 3;
+            btnRadioFeminino.TabIndex = 0;
+            btnRadioFeminino.TabStop = true;
             btnRadioFeminino.Text = "Feminino";
             btnRadioFeminino.UseVisualStyleBackColor = false;
             // 
@@ -359,7 +361,8 @@
             btnRadioMasculino.Location = new Point(119, 24);
             btnRadioMasculino.Name = "btnRadioMasculino";
             btnRadioMasculino.Size = new Size(102, 21);
-            btnRadioMasculino.TabIndex = 4;
+            btnRadioMasculino.TabIndex = 1;
+            btnRadioMasculino.TabStop = true;
             btnRadioMasculino.Text = "Masculino";
             btnRadioMasculino.UseVisualStyleBackColor = false;
             // 
@@ -372,7 +375,7 @@
             groupBoxGenero.Location = new Point(247, 165);
             groupBoxGenero.Name = "groupBoxGenero";
             groupBoxGenero.Size = new Size(313, 59);
-            groupBoxGenero.TabIndex = 1;
+            groupBoxGenero.TabIndex = 2;
             groupBoxGenero.TabStop = false;
             groupBoxGenero.Text = "*Genêro:";
             // 
@@ -405,10 +408,10 @@
             comboBoxEstadoUF.FormattingEnabled = true;
             comboBoxEstadoUF.IntegralHeight = false;
             comboBoxEstadoUF.Items.AddRange(new object[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" });
-            comboBoxEstadoUF.Location = new Point(263, 125);
+            comboBoxEstadoUF.Location = new Point(245, 45);
             comboBoxEstadoUF.Name = "comboBoxEstadoUF";
             comboBoxEstadoUF.Size = new Size(104, 25);
-            comboBoxEstadoUF.TabIndex = 10;
+            comboBoxEstadoUF.TabIndex = 1;
             // 
             // groupBoxContatos
             // 
@@ -431,7 +434,7 @@
             groupBoxEstadoCivil.Location = new Point(569, 165);
             groupBoxEstadoCivil.Name = "groupBoxEstadoCivil";
             groupBoxEstadoCivil.Size = new Size(252, 59);
-            groupBoxEstadoCivil.TabIndex = 2;
+            groupBoxEstadoCivil.TabIndex = 1;
             groupBoxEstadoCivil.TabStop = false;
             // 
             // comboBoxEstadoCivil
@@ -502,7 +505,7 @@
             btnFecharForm.Name = "btnFecharForm";
             btnFecharForm.RightToLeft = RightToLeft.No;
             btnFecharForm.Size = new Size(111, 42);
-            btnFecharForm.TabIndex = 6;
+            btnFecharForm.TabIndex = 9;
             btnFecharForm.Text = "Fechar";
             btnFecharForm.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnFecharForm.UseVisualStyleBackColor = false;
@@ -535,7 +538,7 @@
             btnEditarCadastro.Name = "btnEditarCadastro";
             btnEditarCadastro.RightToLeft = RightToLeft.No;
             btnEditarCadastro.Size = new Size(161, 42);
-            btnEditarCadastro.TabIndex = 7;
+            btnEditarCadastro.TabIndex = 6;
             btnEditarCadastro.TabStop = false;
             btnEditarCadastro.Text = "Editar";
             btnEditarCadastro.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -567,7 +570,7 @@
             btnPesquisarCliente.Name = "btnPesquisarCliente";
             btnPesquisarCliente.RightToLeft = RightToLeft.No;
             btnPesquisarCliente.Size = new Size(123, 42);
-            btnPesquisarCliente.TabIndex = 46;
+            btnPesquisarCliente.TabIndex = 8;
             btnPesquisarCliente.Text = "Pesquisar";
             btnPesquisarCliente.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnPesquisarCliente.UseVisualStyleBackColor = false;
@@ -583,7 +586,7 @@
             btnNovoCadastro.Name = "btnNovoCadastro";
             btnNovoCadastro.RightToLeft = RightToLeft.No;
             btnNovoCadastro.Size = new Size(161, 42);
-            btnNovoCadastro.TabIndex = 48;
+            btnNovoCadastro.TabIndex = 5;
             btnNovoCadastro.Text = "Novo";
             btnNovoCadastro.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnNovoCadastro.UseVisualStyleBackColor = false;
@@ -610,7 +613,7 @@
             btnCancelarCadastro.Name = "btnCancelarCadastro";
             btnCancelarCadastro.RightToLeft = RightToLeft.No;
             btnCancelarCadastro.Size = new Size(161, 42);
-            btnCancelarCadastro.TabIndex = 51;
+            btnCancelarCadastro.TabIndex = 7;
             btnCancelarCadastro.TabStop = false;
             btnCancelarCadastro.Text = "Cancelar";
             btnCancelarCadastro.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -658,6 +661,7 @@
             txtCodigoCliente.ReadOnly = true;
             txtCodigoCliente.Size = new Size(83, 23);
             txtCodigoCliente.TabIndex = 37;
+            txtCodigoCliente.TabStop = false;
             // 
             // frmCadastroCliente
             // 
