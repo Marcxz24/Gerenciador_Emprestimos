@@ -1,5 +1,6 @@
 using System;
 using System.Windows.Forms;
+using Gerenciador_de_Emprestimos.Forms;
 using Gerenciador_de_Emprestimos.Services;
 using Gerenciador_de_Emprestimos.Utils;
 using MySql.Data;
@@ -73,6 +74,9 @@ namespace Gerenciador_de_Emprestimos
 
             ajudaToolStripMenuItem.Enabled = logado;
             ajudaToolStripMenuItem.Visible = logado;
+
+            // Botão rferente aos Lembretes do Sistema
+            btnNovoLembrete.Visible = logado;
 
             // Controle de Login/Logoff
             loginToolStripMenuItem.Enabled = !logado; // Só aparece se NÃO estiver logado
@@ -251,6 +255,12 @@ namespace Gerenciador_de_Emprestimos
         {
             painelLogoSistema.Left = this.ClientSize.Width - painelLogoSistema.Width - 20; // 20 de margem da direita
             painelLogoSistema.Top = this.ClientSize.Height - painelLogoSistema.Height - stsStripSistemVersion.Height - 10; // 10 acima da barra
+        }
+
+        private void btnNovoLembrete_Click(object sender, EventArgs e)
+        {
+            frmNovoLembrete NovoLembrete = new frmNovoLembrete();
+            NovoLembrete.ShowDialog();
         }
     }
 }

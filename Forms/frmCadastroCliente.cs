@@ -118,6 +118,12 @@ namespace Gerenciador_de_Emprestimos
         // Evento do Botão de editar cadastro de cliente.
         private void btnEditarCadastro_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtCodigoCliente.Text))
+            {
+                Funcoes.MensagemWarning("Selecione um Cliente para poder Editar.");
+                return;
+            }
+
             // Variável Global recebe o valor true.
             _EditarCadastro = true;
 
@@ -283,12 +289,27 @@ namespace Gerenciador_de_Emprestimos
                     return true; // Existe Erro e bloqueia a passagem para o proximo método.
                 }
 
-                // Chama ó Método da classe Cliente passando o valor digitado no Masked Text Box referente ao CPF e CNPJ, se já existir, encerra.
-                if (cliente.CpfJaCadastrado(MaskedTxtCpfCnpjCliente.Text))
+                if (_EditarCadastro == false)
                 {
-                    Funcoes.MensagemWarning("Já Existe um Cliente com este CPF Cadastrado");
-                    return true; // Existe Erro e bloqueia a passagem para o proximo método.
+                    // Chama ó Método da classe Cliente passando o valor digitado no Masked Text Box referente ao CPF e CNPJ, se já existir, encerra.
+                    if (cliente.CpfJaCadastrado(MaskedTxtCpfCnpjCliente.Text))
+                    {
+                        Funcoes.MensagemWarning("Já Existe um Cliente com este CPF Cadastrado");
+                        return true; // Existe Erro e bloqueia a passagem para o proximo método.
+                    }
                 }
+                else
+                {
+                    int codigoCliente = Convert.ToInt32(txtCodigoCliente.Text);
+
+                    // Chama ó Método da classe Cliente passando o valor digitado no Masked Text Box referente ao CPF e CNPJ, se já existir e for diferente do cliente que está sendo editado, encerra.
+                    if (cliente.CpfDeClienteCadastrado(codigoCliente, MaskedTxtCpfCnpjCliente.Text))
+                    {
+                        Funcoes.MensagemWarning("Já Existe um Cliente com este CPF Cadastrado");
+                        return true; // Existe Erro e bloqueia a passagem para o proximo método.
+                    }
+                }
+            
 
                 // Chama a classe responsável por validar se o CPF está valido, realizando o calculo para validar CPF.
                 if (ValidacaoCpf.ValidarCpf(MaskedTxtCpfCnpjCliente.Text) == false)

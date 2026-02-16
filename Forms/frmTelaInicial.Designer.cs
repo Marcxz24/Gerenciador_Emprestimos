@@ -30,7 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTelaIncial));
-            lblTituloInicial = new Label();
             stsStripSistemVersion = new StatusStrip();
             statusLabelUsername = new ToolStripStatusLabel();
             toolStripUserName = new ToolStripStatusLabel();
@@ -50,6 +49,8 @@
             MenuStripEmprestimos = new ToolStripMenuItem();
             MenuStripNovosEmprestimos = new ToolStripMenuItem();
             pagamentoDeParcelaToolStripMenuItem = new ToolStripMenuItem();
+            funçõesOperacionaisToolStripMenuItem = new ToolStripMenuItem();
+            backUpDoBancoDeDadosToolStripMenuItem = new ToolStripMenuItem();
             MenuStripRelatorios = new ToolStripMenuItem();
             MenuStripRelatoriosEmprestimos = new ToolStripMenuItem();
             MenuStripRelatoriosVisuEmprestimos = new ToolStripMenuItem();
@@ -58,22 +59,18 @@
             chamadoToolStripMenuItem = new ToolStripMenuItem();
             novoToolStripMenuItem = new ToolStripMenuItem();
             imageListSistemaGerenciadorEmprestimos = new ImageList(components);
-            picBoxLogoSistema2 = new PictureBox();
-            picBoxLogoSistema = new PictureBox();
-            lblTituloSistemas = new Label();
+            btnNovoLembrete = new Button();
             painelLogoSistema = new Panel();
+            picBoxLogoSistema2 = new PictureBox();
+            lblTituloInicial = new Label();
+            lblTituloSistemas = new Label();
+            picBoxLogoSistema = new PictureBox();
             stsStripSistemVersion.SuspendLayout();
             MenuStripMenusSistema.SuspendLayout();
+            painelLogoSistema.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema).BeginInit();
-            painelLogoSistema.SuspendLayout();
             SuspendLayout();
-            // 
-            // lblTituloInicial
-            // 
-            resources.ApplyResources(lblTituloInicial, "lblTituloInicial");
-            lblTituloInicial.BackColor = Color.Transparent;
-            lblTituloInicial.Name = "lblTituloInicial";
             // 
             // stsStripSistemVersion
             // 
@@ -116,7 +113,7 @@
             resources.ApplyResources(MenuStripMenusSistema, "MenuStripMenusSistema");
             MenuStripMenusSistema.BackColor = SystemColors.ButtonFace;
             MenuStripMenusSistema.ImageScalingSize = new Size(20, 20);
-            MenuStripMenusSistema.Items.AddRange(new ToolStripItem[] { arquivoToolStripMenuItem, MenuStripCadastro, MenuStripFinanceiro, MenuStripRelatorios, ajudaToolStripMenuItem });
+            MenuStripMenusSistema.Items.AddRange(new ToolStripItem[] { arquivoToolStripMenuItem, MenuStripCadastro, MenuStripFinanceiro, funçõesOperacionaisToolStripMenuItem, MenuStripRelatorios, ajudaToolStripMenuItem });
             MenuStripMenusSistema.Name = "MenuStripMenusSistema";
             // 
             // arquivoToolStripMenuItem
@@ -197,6 +194,17 @@
             pagamentoDeParcelaToolStripMenuItem.Name = "pagamentoDeParcelaToolStripMenuItem";
             pagamentoDeParcelaToolStripMenuItem.Click += pagamentoDeParcelaToolStripMenuItem_Click;
             // 
+            // funçõesOperacionaisToolStripMenuItem
+            // 
+            resources.ApplyResources(funçõesOperacionaisToolStripMenuItem, "funçõesOperacionaisToolStripMenuItem");
+            funçõesOperacionaisToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { backUpDoBancoDeDadosToolStripMenuItem });
+            funçõesOperacionaisToolStripMenuItem.Name = "funçõesOperacionaisToolStripMenuItem";
+            // 
+            // backUpDoBancoDeDadosToolStripMenuItem
+            // 
+            resources.ApplyResources(backUpDoBancoDeDadosToolStripMenuItem, "backUpDoBancoDeDadosToolStripMenuItem");
+            backUpDoBancoDeDadosToolStripMenuItem.Name = "backUpDoBancoDeDadosToolStripMenuItem";
+            // 
             // MenuStripRelatorios
             // 
             resources.ApplyResources(MenuStripRelatorios, "MenuStripRelatorios");
@@ -245,26 +253,14 @@
             resources.ApplyResources(imageListSistemaGerenciadorEmprestimos, "imageListSistemaGerenciadorEmprestimos");
             imageListSistemaGerenciadorEmprestimos.TransparentColor = Color.Transparent;
             // 
-            // picBoxLogoSistema2
+            // btnNovoLembrete
             // 
-            resources.ApplyResources(picBoxLogoSistema2, "picBoxLogoSistema2");
-            picBoxLogoSistema2.BackColor = Color.Transparent;
-            picBoxLogoSistema2.Name = "picBoxLogoSistema2";
-            picBoxLogoSistema2.TabStop = false;
-            // 
-            // picBoxLogoSistema
-            // 
-            resources.ApplyResources(picBoxLogoSistema, "picBoxLogoSistema");
-            picBoxLogoSistema.BackColor = Color.Transparent;
-            picBoxLogoSistema.Image = Properties.Resources.emprestimo_seguro;
-            picBoxLogoSistema.Name = "picBoxLogoSistema";
-            picBoxLogoSistema.TabStop = false;
-            // 
-            // lblTituloSistemas
-            // 
-            resources.ApplyResources(lblTituloSistemas, "lblTituloSistemas");
-            lblTituloSistemas.BackColor = Color.Transparent;
-            lblTituloSistemas.Name = "lblTituloSistemas";
+            resources.ApplyResources(btnNovoLembrete, "btnNovoLembrete");
+            btnNovoLembrete.BackColor = Color.Transparent;
+            btnNovoLembrete.Image = Properties.Resources.alfinete;
+            btnNovoLembrete.Name = "btnNovoLembrete";
+            btnNovoLembrete.UseVisualStyleBackColor = false;
+            btnNovoLembrete.Click += btnNovoLembrete_Click;
             // 
             // painelLogoSistema
             // 
@@ -276,6 +272,33 @@
             painelLogoSistema.Controls.Add(picBoxLogoSistema);
             painelLogoSistema.Name = "painelLogoSistema";
             // 
+            // picBoxLogoSistema2
+            // 
+            resources.ApplyResources(picBoxLogoSistema2, "picBoxLogoSistema2");
+            picBoxLogoSistema2.BackColor = Color.Transparent;
+            picBoxLogoSistema2.Name = "picBoxLogoSistema2";
+            picBoxLogoSistema2.TabStop = false;
+            // 
+            // lblTituloInicial
+            // 
+            resources.ApplyResources(lblTituloInicial, "lblTituloInicial");
+            lblTituloInicial.BackColor = Color.Transparent;
+            lblTituloInicial.Name = "lblTituloInicial";
+            // 
+            // lblTituloSistemas
+            // 
+            resources.ApplyResources(lblTituloSistemas, "lblTituloSistemas");
+            lblTituloSistemas.BackColor = Color.Transparent;
+            lblTituloSistemas.Name = "lblTituloSistemas";
+            // 
+            // picBoxLogoSistema
+            // 
+            resources.ApplyResources(picBoxLogoSistema, "picBoxLogoSistema");
+            picBoxLogoSistema.BackColor = Color.Transparent;
+            picBoxLogoSistema.Image = Properties.Resources.emprestimo_seguro;
+            picBoxLogoSistema.Name = "picBoxLogoSistema";
+            picBoxLogoSistema.TabStop = false;
+            // 
             // frmTelaIncial
             // 
             resources.ApplyResources(this, "$this");
@@ -285,6 +308,7 @@
             Controls.Add(painelLogoSistema);
             Controls.Add(stsStripSistemVersion);
             Controls.Add(MenuStripMenusSistema);
+            Controls.Add(btnNovoLembrete);
             DoubleBuffered = true;
             MainMenuStrip = MenuStripMenusSistema;
             Name = "frmTelaIncial";
@@ -296,16 +320,15 @@
             stsStripSistemVersion.PerformLayout();
             MenuStripMenusSistema.ResumeLayout(false);
             MenuStripMenusSistema.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema).EndInit();
             painelLogoSistema.ResumeLayout(false);
             painelLogoSistema.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private Label lblTituloInicial;
         private StatusStrip stsStripSistemVersion;
         private ToolStripStatusLabel toolStsStripSistemVersion;
         private MenuStrip MenuStripMenusSistema;
@@ -316,14 +339,11 @@
         private ToolStripMenuItem MenuStripEmprestimos;
         private ToolStripMenuItem MenuStripNovosEmprestimos;
         private ImageList imageListSistemaGerenciadorEmprestimos;
-        private PictureBox picBoxLogoSistema2;
         private ToolStripMenuItem arquivoToolStripMenuItem;
         private ToolStripMenuItem sairDoSistemaToolStripMenuItem;
         private ToolStripMenuItem MenuStripRelatorios;
         private ToolStripMenuItem MenuStripRelatoriosEmprestimos;
         private ToolStripMenuItem MenuStripRelatoriosVisuEmprestimos;
-        private PictureBox picBoxLogoSistema;
-        private Label lblTituloSistemas;
         private ToolStripMenuItem visualizarParcelasToolStripMenuItem;
         private ToolStripMenuItem pagamentoDeParcelaToolStripMenuItem;
         private ToolStripMenuItem empresaToolStripMenuItem;
@@ -335,7 +355,14 @@
         private ToolStripMenuItem chamadoToolStripMenuItem;
         private ToolStripMenuItem novoToolStripMenuItem;
         private ToolStripStatusLabel statusLabelUsername;
-        private Panel painelLogoSistema;
         private ToolStripStatusLabel lblEspacoVazio;
+        private Button btnNovoLembrete;
+        private ToolStripMenuItem funçõesOperacionaisToolStripMenuItem;
+        private ToolStripMenuItem backUpDoBancoDeDadosToolStripMenuItem;
+        private Panel painelLogoSistema;
+        private PictureBox picBoxLogoSistema2;
+        private Label lblTituloInicial;
+        private Label lblTituloSistemas;
+        private PictureBox picBoxLogoSistema;
     }
 }

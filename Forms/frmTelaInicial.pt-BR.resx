@@ -118,22 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lblTituloInicial.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 24pt, style=Bold</value>
-  </data>
-  <data name="lblTituloInicial.Location" type="System.Drawing.Point, System.Drawing">
-    <value>744, 96</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lblTituloInicial.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="lblTituloInicial.Size" type="System.Drawing.Size, System.Drawing">
-    <value>574, 46</value>
-  </data>
-  <data name="lblTituloInicial.Text" xml:space="preserve">
-    <value>Gerenciador de Empréstimos</value>
-  </data>
   <data name="toolStripUserName.Size" type="System.Drawing.Size, System.Drawing">
     <value>0, 20</value>
   </data>
@@ -159,17 +143,12 @@
   <data name="toolStsStripSistemVersion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="stsStripSistemVersion.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 10, 0</value>
   </data>
   <data name="stsStripSistemVersion.Size" type="System.Drawing.Size, System.Drawing">
     <value>1911, 26</value>
-  </data>
-  <data name="MenuStripMenusSistema.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1911, 28</value>
-  </data>
-  <data name="arquivoToolStripMenuItem.Text" xml:space="preserve">
-    <value>Arquivo</value>
   </data>
   <data name="loginToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>136, 26</value>
@@ -189,14 +168,8 @@
   <data name="sairDoSistemaToolStripMenuItem.Text" xml:space="preserve">
     <value>Sair</value>
   </data>
-  <data name="MenuStripCadastro.Text" xml:space="preserve">
-    <value>Cadastro</value>
-  </data>
-  <data name="MenuStripCliente.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 26</value>
-  </data>
-  <data name="MenuStripCliente.Text" xml:space="preserve">
-    <value>Cliente</value>
+  <data name="arquivoToolStripMenuItem.Text" xml:space="preserve">
+    <value>Arquivo</value>
   </data>
   <data name="MenuStripCadastroCliente.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 26</value>
@@ -204,11 +177,11 @@
   <data name="MenuStripCadastroCliente.Text" xml:space="preserve">
     <value>Cliente</value>
   </data>
-  <data name="empresaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="MenuStripCliente.Size" type="System.Drawing.Size, System.Drawing">
     <value>149, 26</value>
   </data>
-  <data name="empresaToolStripMenuItem.Text" xml:space="preserve">
-    <value>Empresa</value>
+  <data name="MenuStripCliente.Text" xml:space="preserve">
+    <value>Cliente</value>
   </data>
   <data name="funcionárioToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>169, 26</value>
@@ -216,14 +189,14 @@
   <data name="funcionárioToolStripMenuItem.Text" xml:space="preserve">
     <value>Funcionário</value>
   </data>
-  <data name="MenuStripFinanceiro.Text" xml:space="preserve">
-    <value>Financeiro</value>
+  <data name="empresaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 26</value>
   </data>
-  <data name="MenuStripEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 26</value>
+  <data name="empresaToolStripMenuItem.Text" xml:space="preserve">
+    <value>Empresa</value>
   </data>
-  <data name="MenuStripEmprestimos.Text" xml:space="preserve">
-    <value>Emprestimos</value>
+  <data name="MenuStripCadastro.Text" xml:space="preserve">
+    <value>Cadastro</value>
   </data>
   <data name="MenuStripNovosEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
     <value>239, 26</value>
@@ -234,14 +207,20 @@
   <data name="pagamentoDeParcelaToolStripMenuItem.Text" xml:space="preserve">
     <value>Pagamento de Parcela</value>
   </data>
-  <data name="MenuStripRelatorios.Text" xml:space="preserve">
-    <value>Relatórios</value>
-  </data>
-  <data name="MenuStripRelatoriosEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="MenuStripEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
     <value>178, 26</value>
   </data>
-  <data name="MenuStripRelatoriosEmprestimos.Text" xml:space="preserve">
+  <data name="MenuStripEmprestimos.Text" xml:space="preserve">
     <value>Emprestimos</value>
+  </data>
+  <data name="MenuStripFinanceiro.Text" xml:space="preserve">
+    <value>Financeiro</value>
+  </data>
+  <data name="backUpDoBancoDeDadosToolStripMenuItem.Text" xml:space="preserve">
+    <value>Back-Up do Banco de Dados</value>
+  </data>
+  <data name="funçõesOperacionaisToolStripMenuItem.Text" xml:space="preserve">
+    <value>Funções Operacionais</value>
   </data>
   <data name="MenuStripRelatoriosVisuEmprestimos.Text" xml:space="preserve">
     <value>Visualizar Emprestimos</value>
@@ -249,8 +228,20 @@
   <data name="visualizarParcelasToolStripMenuItem.Text" xml:space="preserve">
     <value>Visualizar Parcelas</value>
   </data>
-  <data name="ajudaToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ajuda</value>
+  <data name="MenuStripRelatoriosEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>178, 26</value>
+  </data>
+  <data name="MenuStripRelatoriosEmprestimos.Text" xml:space="preserve">
+    <value>Emprestimos</value>
+  </data>
+  <data name="MenuStripRelatorios.Text" xml:space="preserve">
+    <value>Relatórios</value>
+  </data>
+  <data name="novoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 26</value>
+  </data>
+  <data name="novoToolStripMenuItem.Text" xml:space="preserve">
+    <value>Novo (Suporte)</value>
   </data>
   <data name="chamadoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 26</value>
@@ -258,11 +249,39 @@
   <data name="chamadoToolStripMenuItem.Text" xml:space="preserve">
     <value>Chamado</value>
   </data>
-  <data name="novoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 26</value>
+  <data name="ajudaToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ajuda</value>
   </data>
-  <data name="novoToolStripMenuItem.Text" xml:space="preserve">
-    <value>Novo (Suporte)</value>
+  <data name="MenuStripMenusSistema.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1911, 28</value>
+  </data>
+  <data name="btnNovoLembrete.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="btnNovoLembrete.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnNovoLembrete.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="btnNovoLembrete.Location" type="System.Drawing.Point, System.Drawing">
+    <value>54, 141</value>
+  </data>
+  <data name="btnNovoLembrete.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 77</value>
+  </data>
+  <data name="btnNovoLembrete.Text" xml:space="preserve">
+    <value>Novo Lembrete</value>
+  </data>
+  <data name="btnNovoLembrete.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnNovoLembrete.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="painelLogoSistema.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
   <data name="picBoxLogoSistema2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -345,11 +364,47 @@
         jq+TRxZ6Xl7/ry+meic5v7gt+boZPV/floPGihUrVqxYsWJVZ/0PQ1yAbB5Wm5gAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="picBoxLogoSistema2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="picBoxLogoSistema2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1124, 145</value>
+    <value>893, 113</value>
   </data>
   <data name="picBoxLogoSistema2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 194</value>
+    <value>130, 142</value>
+  </data>
+  <data name="lblTituloInicial.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblTituloInicial.Location" type="System.Drawing.Point, System.Drawing">
+    <value>620, 68</value>
+  </data>
+  <data name="lblTituloInicial.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="lblTituloInicial.Text" xml:space="preserve">
+    <value>Gerenciador de Empréstimos</value>
+  </data>
+  <data name="lblTituloSistemas.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblTituloSistemas.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 13.8pt, style=Bold</value>
+  </data>
+  <data name="lblTituloSistemas.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblTituloSistemas.Location" type="System.Drawing.Point, System.Drawing">
+    <value>773, 113</value>
+  </data>
+  <data name="lblTituloSistemas.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="lblTituloSistemas.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 27</value>
+  </data>
+  <data name="lblTituloSistemas.Text" xml:space="preserve">
+    <value>Sistemas</value>
   </data>
   <data name="picBoxLogoSistema.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -361,41 +416,16 @@
     <value>0, 0</value>
   </data>
   <data name="picBoxLogoSistema.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1343, 342</value>
+    <value>1045, 354</value>
   </data>
   <data name="picBoxLogoSistema.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>Zoom</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lblTituloSistemas.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblTituloSistemas.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 24pt, style=Bold</value>
-  </data>
-  <data name="lblTituloSistemas.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblTituloSistemas.Location" type="System.Drawing.Point, System.Drawing">
-    <value>922, 142</value>
-  </data>
-  <data name="lblTituloSistemas.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="lblTituloSistemas.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 46</value>
-  </data>
-  <data name="lblTituloSistemas.Text" xml:space="preserve">
-    <value>Sistemas</value>
-  </data>
-  <data name="painelLogoSistema.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
   <data name="painelLogoSistema.Location" type="System.Drawing.Point, System.Drawing">
-    <value>529, 611</value>
+    <value>854, 584</value>
   </data>
   <data name="painelLogoSistema.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1343, 342</value>
+    <value>1045, 354</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>120, 120</value>

@@ -10,8 +10,9 @@
 
 namespace Gerenciador_de_Emprestimos.Properties {
     using System;
-    
-    
+    using System.Drawing;
+
+
     /// <summary>
     ///   Uma classe de recurso de tipo de alta segurança, para pesquisar cadeias de caracteres localizadas etc.
     /// </summary>
@@ -31,7 +32,29 @@ namespace Gerenciador_de_Emprestimos.Properties {
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-        
+
+        // Propriedade para o recurso "salvar"
+        internal static System.Drawing.Bitmap salvar
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("salvar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        /// Gets a bitmap image resource representing an "alfinete."
+        /// </summary>
+        /// <remarks>The resource is retrieved using the <see cref="ResourceManager"/> and may depend on
+        /// the current <see cref="resourceCulture"/>.</remarks>
+        public static System.Drawing.Bitmap alfinete {
+            get {
+                object obj = ResourceManager.GetObject("alfinete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
         /// <summary>
         ///   Retorna a instância de ResourceManager armazenada em cache usada por essa classe.
         /// </summary>

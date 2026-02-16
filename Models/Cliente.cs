@@ -197,5 +197,24 @@ namespace Gerenciador_de_Emprestimos.Models
                 return count > 0;
             }
         }
+
+        public bool CpfDeClienteCadastrado(int codigoCliente, string cpf)
+        {
+            string sql = @"
+                            SELECT COUNT(*) FROM emprestimosbd.cliente
+                            WHERE cpf_cnpj = @cpf_cnpj
+                                AND codigo <> @codigo";
+
+            using (var conexao = ConexaoBancoDeDados.Conectar())
+            using (var comando = new MySqlCommand(sql, conexao))
+            {
+                comando.Parameters.AddWithValue("@codigo", codigoCliente);
+                comando.Parameters.AddWithValue("@cpf_cnpj", cpf);
+
+                int count = Convert.ToInt32(comando.ExecuteScalar());
+
+                return count > 0;
+            }
+        }
     }
 }
