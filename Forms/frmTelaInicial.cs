@@ -262,5 +262,36 @@ namespace Gerenciador_de_Emprestimos
             frmNovoLembrete NovoLembrete = new frmNovoLembrete();
             NovoLembrete.ShowDialog();
         }
+
+        private void backUpDoBancoDeDadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var resposta = MessageBox.Show(
+                "Você realmente deseja realizar o BackUp do Banco de Dados?",
+                "Atenção!", 
+                MessageBoxButtons.YesNo, 
+                MessageBoxIcon.Warning
+                );
+
+            if(resposta == DialogResult.Yes)
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "Backup SQL|*.sql";
+                sfd.FileName = $"backup_emprestimos_{DateTime.Now:yyyyMMdd_HHmmss}.sql";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    BackUpService serviceBkp = new BackUpService();
+
+                    if (serviceBkp.RealizarBackup(sfd.FileName))
+                    {
+                        Funcoes.MensagemInformation("BackUp Realizado com Sucesso!");
+                    }
+                    else
+                    {
+                        Funcoes.MensagemErro("Ocorreu um erro ao realizar o backup. Verifique as permissões de acesso ao local selecionado e tente novamente.");
+                    }
+                }
+            }
+        }
     }
 }

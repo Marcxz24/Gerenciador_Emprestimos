@@ -204,6 +204,7 @@
             // 
             resources.ApplyResources(backUpDoBancoDeDadosToolStripMenuItem, "backUpDoBancoDeDadosToolStripMenuItem");
             backUpDoBancoDeDadosToolStripMenuItem.Name = "backUpDoBancoDeDadosToolStripMenuItem";
+            backUpDoBancoDeDadosToolStripMenuItem.Click += backUpDoBancoDeDadosToolStripMenuItem_Click;
             // 
             // MenuStripRelatorios
             // 
