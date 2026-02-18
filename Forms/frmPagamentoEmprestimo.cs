@@ -146,6 +146,9 @@ namespace Gerenciador_de_Emprestimos
             txtBoxParcela.Clear();
             txtClienteNome.Clear();
             comboBoxParcelaStatus.Text = "";
+            txtCodigoEmprestimo.Clear();
+            txtCodigoParcela.Clear();
+            txtCodCliente.Clear();
             dataGridParcelasAbertas.DataSource = null;
         }
 

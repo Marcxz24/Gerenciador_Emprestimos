@@ -11,11 +11,13 @@ namespace Gerenciador_de_Emprestimos.Repositories
 {
     public class EmprestimoDAO
     {
+        // Método para buscar a menor parcela aberta de um empréstimo específico
         public ParcelaDTO BuscarMenorParcelaAberta(int codigoEmprestimo)
         {
+            // Inicializa a variável para armazenar a parcela encontrada, inicialmente nula
             ParcelaDTO parcelaEncontrada = null;
 
-            // Query que você validou, buscando a primeira aberta
+            // Consulta SQL para selecionar a menor parcela aberta do empréstimo, incluindo os dados do cliente e do empréstimo
             string sql = @"SELECT p.*, e.valor_juros, c.nome_cliente, e.valor_emprestado_total FROM conta_receber p
                             INNER JOIN emprestimos e
 	                            ON e.codigo = p.codigo_emprestimo
@@ -25,15 +27,21 @@ namespace Gerenciador_de_Emprestimos.Repositories
 	                            AND status_parcela = 'ABERTA' 
 		                            ORDER BY numero_parcela ASC LIMIT 1";
 
-            using (var conn = ConexaoBancoDeDados.Conectar()) // Usa sua classe de conexão
+            // Estabelece a conexão com o banco de dados e executa a consulta
+            using (var conn = ConexaoBancoDeDados.Conectar())
+            // Cria um comando SQL para buscar a menor parcela aberta do empréstimo
             using (var cmd = new MySqlCommand(sql, conn))
             {
+                // Adiciona o parâmetro do código do empréstimo para a consulta SQL
                 cmd.Parameters.AddWithValue("@codigo_emprestimo", codigoEmprestimo);
 
+                // Executa a leitura dos dados de forma sequencial
                 using (var dr = cmd.ExecuteReader())
                 {
+                    // Se o banco encontrar um registro, preenche a instância de ParcelaDTO com os dados retornados
                     if (dr.Read())
                     {
+                        // Cria uma nova instância de ParcelaDTO e preenche suas propriedades com os dados do banco
                         parcelaEncontrada = new ParcelaDTO
                         {
                             CodigoParcela = dr.GetInt32("codigo"),
@@ -50,6 +58,8 @@ namespace Gerenciador_de_Emprestimos.Repositories
                     }
                 }
             }
+
+            // Retorna a parcela encontrada, ou nulo se nenhuma parcela aberta for encontrada para o empréstimo especificado
             return parcelaEncontrada;
         }
     }
