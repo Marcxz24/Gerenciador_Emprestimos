@@ -40,7 +40,7 @@ namespace Gerenciador_de_Emprestimos.Models
                         bairro_funcionario,
                         numero_residencia,
                         cep_funcionario,
-                        uf_funcionario
+                        uf_funcionario,
                         situacao_funcionario,
                         data_cadastro
                         )

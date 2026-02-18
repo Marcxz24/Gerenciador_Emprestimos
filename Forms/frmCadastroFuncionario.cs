@@ -532,6 +532,8 @@ namespace Gerenciador_de_Emprestimos
             {
                 // Caso contrário, chamar o método de Insert
                 InserirNovoCadastroFuncionario();
+
+                txtBoxCodigo.Text = Convert.ToString(funcionario.CodigoFuncionario);
             }
         }
 
