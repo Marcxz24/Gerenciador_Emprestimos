@@ -1,9 +1,8 @@
-using System;
-using System.Windows.Forms;
-using Gerenciador_de_Emprestimos.Forms;
+using Gerenciador_de_Emprestimos.Models;
+using Gerenciador_de_Emprestimos.Repositories;
 using Gerenciador_de_Emprestimos.Services;
 using Gerenciador_de_Emprestimos.Utils;
-using MySql.Data;
+using System.Data;
 
 namespace Gerenciador_de_Emprestimos
 {
@@ -75,7 +74,12 @@ namespace Gerenciador_de_Emprestimos
             ajudaToolStripMenuItem.Enabled = logado;
             ajudaToolStripMenuItem.Visible = logado;
 
-            // Botão rferente aos Lembretes do Sistema
+            funçõesOperacionaisToolStripMenuItem.Enabled = logado;
+            funçõesOperacionaisToolStripMenuItem.Visible = logado;
+
+            // Botões de Lista de Empréstimos e Novo Lembrete
+            btnListaEmprestimos.Visible = logado;
+            btnLembretes.Visible = logado;
             btnNovoLembrete.Visible = logado;
 
             // Controle de Login/Logoff
@@ -225,6 +229,9 @@ namespace Gerenciador_de_Emprestimos
         {
             ConfigurarAcesso(false); // Bloqueia menus
             statusLabelUsername.Text = ""; // Limpa nome do usuário no rodapé
+            dataGridListaEmprestimos.Visible = false; // Esconde a lista de empréstimos
+            lblListaEmprestimos.Visible = false; // Esconde o rótulo da lista de empréstimos
+            btnAtualizarLista.Visible = false; // Esconde o botão de atualizar lista
             frmLoginFuncionario loginFuncionario = new frmLoginFuncionario();
             loginFuncionario.Owner = this;
             loginFuncionario.Show();
@@ -257,22 +264,16 @@ namespace Gerenciador_de_Emprestimos
             painelLogoSistema.Top = this.ClientSize.Height - painelLogoSistema.Height - stsStripSistemVersion.Height - 10; // 10 acima da barra
         }
 
-        private void btnNovoLembrete_Click(object sender, EventArgs e)
-        {
-            frmNovoLembrete NovoLembrete = new frmNovoLembrete();
-            NovoLembrete.ShowDialog();
-        }
-
         private void backUpDoBancoDeDadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var resposta = MessageBox.Show(
                 "Você realmente deseja realizar o BackUp do Banco de Dados?",
-                "Atenção!", 
-                MessageBoxButtons.YesNo, 
+                "Atenção!",
+                MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning
                 );
 
-            if(resposta == DialogResult.Yes)
+            if (resposta == DialogResult.Yes)
             {
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.Filter = "Backup SQL|*.sql";
@@ -291,6 +292,66 @@ namespace Gerenciador_de_Emprestimos
                         Funcoes.MensagemErro("Ocorreu um erro ao realizar o backup. Verifique as permissões de acesso ao local selecionado e tente novamente.");
                     }
                 }
+            }
+        }
+
+        private void btnListaEmprestimos_Click(object sender, EventArgs e)
+        {
+            lblListaEmprestimos.Visible = true; // Alterna a visibilidade do rótulo
+            btnAtualizarLista.Visible = true;
+            dataGridListaEmprestimos.Visible = true;
+            btnNovoLembrete.Visible = false;
+        }
+
+        private void btnNovoLembrete_Click(object sender, EventArgs e)
+        {
+            lblListaEmprestimos.Visible = false; // Alterna a visibilidade do rótulo
+            btnAtualizarLista.Visible = false;
+            dataGridListaEmprestimos.Visible = false;
+            btnNovoLembrete.Visible = true;
+        }
+
+        private void btnAtualizarLista_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ListarEmprestimoService emprestimoLisa = new ListarEmprestimoService();
+
+                dataGridListaEmprestimos.DataSource = emprestimoLisa.ListarEmprestimos();
+            }
+            catch (Exception ex)
+            {
+                Funcoes.MensagemWarning("Ocorreu um erro ao carregar a lista de empréstimos. Tente novamente mais tarde.\nDetalhes do erro: " + ex.Message);
+                Serilog.Log.Error("Erro ao atualizar a lista de empréstimos: " + ex.Message);
+            }
+        }
+
+        private void dataGridListaEmprestimos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            try
+            {
+                var emprestimoSelecionado = (EmprestimosListaDTO)dataGridListaEmprestimos.Rows[e.RowIndex].DataBoundItem;
+
+                if (emprestimoSelecionado.Status == "ATIVO")
+                {
+                    frmPagamentoEmprestimo frmPagamento = new frmPagamentoEmprestimo();
+
+                    frmPagamento.codigoEmprestimo = emprestimoSelecionado.CodigoEmprestimo;
+
+                    frmPagamento.CarregarDadosParcela(emprestimoSelecionado.CodigoEmprestimo);
+
+                    frmPagamento.ShowDialog();
+
+                    btnAtualizarLista.PerformClick(); // Atualiza a lista após fechar o formulário de pagamento
+                }
+            }
+            catch (Exception ex)
+            {
+                Funcoes.MensagemWarning("Ocorreu um erro ao tentar acessar os detalhes do empréstimo. Tente novamente mais tarde.\nDetalhes do erro: " + ex.Message);
+                Serilog.Log.Error("Erro ao acessar detalhes do empréstimo: " + ex.Message);
+                return;
             }
         }
     }

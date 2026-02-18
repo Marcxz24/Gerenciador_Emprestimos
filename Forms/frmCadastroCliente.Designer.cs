@@ -51,8 +51,6 @@
             MaskedTxtCepCliente = new MaskedTextBox();
             MaskedTxtCelularCliente = new MaskedTextBox();
             lblEstadoCliente = new Label();
-            btnRadioCpf = new RadioButton();
-            btnRadioCnpj = new RadioButton();
             btnRadioFeminino = new RadioButton();
             btnRadioMasculino = new RadioButton();
             groupBoxGenero = new GroupBox();
@@ -68,6 +66,7 @@
             btnSalvarCadastroCliente = new Button();
             btnEditarCadastro = new Button();
             groupBoxNomeCpfCnpj = new GroupBox();
+            lblCpfCliente = new Label();
             btnPesquisarCliente = new Button();
             btnNovoCadastro = new Button();
             lblCodigoCliente = new Label();
@@ -241,7 +240,7 @@
             // 
             lblObservacoes.AutoSize = true;
             lblObservacoes.BackColor = Color.Transparent;
-            lblObservacoes.Location = new Point(36, 533);
+            lblObservacoes.Location = new Point(32, 555);
             lblObservacoes.Margin = new Padding(4, 0, 4, 0);
             lblObservacoes.Name = "lblObservacoes";
             lblObservacoes.Size = new Size(110, 17);
@@ -311,34 +310,6 @@
             lblEstadoCliente.Size = new Size(40, 17);
             lblEstadoCliente.TabIndex = 34;
             lblEstadoCliente.Text = "*UF:";
-            // 
-            // btnRadioCpf
-            // 
-            btnRadioCpf.AutoSize = true;
-            btnRadioCpf.BackColor = Color.Transparent;
-            btnRadioCpf.Checked = true;
-            btnRadioCpf.Enabled = false;
-            btnRadioCpf.Location = new Point(328, 18);
-            btnRadioCpf.Name = "btnRadioCpf";
-            btnRadioCpf.Size = new Size(66, 21);
-            btnRadioCpf.TabIndex = 35;
-            btnRadioCpf.TabStop = true;
-            btnRadioCpf.Text = "*CPF";
-            btnRadioCpf.UseVisualStyleBackColor = false;
-            btnRadioCpf.CheckedChanged += btnRadioCpf_CheckedChanged;
-            // 
-            // btnRadioCnpj
-            // 
-            btnRadioCnpj.AutoSize = true;
-            btnRadioCnpj.BackColor = Color.Transparent;
-            btnRadioCnpj.Enabled = false;
-            btnRadioCnpj.Location = new Point(396, 18);
-            btnRadioCnpj.Name = "btnRadioCnpj";
-            btnRadioCnpj.Size = new Size(77, 21);
-            btnRadioCnpj.TabIndex = 36;
-            btnRadioCnpj.Text = "*CNPJ";
-            btnRadioCnpj.UseVisualStyleBackColor = false;
-            btnRadioCnpj.CheckedChanged += btnRadioCnpj_CheckedChanged;
             // 
             // btnRadioFeminino
             // 
@@ -548,16 +519,26 @@
             // groupBoxNomeCpfCnpj
             // 
             groupBoxNomeCpfCnpj.BackColor = Color.Transparent;
+            groupBoxNomeCpfCnpj.Controls.Add(lblCpfCliente);
             groupBoxNomeCpfCnpj.Controls.Add(txtNomeCliente);
             groupBoxNomeCpfCnpj.Controls.Add(lblNomeCliente);
             groupBoxNomeCpfCnpj.Controls.Add(MaskedTxtCpfCnpjCliente);
-            groupBoxNomeCpfCnpj.Controls.Add(btnRadioCpf);
-            groupBoxNomeCpfCnpj.Controls.Add(btnRadioCnpj);
             groupBoxNomeCpfCnpj.Location = new Point(247, 53);
             groupBoxNomeCpfCnpj.Name = "groupBoxNomeCpfCnpj";
             groupBoxNomeCpfCnpj.Size = new Size(574, 91);
             groupBoxNomeCpfCnpj.TabIndex = 0;
             groupBoxNomeCpfCnpj.TabStop = false;
+            // 
+            // lblCpfCliente
+            // 
+            lblCpfCliente.AutoSize = true;
+            lblCpfCliente.BackColor = Color.Transparent;
+            lblCpfCliente.Location = new Point(317, 22);
+            lblCpfCliente.Margin = new Padding(4, 0, 4, 0);
+            lblCpfCliente.Name = "lblCpfCliente";
+            lblCpfCliente.Size = new Size(122, 17);
+            lblCpfCliente.TabIndex = 36;
+            lblCpfCliente.Text = "*CPF do Cliente";
             // 
             // btnPesquisarCliente
             // 
@@ -742,8 +723,6 @@
         private MaskedTextBox MaskedTxtCepCliente;
         private MaskedTextBox MaskedTxtCelularCliente;
         private Label lblEstadoCliente;
-        private RadioButton btnRadioCpf;
-        private RadioButton btnRadioCnpj;
         private RadioButton btnRadioFeminino;
         private RadioButton btnRadioMasculino;
         private GroupBox groupBoxGenero;
@@ -767,5 +746,6 @@
         private Label lblSituacaoCadastral;
         private Label lblMostrarCodigoCliente;
         private TextBox txtCodigoCliente;
+        private Label lblCpfCliente;
     }
 }

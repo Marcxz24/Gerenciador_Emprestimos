@@ -26,8 +26,6 @@ namespace Gerenciador_de_Emprestimos
             // Para campos de texto, usamos 'ReadOnly' para permitir a seleção/cópia sem alteração.
             comboBoxSituacaoCadastral.Enabled = ManifestarBotoes;
             txtNomeCliente.ReadOnly = !ManifestarBotoes;
-            btnRadioCpf.Enabled = ManifestarBotoes;
-            btnRadioCnpj.Enabled = ManifestarBotoes;
             MaskedTxtCpfCnpjCliente.ReadOnly = !ManifestarBotoes;
             btnRadioMasculino.Enabled = ManifestarBotoes;
             btnRadioFeminino.Enabled = ManifestarBotoes;
@@ -48,8 +46,6 @@ namespace Gerenciador_de_Emprestimos
             {
                 comboBoxSituacaoCadastral.SelectedIndex = -1; // Remove seleção dos ComboBox
                 txtNomeCliente.Clear();
-                btnRadioCpf.Checked = true; // Define CPF como padrão
-                btnRadioCnpj.Checked = false;
                 MaskedTxtCpfCnpjCliente.Clear();
                 btnRadioMasculino.Checked = false;
                 btnRadioFeminino.Checked = false;
@@ -270,15 +266,6 @@ namespace Gerenciador_de_Emprestimos
                     return true; // Existe Erro e bloqueia a passagem para o proximo método.
                 }
 
-                // Se o Radio Button CPF ou CNPJ estiver desmarcado, encerra o Método neste Trecho.
-                if (btnRadioCpf.Checked == false && btnRadioCnpj.Checked == false)
-                {
-                    Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Marque os Botões!\n\nCampo: CPF/CNPJ");
-
-                    MaskedTxtCpfCnpjCliente.Focus();
-                    return true; // Existe Erro e bloqueia a passagem para o proximo método.
-                }
-
                 // Se o Masked Text Box Estiver vazio, mostra a mensagem e encerra o método.
                 if (string.IsNullOrWhiteSpace(MaskedTxtCpfCnpjCliente.Text))
                 {
@@ -418,17 +405,6 @@ namespace Gerenciador_de_Emprestimos
                         // Text Box Nome do cliente recebe o nome do cliente.
                         txtNomeCliente.Text = cliente.nome_cliente;
 
-                        // Se o CPF e CPNJ passado do formulário de Selecionar Cliente tiver com a Largura de 11, marca o Radio Button CPF.
-                        if (!string.IsNullOrWhiteSpace(cliente.cpf_cnpj) && cliente.cpf_cnpj.Length == 11)
-                        {
-                            btnRadioCpf.Checked = true;
-                        }
-                        // Senão Marca o Radio Button de CNPJ.
-                        else
-                        {
-                            btnRadioCnpj.Checked = true;
-                        }
-
                         // Masked Text Box CPF/CNPJ recebe o valor do CPF do cliente selecionado.
                         MaskedTxtCpfCnpjCliente.Text = cliente.cpf_cnpj;
 
@@ -475,26 +451,6 @@ namespace Gerenciador_de_Emprestimos
         private void btnFecharForm_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        // Aplica a mascará de CPF se o Radio Button CPF estiver Marcado.
-        private void btnRadioCpf_CheckedChanged(object sender, EventArgs e)
-        {
-            if (btnRadioCpf.Checked == true)
-            {
-                MaskedTxtCpfCnpjCliente.Mask = "000,000,000-00";
-                MaskedTxtCpfCnpjCliente.Focus();
-            }
-        }
-
-        // Aplica a mascará de CNPJ se o Radio Button CNPJ estiver Marcado.
-        private void btnRadioCnpj_CheckedChanged(object sender, EventArgs e)
-        {
-            if (btnRadioCnpj.Checked == true)
-            {
-                MaskedTxtCpfCnpjCliente.Mask = "00,000,000/0000-00";
-                MaskedTxtCpfCnpjCliente.Focus();
-            }
         }
 
         // Text Box Nome cliente recebe a função de deixar a primeira letra maiúscula.

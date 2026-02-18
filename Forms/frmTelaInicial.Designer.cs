@@ -59,17 +59,33 @@
             chamadoToolStripMenuItem = new ToolStripMenuItem();
             novoToolStripMenuItem = new ToolStripMenuItem();
             imageListSistemaGerenciadorEmprestimos = new ImageList(components);
-            btnNovoLembrete = new Button();
             painelLogoSistema = new Panel();
-            picBoxLogoSistema2 = new PictureBox();
             lblTituloInicial = new Label();
             lblTituloSistemas = new Label();
+            picBoxLogoSistema2 = new PictureBox();
             picBoxLogoSistema = new PictureBox();
+            btnListaEmprestimos = new Button();
+            dataGridListaEmprestimos = new DataGridView();
+            codigo_emprestimo = new DataGridViewTextBoxColumn();
+            codigo_cliente = new DataGridViewTextBoxColumn();
+            nome_cliente = new DataGridViewTextBoxColumn();
+            valor_emprestado_total = new DataGridViewTextBoxColumn();
+            percentual_juros = new DataGridViewTextBoxColumn();
+            data_pagar = new DataGridViewTextBoxColumn();
+            Obeservacoes = new DataGridViewTextBoxColumn();
+            status_emprestimo = new DataGridViewTextBoxColumn();
+            lblListaEmprestimos = new Label();
+            btnAtualizarLista = new Button();
+            btnLembretes = new Button();
+            btnNovoLembrete = new Button();
+            panelDataGridListarEmprestimos = new Panel();
             stsStripSistemVersion.SuspendLayout();
             MenuStripMenusSistema.SuspendLayout();
             painelLogoSistema.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridListaEmprestimos).BeginInit();
+            panelDataGridListarEmprestimos.SuspendLayout();
             SuspendLayout();
             // 
             // stsStripSistemVersion
@@ -254,31 +270,15 @@
             resources.ApplyResources(imageListSistemaGerenciadorEmprestimos, "imageListSistemaGerenciadorEmprestimos");
             imageListSistemaGerenciadorEmprestimos.TransparentColor = Color.Transparent;
             // 
-            // btnNovoLembrete
-            // 
-            resources.ApplyResources(btnNovoLembrete, "btnNovoLembrete");
-            btnNovoLembrete.BackColor = Color.Transparent;
-            btnNovoLembrete.Image = Properties.Resources.alfinete;
-            btnNovoLembrete.Name = "btnNovoLembrete";
-            btnNovoLembrete.UseVisualStyleBackColor = false;
-            btnNovoLembrete.Click += btnNovoLembrete_Click;
-            // 
             // painelLogoSistema
             // 
             resources.ApplyResources(painelLogoSistema, "painelLogoSistema");
             painelLogoSistema.BackColor = Color.Transparent;
-            painelLogoSistema.Controls.Add(picBoxLogoSistema2);
             painelLogoSistema.Controls.Add(lblTituloInicial);
             painelLogoSistema.Controls.Add(lblTituloSistemas);
+            painelLogoSistema.Controls.Add(picBoxLogoSistema2);
             painelLogoSistema.Controls.Add(picBoxLogoSistema);
             painelLogoSistema.Name = "painelLogoSistema";
-            // 
-            // picBoxLogoSistema2
-            // 
-            resources.ApplyResources(picBoxLogoSistema2, "picBoxLogoSistema2");
-            picBoxLogoSistema2.BackColor = Color.Transparent;
-            picBoxLogoSistema2.Name = "picBoxLogoSistema2";
-            picBoxLogoSistema2.TabStop = false;
             // 
             // lblTituloInicial
             // 
@@ -292,6 +292,13 @@
             lblTituloSistemas.BackColor = Color.Transparent;
             lblTituloSistemas.Name = "lblTituloSistemas";
             // 
+            // picBoxLogoSistema2
+            // 
+            resources.ApplyResources(picBoxLogoSistema2, "picBoxLogoSistema2");
+            picBoxLogoSistema2.BackColor = Color.Transparent;
+            picBoxLogoSistema2.Name = "picBoxLogoSistema2";
+            picBoxLogoSistema2.TabStop = false;
+            // 
             // picBoxLogoSistema
             // 
             resources.ApplyResources(picBoxLogoSistema, "picBoxLogoSistema");
@@ -300,12 +307,127 @@
             picBoxLogoSistema.Name = "picBoxLogoSistema";
             picBoxLogoSistema.TabStop = false;
             // 
+            // btnListaEmprestimos
+            // 
+            resources.ApplyResources(btnListaEmprestimos, "btnListaEmprestimos");
+            btnListaEmprestimos.Name = "btnListaEmprestimos";
+            btnListaEmprestimos.UseVisualStyleBackColor = true;
+            btnListaEmprestimos.Click += btnListaEmprestimos_Click;
+            // 
+            // dataGridListaEmprestimos
+            // 
+            resources.ApplyResources(dataGridListaEmprestimos, "dataGridListaEmprestimos");
+            dataGridListaEmprestimos.AllowUserToAddRows = false;
+            dataGridListaEmprestimos.AllowUserToDeleteRows = false;
+            dataGridListaEmprestimos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridListaEmprestimos.Columns.AddRange(new DataGridViewColumn[] { codigo_emprestimo, codigo_cliente, nome_cliente, valor_emprestado_total, percentual_juros, data_pagar, Obeservacoes, status_emprestimo });
+            dataGridListaEmprestimos.Name = "dataGridListaEmprestimos";
+            dataGridListaEmprestimos.ReadOnly = true;
+            dataGridListaEmprestimos.CellDoubleClick += dataGridListaEmprestimos_CellDoubleClick;
+            // 
+            // codigo_emprestimo
+            // 
+            codigo_emprestimo.DataPropertyName = "CodigoEmprestimo";
+            resources.ApplyResources(codigo_emprestimo, "codigo_emprestimo");
+            codigo_emprestimo.Name = "codigo_emprestimo";
+            codigo_emprestimo.ReadOnly = true;
+            // 
+            // codigo_cliente
+            // 
+            codigo_cliente.DataPropertyName = "CodigoCliente";
+            resources.ApplyResources(codigo_cliente, "codigo_cliente");
+            codigo_cliente.Name = "codigo_cliente";
+            codigo_cliente.ReadOnly = true;
+            // 
+            // nome_cliente
+            // 
+            nome_cliente.DataPropertyName = "NomeCliente";
+            resources.ApplyResources(nome_cliente, "nome_cliente");
+            nome_cliente.Name = "nome_cliente";
+            nome_cliente.ReadOnly = true;
+            // 
+            // valor_emprestado_total
+            // 
+            valor_emprestado_total.DataPropertyName = "ValorTotal";
+            resources.ApplyResources(valor_emprestado_total, "valor_emprestado_total");
+            valor_emprestado_total.Name = "valor_emprestado_total";
+            valor_emprestado_total.ReadOnly = true;
+            // 
+            // percentual_juros
+            // 
+            percentual_juros.DataPropertyName = "Juros";
+            resources.ApplyResources(percentual_juros, "percentual_juros");
+            percentual_juros.Name = "percentual_juros";
+            percentual_juros.ReadOnly = true;
+            // 
+            // data_pagar
+            // 
+            data_pagar.DataPropertyName = "DataPagamento";
+            resources.ApplyResources(data_pagar, "data_pagar");
+            data_pagar.Name = "data_pagar";
+            data_pagar.ReadOnly = true;
+            // 
+            // Obeservacoes
+            // 
+            Obeservacoes.DataPropertyName = "Observacoes";
+            resources.ApplyResources(Obeservacoes, "Obeservacoes");
+            Obeservacoes.Name = "Obeservacoes";
+            Obeservacoes.ReadOnly = true;
+            // 
+            // status_emprestimo
+            // 
+            status_emprestimo.DataPropertyName = "Status";
+            resources.ApplyResources(status_emprestimo, "status_emprestimo");
+            status_emprestimo.Name = "status_emprestimo";
+            status_emprestimo.ReadOnly = true;
+            // 
+            // lblListaEmprestimos
+            // 
+            resources.ApplyResources(lblListaEmprestimos, "lblListaEmprestimos");
+            lblListaEmprestimos.BackColor = Color.Transparent;
+            lblListaEmprestimos.ForeColor = SystemColors.MenuText;
+            lblListaEmprestimos.Name = "lblListaEmprestimos";
+            // 
+            // btnAtualizarLista
+            // 
+            resources.ApplyResources(btnAtualizarLista, "btnAtualizarLista");
+            btnAtualizarLista.ForeColor = SystemColors.HotTrack;
+            btnAtualizarLista.Name = "btnAtualizarLista";
+            btnAtualizarLista.UseVisualStyleBackColor = true;
+            btnAtualizarLista.Click += btnAtualizarLista_Click;
+            // 
+            // btnLembretes
+            // 
+            resources.ApplyResources(btnLembretes, "btnLembretes");
+            btnLembretes.Name = "btnLembretes";
+            btnLembretes.UseVisualStyleBackColor = true;
+            btnLembretes.Click += btnNovoLembrete_Click;
+            // 
+            // btnNovoLembrete
+            // 
+            resources.ApplyResources(btnNovoLembrete, "btnNovoLembrete");
+            btnNovoLembrete.Image = Properties.Resources.alfinete;
+            btnNovoLembrete.Name = "btnNovoLembrete";
+            btnNovoLembrete.UseVisualStyleBackColor = true;
+            // 
+            // panelDataGridListarEmprestimos
+            // 
+            resources.ApplyResources(panelDataGridListarEmprestimos, "panelDataGridListarEmprestimos");
+            panelDataGridListarEmprestimos.BackColor = Color.Transparent;
+            panelDataGridListarEmprestimos.Controls.Add(dataGridListaEmprestimos);
+            panelDataGridListarEmprestimos.Name = "panelDataGridListarEmprestimos";
+            // 
             // frmTelaIncial
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.AliceBlue;
             BackgroundImage = Properties.Resources.gra_cad_cliente;
+            Controls.Add(panelDataGridListarEmprestimos);
+            Controls.Add(btnLembretes);
+            Controls.Add(btnAtualizarLista);
+            Controls.Add(lblListaEmprestimos);
+            Controls.Add(btnListaEmprestimos);
             Controls.Add(painelLogoSistema);
             Controls.Add(stsStripSistemVersion);
             Controls.Add(MenuStripMenusSistema);
@@ -325,6 +447,8 @@
             painelLogoSistema.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema2).EndInit();
             ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridListaEmprestimos).EndInit();
+            panelDataGridListarEmprestimos.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -357,7 +481,6 @@
         private ToolStripMenuItem novoToolStripMenuItem;
         private ToolStripStatusLabel statusLabelUsername;
         private ToolStripStatusLabel lblEspacoVazio;
-        private Button btnNovoLembrete;
         private ToolStripMenuItem funçõesOperacionaisToolStripMenuItem;
         private ToolStripMenuItem backUpDoBancoDeDadosToolStripMenuItem;
         private Panel painelLogoSistema;
@@ -365,5 +488,20 @@
         private Label lblTituloInicial;
         private Label lblTituloSistemas;
         private PictureBox picBoxLogoSistema;
+        private Button btnListaEmprestimos;
+        private DataGridView dataGridListaEmprestimos;
+        private Label lblListaEmprestimos;
+        private Button btnAtualizarLista;
+        private Button btnLembretes;
+        private DataGridViewTextBoxColumn codigo_emprestimo;
+        private DataGridViewTextBoxColumn codigo_cliente;
+        private DataGridViewTextBoxColumn nome_cliente;
+        private DataGridViewTextBoxColumn valor_emprestado_total;
+        private DataGridViewTextBoxColumn percentual_juros;
+        private DataGridViewTextBoxColumn data_pagar;
+        private DataGridViewTextBoxColumn Obeservacoes;
+        private DataGridViewTextBoxColumn status_emprestimo;
+        private Button btnNovoLembrete;
+        private Panel panelDataGridListarEmprestimos;
     }
 }

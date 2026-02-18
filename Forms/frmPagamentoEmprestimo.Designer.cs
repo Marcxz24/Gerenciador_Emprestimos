@@ -52,6 +52,10 @@
             lblTotalPagar = new Label();
             txtBoxTotalPagar = new TextBox();
             grpBoxDadosPagamento = new GroupBox();
+            txtCodigoParcela = new TextBox();
+            lblCodParcela = new Label();
+            txtCodigoEmprestimo = new TextBox();
+            lblCodEmprestimo = new Label();
             comboBoxParcelaStatus = new ComboBox();
             lblClienteNome = new Label();
             txtClienteNome = new TextBox();
@@ -67,6 +71,8 @@
             btnSalvarPagamento = new Button();
             btnCancelar = new Button();
             lblInserindoDados = new Label();
+            txtCodCliente = new TextBox();
+            lblCodCliente = new Label();
             grpBoxDadosParcela.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridParcelasAbertas).BeginInit();
             grpBoxDadosPagamento.SuspendLayout();
@@ -307,6 +313,12 @@
             // grpBoxDadosPagamento
             // 
             grpBoxDadosPagamento.BackColor = Color.Transparent;
+            grpBoxDadosPagamento.Controls.Add(txtCodCliente);
+            grpBoxDadosPagamento.Controls.Add(lblCodCliente);
+            grpBoxDadosPagamento.Controls.Add(txtCodigoParcela);
+            grpBoxDadosPagamento.Controls.Add(lblCodParcela);
+            grpBoxDadosPagamento.Controls.Add(txtCodigoEmprestimo);
+            grpBoxDadosPagamento.Controls.Add(lblCodEmprestimo);
             grpBoxDadosPagamento.Controls.Add(comboBoxParcelaStatus);
             grpBoxDadosPagamento.Controls.Add(lblClienteNome);
             grpBoxDadosPagamento.Controls.Add(txtClienteNome);
@@ -328,11 +340,47 @@
             grpBoxDadosPagamento.TabStop = false;
             grpBoxDadosPagamento.Text = "Dados do Pagamento";
             // 
+            // txtCodigoParcela
+            // 
+            txtCodigoParcela.Location = new Point(450, 29);
+            txtCodigoParcela.Name = "txtCodigoParcela";
+            txtCodigoParcela.ReadOnly = true;
+            txtCodigoParcela.Size = new Size(127, 27);
+            txtCodigoParcela.TabIndex = 35;
+            // 
+            // lblCodParcela
+            // 
+            lblCodParcela.AutoSize = true;
+            lblCodParcela.BackColor = Color.Transparent;
+            lblCodParcela.Location = new Point(311, 32);
+            lblCodParcela.Name = "lblCodParcela";
+            lblCodParcela.Size = new Size(133, 20);
+            lblCodParcela.TabIndex = 34;
+            lblCodParcela.Text = "Codigo da Parcela:";
+            // 
+            // txtCodigoEmprestimo
+            // 
+            txtCodigoEmprestimo.Location = new Point(177, 32);
+            txtCodigoEmprestimo.Name = "txtCodigoEmprestimo";
+            txtCodigoEmprestimo.ReadOnly = true;
+            txtCodigoEmprestimo.Size = new Size(127, 27);
+            txtCodigoEmprestimo.TabIndex = 33;
+            // 
+            // lblCodEmprestimo
+            // 
+            lblCodEmprestimo.AutoSize = true;
+            lblCodEmprestimo.BackColor = Color.Transparent;
+            lblCodEmprestimo.Location = new Point(6, 35);
+            lblCodEmprestimo.Name = "lblCodEmprestimo";
+            lblCodEmprestimo.Size = new Size(167, 20);
+            lblCodEmprestimo.TabIndex = 32;
+            lblCodEmprestimo.Text = "Codigo do Emprestimo:";
+            // 
             // comboBoxParcelaStatus
             // 
             comboBoxParcelaStatus.Enabled = false;
             comboBoxParcelaStatus.FormattingEnabled = true;
-            comboBoxParcelaStatus.Location = new Point(136, 89);
+            comboBoxParcelaStatus.Location = new Point(136, 106);
             comboBoxParcelaStatus.Name = "comboBoxParcelaStatus";
             comboBoxParcelaStatus.Size = new Size(123, 28);
             comboBoxParcelaStatus.TabIndex = 31;
@@ -340,7 +388,7 @@
             // lblClienteNome
             // 
             lblClienteNome.AutoSize = true;
-            lblClienteNome.Location = new Point(486, 95);
+            lblClienteNome.Location = new Point(486, 112);
             lblClienteNome.Name = "lblClienteNome";
             lblClienteNome.Size = new Size(58, 20);
             lblClienteNome.TabIndex = 23;
@@ -348,7 +396,7 @@
             // 
             // txtClienteNome
             // 
-            txtClienteNome.Location = new Point(545, 95);
+            txtClienteNome.Location = new Point(545, 112);
             txtClienteNome.Name = "txtClienteNome";
             txtClienteNome.ReadOnly = true;
             txtClienteNome.Size = new Size(254, 27);
@@ -358,7 +406,7 @@
             // 
             lblParcelaValor.AutoSize = true;
             lblParcelaValor.BackColor = Color.Transparent;
-            lblParcelaValor.Location = new Point(257, 92);
+            lblParcelaValor.Location = new Point(257, 109);
             lblParcelaValor.Name = "lblParcelaValor";
             lblParcelaValor.Size = new Size(97, 20);
             lblParcelaValor.TabIndex = 29;
@@ -366,7 +414,7 @@
             // 
             // txtBoxParcela
             // 
-            txtBoxParcela.Location = new Point(355, 92);
+            txtBoxParcela.Location = new Point(355, 109);
             txtBoxParcela.Name = "txtBoxParcela";
             txtBoxParcela.ReadOnly = true;
             txtBoxParcela.Size = new Size(127, 27);
@@ -375,7 +423,7 @@
             // lblStatusParce
             // 
             lblStatusParce.AutoSize = true;
-            lblStatusParce.Location = new Point(6, 95);
+            lblStatusParce.Location = new Point(6, 112);
             lblStatusParce.Name = "lblStatusParce";
             lblStatusParce.Size = new Size(124, 20);
             lblStatusParce.TabIndex = 18;
@@ -385,7 +433,7 @@
             // 
             lblValorJuros.AutoSize = true;
             lblValorJuros.BackColor = Color.Transparent;
-            lblValorJuros.Location = new Point(571, 41);
+            lblValorJuros.Location = new Point(571, 71);
             lblValorJuros.Name = "lblValorJuros";
             lblValorJuros.Size = new Size(105, 20);
             lblValorJuros.TabIndex = 25;
@@ -393,7 +441,7 @@
             // 
             // txtValorJuros
             // 
-            txtValorJuros.Location = new Point(682, 38);
+            txtValorJuros.Location = new Point(682, 68);
             txtValorJuros.Name = "txtValorJuros";
             txtValorJuros.ReadOnly = true;
             txtValorJuros.Size = new Size(121, 27);
@@ -403,7 +451,7 @@
             // 
             lblValorEmprestimo.AutoSize = true;
             lblValorEmprestimo.BackColor = Color.Transparent;
-            lblValorEmprestimo.Location = new Point(6, 41);
+            lblValorEmprestimo.Location = new Point(6, 71);
             lblValorEmprestimo.Name = "lblValorEmprestimo";
             lblValorEmprestimo.Size = new Size(152, 20);
             lblValorEmprestimo.TabIndex = 23;
@@ -411,7 +459,7 @@
             // 
             // txtValorEmprestimo
             // 
-            txtValorEmprestimo.Location = new Point(164, 38);
+            txtValorEmprestimo.Location = new Point(164, 68);
             txtValorEmprestimo.Name = "txtValorEmprestimo";
             txtValorEmprestimo.ReadOnly = true;
             txtValorEmprestimo.Size = new Size(127, 27);
@@ -421,7 +469,7 @@
             // 
             lblNumeroParcela.AutoSize = true;
             lblNumeroParcela.BackColor = Color.Transparent;
-            lblNumeroParcela.Location = new Point(297, 41);
+            lblNumeroParcela.Location = new Point(297, 71);
             lblNumeroParcela.Name = "lblNumeroParcela";
             lblNumeroParcela.Size = new Size(138, 20);
             lblNumeroParcela.TabIndex = 21;
@@ -429,7 +477,7 @@
             // 
             // txtBoxNumeroParcela
             // 
-            txtBoxNumeroParcela.Location = new Point(438, 38);
+            txtBoxNumeroParcela.Location = new Point(438, 68);
             txtBoxNumeroParcela.Name = "txtBoxNumeroParcela";
             txtBoxNumeroParcela.ReadOnly = true;
             txtBoxNumeroParcela.Size = new Size(127, 27);
@@ -474,6 +522,24 @@
             lblInserindoDados.TabIndex = 32;
             lblInserindoDados.Text = "Inserindo Dados -->";
             lblInserindoDados.Visible = false;
+            // 
+            // txtCodCliente
+            // 
+            txtCodCliente.Location = new Point(700, 28);
+            txtCodCliente.Name = "txtCodCliente";
+            txtCodCliente.ReadOnly = true;
+            txtCodCliente.Size = new Size(103, 27);
+            txtCodCliente.TabIndex = 37;
+            // 
+            // lblCodCliente
+            // 
+            lblCodCliente.AutoSize = true;
+            lblCodCliente.BackColor = Color.Transparent;
+            lblCodCliente.Location = new Point(583, 32);
+            lblCodCliente.Name = "lblCodCliente";
+            lblCodCliente.Size = new Size(111, 20);
+            lblCodCliente.TabIndex = 36;
+            lblCodCliente.Text = "Codigo Cliente:";
             // 
             // frmPagamentoEmprestimo
             // 
@@ -543,5 +609,11 @@
         private Button btnSalvarPagamento;
         private Button btnCancelar;
         private Label lblInserindoDados;
+        private TextBox txtCodigoEmprestimo;
+        private Label lblCodEmprestimo;
+        private TextBox txtCodigoParcela;
+        private Label lblCodParcela;
+        private TextBox txtCodCliente;
+        private Label lblCodCliente;
     }
 }

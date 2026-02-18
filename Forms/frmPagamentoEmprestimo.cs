@@ -1,4 +1,5 @@
 ﻿using Gerenciador_de_Emprestimos.Models;
+using Gerenciador_de_Emprestimos.Repositories;
 using Gerenciador_de_Emprestimos.Services;
 using Gerenciador_de_Emprestimos.Utils;
 using System;
@@ -16,7 +17,7 @@ namespace Gerenciador_de_Emprestimos
     public partial class frmPagamentoEmprestimo : Form
     {
         // Variáveis globais para persistir os dados da parcela selecionada via Grid
-        private int codigoEmprestimo = 0;
+        public int codigoEmprestimo = 0;
         private int numeroParcela = 0;
         private int codigoParcela;
         private decimal valorParcela = 0;
@@ -89,7 +90,7 @@ namespace Gerenciador_de_Emprestimos
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Serilog.Log.Error("Ocorreu um erro ao abrir a tela de seleção de Cliente.\n\nDetalhes: " + ex.Message);
             }
@@ -235,6 +236,11 @@ namespace Gerenciador_de_Emprestimos
             codigoEmprestimo = Convert.ToInt32(linha.Cells["codigo_emprestimo"].Value);
             numeroParcela = Convert.ToInt32(linha.Cells["numero_parcela"].Value);
 
+            // Campos auxiliares para a Lista de Empréstimos.
+            txtCodigoEmprestimo.Text = linha.Cells["codigo_emprestimo"].Value.ToString();
+            txtCodigoParcela.Text = linha.Cells["codigo_parcela"].Value.ToString();
+            txtCodCliente.Text = linha.Cells["codigo_cliente"].Value.ToString();
+
             txtValorEmprestimo.Text = linha.Cells["valor_contrato"].Value.ToString();
             comboBoxParcelaStatus.Text = linha.Cells["status_parcela"].Value.ToString();
             txtBoxNumeroParcela.Text = linha.Cells["numero_parcela"].Value.ToString();
@@ -331,6 +337,29 @@ namespace Gerenciador_de_Emprestimos
             btnGerarPagamento.Visible = true;
             btnCancelar.Visible = false;
             lblInserindoDados.Visible = false;
+        }
+
+        public void CarregarDadosParcela(int codigoParcela)
+        {
+            EmprestimoDAO emprestimoDAO = new EmprestimoDAO();
+
+            var parcela = emprestimoDAO.BuscarMenorParcelaAberta(codigoEmprestimo);
+
+            if (parcela != null)
+            {
+                txtCodigoEmprestimo.Text = parcela.CodigoEmprestimo.ToString();
+                txtCodigoParcela.Text = parcela.CodigoParcela.ToString();
+                txtCodCliente.Text = parcela.CodigoCliente.ToString();
+
+                txtBoxNumeroParcela.Text = parcela.NumeroParcela.ToString();
+                txtValorEmprestimo.Text = parcela.ValorEmprestimo.ToString("F2");
+                txtValorJuros.Text = parcela.ValorJuros.ToString("F2");
+
+                comboBoxParcelaStatus.Text = parcela.StatusParcela;
+                txtBoxParcela.Text = parcela.ValorParcela.ToString("F2");
+
+                txtClienteNome.Text = parcela.NomeCliente;
+            }
         }
     }
 }

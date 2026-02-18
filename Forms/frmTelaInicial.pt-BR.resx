@@ -138,7 +138,7 @@
     <value>178, 20</value>
   </data>
   <data name="toolStsStripSistemVersion.Text" xml:space="preserve">
-    <value>Versão do Sistema: 1.7.1</value>
+    <value>Versão do Sistema: 1.3.1</value>
   </data>
   <data name="toolStsStripSistemVersion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -255,33 +255,48 @@
   <data name="MenuStripMenusSistema.Size" type="System.Drawing.Size, System.Drawing">
     <value>1911, 28</value>
   </data>
-  <data name="btnNovoLembrete.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Center</value>
-  </data>
-  <data name="btnNovoLembrete.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnNovoLembrete.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="btnNovoLembrete.Location" type="System.Drawing.Point, System.Drawing">
-    <value>54, 141</value>
-  </data>
-  <data name="btnNovoLembrete.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 77</value>
-  </data>
-  <data name="btnNovoLembrete.Text" xml:space="preserve">
-    <value>Novo Lembrete</value>
-  </data>
-  <data name="btnNovoLembrete.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageBeforeText</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="btnNovoLembrete.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="painelLogoSistema.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
+  </data>
+  <data name="lblTituloInicial.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 18pt, style=Bold</value>
+  </data>
+  <data name="lblTituloInicial.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblTituloInicial.Location" type="System.Drawing.Point, System.Drawing">
+    <value>610, 51</value>
+  </data>
+  <data name="lblTituloInicial.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="lblTituloInicial.Size" type="System.Drawing.Size, System.Drawing">
+    <value>432, 35</value>
+  </data>
+  <data name="lblTituloInicial.Text" xml:space="preserve">
+    <value>Gerenciador de Empréstimos</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lblTituloSistemas.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblTituloSistemas.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 16.2pt, style=Bold</value>
+  </data>
+  <data name="lblTituloSistemas.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblTituloSistemas.Location" type="System.Drawing.Point, System.Drawing">
+    <value>756, 86</value>
+  </data>
+  <data name="lblTituloSistemas.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="lblTituloSistemas.Size" type="System.Drawing.Size, System.Drawing">
+    <value>139, 33</value>
+  </data>
+  <data name="lblTituloSistemas.Text" xml:space="preserve">
+    <value>Sistemas</value>
   </data>
   <data name="picBoxLogoSistema2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -368,43 +383,13 @@
     <value>NoControl</value>
   </data>
   <data name="picBoxLogoSistema2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>893, 113</value>
+    <value>902, 89</value>
   </data>
   <data name="picBoxLogoSistema2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 142</value>
+    <value>128, 128</value>
   </data>
-  <data name="lblTituloInicial.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblTituloInicial.Location" type="System.Drawing.Point, System.Drawing">
-    <value>620, 68</value>
-  </data>
-  <data name="lblTituloInicial.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="lblTituloInicial.Text" xml:space="preserve">
-    <value>Gerenciador de Empréstimos</value>
-  </data>
-  <data name="lblTituloSistemas.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblTituloSistemas.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 13.8pt, style=Bold</value>
-  </data>
-  <data name="lblTituloSistemas.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblTituloSistemas.Location" type="System.Drawing.Point, System.Drawing">
-    <value>773, 113</value>
-  </data>
-  <data name="lblTituloSistemas.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="lblTituloSistemas.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 27</value>
-  </data>
-  <data name="lblTituloSistemas.Text" xml:space="preserve">
-    <value>Sistemas</value>
+  <data name="picBoxLogoSistema2.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>AutoSize</value>
   </data>
   <data name="picBoxLogoSistema.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -416,16 +401,130 @@
     <value>0, 0</value>
   </data>
   <data name="picBoxLogoSistema.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1045, 354</value>
+    <value>1066, 258</value>
   </data>
   <data name="picBoxLogoSistema.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>Zoom</value>
   </data>
   <data name="painelLogoSistema.Location" type="System.Drawing.Point, System.Drawing">
-    <value>854, 584</value>
+    <value>845, 695</value>
   </data>
   <data name="painelLogoSistema.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1045, 354</value>
+    <value>1066, 258</value>
+  </data>
+  <data name="btnListaEmprestimos.Location" type="System.Drawing.Point, System.Drawing">
+    <value>244, 125</value>
+  </data>
+  <data name="btnListaEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 54</value>
+  </data>
+  <data name="btnListaEmprestimos.Text" xml:space="preserve">
+    <value>Lista de Emprestimos</value>
+  </data>
+  <data name="codigo_emprestimo.MinimumWidth" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="codigo_cliente.MinimumWidth" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="nome_cliente.MinimumWidth" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="valor_emprestado_total.MinimumWidth" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="percentual_juros.MinimumWidth" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="data_pagar.MinimumWidth" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="Obeservacoes.MinimumWidth" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="status_emprestimo.MinimumWidth" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="dataGridListaEmprestimos.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="dataGridListaEmprestimos.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="dataGridListaEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1107, 603</value>
+  </data>
+  <data name="dataGridListaEmprestimos.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="lblListaEmprestimos.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblListaEmprestimos.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial Rounded MT Bold, 13.8pt</value>
+  </data>
+  <data name="lblListaEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 27</value>
+  </data>
+  <data name="lblListaEmprestimos.Text" xml:space="preserve">
+    <value>Empréstimo(s):</value>
+  </data>
+  <data name="lblListaEmprestimos.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="btnAtualizarLista.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
+  </data>
+  <data name="btnAtualizarLista.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnAtualizarLista.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 42</value>
+  </data>
+  <data name="btnAtualizarLista.Text" xml:space="preserve">
+    <value>Atualizar Lista</value>
+  </data>
+  <data name="btnAtualizarLista.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="btnLembretes.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnLembretes.Location" type="System.Drawing.Point, System.Drawing">
+    <value>42, 125</value>
+  </data>
+  <data name="btnLembretes.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 54</value>
+  </data>
+  <data name="btnLembretes.Text" xml:space="preserve">
+    <value>Lembretes</value>
+  </data>
+  <data name="btnNovoLembrete.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
+  </data>
+  <data name="btnNovoLembrete.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnNovoLembrete.Location" type="System.Drawing.Point, System.Drawing">
+    <value>42, 185</value>
+  </data>
+  <data name="btnNovoLembrete.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 42</value>
+  </data>
+  <data name="btnNovoLembrete.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="btnNovoLembrete.Text" xml:space="preserve">
+    <value>Novo Lembrete</value>
+  </data>
+  <data name="btnNovoLembrete.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
+  </data>
+  <data name="panelDataGridListarEmprestimos.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="panelDataGridListarEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1107, 603</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>120, 120</value>
