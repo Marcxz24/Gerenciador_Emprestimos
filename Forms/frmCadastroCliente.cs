@@ -1,7 +1,9 @@
 ﻿using Gerenciador_de_Emprestimos.Models;
+using Gerenciador_de_Emprestimos.Services;
 using Gerenciador_de_Emprestimos.Utils;
 using Microsoft.VisualBasic.Logging;
 using Serilog;
+using System.Threading.Tasks;
 
 namespace Gerenciador_de_Emprestimos
 {
@@ -296,7 +298,7 @@ namespace Gerenciador_de_Emprestimos
                         return true; // Existe Erro e bloqueia a passagem para o proximo método.
                     }
                 }
-            
+
 
                 // Chama a classe responsável por validar se o CPF está valido, realizando o calculo para validar CPF.
                 if (ValidacaoCpf.ValidarCpf(MaskedTxtCpfCnpjCliente.Text) == false)
@@ -475,6 +477,40 @@ namespace Gerenciador_de_Emprestimos
         private void txtCidadeCliente_TextChanged(object sender, EventArgs e)
         {
             Funcoes.PrimeiraLetraMaiuscula(txtCidadeCliente);
+        }
+
+        private async void MaskedTxtCepCliente_Leave(object sender, EventArgs e)
+        {
+            string cep = MaskedTxtCepCliente.Text.Replace("-", "").Replace(".", "").Trim();
+
+            if (cep.Length == 8)
+            {
+                try
+                {
+                    CepService buscaCep = new CepService();
+
+                    var endereco = await buscaCep.ConsultarCep(cep);
+
+                    if (endereco != null)
+                    {
+                        txtEnderecoCliente.Text = endereco.logradouro;
+                        txtBairroCliente.Text = endereco.bairro;
+                        txtCidadeCliente.Text = endereco.localidade;
+                        comboBoxEstadoUF.Text = endereco.uf;
+
+                        txtNumeroResidencia.Focus();
+                    }
+                    else
+                    {
+                        Funcoes.MensagemWarning("CEP não encontrado. Verifique o CEP e tente novamente.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Serilog.Log.Error(ex, "Erro ao consultar CEP no serviço de CEP.");
+                    Funcoes.MensagemErro("Erro ao consultar CEP. Verifique o CEP e tente novamente.");
+                }
+            }
         }
     }
 }

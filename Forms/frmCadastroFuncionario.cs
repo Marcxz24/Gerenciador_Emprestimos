@@ -3,6 +3,7 @@ using Gerenciador_de_Emprestimos.Security;
 using Gerenciador_de_Emprestimos.Services;
 using Gerenciador_de_Emprestimos.Utils;
 using MySql.Data.MySqlClient;
+using System.Threading.Tasks;
 
 namespace Gerenciador_de_Emprestimos
 {
@@ -196,7 +197,7 @@ namespace Gerenciador_de_Emprestimos
                 // Se o código chegou até aqui, significa que nenhuma validação falhou
                 return false;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Serilog.Log.Error(ex, "Erro durante a execução das validações de campos.");
                 return true;
@@ -651,6 +652,40 @@ namespace Gerenciador_de_Emprestimos
         private void txtBoxBairro_TextChanged(object sender, EventArgs e)
         {
             Funcoes.PrimeiraLetraMaiuscula(txtBoxBairro);
+        }
+
+        private async void txtBoxCep_Leave(object sender, EventArgs e)
+        {
+            string cep = txtBoxCep.Text.Replace(".", "").Replace("-", "").Trim();
+
+            if (cep.Length == 8)
+            {
+                try
+                {
+                    CepService buscaCep = new CepService();
+
+                    var endereco = await buscaCep.ConsultarCep(cep);
+
+                    if (endereco != null)
+                    {
+                        txtBoxEndereco.Text = endereco.logradouro;
+                        txtBoxBairro.Text = endereco.bairro;
+                        txtBoxCidadeFuncionario.Text = endereco.localidade;
+                        comboBoxUf.Text = endereco.uf;
+
+                        txtBoxNumeroResidencia.Focus();
+                    }
+                    else
+                    {
+                        Funcoes.MensagemWarning("CEP não encontrado. Verifique o número e tente novamente.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Serilog.Log.Error(ex, "Erro ao consultar CEP: {CEP}", cep);
+                    Funcoes.MensagemErro("Erro ao consultar CEP. Verifique o CEP e tente novamente.");
+                }
+            }
         }
     }
 }

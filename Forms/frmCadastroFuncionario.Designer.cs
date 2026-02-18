@@ -376,7 +376,7 @@
             // 
             lblCep.AutoSize = true;
             lblCep.BackColor = Color.Transparent;
-            lblCep.Location = new Point(24, 261);
+            lblCep.Location = new Point(354, 156);
             lblCep.Name = "lblCep";
             lblCep.Size = new Size(43, 20);
             lblCep.TabIndex = 24;
@@ -384,20 +384,21 @@
             // 
             // txtBoxCep
             // 
-            txtBoxCep.Location = new Point(73, 258);
+            txtBoxCep.Location = new Point(403, 153);
             txtBoxCep.Mask = "00,000-000";
             txtBoxCep.Name = "txtBoxCep";
             txtBoxCep.ReadOnly = true;
             txtBoxCep.Size = new Size(206, 27);
             txtBoxCep.TabIndex = 23;
             txtBoxCep.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            txtBoxCep.Leave += txtBoxCep_Leave;
             // 
             // txtBoxBairro
             // 
-            txtBoxBairro.Location = new Point(73, 200);
+            txtBoxBairro.Location = new Point(90, 258);
             txtBoxBairro.Name = "txtBoxBairro";
             txtBoxBairro.ReadOnly = true;
-            txtBoxBairro.Size = new Size(253, 27);
+            txtBoxBairro.Size = new Size(196, 27);
             txtBoxBairro.TabIndex = 22;
             txtBoxBairro.TextChanged += txtBoxBairro_TextChanged;
             // 
@@ -405,7 +406,7 @@
             // 
             lblBairro.AutoSize = true;
             lblBairro.BackColor = Color.Transparent;
-            lblBairro.Location = new Point(15, 200);
+            lblBairro.Location = new Point(32, 258);
             lblBairro.Name = "lblBairro";
             lblBairro.Size = new Size(58, 20);
             lblBairro.TabIndex = 21;
@@ -413,10 +414,10 @@
             // 
             // txtBoxEndereco
             // 
-            txtBoxEndereco.Location = new Point(418, 152);
+            txtBoxEndereco.Location = new Point(101, 200);
             txtBoxEndereco.Name = "txtBoxEndereco";
             txtBoxEndereco.ReadOnly = true;
-            txtBoxEndereco.Size = new Size(351, 27);
+            txtBoxEndereco.Size = new Size(209, 27);
             txtBoxEndereco.TabIndex = 20;
             txtBoxEndereco.TextChanged += txtBoxEndereco_TextChanged;
             // 
@@ -424,7 +425,7 @@
             // 
             lblEndereco.AutoSize = true;
             lblEndereco.BackColor = Color.Transparent;
-            lblEndereco.Location = new Point(332, 155);
+            lblEndereco.Location = new Point(15, 203);
             lblEndereco.Name = "lblEndereco";
             lblEndereco.Size = new Size(80, 20);
             lblEndereco.TabIndex = 19;
@@ -434,7 +435,7 @@
             // 
             lblEstadoCivil.AutoSize = true;
             lblEstadoCivil.BackColor = Color.Transparent;
-            lblEstadoCivil.Location = new Point(531, 85);
+            lblEstadoCivil.Location = new Point(258, 100);
             lblEstadoCivil.Name = "lblEstadoCivil";
             lblEstadoCivil.Size = new Size(95, 20);
             lblEstadoCivil.TabIndex = 18;
@@ -446,7 +447,7 @@
             comboBoxEstadoCivil.Enabled = false;
             comboBoxEstadoCivil.FormattingEnabled = true;
             comboBoxEstadoCivil.Items.AddRange(new object[] { "Solteiro(a)", "Casado(a)", "Divorciado(a)", "Viúvo(a)" });
-            comboBoxEstadoCivil.Location = new Point(632, 80);
+            comboBoxEstadoCivil.Location = new Point(359, 95);
             comboBoxEstadoCivil.Name = "comboBoxEstadoCivil";
             comboBoxEstadoCivil.Size = new Size(151, 28);
             comboBoxEstadoCivil.TabIndex = 17;
@@ -474,7 +475,7 @@
             // 
             lblSexoFuncionario.AutoSize = true;
             lblSexoFuncionario.BackColor = Color.Transparent;
-            lblSexoFuncionario.Location = new Point(299, 85);
+            lblSexoFuncionario.Location = new Point(45, 100);
             lblSexoFuncionario.Name = "lblSexoFuncionario";
             lblSexoFuncionario.Size = new Size(50, 20);
             lblSexoFuncionario.TabIndex = 13;
@@ -486,7 +487,7 @@
             comboBoxSexoFuncionario.Enabled = false;
             comboBoxSexoFuncionario.FormattingEnabled = true;
             comboBoxSexoFuncionario.Items.AddRange(new object[] { "Masculino", "Feminino", "Indefinido" });
-            comboBoxSexoFuncionario.Location = new Point(355, 81);
+            comboBoxSexoFuncionario.Location = new Point(101, 96);
             comboBoxSexoFuncionario.Name = "comboBoxSexoFuncionario";
             comboBoxSexoFuncionario.Size = new Size(151, 28);
             comboBoxSexoFuncionario.TabIndex = 12;
@@ -495,7 +496,7 @@
             // 
             lblCpfFuncionario.AutoSize = true;
             lblCpfFuncionario.BackColor = Color.Transparent;
-            lblCpfFuncionario.Location = new Point(19, 88);
+            lblCpfFuncionario.Location = new Point(522, 98);
             lblCpfFuncionario.Name = "lblCpfFuncionario";
             lblCpfFuncionario.Size = new Size(42, 20);
             lblCpfFuncionario.TabIndex = 11;
@@ -503,11 +504,11 @@
             // 
             // txtBoxCpfFuncionario
             // 
-            txtBoxCpfFuncionario.Location = new Point(67, 85);
+            txtBoxCpfFuncionario.Location = new Point(570, 95);
             txtBoxCpfFuncionario.Mask = "000,000,000-00";
             txtBoxCpfFuncionario.Name = "txtBoxCpfFuncionario";
             txtBoxCpfFuncionario.ReadOnly = true;
-            txtBoxCpfFuncionario.Size = new Size(207, 27);
+            txtBoxCpfFuncionario.Size = new Size(195, 27);
             txtBoxCpfFuncionario.TabIndex = 10;
             txtBoxCpfFuncionario.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             // 
@@ -515,7 +516,7 @@
             // 
             lblTelefone.AutoSize = true;
             lblTelefone.BackColor = Color.Transparent;
-            lblTelefone.Location = new Point(20, 151);
+            lblTelefone.Location = new Point(15, 152);
             lblTelefone.Name = "lblTelefone";
             lblTelefone.Size = new Size(75, 20);
             lblTelefone.TabIndex = 7;
@@ -523,11 +524,11 @@
             // 
             // txtBoxTelefoneFuncionario
             // 
-            txtBoxTelefoneFuncionario.Location = new Point(95, 148);
+            txtBoxTelefoneFuncionario.Location = new Point(90, 149);
             txtBoxTelefoneFuncionario.Mask = "(00) 00000-0000";
             txtBoxTelefoneFuncionario.Name = "txtBoxTelefoneFuncionario";
             txtBoxTelefoneFuncionario.ReadOnly = true;
-            txtBoxTelefoneFuncionario.Size = new Size(207, 27);
+            txtBoxTelefoneFuncionario.Size = new Size(210, 27);
             txtBoxTelefoneFuncionario.TabIndex = 6;
             txtBoxTelefoneFuncionario.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             // 

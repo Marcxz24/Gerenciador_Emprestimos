@@ -289,6 +289,7 @@
             MaskedTxtCepCliente.Size = new Size(206, 25);
             MaskedTxtCepCliente.TabIndex = 0;
             MaskedTxtCepCliente.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            MaskedTxtCepCliente.Leave += MaskedTxtCepCliente_Leave;
             // 
             // MaskedTxtCelularCliente
             // 
