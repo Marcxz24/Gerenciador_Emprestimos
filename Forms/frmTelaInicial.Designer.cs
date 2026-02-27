@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTelaIncial));
             stsStripSistemVersion = new StatusStrip();
             statusLabelUsername = new ToolStripStatusLabel();
+            toolStriCodUsuarioLogado = new ToolStripStatusLabel();
             toolStripUserName = new ToolStripStatusLabel();
             lblEspacoVazio = new ToolStripStatusLabel();
             toolStsStripSistemVersion = new ToolStripStatusLabel();
@@ -79,6 +80,8 @@
             btnLembretes = new Button();
             btnNovoLembrete = new Button();
             panelDataGridListarEmprestimos = new Panel();
+            flwMuralLembretes = new FlowLayoutPanel();
+            btnLimparListaEmprestimos = new Button();
             stsStripSistemVersion.SuspendLayout();
             MenuStripMenusSistema.SuspendLayout();
             painelLogoSistema.SuspendLayout();
@@ -93,7 +96,7 @@
             resources.ApplyResources(stsStripSistemVersion, "stsStripSistemVersion");
             stsStripSistemVersion.BackColor = SystemColors.Window;
             stsStripSistemVersion.ImageScalingSize = new Size(20, 20);
-            stsStripSistemVersion.Items.AddRange(new ToolStripItem[] { statusLabelUsername, toolStripUserName, lblEspacoVazio, toolStsStripSistemVersion });
+            stsStripSistemVersion.Items.AddRange(new ToolStripItem[] { statusLabelUsername, toolStriCodUsuarioLogado, toolStripUserName, lblEspacoVazio, toolStsStripSistemVersion });
             stsStripSistemVersion.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             stsStripSistemVersion.Name = "stsStripSistemVersion";
             // 
@@ -102,6 +105,11 @@
             resources.ApplyResources(statusLabelUsername, "statusLabelUsername");
             statusLabelUsername.BackColor = SystemColors.Window;
             statusLabelUsername.Name = "statusLabelUsername";
+            // 
+            // toolStriCodUsuarioLogado
+            // 
+            resources.ApplyResources(toolStriCodUsuarioLogado, "toolStriCodUsuarioLogado");
+            toolStriCodUsuarioLogado.Name = "toolStriCodUsuarioLogado";
             // 
             // toolStripUserName
             // 
@@ -409,6 +417,7 @@
             btnNovoLembrete.Image = Properties.Resources.alfinete;
             btnNovoLembrete.Name = "btnNovoLembrete";
             btnNovoLembrete.UseVisualStyleBackColor = true;
+            btnNovoLembrete.Click += btnNovoLembrete_Click_1;
             // 
             // panelDataGridListarEmprestimos
             // 
@@ -417,12 +426,27 @@
             panelDataGridListarEmprestimos.Controls.Add(dataGridListaEmprestimos);
             panelDataGridListarEmprestimos.Name = "panelDataGridListarEmprestimos";
             // 
+            // flwMuralLembretes
+            // 
+            resources.ApplyResources(flwMuralLembretes, "flwMuralLembretes");
+            flwMuralLembretes.BackColor = Color.Transparent;
+            flwMuralLembretes.Name = "flwMuralLembretes";
+            // 
+            // btnLimparListaEmprestimos
+            // 
+            resources.ApplyResources(btnLimparListaEmprestimos, "btnLimparListaEmprestimos");
+            btnLimparListaEmprestimos.Name = "btnLimparListaEmprestimos";
+            btnLimparListaEmprestimos.UseVisualStyleBackColor = true;
+            btnLimparListaEmprestimos.Click += btnLimparListaEmprestimos_Click;
+            // 
             // frmTelaIncial
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.AliceBlue;
             BackgroundImage = Properties.Resources.gra_cad_cliente;
+            Controls.Add(flwMuralLembretes);
+            Controls.Add(btnLimparListaEmprestimos);
             Controls.Add(panelDataGridListarEmprestimos);
             Controls.Add(btnLembretes);
             Controls.Add(btnAtualizarLista);
@@ -503,5 +527,8 @@
         private DataGridViewTextBoxColumn status_emprestimo;
         private Button btnNovoLembrete;
         private Panel panelDataGridListarEmprestimos;
+        private FlowLayoutPanel flwMuralLembretes;
+        private ToolStripStatusLabel toolStriCodUsuarioLogado;
+        private Button btnLimparListaEmprestimos;
     }
 }

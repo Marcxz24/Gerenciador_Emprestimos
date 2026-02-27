@@ -138,7 +138,7 @@
     <value>178, 20</value>
   </data>
   <data name="toolStsStripSistemVersion.Text" xml:space="preserve">
-    <value>Versão do Sistema: 1.4.2</value>
+    <value>Versão do Sistema: 1.4.4</value>
   </data>
   <data name="toolStsStripSistemVersion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -464,10 +464,10 @@
     <value>Arial Rounded MT Bold, 13.8pt</value>
   </data>
   <data name="lblListaEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 27</value>
+    <value>321, 27</value>
   </data>
   <data name="lblListaEmprestimos.Text" xml:space="preserve">
-    <value>Empréstimo(s):</value>
+    <value>Empréstimo(s) Pendente(s):</value>
   </data>
   <data name="lblListaEmprestimos.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -525,6 +525,33 @@
   </data>
   <data name="panelDataGridListarEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
     <value>1107, 603</value>
+  </data>
+  <data name="flwMuralLembretes.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="flwMuralLembretes.Location" type="System.Drawing.Point, System.Drawing">
+    <value>42, 233</value>
+  </data>
+  <data name="flwMuralLembretes.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1110, 693</value>
+  </data>
+  <data name="btnLimparListaEmprestimos.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
+  </data>
+  <data name="btnLimparListaEmprestimos.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnLimparListaEmprestimos.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 275</value>
+  </data>
+  <data name="btnLimparListaEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>261, 42</value>
+  </data>
+  <data name="btnLimparListaEmprestimos.Text" xml:space="preserve">
+    <value>Limpar Lista de Emprestimos</value>
+  </data>
+  <data name="btnLimparListaEmprestimos.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>120, 120</value>

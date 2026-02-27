@@ -87,6 +87,7 @@ namespace Gerenciador_de_Emprestimos
                     LoginRealizado = true;
 
                     Sessao.CodigoFuncionarioLogado = codigoFuncionario;
+                    Sessao.NomeFuncionarioLogado = txtBoxUsername.Text;
 
                     // Chama o método da classe Controle de Acesso, que carrega os privilegios do usuário logado.
                     ControleAcesso.CarregarPrivilegios(codigoFuncionario);
@@ -96,7 +97,7 @@ namespace Gerenciador_de_Emprestimos
                     if (this.Owner is frmTelaIncial telaPrincipal)
                     {
                         // Atualiza o nome do usuário no rodapé/cabeçalho da tela principal
-                        telaPrincipal.AtualizarUsuarioLogado(txtBoxUsername.Text);
+                        telaPrincipal.AtualizarUsuarioLogado(Sessao.CodigoFuncionarioLogado, Sessao.NomeFuncionarioLogado);
 
                         // Libera os menus e botões do sistema que estavam bloqueados
                         telaPrincipal.ConfigurarAcesso(true);

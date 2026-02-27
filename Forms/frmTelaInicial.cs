@@ -1,8 +1,10 @@
 using Gerenciador_de_Emprestimos.Models;
 using Gerenciador_de_Emprestimos.Repositories;
+using Gerenciador_de_Emprestimos.Security;
 using Gerenciador_de_Emprestimos.Services;
 using Gerenciador_de_Emprestimos.Utils;
 using System.Data;
+using System.Runtime.InteropServices;
 
 namespace Gerenciador_de_Emprestimos
 {
@@ -52,9 +54,12 @@ namespace Gerenciador_de_Emprestimos
         }
 
         // --- MÉTODO: Atualiza o nome do funcionário no rodapé (StatusStrip) ---
-        public void AtualizarUsuarioLogado(string nomeFuncionario)
+        public void AtualizarUsuarioLogado(int codigoLogado, string nomeFuncionario)
         {
-            statusLabelUsername.Text = $"Usuário: {nomeFuncionario}";
+            toolStriCodUsuarioLogado.Text = $"Código de Usuário: {codigoLogado}";
+            statusLabelUsername.Text = $"Nome de Usuário: {nomeFuncionario}";
+
+            Sessao.CodigoFuncionarioLogado = codigoLogado;
         }
 
         // --- MÉTODO: Controla a visibilidade e permissão de todos os menus e elementos visuais ---
@@ -96,6 +101,11 @@ namespace Gerenciador_de_Emprestimos
             lblTituloInicial.Visible = logado;
             lblTituloInicial.BringToFront(); // Garante que o título fique sobre outros elementos
             lblTituloSistemas.Visible = logado;
+
+            if (logado)
+            {
+                AtualizarMural(); // Atualiza o mural de lembretes ao fazer login
+            }
         }
 
         // --- EVENTOS DE CLIQUE: Abertura dos Formulários do Sistema ---
@@ -295,20 +305,26 @@ namespace Gerenciador_de_Emprestimos
             }
         }
 
+        private void AlternarVisualizacao(bool mostrarLista)
+        {
+            // Elementos da Lista (Grid)
+            lblListaEmprestimos.Visible = mostrarLista;
+            btnAtualizarLista.Visible = mostrarLista;
+            dataGridListaEmprestimos.Visible = mostrarLista;
+
+            // Elementos do Mural (Cards)
+            btnNovoLembrete.Visible = !mostrarLista; // O '!' inverte o valor
+            flwMuralLembretes.Visible = !mostrarLista;
+        }
+
         private void btnListaEmprestimos_Click(object sender, EventArgs e)
         {
-            lblListaEmprestimos.Visible = true; // Alterna a visibilidade do rótulo
-            btnAtualizarLista.Visible = true;
-            dataGridListaEmprestimos.Visible = true;
-            btnNovoLembrete.Visible = false;
+            AlternarVisualizacao(true);
         }
 
         private void btnNovoLembrete_Click(object sender, EventArgs e)
         {
-            lblListaEmprestimos.Visible = false; // Alterna a visibilidade do rótulo
-            btnAtualizarLista.Visible = false;
-            dataGridListaEmprestimos.Visible = false;
-            btnNovoLembrete.Visible = true;
+            AlternarVisualizacao(false);
         }
 
         private void btnAtualizarLista_Click(object sender, EventArgs e)
@@ -353,6 +369,149 @@ namespace Gerenciador_de_Emprestimos
                 Serilog.Log.Error("Erro ao acessar detalhes do empréstimo: " + ex.Message);
                 return;
             }
+        }
+
+        private void btnNovoLembrete_Click_1(object sender, EventArgs e)
+        {
+            Lembrete novoLembrete = new Lembrete();
+
+            novoLembrete.CodigoFuncionario = Sessao.CodigoFuncionarioLogado;
+
+            try
+            {
+                string tituloPadrao = "Titulo do lembrete";
+                novoLembrete.Titulo = tituloPadrao;
+
+                novoLembrete.CriarLembrete();
+                AtualizarMural(); // Atualiza o mural para mostrar o novo lembrete
+
+                if (flwMuralLembretes.Controls.Count > 0)
+                {
+                    flwMuralLembretes.ScrollControlIntoView(flwMuralLembretes.Controls[flwMuralLembretes.Controls.Count - 1]);
+                }
+            }
+            catch (Exception ex)
+            {
+                Funcoes.MensagemErro("Ocorreu um erro ao criar o lembrete. Tente novamente mais tarde.\nDetalhes do erro: " + ex.Message);
+                Serilog.Log.Error("Erro ao criar novo lembrete: " + ex.Message);
+            }
+        }
+
+        private void AtualizarMural()
+        {
+            flwMuralLembretes.Controls.Clear();
+
+            Lembrete lembrete = new Lembrete();
+
+            int codigoLogado = Sessao.CodigoFuncionarioLogado;
+
+            var listaDeLembretes = lembrete.ListarLembretes(codigoLogado);
+
+            foreach (var item in listaDeLembretes)
+            {
+                Panel card = new Panel();
+                card.Tag = item.Codigo;
+                card.Size = new Size(250, 140);
+                card.BackColor = Color.LightYellow;
+                card.BorderStyle = BorderStyle.FixedSingle;
+                card.Margin = new Padding(10);
+
+                // 1. Barrinha do Título
+                Panel pnlHeader = new Panel();
+                pnlHeader.BackColor = Color.Khaki;
+                pnlHeader.Dock = DockStyle.Top;
+                pnlHeader.Height = 30;
+
+                // 2. Título Editável (TextBox)
+                TextBox txtTitulo = new TextBox();
+                txtTitulo.Text = item.Titulo;
+                txtTitulo.Font = new Font("Arial", 9, FontStyle.Bold);
+                txtTitulo.BackColor = Color.Khaki; // Mesma cor da barrinha
+                txtTitulo.BorderStyle = BorderStyle.None; // Tira a borda de "caixa"
+                txtTitulo.Dock = DockStyle.Fill;
+                txtTitulo.Multiline = false;
+                // Centralizar verticalmente no header
+                txtTitulo.Margin = new Padding(5, 7, 0, 0);
+
+                // 3. Botões (Mantendo o que fizemos antes)
+                Button btnExcluir = new Button { Text = "X", Size = new Size(25, 25), Dock = DockStyle.Right, FlatStyle = FlatStyle.Flat };
+                btnExcluir.FlatAppearance.BorderSize = 0;
+
+                Button btnSalvar = new Button { Text = "S", Size = new Size(25, 25), Dock = DockStyle.Right, FlatStyle = FlatStyle.Flat };
+                btnSalvar.FlatAppearance.BorderSize = 0;
+
+                // 4. Descrição Editável (TextBox Multiline)
+                TextBox txtDesc = new TextBox();
+                txtDesc.Text = item.Descricao;
+                txtDesc.Font = new Font("Arial", 9, FontStyle.Regular);
+                txtDesc.BackColor = Color.LightYellow; // Cor do fundo do card
+                txtDesc.BorderStyle = BorderStyle.None; // Fica invisível, parece apenas texto
+                txtDesc.Multiline = true; // Permite várias linhas
+                txtDesc.Dock = DockStyle.Fill;
+                txtDesc.ScrollBars = ScrollBars.None; // Opcional: tira a barra lateral
+
+                // --- MONTAGEM ---
+                pnlHeader.Controls.Add(txtTitulo);
+                pnlHeader.Controls.Add(btnSalvar);
+                pnlHeader.Controls.Add(btnExcluir);
+
+                card.Controls.Add(txtDesc);
+                card.Controls.Add(pnlHeader);
+
+                flwMuralLembretes.Controls.Add(card);
+
+                // EVENTO DE SALVAR: Captura o que foi digitado
+                btnSalvar.Click += (s, e) =>
+                {
+                    try
+                    {
+                        // 1. Atualizamos o objeto 'item' com o que está escrito nos campos agora
+                        item.Titulo = txtTitulo.Text;
+                        item.Descricao = txtDesc.Text;
+
+                        // 2. Chamamos o método que você acabou de criar
+                        item.EditarLembrete();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao salvar: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                };
+
+                btnExcluir.Click += (s, e) =>
+                {
+                    var confirmacao = MessageBox.Show("Deseja realmente excluir este lembrete?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (confirmacao == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            item.ExcluirLembrete();
+                            flwMuralLembretes.Controls.Remove(card); // Remove o card da interface
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Erro ao excluir: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                };
+            }
+        }
+
+        private void BtnExcluir_Click(object? sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void btnLimparListaEmprestimos_Click(object sender, EventArgs e)
+        {
+            // 1. Garante que ele não invente colunas novas
+            dataGridListaEmprestimos.AutoGenerateColumns = false;
+
+            // 2. Desvincula o gerenciador de dados
+            dataGridListaEmprestimos.BindingContext = new BindingContext();
+
+            // 3. Atribui uma lista vazia
+            dataGridListaEmprestimos.DataSource = null;
         }
     }
 }
