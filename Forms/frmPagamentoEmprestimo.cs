@@ -259,9 +259,8 @@ namespace Gerenciador_de_Emprestimos
             {
                 if (ValidacoesCampos()) return;
 
-                if (codigoParcela <= 0)
+                if (!int.TryParse(txtCodigoParcela.Text, out codigoParcela))
                 {
-                    Funcoes.MensagemWarning("Selecione uma Parcela, antes de Realizar o pagamento!");
                     return;
                 }
 

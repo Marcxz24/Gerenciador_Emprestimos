@@ -23,7 +23,7 @@ namespace Gerenciador_de_Emprestimos.Repositories
 	                            ON e.codigo = p.codigo_emprestimo
                             INNER JOIN cliente c
 	                            ON p.codigo_cliente = c.codigo
-	                            WHERE codigo_emprestimo = 2
+	                            WHERE codigo_emprestimo = @codigo_emprestimo
 	                            AND status_parcela = 'ABERTA' 
 		                            ORDER BY numero_parcela ASC LIMIT 1";
 

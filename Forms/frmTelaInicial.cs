@@ -86,6 +86,10 @@ namespace Gerenciador_de_Emprestimos
             btnListaEmprestimos.Visible = logado;
             btnLembretes.Visible = logado;
             btnNovoLembrete.Visible = logado;
+            btnAtualizarLista.Visible = logado;
+
+            // Mural de Lembretes
+            flwMuralLembretes.Visible = logado;
 
             // Controle de Login/Logoff
             loginToolStripMenuItem.Enabled = !logado; // Só aparece se NÃO estiver logado
@@ -309,6 +313,7 @@ namespace Gerenciador_de_Emprestimos
         {
             // Elementos da Lista (Grid)
             lblListaEmprestimos.Visible = mostrarLista;
+            btnLimparListaEmprestimos.Visible = mostrarLista;
             btnAtualizarLista.Visible = mostrarLista;
             dataGridListaEmprestimos.Visible = mostrarLista;
 
