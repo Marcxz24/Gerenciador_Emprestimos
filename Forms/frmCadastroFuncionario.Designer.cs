@@ -72,6 +72,8 @@
             tabPagePrivilegios = new TabPage();
             tabControlPrivilegios = new TabControl();
             tabPageCadastro = new TabPage();
+            grpBoxWhatsApp = new GroupBox();
+            chkBoxCadWhatsapp = new CheckBox();
             grpBoxCliente = new GroupBox();
             chkBoxAcessarCadastroCliente = new CheckBox();
             grpBoxEmpresa = new GroupBox();
@@ -84,6 +86,9 @@
             grpBoxRelatorioEmprestimos = new GroupBox();
             chkBoxConsultarParcela = new CheckBox();
             chkBoxVizualizarEmprestimos = new CheckBox();
+            tabPageFuncOperacionais = new TabPage();
+            groupBox1 = new GroupBox();
+            chkBoxCobranca = new CheckBox();
             tabPageLogin.SuspendLayout();
             tabPageCadastroFuncionario.SuspendLayout();
             grpBoxDadosPessoaisFuncionario.SuspendLayout();
@@ -91,12 +96,15 @@
             tabPagePrivilegios.SuspendLayout();
             tabControlPrivilegios.SuspendLayout();
             tabPageCadastro.SuspendLayout();
+            grpBoxWhatsApp.SuspendLayout();
             grpBoxCliente.SuspendLayout();
             grpBoxEmpresa.SuspendLayout();
             tabPageFinanceiro.SuspendLayout();
             grpBoxEmprestimos.SuspendLayout();
             tabPageRelatorios.SuspendLayout();
             grpBoxRelatorioEmprestimos.SuspendLayout();
+            tabPageFuncOperacionais.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // lblCodigoFuncionario
@@ -559,6 +567,7 @@
             tabControlPrivilegios.Controls.Add(tabPageCadastro);
             tabControlPrivilegios.Controls.Add(tabPageFinanceiro);
             tabControlPrivilegios.Controls.Add(tabPageRelatorios);
+            tabControlPrivilegios.Controls.Add(tabPageFuncOperacionais);
             tabControlPrivilegios.Location = new Point(3, 6);
             tabControlPrivilegios.Name = "tabControlPrivilegios";
             tabControlPrivilegios.SelectedIndex = 0;
@@ -567,6 +576,7 @@
             // 
             // tabPageCadastro
             // 
+            tabPageCadastro.Controls.Add(grpBoxWhatsApp);
             tabPageCadastro.Controls.Add(grpBoxCliente);
             tabPageCadastro.Controls.Add(grpBoxEmpresa);
             tabPageCadastro.Location = new Point(4, 29);
@@ -576,6 +586,28 @@
             tabPageCadastro.TabIndex = 0;
             tabPageCadastro.Text = "Cadastro";
             tabPageCadastro.UseVisualStyleBackColor = true;
+            // 
+            // grpBoxWhatsApp
+            // 
+            grpBoxWhatsApp.Controls.Add(chkBoxCadWhatsapp);
+            grpBoxWhatsApp.Location = new Point(6, 195);
+            grpBoxWhatsApp.Name = "grpBoxWhatsApp";
+            grpBoxWhatsApp.Size = new Size(383, 186);
+            grpBoxWhatsApp.TabIndex = 5;
+            grpBoxWhatsApp.TabStop = false;
+            grpBoxWhatsApp.Text = "WhatsApp (Mensagem)";
+            // 
+            // chkBoxCadWhatsapp
+            // 
+            chkBoxCadWhatsapp.AutoSize = true;
+            chkBoxCadWhatsapp.Enabled = false;
+            chkBoxCadWhatsapp.Location = new Point(20, 35);
+            chkBoxCadWhatsapp.Name = "chkBoxCadWhatsapp";
+            chkBoxCadWhatsapp.Size = new Size(187, 24);
+            chkBoxCadWhatsapp.TabIndex = 0;
+            chkBoxCadWhatsapp.Tag = "7";
+            chkBoxCadWhatsapp.Text = "Mensagem (WhatsApp)";
+            chkBoxCadWhatsapp.UseVisualStyleBackColor = true;
             // 
             // grpBoxCliente
             // 
@@ -713,6 +745,39 @@
             chkBoxVizualizarEmprestimos.Text = "Visualizar Emprestimos";
             chkBoxVizualizarEmprestimos.UseVisualStyleBackColor = true;
             // 
+            // tabPageFuncOperacionais
+            // 
+            tabPageFuncOperacionais.Controls.Add(groupBox1);
+            tabPageFuncOperacionais.Location = new Point(4, 29);
+            tabPageFuncOperacionais.Name = "tabPageFuncOperacionais";
+            tabPageFuncOperacionais.Padding = new Padding(3);
+            tabPageFuncOperacionais.Size = new Size(842, 427);
+            tabPageFuncOperacionais.TabIndex = 3;
+            tabPageFuncOperacionais.Text = "Funções Operacionais";
+            tabPageFuncOperacionais.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(chkBoxCobranca);
+            groupBox1.Location = new Point(6, 6);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(383, 186);
+            groupBox1.TabIndex = 6;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "WhatsApp (Mensagem)";
+            // 
+            // chkBoxCobranca
+            // 
+            chkBoxCobranca.AutoSize = true;
+            chkBoxCobranca.Enabled = false;
+            chkBoxCobranca.Location = new Point(20, 35);
+            chkBoxCobranca.Name = "chkBoxCobranca";
+            chkBoxCobranca.Size = new Size(177, 24);
+            chkBoxCobranca.TabIndex = 0;
+            chkBoxCobranca.Tag = "8";
+            chkBoxCobranca.Text = "Cobrança (WhatsApp)";
+            chkBoxCobranca.UseVisualStyleBackColor = true;
+            // 
             // frmCadastroFuncionario
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -745,6 +810,8 @@
             tabPagePrivilegios.ResumeLayout(false);
             tabControlPrivilegios.ResumeLayout(false);
             tabPageCadastro.ResumeLayout(false);
+            grpBoxWhatsApp.ResumeLayout(false);
+            grpBoxWhatsApp.PerformLayout();
             grpBoxCliente.ResumeLayout(false);
             grpBoxCliente.PerformLayout();
             grpBoxEmpresa.ResumeLayout(false);
@@ -755,6 +822,9 @@
             tabPageRelatorios.ResumeLayout(false);
             grpBoxRelatorioEmprestimos.ResumeLayout(false);
             grpBoxRelatorioEmprestimos.PerformLayout();
+            tabPageFuncOperacionais.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -818,5 +888,10 @@
         private ComboBox comboBoxUf;
         private TextBox txtBoxNumeroResidencia;
         private Label label1;
+        private GroupBox grpBoxWhatsApp;
+        private CheckBox chkBoxCadWhatsapp;
+        private TabPage tabPageFuncOperacionais;
+        private GroupBox groupBox1;
+        private CheckBox chkBoxCobranca;
     }
 }

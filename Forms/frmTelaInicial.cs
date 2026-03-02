@@ -1,3 +1,4 @@
+using Gerenciador_de_Emprestimos.Forms;
 using Gerenciador_de_Emprestimos.Models;
 using Gerenciador_de_Emprestimos.Repositories;
 using Gerenciador_de_Emprestimos.Security;
@@ -517,6 +518,30 @@ namespace Gerenciador_de_Emprestimos
 
             // 3. Atribui uma lista vazia
             dataGridListaEmprestimos.DataSource = null;
+        }
+
+        private void cobrançaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!ControleAcesso.PodeAcessar("frmCobrancaWhatsApp"))
+            {
+                Funcoes.MensagemWarning("Você não tem Privilégio para Realizar esta operação.");
+                return;
+            }
+
+            frmCobrancaWhatsApp frmCobranca = new frmCobrancaWhatsApp();
+            frmCobranca.ShowDialog();
+        }
+
+        private void mensagemWhatsAppToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!ControleAcesso.PodeAcessar("frmCadastroMensagemCobranca"))
+            {
+                Funcoes.MensagemWarning("Você não tem Privilégio para Realizar esta operação.");
+                return;
+            }
+
+            frmCadastroMensagemCobranca frmCadastroMsgCobranca = new frmCadastroMensagemCobranca();
+            frmCadastroMsgCobranca.ShowDialog();
         }
     }
 }

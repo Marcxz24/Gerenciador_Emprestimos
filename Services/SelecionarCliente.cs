@@ -1,5 +1,6 @@
 ﻿using Gerenciador_de_Emprestimos.Database;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Pqc.Crypto.Cmce;
 using System.Data;
 using System.Reflection.Metadata.Ecma335;
 
@@ -171,6 +172,35 @@ namespace Gerenciador_de_Emprestimos.Services
 
             // Retorna o DataTable preenchido
             return dt;
+        }
+
+        public SelecionarCliente BuscarClientePorNome(string nomeCliente)
+        {
+            var sql = @"SELECT * FROM emprestimosbd.cliente WHERE nome_cliente LIKE @nome_cliente LIMIT 1";
+
+            using (var conn = ConexaoBancoDeDados.Conectar())
+            using (var cmd = new MySqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@nome_cliente", "%" + nomeCliente + "%");
+                return PreencherObejto(cmd);
+            }
+        }
+
+        private SelecionarCliente PreencherObejto(MySqlCommand cmd)
+        {
+            using (var reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    return new SelecionarCliente
+                    {
+                        codigo = reader.GetInt32("codigo"),
+                        nome_cliente = reader.GetString("nome_cliente"),
+                        celular = reader.GetString("celular")
+                    };
+                }
+            }
+            return null;
         }
     }
 }

@@ -56,6 +56,8 @@ namespace Gerenciador_de_Emprestimos
             chkBoxPagamentoParcela.Enabled = ManifestarBotoes;
             chkBoxVizualizarEmprestimos.Enabled = ManifestarBotoes;
             chkBoxConsultarParcela.Enabled = ManifestarBotoes;
+            chkBoxCadWhatsapp.Enabled = ManifestarBotoes;
+            chkBoxCobranca.Enabled = ManifestarBotoes;
 
             // --- 2. LIMPEZA DOS CAMPOS ---
             if (LimparCampos)
@@ -86,6 +88,8 @@ namespace Gerenciador_de_Emprestimos
                 chkBoxPagamentoParcela.Checked = false;
                 chkBoxConsultarParcela.Checked = false;
                 chkBoxVizualizarEmprestimos.Checked = false;
+                chkBoxCadWhatsapp.Checked = false;
+                chkBoxCobranca.Checked = false;
             }
 
             // --- 3. VISIBILIDADE DOS BOTÕES ---

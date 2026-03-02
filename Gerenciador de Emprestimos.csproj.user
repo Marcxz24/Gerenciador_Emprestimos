@@ -7,6 +7,12 @@
     <Compile Update="Forms\frmCadastroFuncionario.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\frmCadastroMensagemCobranca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\frmCobrancaWhatsApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\frmConsultarParcelas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -26,6 +32,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\frmSelecionarFuncionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\frmSelecionarModeloMsg.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\frmTelaInicial.cs">

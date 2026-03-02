@@ -138,7 +138,7 @@
     <value>178, 20</value>
   </data>
   <data name="toolStsStripSistemVersion.Text" xml:space="preserve">
-    <value>Versão do Sistema: 1.4.7</value>
+    <value>Versão do Sistema: 1.5.0</value>
   </data>
   <data name="toolStsStripSistemVersion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -178,7 +178,7 @@
     <value>Cliente</value>
   </data>
   <data name="MenuStripCliente.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 26</value>
+    <value>248, 26</value>
   </data>
   <data name="MenuStripCliente.Text" xml:space="preserve">
     <value>Cliente</value>
@@ -190,10 +190,13 @@
     <value>Funcionário</value>
   </data>
   <data name="empresaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 26</value>
+    <value>248, 26</value>
   </data>
   <data name="empresaToolStripMenuItem.Text" xml:space="preserve">
     <value>Empresa</value>
+  </data>
+  <data name="mensagemWhatsAppToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mensagem (WhatsApp)</value>
   </data>
   <data name="MenuStripCadastro.Text" xml:space="preserve">
     <value>Cadastro</value>
@@ -218,6 +221,15 @@
   </data>
   <data name="backUpDoBancoDeDadosToolStripMenuItem.Text" xml:space="preserve">
     <value>Back-Up do Banco de Dados</value>
+  </data>
+  <data name="cobrançaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 26</value>
+  </data>
+  <data name="cobrançaToolStripMenuItem.Text" xml:space="preserve">
+    <value>Cobrança</value>
+  </data>
+  <data name="whatsAppToolStripMenuItem.Text" xml:space="preserve">
+    <value>WhatsApp</value>
   </data>
   <data name="funçõesOperacionaisToolStripMenuItem.Text" xml:space="preserve">
     <value>Funções Operacionais</value>

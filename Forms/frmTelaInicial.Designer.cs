@@ -46,12 +46,15 @@
             MenuStripCadastroCliente = new ToolStripMenuItem();
             empresaToolStripMenuItem = new ToolStripMenuItem();
             funcionárioToolStripMenuItem = new ToolStripMenuItem();
+            mensagemWhatsAppToolStripMenuItem = new ToolStripMenuItem();
             MenuStripFinanceiro = new ToolStripMenuItem();
             MenuStripEmprestimos = new ToolStripMenuItem();
             MenuStripNovosEmprestimos = new ToolStripMenuItem();
             pagamentoDeParcelaToolStripMenuItem = new ToolStripMenuItem();
             funçõesOperacionaisToolStripMenuItem = new ToolStripMenuItem();
             backUpDoBancoDeDadosToolStripMenuItem = new ToolStripMenuItem();
+            whatsAppToolStripMenuItem = new ToolStripMenuItem();
+            cobrançaToolStripMenuItem = new ToolStripMenuItem();
             MenuStripRelatorios = new ToolStripMenuItem();
             MenuStripRelatoriosEmprestimos = new ToolStripMenuItem();
             MenuStripRelatoriosVisuEmprestimos = new ToolStripMenuItem();
@@ -167,7 +170,7 @@
             // MenuStripCadastro
             // 
             resources.ApplyResources(MenuStripCadastro, "MenuStripCadastro");
-            MenuStripCadastro.DropDownItems.AddRange(new ToolStripItem[] { MenuStripCliente, empresaToolStripMenuItem });
+            MenuStripCadastro.DropDownItems.AddRange(new ToolStripItem[] { MenuStripCliente, empresaToolStripMenuItem, mensagemWhatsAppToolStripMenuItem });
             MenuStripCadastro.Name = "MenuStripCadastro";
             // 
             // MenuStripCliente
@@ -193,6 +196,12 @@
             resources.ApplyResources(funcionárioToolStripMenuItem, "funcionárioToolStripMenuItem");
             funcionárioToolStripMenuItem.Name = "funcionárioToolStripMenuItem";
             funcionárioToolStripMenuItem.Click += funcionárioToolStripMenuItem_Click;
+            // 
+            // mensagemWhatsAppToolStripMenuItem
+            // 
+            resources.ApplyResources(mensagemWhatsAppToolStripMenuItem, "mensagemWhatsAppToolStripMenuItem");
+            mensagemWhatsAppToolStripMenuItem.Name = "mensagemWhatsAppToolStripMenuItem";
+            mensagemWhatsAppToolStripMenuItem.Click += mensagemWhatsAppToolStripMenuItem_Click;
             // 
             // MenuStripFinanceiro
             // 
@@ -221,7 +230,7 @@
             // funçõesOperacionaisToolStripMenuItem
             // 
             resources.ApplyResources(funçõesOperacionaisToolStripMenuItem, "funçõesOperacionaisToolStripMenuItem");
-            funçõesOperacionaisToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { backUpDoBancoDeDadosToolStripMenuItem });
+            funçõesOperacionaisToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { backUpDoBancoDeDadosToolStripMenuItem, whatsAppToolStripMenuItem });
             funçõesOperacionaisToolStripMenuItem.Name = "funçõesOperacionaisToolStripMenuItem";
             // 
             // backUpDoBancoDeDadosToolStripMenuItem
@@ -229,6 +238,18 @@
             resources.ApplyResources(backUpDoBancoDeDadosToolStripMenuItem, "backUpDoBancoDeDadosToolStripMenuItem");
             backUpDoBancoDeDadosToolStripMenuItem.Name = "backUpDoBancoDeDadosToolStripMenuItem";
             backUpDoBancoDeDadosToolStripMenuItem.Click += backUpDoBancoDeDadosToolStripMenuItem_Click;
+            // 
+            // whatsAppToolStripMenuItem
+            // 
+            resources.ApplyResources(whatsAppToolStripMenuItem, "whatsAppToolStripMenuItem");
+            whatsAppToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cobrançaToolStripMenuItem });
+            whatsAppToolStripMenuItem.Name = "whatsAppToolStripMenuItem";
+            // 
+            // cobrançaToolStripMenuItem
+            // 
+            resources.ApplyResources(cobrançaToolStripMenuItem, "cobrançaToolStripMenuItem");
+            cobrançaToolStripMenuItem.Name = "cobrançaToolStripMenuItem";
+            cobrançaToolStripMenuItem.Click += cobrançaToolStripMenuItem_Click;
             // 
             // MenuStripRelatorios
             // 
@@ -530,5 +551,8 @@
         private FlowLayoutPanel flwMuralLembretes;
         private ToolStripStatusLabel toolStriCodUsuarioLogado;
         private Button btnLimparListaEmprestimos;
+        private ToolStripMenuItem whatsAppToolStripMenuItem;
+        private ToolStripMenuItem cobrançaToolStripMenuItem;
+        private ToolStripMenuItem mensagemWhatsAppToolStripMenuItem;
     }
 }
