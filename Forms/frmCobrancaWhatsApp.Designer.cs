@@ -102,9 +102,9 @@
             lblTelefoneCliente.AutoSize = true;
             lblTelefoneCliente.Location = new Point(340, 34);
             lblTelefoneCliente.Name = "lblTelefoneCliente";
-            lblTelefoneCliente.Size = new Size(232, 20);
+            lblTelefoneCliente.Size = new Size(72, 20);
             lblTelefoneCliente.TabIndex = 5;
-            lblTelefoneCliente.Text = "*Telefone <-- Campo Obrigatório\r\n";
+            lblTelefoneCliente.Text = "*Telefone";
             // 
             // txtTelefoneCliente
             // 
@@ -141,7 +141,6 @@
             txtBoxValorVencido.Name = "txtBoxValorVencido";
             txtBoxValorVencido.Size = new Size(143, 27);
             txtBoxValorVencido.TabIndex = 8;
-            txtBoxValorVencido.KeyDown += txtBoxValorVencido_KeyDown;
             txtBoxValorVencido.Leave += txtBoxValorVencido_Leave;
             // 
             // lblValorVencido

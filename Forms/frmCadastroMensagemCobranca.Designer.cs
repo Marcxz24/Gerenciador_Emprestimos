@@ -60,6 +60,7 @@
             txtDescricaoModeloMsg.ReadOnly = true;
             txtDescricaoModeloMsg.Size = new Size(406, 27);
             txtDescricaoModeloMsg.TabIndex = 1;
+            txtDescricaoModeloMsg.TextChanged += txtDescricaoModeloMsg_TextChanged;
             // 
             // cmbBoxSituacaoModeloMsg
             // 

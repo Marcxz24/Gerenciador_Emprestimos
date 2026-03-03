@@ -244,6 +244,7 @@ namespace Gerenciador_de_Emprestimos
         {
             ConfigurarAcesso(false); // Bloqueia menus
             statusLabelUsername.Text = ""; // Limpa nome do usuário no rodapé
+            toolStriCodUsuarioLogado.Text = ""; // Limpa código do usuário no rodapé
             dataGridListaEmprestimos.Visible = false; // Esconde a lista de empréstimos
             lblListaEmprestimos.Visible = false; // Esconde o rótulo da lista de empréstimos
             btnAtualizarLista.Visible = false; // Esconde o botão de atualizar lista

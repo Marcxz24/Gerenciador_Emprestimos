@@ -45,6 +45,16 @@ namespace Gerenciador_de_Emprestimos.Forms
         private void btnEditar_Click(object sender, EventArgs e)
         {
             _EditarCadastro = true;
+
+            if (_EditarCadastro)
+            {
+                if (string.IsNullOrWhiteSpace(txtCodigoModeloMsg.Text))
+                {
+                    Funcoes.MensagemWarning("Não é possível Editar um cadastro sem o Modelo selecionado!");
+                    return;
+                }
+            }
+
             GerenciarCampos(false, true, false);
         }
 
@@ -154,6 +164,11 @@ namespace Gerenciador_de_Emprestimos.Forms
                 Funcoes.MensagemErro("Ocorreu um erro ao pesquisar o modelo de mensagem.");
                 Serilog.Log.Error("Erro ao capturar modelo de mensagem: " + ex.Message);
             }
+        }
+
+        private void txtDescricaoModeloMsg_TextChanged(object sender, EventArgs e)
+        {
+            Funcoes.PrimeiraLetraMaiuscula(txtDescricaoModeloMsg);
         }
     }
 }
