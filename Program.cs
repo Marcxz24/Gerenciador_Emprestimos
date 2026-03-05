@@ -25,7 +25,7 @@ namespace Gerenciador_de_Emprestimos
             catch (Exception ex)
             {
                 Log.Fatal(ex, "Ocorreu uma falha crítica na inicialização do sistema.");
-                Funcoes.MensagemErro("Erro crítico detectado. Verifique os logs na pasta do sistema.");
+                Funcoes.MensagemErro("Erro crítico detectado. Contate o Suporte: 38991334465\n\nVerifique os logs na pasta do sistema.");
             }
             finally
             {

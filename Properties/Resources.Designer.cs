@@ -28,7 +28,9 @@ namespace Gerenciador_de_Emprestimos.Properties {
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+        internal static Image ImagemNovoCadastro;
+        internal static Image ImagemEditar;
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }

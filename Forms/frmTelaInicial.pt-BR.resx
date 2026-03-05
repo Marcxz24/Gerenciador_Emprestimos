@@ -138,7 +138,7 @@
     <value>178, 20</value>
   </data>
   <data name="toolStsStripSistemVersion.Text" xml:space="preserve">
-    <value>Versão do Sistema: 1.5.4</value>
+    <value>Versão do Sistema: 1.5.8</value>
   </data>
   <data name="toolStsStripSistemVersion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -202,13 +202,16 @@
     <value>Cadastro</value>
   </data>
   <data name="MenuStripNovosEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>239, 26</value>
+    <value>312, 26</value>
   </data>
   <data name="MenuStripNovosEmprestimos.Text" xml:space="preserve">
-    <value>Novos Emprestimos</value>
+    <value>Novos Emprestimos - CTRL + N</value>
+  </data>
+  <data name="pagamentoDeParcelaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>312, 26</value>
   </data>
   <data name="pagamentoDeParcelaToolStripMenuItem.Text" xml:space="preserve">
-    <value>Pagamento de Parcela</value>
+    <value>Pagamento de Parcela - CTRL + P</value>
   </data>
   <data name="MenuStripEmprestimos.Size" type="System.Drawing.Size, System.Drawing">
     <value>178, 26</value>
@@ -223,10 +226,10 @@
     <value>Back-Up do Banco de Dados</value>
   </data>
   <data name="cobrançaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 26</value>
+    <value>229, 26</value>
   </data>
   <data name="cobrançaToolStripMenuItem.Text" xml:space="preserve">
-    <value>Cobrança</value>
+    <value>Cobrança - CTRL + C</value>
   </data>
   <data name="whatsAppToolStripMenuItem.Text" xml:space="preserve">
     <value>WhatsApp</value>

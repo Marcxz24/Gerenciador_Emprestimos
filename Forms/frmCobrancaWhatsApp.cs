@@ -224,7 +224,7 @@ namespace Gerenciador_de_Emprestimos.Forms
         {
             if (decimal.TryParse(txtBoxValorVencido.Text, out decimal valorDigitado))
             {
-                txtBoxValorVencido.Text = valorDigitado.ToString("C2");
+                txtBoxValorVencido.Text = valorDigitado.ToString("F2");
 
                 txtMensagemCobranca.Text = txtMensagemCobranca.Text.Replace("{valor}", txtBoxValorVencido.Text);
             }
@@ -232,6 +232,24 @@ namespace Gerenciador_de_Emprestimos.Forms
             {
                 Funcoes.MensagemWarning("Valor inválido. Por favor, digite um valor numérico.");
                 txtBoxValorVencido.Focus();
+            }
+        }
+
+        private void txtBoxValorVencido_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (decimal.TryParse(txtBoxValorVencido.Text, out decimal valorDigitado))
+                {
+                    txtBoxValorVencido.Text = valorDigitado.ToString("F2");
+
+                    txtMensagemCobranca.Text = txtMensagemCobranca.Text.Replace("{valor}", txtBoxValorVencido.Text);
+                }
+                else
+                {
+                    Funcoes.MensagemWarning("Valor inválido. Por favor, digite um valor numérico.");
+                    txtBoxValorVencido.Focus();
+                }
             }
         }
     }

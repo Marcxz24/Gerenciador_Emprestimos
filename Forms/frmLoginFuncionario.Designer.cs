@@ -34,7 +34,6 @@
             lblSenha = new Label();
             txtBoxUsername = new TextBox();
             txtBoxSenha = new TextBox();
-            btnLogarUsuario = new Button();
             picBoxLogoLogin = new PictureBox();
             panelLogoSistem = new Panel();
             ((System.ComponentModel.ISupportInitialize)picBoxLogoLogin).BeginInit();
@@ -80,6 +79,7 @@
             txtBoxUsername.Name = "txtBoxUsername";
             txtBoxUsername.Size = new Size(421, 27);
             txtBoxUsername.TabIndex = 3;
+            txtBoxUsername.KeyDown += txtBoxUsername_KeyDown;
             txtBoxUsername.Leave += txtBoxUsername_Leave;
             // 
             // txtBoxSenha
@@ -89,17 +89,7 @@
             txtBoxSenha.Size = new Size(421, 27);
             txtBoxSenha.TabIndex = 4;
             txtBoxSenha.UseSystemPasswordChar = true;
-            // 
-            // btnLogarUsuario
-            // 
-            btnLogarUsuario.BackColor = Color.PaleTurquoise;
-            btnLogarUsuario.Location = new Point(131, 437);
-            btnLogarUsuario.Name = "btnLogarUsuario";
-            btnLogarUsuario.Size = new Size(301, 77);
-            btnLogarUsuario.TabIndex = 5;
-            btnLogarUsuario.Text = "Logar com Usuário";
-            btnLogarUsuario.UseVisualStyleBackColor = false;
-            btnLogarUsuario.Click += btnLogarUsuario_Click;
+            txtBoxSenha.KeyDown += txtBoxSenha_KeyDown;
             // 
             // picBoxLogoLogin
             // 
@@ -127,9 +117,8 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.gra_cad_cliente;
-            ClientSize = new Size(532, 549);
+            ClientSize = new Size(532, 463);
             Controls.Add(panelLogoSistem);
-            Controls.Add(btnLogarUsuario);
             Controls.Add(txtBoxSenha);
             Controls.Add(txtBoxUsername);
             Controls.Add(lblSenha);
@@ -157,7 +146,6 @@
         private Label lblSenha;
         private TextBox txtBoxUsername;
         private TextBox txtBoxSenha;
-        private Button btnLogarUsuario;
         private PictureBox picBoxLogoLogin;
         private Panel panelLogoSistem;
     }

@@ -141,6 +141,7 @@
             txtBoxValorVencido.Name = "txtBoxValorVencido";
             txtBoxValorVencido.Size = new Size(143, 27);
             txtBoxValorVencido.TabIndex = 8;
+            txtBoxValorVencido.KeyDown += txtBoxValorVencido_KeyDown;
             txtBoxValorVencido.Leave += txtBoxValorVencido_Leave;
             // 
             // lblValorVencido
@@ -148,9 +149,9 @@
             lblValorVencido.AutoSize = true;
             lblValorVencido.Location = new Point(578, 34);
             lblValorVencido.Name = "lblValorVencido";
-            lblValorVencido.Size = new Size(103, 20);
+            lblValorVencido.Size = new Size(134, 20);
             lblValorVencido.TabIndex = 7;
-            lblValorVencido.Text = "Valor Vencido:";
+            lblValorVencido.Text = "Valor Vencido (R$):";
             // 
             // btnLimparTela
             // 

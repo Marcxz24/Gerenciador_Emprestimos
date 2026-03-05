@@ -253,24 +253,74 @@ namespace Gerenciador_de_Emprestimos
             loginFuncionario.Show();
         }
 
-        // --- EVENTO: Atalhos de Teclado (Tecla HOME) ---
+        // --- EVENTO: Atalhos de Teclado ---
         private void frmTelaIncial_KeyDown(object sender, KeyEventArgs e)
         {
-            // Se a tecla pressionada não for HOME, ignora
-            if (e.KeyCode != Keys.Home)
-                return;
-
-            // Verifica se a tela de login já está aberta para evitar múltiplas instâncias
-            bool loginAberto = Application.OpenForms.OfType<frmLoginFuncionario>().Any();
-
-            if (loginAberto)
-                return;
-
-            var resultado = MessageBox.Show("Deseja realmente fazer logoff do sistema?\nAs tarefas não concluídas serão interrompidas.", "Confirmação de Logoff", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (resultado == DialogResult.Yes)
+            // Verifica as combinações de teclas para os atalhos
+            // HOME: Logoff
+            // CTRL + N: Novo Empréstimo
+            // CTRL + P: Pagamento de Empréstimo
+            // CTRL + C: Cobrança via WhatsApp
+            switch (e.KeyCode)
             {
-                RealizarLogoff();
+                // caso o a tecla HOME seja pressionada, executa o processo de logoff
+                case Keys.Home:
+                    e.SuppressKeyPress = true; // Evita que a tecla HOME execute ações indesejadas
+                    var resultado = MessageBox.Show("Deseja realmente fazer logoff do sistema?\nAs tarefas não concluídas serão interrompidas.", "Confirmação de Logoff", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (resultado == DialogResult.Yes)
+                    {
+                        RealizarLogoff();
+                    }
+                    break;
+
+                // caso o atalho CTRL + N seja pressionado, verifica o acesso e abre o formulário de novos empréstimos
+                case Keys.N when e.Control:
+                    e.SuppressKeyPress = true; // Evita que o atalho execute ações indesejadas
+                    if (!ControleAcesso.PodeAcessar("frmNovosEmprestimos"))
+                    {
+                        Funcoes.MensagemWarning("Você não tem Privilégio para Realizar esta operação.");
+                        return;
+                    }
+                    else
+                    {
+                        frmNovosEmprestimos formularioEmprestimos = new frmNovosEmprestimos();
+                        formularioEmprestimos.ShowDialog();
+                    }
+                    break;
+
+                // caso o atalho CTRL + P seja pressionado, verifica o acesso e abre o formulário de pagamento de empréstimos
+                case Keys.P when e.Control:
+                    e.SuppressKeyPress = true; // Evita que o atalho execute ações indesejadas
+                    if (!ControleAcesso.PodeAcessar("frmPagamentoEmprestimo"))
+                    {
+                        Funcoes.MensagemWarning("Você não tem Privilégio para Realizar esta operação.");
+                        return;
+                    }
+                    else
+                    {
+                        frmPagamentoEmprestimo frmPagamento = new frmPagamentoEmprestimo();
+                        frmPagamento.ShowDialog();
+                    }
+                    break;  
+
+                case Keys.C when e.Control:
+                    e.SuppressKeyPress = true; // Evita que o atalho execute ações indesejadas
+                    if (!ControleAcesso.PodeAcessar("frmCobrancaWhatsApp"))
+                    {
+                        Funcoes.MensagemWarning("Você não tem Privilégio para Realizar esta operação.");
+                        return;
+                    }
+                    else
+                    {
+                        frmCobrancaWhatsApp frmCobranca = new frmCobrancaWhatsApp();
+                        frmCobranca.ShowDialog();
+                    }
+                    break;
+
+
+                default:
+                    // Para outras teclas, não faz nada especial
+                    break;
             }
         }
 
