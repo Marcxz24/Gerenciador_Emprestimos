@@ -1,4 +1,5 @@
 ﻿using Gerenciador_de_Emprestimos.Models;
+using Gerenciador_de_Emprestimos.Repositories;
 using Gerenciador_de_Emprestimos.Services;
 using Gerenciador_de_Emprestimos.Utils;
 using Microsoft.VisualBasic.Logging;
@@ -9,7 +10,7 @@ namespace Gerenciador_de_Emprestimos
 {
     public partial class frmCadastroCliente : Form
     {
-        Cliente cliente = new Cliente();
+        ClienteDAO cliente = new ClienteDAO();
 
         // Varável privada booleana utilizada para verificar se irá Ediatr o Cliente.
         private bool _EditarCadastro;
@@ -63,10 +64,13 @@ namespace Gerenciador_de_Emprestimos
                 txtEmailCliente.Clear();
                 txtObservacoes.Clear();
                 txtCodigoCliente.Clear();
+                picFotoCliente.Image = Properties.Resources.avatar;
             }
 
             // Controla a visibilidade dos botões principais de navegação e ação.
             // Inverte o valor de OcultarBotoes para definir se devem aparecer ou sumir.
+            btnImagemCliente.Visible = OcultarBotoes;
+            btnRemoverImagem.Visible = OcultarBotoes;
             btnNovoCadastro.Visible = !OcultarBotoes;
             btnEditarCadastro.Visible = !OcultarBotoes;
             btnPesquisarCliente.Visible = !OcultarBotoes;
@@ -134,39 +138,39 @@ namespace Gerenciador_de_Emprestimos
         {
             try
             {
-                // Variaveis recebem que representam os campos do formulário, recebem o valor listado nos campos.
-                string? nomeCliente = txtNomeCliente.Text; ;
-                string? cpfCnpj = MaskedTxtCpfCnpjCliente.Text;
-                string? genero = null;
-                string? estadoCivil = comboBoxEstadoCivil.Text;
-                string? endereco = txtEnderecoCliente.Text;
-                string? bairro = txtBairroCliente.Text;
-                string? cidade = txtCidadeCliente.Text;
-                string? uf = comboBoxEstadoUF.Text;
-                int numeroResidencia = Convert.ToInt32(txtNumeroResidencia.Text);
-                string? cep = MaskedTxtCepCliente.Text;
-                string? celular = MaskedTxtCelularCliente.Text;
-                string? email = txtEmailCliente.Text;
-                string? observacoes = txtObservacoes.Text;
-                string? situacaoCadastral = comboBoxSituacaoCadastral.Text;
+                ClienteDTO cliente = new ClienteDTO
+                {
+                    nome_cliente = txtNomeCliente.Text,
+                    cpf_cnpj = MaskedTxtCpfCnpjCliente.Text.Replace(".", "").Replace("-", "").Trim(),
 
-                // Se o Radio Button Masculino estiver Marcado, a variavel genero recebe marculino.
-                if (btnRadioMasculino.Checked == true)
-                    genero = "MASCULINO";
+                    // Lógica simplificada para o Gênero
+                    genero = btnRadioMasculino.Checked ? "MASCULINO" :
+                     (btnRadioFeminino.Checked ? "FEMININO" :
+                     (btnRadioGeneroOutros.Checked ? "OUTROS" : null)),
 
-                // Se o Radio Button Feminino estiver Marcado, a variavel genero recebe Feminino.
-                if (btnRadioFeminino.Checked == true)
-                    genero = "FEMININO";
+                    estado_civil = comboBoxEstadoCivil.Text,
+                    endereco = txtEnderecoCliente.Text,
+                    bairro = txtBairroCliente.Text,
+                    cidade = txtCidadeCliente.Text,
+                    uf = comboBoxEstadoUF.Text,
+                    cep = MaskedTxtCepCliente.Text,
+                    celular = MaskedTxtCelularCliente.Text,
+                    email = txtEmailCliente.Text,
+                    observacoes = txtObservacoes.Text,
+                    situacao_cadastral = comboBoxSituacaoCadastral.Text,
+                    imagem = Funcoes.ConverterImagemParaByte(picFotoCliente.Image)
+                };
 
-                // Se o Radio Button Outros estiver Marcado, a variavel genero recebe Outros.
-                if (btnRadioGeneroOutros.Checked == true)
-                    genero = "OUTROS";
+                int.TryParse(txtCodigoCliente.Text, out int codCliente);
+                cliente.codigo = codCliente;
 
-                // Objeto Global cliente recebe o código do cliente. listado no Text Box referente ao Código.
-                cliente.CodigoCliente = Convert.ToInt32(txtCodigoCliente.Text);
+                int.TryParse(txtNumeroResidencia.Text, out int numCasa);
+                cliente.numero_residencia = numCasa;
+
+                ClienteDAO DAOcliente = new ClienteDAO();
 
                 // Chama o Método da classe responsável por realizar o UPDATE diretamente no Banco de Dados.
-                cliente.EditarCliente(cliente.CodigoCliente, nomeCliente, cpfCnpj, genero, estadoCivil, endereco, bairro, cidade, uf, numeroResidencia, cep, celular, email, observacoes, situacaoCadastral);
+                DAOcliente.EditarCliente(cliente);
             }
             catch (Exception ex)
             {
@@ -180,42 +184,41 @@ namespace Gerenciador_de_Emprestimos
         {
             try
             {
-                // Variaveis que representam os campos do formulários, recebe os valores escritos nos campos.
-                string? nomeCliente = txtNomeCliente.Text;
-                string? cpfCnpj = MaskedTxtCpfCnpjCliente.Text;
-                string? genero = null;
-                string? estadoCivil = comboBoxEstadoCivil.Text;
-                string? endereco = txtEnderecoCliente.Text;
-                string? bairro = txtBairroCliente.Text;
-                string? cidade = txtCidadeCliente.Text;
-                string? uf = comboBoxEstadoUF.Text;
-                int numeroResidencia = 0;
-                string? cep = MaskedTxtCepCliente.Text;
-                string? celular = MaskedTxtCelularCliente.Text;
-                string? email = txtEmailCliente.Text;
-                string? observacoes = txtObservacoes.Text;
-                string? situacaoCadastral = comboBoxSituacaoCadastral.Text;
+                ClienteDTO cliente = new ClienteDTO
+                {
+                    nome_cliente = txtNomeCliente.Text,
+                    cpf_cnpj = MaskedTxtCpfCnpjCliente.Text.Replace(".", "").Replace("-", "").Trim(),
 
-                // Se o Radio Button Masculino estiver Marcado, a variavel genero recebe marculino.
-                if (btnRadioMasculino.Checked == true)
-                    genero = "MASCULINO";
+                    // Lógica simplificada para o Gênero
+                    genero = btnRadioMasculino.Checked ? "MASCULINO" :
+                     (btnRadioFeminino.Checked ? "FEMININO" :
+                     (btnRadioGeneroOutros.Checked ? "OUTROS" : null)),
 
-                // Se o Radio Button Feminino estiver Marcado, a variavel genero recebe Feminino.
-                if (btnRadioFeminino.Checked == true)
-                    genero = "FEMININO";
+                    estado_civil = comboBoxEstadoCivil.Text,
+                    endereco = txtEnderecoCliente.Text,
+                    bairro = txtBairroCliente.Text,
+                    cidade = txtCidadeCliente.Text,
+                    uf = comboBoxEstadoUF.Text,
+                    cep = MaskedTxtCepCliente.Text,
+                    celular = MaskedTxtCelularCliente.Text,
+                    email = txtEmailCliente.Text,
+                    observacoes = txtObservacoes.Text,
+                    situacao_cadastral = comboBoxSituacaoCadastral.Text,
+                    imagem = Funcoes.ConverterImagemParaByte(picFotoCliente.Image)
+                };
 
-                // Se o Radio Button Outros estiver Marcado, a variavel genero recebe Outros.
-                if (btnRadioGeneroOutros.Checked == true)
-                    genero = "OUTROS";
+                int.TryParse(txtNumeroResidencia.Text, out int numCasa);
+                cliente.numero_residencia = numCasa;
 
-                // realiza a conversão do do valor descrito no Text Box, para o valor inteiro INT
-                int.TryParse(txtNumeroResidencia.Text, out numeroResidencia);
+                ClienteDAO clienteDAO = new ClienteDAO();
 
-                // Objeto Global chama o método da classe responsável por Realizar o INSERT no Banco de Dados.
-                cliente.cadastrarCliente(nomeCliente, cpfCnpj, genero, estadoCivil, endereco, bairro, cidade, uf, numeroResidencia, cep, celular, email, observacoes, situacaoCadastral);
+                bool temErro = clienteDAO.cadastrarCliente(cliente);
 
-                // O Text Box Referente ao código do cliente recebe o valor do ultimo cliente cadastrado no SELECT @@IDENTITY
-                txtCodigoCliente.Text = cliente.CodigoCliente.ToString();
+                if (!temErro)
+                    txtCodigoCliente.Text = clienteDAO.CodigoCliente.ToString();
+                else
+                    Funcoes.MensagemWarning("Não foi possível cadastrar. Verifique se o CPF/CNPJ já existe.");
+
             }
             catch (Exception ex)
             {
@@ -368,16 +371,6 @@ namespace Gerenciador_de_Emprestimos
                     return true; // Existe Erro e bloqueia a passagem para o proximo método.
                 }
 
-                // Se o CEP estiver vazio ou com espaços em branco, encerra o método neste trecho.
-                if (string.IsNullOrWhiteSpace(MaskedTxtCepCliente.Text))
-                {
-                    Funcoes.MensagemWarning("Campo Obrigatório Vazio, por favor Preencha!\n\nCampo: CEP");
-
-                    MaskedTxtCepCliente.Focus();
-
-                    return true; // Existe Erro e bloqueia a passagem para o proximo método.
-                }
-
                 return false; // Se chegou até aqui não existe erro e pode passar para os proximos métodos.
             }
             catch (Exception ex)
@@ -400,6 +393,15 @@ namespace Gerenciador_de_Emprestimos
                     {
                         // variavel cliente recebe o cliente selecionado do form selecionar cliente.
                         var cliente = formSelecionarCliente.ClienteSelecionado;
+
+                        string documentoLimpo = cliente.cpf_cnpj.Replace(".", "").Replace("-", "").Replace("/", "").Trim();
+
+                        // Validação para bloquear selecionar CNPJ no cadastro de Pessoas físicas.
+                        if (documentoLimpo.Length == 14)
+                        {
+                            Funcoes.MensagemWarning("Este cliente é uma Pessoa Jurídica (CNPJ).\nUse a tela de Cadastro de Pessoas Jurídicas para selecioná-lo.");
+                            return; // Interrompe o preenchimento e sai do método
+                        }
 
                         /// ----- Os códigos Abaixo estão recebendo os valores que foram selecionados no form selecionar cliente listado no DataGrid.
                         // Text Box recebe o código do cliente. 
@@ -439,6 +441,26 @@ namespace Gerenciador_de_Emprestimos
                         txtObservacoes.Text = cliente.observacoes;
                         // o Combo Box Situação Cadastral recebe o valor do Situação Cadastral.
                         comboBoxSituacaoCadastral.Text = cliente.situacao_cadastral;
+
+                        if (cliente.imagem != null && cliente.imagem.Length > 0)
+                        {
+                            try
+                            {
+                                using (var ms = new System.IO.MemoryStream(cliente.imagem))
+                                {
+                                    picFotoCliente.Image = Image.FromStream(ms);
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Serilog.Log.Error("Não foi possível carregar a imagem do cliente: " + ex);
+                                picFotoCliente.Image = null;
+                            }
+                        }
+                        else
+                        {
+                            picFotoCliente.Image = null; // caso não haja imagem no banco de dados.
+                        }
                     }
                 }
             }
@@ -511,6 +533,29 @@ namespace Gerenciador_de_Emprestimos
                     Funcoes.MensagemErro("Erro ao consultar CEP. Verifique o CEP e tente novamente.");
                 }
             }
+        }
+
+        private void btnImagemCliente_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Imagens (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
+                ofd.Title = "Selecione a foto do cliente";
+
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    // Exibe a imagem no PictureBox da sua tela
+                    picFotoCliente.Image = Image.FromFile(ofd.FileName);
+
+                    // Ajusta a imagem para caber no quadro sem distorcer
+                    picFotoCliente.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+            }
+        }
+
+        private void btnRemoverImagem_Click(object sender, EventArgs e)
+        {
+            picFotoCliente.Image = Properties.Resources.avatar;
         }
     }
 }

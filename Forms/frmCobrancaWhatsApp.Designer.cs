@@ -231,6 +231,8 @@
             Controls.Add(grpBoxEnvioMensagem);
             Controls.Add(grpBoxCliente);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "frmCobrancaWhatsApp";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cobrança";

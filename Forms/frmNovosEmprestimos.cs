@@ -1,4 +1,6 @@
 ﻿using Gerenciador_de_Emprestimos.Models;
+using Gerenciador_de_Emprestimos.Repositories;
+using Gerenciador_de_Emprestimos.Services;
 using Gerenciador_de_Emprestimos.Utils;
 using System.Globalization;
 
@@ -6,8 +8,13 @@ namespace Gerenciador_de_Emprestimos
 {
     public partial class frmNovosEmprestimos : Form
     {
+        // Camadas da Arquitetura v1.6.1
+        private EmprestimoServices _service = new EmprestimoServices();
+        private EmprestimoDAO _dao = new EmprestimoDAO();
+        private EmprestimoDTO _dto = new EmprestimoDTO(); // DTO que manterá o estado da tela
+
         // Objeto global que carrega a lógica de negócio e cálculos financeira
-        Emprestimos emprestimo = new Emprestimos();
+        EmprestimoServices emprestimo = new EmprestimoServices();
 
         public frmNovosEmprestimos()
         {
@@ -105,14 +112,14 @@ namespace Gerenciador_de_Emprestimos
 
                 // 4. Regras de Negócio no Banco de Dados
                 // Impede que um cliente pegue dois empréstimos ao mesmo tempo
-                if (emprestimo.ValidarClienteEmprestimo(txtBoxCodigoCliente.Text))
+                if (_dao.ValidarClienteEmprestimo(txtBoxCodigoCliente.Text))
                 {
                     Funcoes.MensagemWarning("Este Cliente Já está com um Emprestimo 'ATIVO'");
                     return true;
                 }
 
                 // Impede que clientes bloqueados/inativos operem
-                if (emprestimo.validarClienteInativo(txtBoxCodigoCliente.Text))
+                if (_dao.validarClienteInativo(txtBoxCodigoCliente.Text))
                 {
                     Funcoes.MensagemWarning("Não é possível realizar emprestimos para Clientes 'INATIVOS'");
                     return true;
@@ -164,41 +171,34 @@ namespace Gerenciador_de_Emprestimos
         // --- MÉTODO: Finaliza e grava o empréstimo no banco ---
         private void btnGerarEmprestimos_Click(object sender, EventArgs e)
         {
-            if (ValidacoesEmprestimo() == true) return;
+            if (ValidacoesEmprestimo()) return;
 
-            // Tenta converter o código para garantir integridade antes de enviar para a classe
-            if (int.TryParse(txtBoxCodigoCliente.Text, out int codigoCliente))
+            // Garante que o cálculo mais recente esteja no DTO
+            btnCalcularEmprestimo_Click(sender, e);
+
+            // Adiciona as informações de identificação e datas
+            _dto.CodigoCliente = int.Parse(txtBoxCodigoCliente.Text);
+            _dto.DataVencimentoInicial = DateOnly.ParseExact(maskTxtDataPagamento.Text, "dd/MM/yyyy");
+
+            // Lógica das Observações (Mantendo a sua regra)
+            var resultadoObs = MessageBox.Show("Deseja informar uma Observação?", "Observações", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (resultadoObs == DialogResult.Yes)
             {
-                emprestimo.CodigoCliente = codigoCliente;
-            }
-            else
-            {
-                Funcoes.MensagemErro("Código do Cliente inválido. Verifique e tente novamente.");
-                return;
-            }
-
-            // Define a data de vencimento da primeira parcela
-            if (DateOnly.TryParseExact(maskTxtDataPagamento.Text, "dd/MM/yyyy", CultureInfo.GetCultureInfo("pt-BR"), DateTimeStyles.None, out DateOnly dataPagamento))
-            {
-                emprestimo.DataVencimentoInicial = dataPagamento;
-            }
-
-            string mensagem = "Você deseja informar uma Obersvação ao Emprestimo?";
-            var resultado = MessageBox.Show(mensagem, "Observações", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (resultado == DialogResult.Yes)
-            {
-                frmObservacoesEmprestimos frmObersvacoes = new frmObservacoesEmprestimos();
-                frmObersvacoes.ShowDialog();
-
-                string? obsEmprestimos = null;
-                obsEmprestimos = frmObersvacoes.AdquirirDadosObservacoes(obsEmprestimos);
-
-                emprestimo.ObservacoesEmprestimos = obsEmprestimos;
+                using (var frmObersvacoes = new frmObservacoesEmprestimos())
+                {
+                    frmObersvacoes.ShowDialog();
+                    _dto.ObservacoesEmprestimos = frmObersvacoes.AdquirirDadosObservacoes(null);
+                }
             }
 
-            emprestimo.AtivarEmprestimo(); // Define Status e Data de hoje
-            emprestimo.InserirDadosEmorestimo(); // Executa a transação no SQL
+            // Prepara Status e Data de Emissão via Service
+            _service.PrepararAtivacao(_dto);
+
+            // Persistência via DAO
+            if (_dao.InserirDadosEmprestimo(_dto))
+            {
+                Funcoes.MensagemInformation($"Empréstimo n° {_dto.Codigo} gerado com sucesso!");
+            }
         }
 
         // --- MÉTODO: Realiza os cálculos financeiros em memória e exibe nos campos ---
@@ -206,33 +206,29 @@ namespace Gerenciador_de_Emprestimos
         {
             if (ValidacoesEmprestimo()) return;
 
-            // Envia os dados digitados para as propriedades da classe EmprestimosCliente
-            if (decimal.TryParse(txtBoxValorEmprestado.Text, out decimal valorEmprestado))
+            try
             {
-                emprestimo.ValorEmprestado = valorEmprestado;
-            }
+                // 1. Alimenta o DTO com os dados atuais da tela
+                _dto.ValorEmprestado = decimal.Parse(txtBoxValorEmprestado.Text);
+                _dto.ValorJurosPercentual = decimal.Parse(txtBoxTaxaJuros.Text);
+                _dto.QuantidadeParcela = int.Parse(txtBoxQuantidadeParcela.Text);
+                _dto.TipoJuros = cmbBoxTipoJuros.Text;
 
-            if (decimal.TryParse(txtBoxTaxaJuros.Text, out decimal taxaPercentualJuros))
+                // 2. Chama o Service para processar os cálculos matemáticos
+                _service.CalcularEmprestimoCompleto(_dto);
+
+                // 3. Atualiza a tela com os resultados que o Service gravou no DTO
+                txtBoxValorEmprestado.Text = _dto.ValorEmprestado.ToString("F2");
+                txtBoxValorEmpresto.Text = _dto.ValorEmprestado.ToString("F2");
+                txtBoxValorJuros.Text = _dto.ValorJurosMonetario.ToString("F2");
+                txtBoxTotalPagar.Text = _dto.ValorTotal.ToString("F2");
+                txtBoxValorParcela.Text = _dto.ValorParcela.ToString("F2");
+            }
+            catch (Exception ex) 
             {
-                emprestimo.ValorJurosPercentual = taxaPercentualJuros;
+                Funcoes.MensagemErro("Erro ao calcular: Verifique se os valores numéricos estão corretos.");
+                Serilog.Log.Error(ex, "Erro no cálculo do empréstimo" + ex);
             }
-
-            if (int.TryParse(txtBoxQuantidadeParcela.Text, out int qtnParcela))
-            {
-                emprestimo.QuantidadeParcela = qtnParcela;
-            }
-
-            // Executa os cálculos matemáticos na classe de negócio
-            emprestimo.TipoJuros = cmbBoxTipoJuros.Text;
-            emprestimo.SomarJurosAoTotal();
-            emprestimo.DividirParcelas();
-
-            // Devolve os resultados calculados para a interface, formatados como moeda ("F2")
-            txtBoxValorEmprestado.Text = emprestimo.ValorEmprestado.ToString("F2");
-            txtBoxValorEmpresto.Text = emprestimo.ValorEmprestado.ToString("F2");
-            txtBoxValorJuros.Text = emprestimo.ValorJurosMonetario.ToString("F2");
-            txtBoxTotalPagar.Text = emprestimo.ValorTotal.ToString("F2");
-            txtBoxValorParcela.Text = emprestimo.ValorParcela.ToString("F2");
         }
     }
 }

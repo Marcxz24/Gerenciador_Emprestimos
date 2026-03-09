@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Gerenciador_de_Emprestimos.Repositories
 {
-    public class FuncionarioPrivilegioRepository
+    public class FuncionarioPrivilegioDAO
     {
         // Método que busca no banco apenas os IDs das telas onde o funcionário tem acesso ativo (pode_acessar = 1)
         public List<int> ObterTelasPermitidas(int codigoFuncionario)

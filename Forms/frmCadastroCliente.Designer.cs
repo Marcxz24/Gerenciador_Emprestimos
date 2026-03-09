@@ -59,7 +59,6 @@
             groupBoxContatos = new GroupBox();
             groupBoxEstadoCivil = new GroupBox();
             comboBoxEstadoCivil = new ComboBox();
-            imagemCliente = new PictureBox();
             btnImagemCliente = new Button();
             btnRemoverImagem = new Button();
             btnFecharForm = new Button();
@@ -75,12 +74,13 @@
             lblSituacaoCadastral = new Label();
             lblMostrarCodigoCliente = new Label();
             txtCodigoCliente = new TextBox();
+            picFotoCliente = new PictureBox();
             groupBoxGenero.SuspendLayout();
             groupBoxEndereco.SuspendLayout();
             groupBoxContatos.SuspendLayout();
             groupBoxEstadoCivil.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)imagemCliente).BeginInit();
             groupBoxNomeCpfCnpj.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picFotoCliente).BeginInit();
             SuspendLayout();
             // 
             // lblNomeCliente
@@ -420,20 +420,6 @@
             comboBoxEstadoCivil.Size = new Size(214, 25);
             comboBoxEstadoCivil.TabIndex = 6;
             // 
-            // imagemCliente
-            // 
-            imagemCliente.BackColor = Color.Transparent;
-            imagemCliente.BackgroundImageLayout = ImageLayout.Stretch;
-            imagemCliente.BorderStyle = BorderStyle.Fixed3D;
-            imagemCliente.ErrorImage = null;
-            imagemCliente.Image = (Image)resources.GetObject("imagemCliente.Image");
-            imagemCliente.Location = new Point(21, 12);
-            imagemCliente.Name = "imagemCliente";
-            imagemCliente.Size = new Size(196, 183);
-            imagemCliente.SizeMode = PictureBoxSizeMode.StretchImage;
-            imagemCliente.TabIndex = 43;
-            imagemCliente.TabStop = false;
-            // 
             // btnImagemCliente
             // 
             btnImagemCliente.BackColor = SystemColors.ButtonHighlight;
@@ -449,6 +435,8 @@
             btnImagemCliente.Text = "Imagem";
             btnImagemCliente.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnImagemCliente.UseVisualStyleBackColor = false;
+            btnImagemCliente.Visible = false;
+            btnImagemCliente.Click += btnImagemCliente_Click;
             // 
             // btnRemoverImagem
             // 
@@ -465,6 +453,8 @@
             btnRemoverImagem.TabStop = false;
             btnRemoverImagem.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnRemoverImagem.UseVisualStyleBackColor = false;
+            btnRemoverImagem.Visible = false;
+            btnRemoverImagem.Click += btnRemoverImagem_Click;
             // 
             // btnFecharForm
             // 
@@ -489,7 +479,6 @@
             btnSalvarCadastroCliente.BackgroundImageLayout = ImageLayout.None;
             btnSalvarCadastroCliente.Cursor = Cursors.Hand;
             btnSalvarCadastroCliente.FlatStyle = FlatStyle.Popup;
-            btnSalvarCadastroCliente.Image = (Image)resources.GetObject("btnSalvarCadastroCliente.Image");
             btnSalvarCadastroCliente.Location = new Point(275, 770);
             btnSalvarCadastroCliente.Name = "btnSalvarCadastroCliente";
             btnSalvarCadastroCliente.RightToLeft = RightToLeft.No;
@@ -645,14 +634,25 @@
             txtCodigoCliente.TabIndex = 37;
             txtCodigoCliente.TabStop = false;
             // 
+            // picFotoCliente
+            // 
+            picFotoCliente.BorderStyle = BorderStyle.Fixed3D;
+            picFotoCliente.Image = Properties.Resources.avatar;
+            picFotoCliente.Location = new Point(21, 17);
+            picFotoCliente.Name = "picFotoCliente";
+            picFotoCliente.Size = new Size(196, 178);
+            picFotoCliente.SizeMode = PictureBoxSizeMode.StretchImage;
+            picFotoCliente.TabIndex = 54;
+            picFotoCliente.TabStop = false;
+            // 
             // frmCadastroCliente
             // 
-            AutoScaleDimensions = new SizeF(9F, 17F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = SystemColors.ControlDark;
             BackgroundImage = Properties.Resources.gra_cad_cliente;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(833, 836);
+            Controls.Add(picFotoCliente);
             Controls.Add(txtCodigoCliente);
             Controls.Add(lblMostrarCodigoCliente);
             Controls.Add(lblSituacaoCadastral);
@@ -663,7 +663,6 @@
             Controls.Add(btnFecharForm);
             Controls.Add(btnRemoverImagem);
             Controls.Add(btnImagemCliente);
-            Controls.Add(imagemCliente);
             Controls.Add(groupBoxEstadoCivil);
             Controls.Add(groupBoxContatos);
             Controls.Add(groupBoxEndereco);
@@ -679,6 +678,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 3, 4, 3);
             MaximizeBox = false;
+            MinimizeBox = false;
             Name = "frmCadastroCliente";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cadastro de Cliente";
@@ -690,9 +690,9 @@
             groupBoxContatos.PerformLayout();
             groupBoxEstadoCivil.ResumeLayout(false);
             groupBoxEstadoCivil.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)imagemCliente).EndInit();
             groupBoxNomeCpfCnpj.ResumeLayout(false);
             groupBoxNomeCpfCnpj.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picFotoCliente).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -732,7 +732,6 @@
         private ComboBox comboBoxEstadoUF;
         private GroupBox groupBoxEstadoCivil;
         private ComboBox comboBoxEstadoCivil;
-        private PictureBox imagemCliente;
         private Button btnImagemCliente;
         private Button btnRemoverImagem;
         private Button btnFecharForm;
@@ -748,5 +747,6 @@
         private Label lblMostrarCodigoCliente;
         private TextBox txtCodigoCliente;
         private Label lblCpfCliente;
+        private PictureBox picFotoCliente;
     }
 }

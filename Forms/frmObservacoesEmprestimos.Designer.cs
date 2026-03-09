@@ -91,6 +91,8 @@
             Controls.Add(lblObservacoesEmprestimos);
             Controls.Add(txtObservacoesEmprestimos);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "frmObservacoesEmprestimos";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Observações";

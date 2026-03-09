@@ -1,4 +1,6 @@
 ﻿using Gerenciador_de_Emprestimos.Database;
+using Gerenciador_de_Emprestimos.Models;
+using Gerenciador_de_Emprestimos.Repositories;
 using Gerenciador_de_Emprestimos.Services;
 using Gerenciador_de_Emprestimos.Utils;
 using MySql.Data.MySqlClient;
@@ -13,7 +15,7 @@ namespace Gerenciador_de_Emprestimos
     {
         // Propriedades para disponibilizar o resultado da seleção para outros formulários
         public string codigoSelecionado { get; private set; }
-        public SelecionarCliente ClienteSelecionado { get; private set; }
+        public ClienteDTO ClienteSelecionado { get; private set; }
 
         public frmSelecionarCliente()
         {
@@ -30,20 +32,35 @@ namespace Gerenciador_de_Emprestimos
         {
             try
             {
-                SelecionarCliente selecionarCliente = new SelecionarCliente();
+                ClienteDAO selecionarCliente = new ClienteDAO();
 
-                int codigoCliente = string.IsNullOrWhiteSpace(txtCodigoCliente.Text) ? 0 : int.Parse(txtCodigoCliente.Text);
-                string nomeCliente = txtNomeCliente.Text.Trim();
-                string bairro = txtBairro.Text.Trim();
-                string endereco = txtEndereco.Text.Trim();
-                int numeroResidencia = string.IsNullOrWhiteSpace(txtNumeroResidencia.Text) ? 0 : int.Parse(txtNumeroResidencia.Text);
-                string celular = maskedCelularSelecionar.Text.Replace(",", "").Trim();
-                string cpfCnpj = maskedCpfCnpj.Text.Replace(",", "").Replace("-", "").Replace("/", "").Trim();  
-                string genero = comboBoxGeneroCliente.SelectedItem?.ToString() ?? string.Empty; 
-                string situacaoCadastral = comboBoxSituacaoCadastralSelecionar.SelectedItem?.ToString() ?? string.Empty;
-                string uf = ComboBoxUF.SelectedItem?.ToString() ?? string.Empty;
+                int.TryParse(txtCodigoCliente.Text, out int codigoConvertido);
+                int.TryParse(txtNumeroResidencia.Text, out int numeroRes);
 
-                dataGridClientes.DataSource = selecionarCliente.ListarClientes();
+                ClienteDTO cliente = new ClienteDTO
+                {
+                    codigo = codigoConvertido,
+                    nome_cliente = txtNomeCliente.Text,
+                    bairro = txtBairro.Text,
+                    endereco = txtEndereco.Text,
+                    cidade = txtCidade.Text,
+                    uf = ComboBoxUF.Text,
+                    genero = comboBoxGeneroCliente.Text,
+                    numero_residencia = numeroRes
+                };
+
+                dataGridClientes.DataSource = selecionarCliente.ListarClientes(cliente);
+
+                if (dataGridClientes.Columns.Count > 0)
+                {
+                    dataGridClientes.Columns["codigo"].HeaderText = "CÓDIGO";
+                    dataGridClientes.Columns["nome_cliente"].HeaderText = "NOME DO CLIENTE";
+                    dataGridClientes.Columns["nome_fantasia"].HeaderText = "NOME FANTASIA";
+                    dataGridClientes.Columns["genero"].HeaderText = "GÊNERO";
+                    dataGridClientes.Columns["celular"].HeaderText = "CONTATO";
+                    dataGridClientes.Columns["situacao_cadastral"].HeaderText = "STATUS";
+                    dataGridClientes.Columns["cpf_cnpj"].HeaderText = "CPF / CNPJ";
+                }
             }
             catch (Exception ex)
             {
@@ -108,10 +125,10 @@ namespace Gerenciador_de_Emprestimos
                 // Captura o código da linha selecionada
                 int codigo = Convert.ToInt32(dataGridClientes.Rows[e.RowIndex].Cells["codigo"].Value);
 
-                var service = new SelecionarCliente();
+                var clienteDAO = new ClienteDAO();
 
                 // Busca os dados completos do cliente e preenche a propriedade pública
-                ClienteSelecionado = service.BuscarClientePorCodigo(codigo);
+                this.ClienteSelecionado = clienteDAO.BuscarClientePorCodigo(codigo);
 
                 // Define o resultado como OK para sinalizar ao formulário pai que houve seleção
                 this.DialogResult = DialogResult.OK;

@@ -75,6 +75,7 @@
             grpBoxWhatsApp = new GroupBox();
             chkBoxCadWhatsapp = new CheckBox();
             grpBoxCliente = new GroupBox();
+            chkBoxCadastroCNPJ = new CheckBox();
             chkBoxAcessarCadastroCliente = new CheckBox();
             grpBoxEmpresa = new GroupBox();
             chkBoxCadastroFuncionario = new CheckBox();
@@ -89,6 +90,7 @@
             tabPageFuncOperacionais = new TabPage();
             groupBox1 = new GroupBox();
             chkBoxCobranca = new CheckBox();
+            chkEstornoPagamento = new CheckBox();
             tabPageLogin.SuspendLayout();
             tabPageCadastroFuncionario.SuspendLayout();
             grpBoxDadosPessoaisFuncionario.SuspendLayout();
@@ -611,6 +613,7 @@
             // 
             // grpBoxCliente
             // 
+            grpBoxCliente.Controls.Add(chkBoxCadastroCNPJ);
             grpBoxCliente.Controls.Add(chkBoxAcessarCadastroCliente);
             grpBoxCliente.Location = new Point(6, 3);
             grpBoxCliente.Name = "grpBoxCliente";
@@ -619,16 +622,28 @@
             grpBoxCliente.TabStop = false;
             grpBoxCliente.Text = "Cliente";
             // 
+            // chkBoxCadastroCNPJ
+            // 
+            chkBoxCadastroCNPJ.AutoSize = true;
+            chkBoxCadastroCNPJ.Enabled = false;
+            chkBoxCadastroCNPJ.Location = new Point(20, 81);
+            chkBoxCadastroCNPJ.Name = "chkBoxCadastroCNPJ";
+            chkBoxCadastroCNPJ.Size = new Size(259, 24);
+            chkBoxCadastroCNPJ.TabIndex = 1;
+            chkBoxCadastroCNPJ.Tag = "9";
+            chkBoxCadastroCNPJ.Text = "Cadastro de Pessoa Juridica (CNPJ)";
+            chkBoxCadastroCNPJ.UseVisualStyleBackColor = true;
+            // 
             // chkBoxAcessarCadastroCliente
             // 
             chkBoxAcessarCadastroCliente.AutoSize = true;
             chkBoxAcessarCadastroCliente.Enabled = false;
             chkBoxAcessarCadastroCliente.Location = new Point(20, 35);
             chkBoxAcessarCadastroCliente.Name = "chkBoxAcessarCadastroCliente";
-            chkBoxAcessarCadastroCliente.Size = new Size(142, 24);
+            chkBoxAcessarCadastroCliente.Size = new Size(199, 24);
             chkBoxAcessarCadastroCliente.TabIndex = 0;
             chkBoxAcessarCadastroCliente.Tag = "1";
-            chkBoxAcessarCadastroCliente.Text = "Acessar cadastro";
+            chkBoxAcessarCadastroCliente.Text = "Cadastro de Cliente (CPF)";
             chkBoxAcessarCadastroCliente.UseVisualStyleBackColor = true;
             // 
             // grpBoxEmpresa
@@ -666,6 +681,7 @@
             // 
             // grpBoxEmprestimos
             // 
+            grpBoxEmprestimos.Controls.Add(chkEstornoPagamento);
             grpBoxEmprestimos.Controls.Add(chkBoxPagamentoParcela);
             grpBoxEmprestimos.Controls.Add(chkBoxNovosEmprestimos);
             grpBoxEmprestimos.Location = new Point(6, 6);
@@ -778,6 +794,18 @@
             chkBoxCobranca.Text = "Cobrança (WhatsApp)";
             chkBoxCobranca.UseVisualStyleBackColor = true;
             // 
+            // chkEstornoPagamento
+            // 
+            chkEstornoPagamento.AutoSize = true;
+            chkEstornoPagamento.Enabled = false;
+            chkEstornoPagamento.Location = new Point(20, 114);
+            chkEstornoPagamento.Name = "chkEstornoPagamento";
+            chkEstornoPagamento.Size = new Size(181, 24);
+            chkEstornoPagamento.TabIndex = 2;
+            chkEstornoPagamento.Tag = "10";
+            chkEstornoPagamento.Text = "Estorno de Pagamento";
+            chkEstornoPagamento.UseVisualStyleBackColor = true;
+            // 
             // frmCadastroFuncionario
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -798,6 +826,7 @@
             Controls.Add(tabCntrlCadastroFuncionario);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
+            MinimizeBox = false;
             Name = "frmCadastroFuncionario";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cadastro de Funcionário";
@@ -893,5 +922,7 @@
         private TabPage tabPageFuncOperacionais;
         private GroupBox groupBox1;
         private CheckBox chkBoxCobranca;
+        private CheckBox chkBoxCadastroCNPJ;
+        private CheckBox chkEstornoPagamento;
     }
 }

@@ -295,6 +295,7 @@
             Font = new Font("Arial Rounded MT Bold", 9F);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
+            MinimizeBox = false;
             Name = "frmSelecionarFuncionario";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Selecionar Funcionário";

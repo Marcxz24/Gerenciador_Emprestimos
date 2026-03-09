@@ -383,6 +383,7 @@
             Font = new Font("Arial Rounded MT Bold", 9F);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
+            MinimizeBox = false;
             Name = "frmVisualizarEmprestimos";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Visualizar Empréstimos";

@@ -339,11 +339,11 @@
             btnSelecionarCliente.BackColor = Color.Aquamarine;
             btnSelecionarCliente.FlatStyle = FlatStyle.Popup;
             btnSelecionarCliente.Image = Properties.Resources.lupa;
-            btnSelecionarCliente.Location = new Point(482, 249);
+            btnSelecionarCliente.Location = new Point(480, 249);
             btnSelecionarCliente.Name = "btnSelecionarCliente";
             btnSelecionarCliente.Size = new Size(204, 48);
             btnSelecionarCliente.TabIndex = 4;
-            btnSelecionarCliente.Text = "Selecionar Cliente";
+            btnSelecionarCliente.Text = "Localizar Cliente";
             btnSelecionarCliente.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSelecionarCliente.UseVisualStyleBackColor = false;
             btnSelecionarCliente.Click += btnSelecionarCliente_Click;
@@ -388,6 +388,8 @@
             Controls.Add(groupBoxFiltrosCliente);
             Font = new Font("Arial Rounded MT Bold", 9F);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "frmSelecionarCliente";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Selecionar Cliente";

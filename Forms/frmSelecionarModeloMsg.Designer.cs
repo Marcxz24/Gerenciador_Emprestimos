@@ -160,6 +160,8 @@
             Controls.Add(dtGridModeloMsg);
             Controls.Add(grpFiltrosPesquisa);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "frmSelecionarModeloMsg";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Selecionar Modelo de Mensagem";

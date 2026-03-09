@@ -1,4 +1,6 @@
-﻿using Gerenciador_de_Emprestimos.Services;
+﻿using Gerenciador_de_Emprestimos.Models;
+using Gerenciador_de_Emprestimos.Repositories;
+using Gerenciador_de_Emprestimos.Services;
 using Gerenciador_de_Emprestimos.Utils;
 using System.Data;
 
@@ -7,7 +9,7 @@ namespace Gerenciador_de_Emprestimos
     public partial class frmSelecionarFuncionario : Form
     {
         // Propriedade para retornar o objeto do funcionário selecionado para o formulário chamador
-        public SelecionarFuncionario FuncionarioSelecionado { get; private set; }
+        public FuncionarioDTO FuncionarioSelecionado { get; private set; }
 
 
         public frmSelecionarFuncionario()
@@ -26,75 +28,67 @@ namespace Gerenciador_de_Emprestimos
         {
             try
             {
-                SelecionarFuncionario selecionarFuncionario = new SelecionarFuncionario();
+                int.TryParse(txtCodigoFuncionario.Text, out int codigoFuncionario);
 
-                // Inicialização de variáveis para os filtros
-                int CodigoFuncionario = 0;
-                string? nomeFuncionario = null;
-                string? cpf = null;
-                string? sexo = null;
-                string? estadoCivil = null;
-                string? telefoneFuncionario = null;
-                string? cidadeFuncionario = null;
-                string? situacaoFuncionario = null;
+                string telefoneLimpo = txtTelefoneFuncionario.Text.
+                    Replace("(", "").
+                    Replace(")", "").
+                    Replace("-", "").
+                    Trim();
 
-                // Captura e validação do Código
-                if (!string.IsNullOrWhiteSpace(txtCodigoFuncionario.Text) && int.TryParse(txtCodigoFuncionario.Text, out int codFuncionario))
+                string documentoLimpo = txtCpfFuncionario.Text.
+                    Replace(".", "").
+                    Replace("-", "").
+                    Trim();
+
+                FuncionarioDTO funcionarioDTO = new FuncionarioDTO
                 {
-                    CodigoFuncionario = codFuncionario;
-                }
+                    Codigo = codigoFuncionario,
+                    Nome = txtNomeFuncionario.Text,
+                    Cpf = documentoLimpo,
+                    Sexo = comboBoxGeneroCliente.Text,
+                    EstadoCivil = comboBoxEstadoCivil.Text, 
+                    Telefone = telefoneLimpo,
+                    Cidade = txtCidadeFuncionario.Text,
+                    Situacao = comboBoxSituacaoCadastralSelecionar.Text,
+                };
 
-                // Captura do Nome
-                if (!string.IsNullOrWhiteSpace(txtNomeFuncionario.Text))
-                {
-                    nomeFuncionario = txtNomeFuncionario.Text;
-                }
-
-                // Captura do CPF removendo a formatação (pontos e traços) para busca no banco
-                if (!string.IsNullOrWhiteSpace(txtCpfFuncionario.Text))
-                {
-                    cpf = txtCpfFuncionario.Text.Replace(".", "").Replace("-", "").Trim();
-                }
-
-                // Captura do Gênero
-                if (!string.IsNullOrWhiteSpace(comboBoxGeneroCliente.Text))
-                {
-                    sexo = comboBoxGeneroCliente.Text;
-                }
-
-                // Captura do Estado Civil
-                if (!string.IsNullOrWhiteSpace(comboBoxEstadoCivil.Text))
-                {
-                    estadoCivil = comboBoxEstadoCivil.Text;
-                }
-
-                // Captura do Telefone removendo parênteses e traços
-                if (!string.IsNullOrWhiteSpace(txtTelefoneFuncionario.Text))
-                {
-                    telefoneFuncionario = txtTelefoneFuncionario.Text.Replace("(", "").Replace(")", "").Replace("-", "").Trim();
-                }
-
-                // Captura da Cidade
-                if (!string.IsNullOrWhiteSpace(txtCidadeFuncionario.Text))
-                {
-                    cidadeFuncionario = txtCidadeFuncionario.Text;
-                }
-
-                // Captura da Situação Cadastral
-                if (!string.IsNullOrWhiteSpace(comboBoxSituacaoCadastralSelecionar.Text))
-                {
-                    situacaoFuncionario = comboBoxSituacaoCadastralSelecionar.Text;
-                }
+                FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 
                 // Chama o método da classe de serviço que executa a Query no banco de dados
-                DataTable dataTable = selecionarFuncionario.ListarFuncionarios(CodigoFuncionario, nomeFuncionario, cpf, sexo, estadoCivil, telefoneFuncionario, cidadeFuncionario, situacaoFuncionario);
+                DataTable dataTable = funcionarioDAO.ListarFuncionarios(funcionarioDTO);
 
                 // Alimenta o DataGrid com os funcionários encontrados
+                dataGridFuncionarios.DataSource = null;
+                dataGridFuncionarios.Columns.Clear();
+                dataGridFuncionarios.AutoGenerateColumns = true;
                 dataGridFuncionarios.DataSource = dataTable;
+                
+                if (dataGridFuncionarios.Columns.Count > 0)
+                {
+                    dataGridFuncionarios.Columns["codigo"].HeaderText = "CODIGO";
+                    dataGridFuncionarios.Columns["nome_funcionario"].HeaderText = "NOME";
+                    dataGridFuncionarios.Columns["cpf_funcionario"].HeaderText = "CPF";
+                    dataGridFuncionarios.Columns["sexo_funcionario"].HeaderText = "SEXO";
+                    dataGridFuncionarios.Columns["funcionario_estado_civil"].HeaderText = "ESTADO CIVIL";
+                    dataGridFuncionarios.Columns["username"].HeaderText = "USERNAME";
+                    dataGridFuncionarios.Columns["telefone_funcionario"].HeaderText = "TELEFONE";
+                    dataGridFuncionarios.Columns["cidade_funcionario"].HeaderText = "CIDADE";
+                    dataGridFuncionarios.Columns["endereco_funcionario"].HeaderText = "ENDEREÇO";
+                    dataGridFuncionarios.Columns["bairro_funcionario"].HeaderText = "BAIRRO";
+                    dataGridFuncionarios.Columns["numero_residencia"].HeaderText = "N° RESIDÊNCIA";
+                    dataGridFuncionarios.Columns["uf_funcionario"].HeaderText = "ESTADO";
+                    dataGridFuncionarios.Columns["situacao_funcionario"].HeaderText = "SITUACAO";
+                }
+                else
+                {
+                    Funcoes.MensagemWarning("Nenhum funcionário encontrado com estes filtros.");
+                }
             }
             catch (Exception ex)
             {
-                Serilog.Log.Error("Ocorreu um erro ao selecionar o funcionário.\n\nDetalhes: " + ex.Message);
+                Serilog.Log.Error("Erro ao filtrar funcionários: " + ex.Message);
+                Funcoes.MensagemErro("Erro técnico ao listar. Verifique o log.");
             }
         }
 
@@ -130,10 +124,10 @@ namespace Gerenciador_de_Emprestimos
                 // Recupera o código do funcionário da linha selecionada
                 int codigoFuncionario = Convert.ToInt32(dataGridFuncionarios.Rows[e.RowIndex].Cells["codigo"].Value);
 
-                var service = new SelecionarFuncionario();
+                var funcionario = new FuncionarioDAO();
 
                 // Busca o objeto completo do funcionário pelo código
-                FuncionarioSelecionado = service.SelecionarFuncionarioPorCodigo(codigoFuncionario);
+                FuncionarioSelecionado = funcionario.SelecionarFuncionarioPorCodigo(codigoFuncionario);
 
                 // Define o resultado do diálogo como OK e fecha a tela para retornar o dado ao formulário pai
                 this.DialogResult = DialogResult.OK;

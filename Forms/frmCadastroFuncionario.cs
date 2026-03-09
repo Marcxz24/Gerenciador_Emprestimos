@@ -1,4 +1,5 @@
 ﻿using Gerenciador_de_Emprestimos.Models;
+using Gerenciador_de_Emprestimos.Repositories;
 using Gerenciador_de_Emprestimos.Security;
 using Gerenciador_de_Emprestimos.Services;
 using Gerenciador_de_Emprestimos.Utils;
@@ -9,7 +10,7 @@ namespace Gerenciador_de_Emprestimos
 {
     public partial class frmCadastroFuncionario : Form
     {
-        Funcionario funcionario = new Funcionario();
+        FuncionarioDTO funcionario = new FuncionarioDTO();
 
         private bool _EditarCadastro;
 
@@ -58,6 +59,7 @@ namespace Gerenciador_de_Emprestimos
             chkBoxConsultarParcela.Enabled = ManifestarBotoes;
             chkBoxCadWhatsapp.Enabled = ManifestarBotoes;
             chkBoxCobranca.Enabled = ManifestarBotoes;
+            chkBoxCadastroCNPJ.Enabled = ManifestarBotoes;
 
             // --- 2. LIMPEZA DOS CAMPOS ---
             if (LimparCampos)
@@ -367,29 +369,29 @@ namespace Gerenciador_de_Emprestimos
                         var funcionario = frmSelecionarFuncionario.FuncionarioSelecionado;
 
                         // Preenche os campos da tela principal convertendo os valores do objeto para String
-                        txtBoxCodigo.Text = funcionario.CodigoFuncionario.ToString();
-                        txtBoxNomeFuncionario.Text = funcionario.nome_funcionario.ToString();
-                        txtBoxCpfFuncionario.Text = funcionario.cpf_funcionario.ToString();
+                        txtBoxCodigo.Text = funcionario.Codigo.ToString();
+                        txtBoxNomeFuncionario.Text = funcionario.Nome.ToString();
+                        txtBoxCpfFuncionario.Text = funcionario.Cpf.ToString();
 
                         // Define o texto dos ComboBoxes com base nos dados do funcionário
-                        comboBoxSexoFuncionario.Text = funcionario.sexo_funcionario.ToString();
-                        comboBoxEstadoCivil.Text = funcionario.funcionario_estado_civil.ToString();
-                        comboBoxUf.Text = funcionario.uf_funcionario.ToString();
+                        comboBoxSexoFuncionario.Text = funcionario.Sexo.ToString();
+                        comboBoxEstadoCivil.Text = funcionario.EstadoCivil.ToString();
+                        comboBoxUf.Text = funcionario.Uf.ToString();
 
                         // Continua o preenchimento dos campos de texto (Usuário, Telefone e Cidade)
-                        txtBoxUsername.Text = funcionario.username.ToString();
-                        txtBoxTelefoneFuncionario.Text = funcionario.telefone_funcionario.ToString();
-                        txtBoxCidadeFuncionario.Text = funcionario.cidade_funcionario.ToString();
-                        txtBoxEndereco.Text = funcionario.endereco_funcionario.ToString();
-                        txtBoxBairro.Text = funcionario.bairro_funcionario.ToString();
-                        txtBoxCep.Text = funcionario.cep_funcionario.ToString();
-                        txtBoxNumeroResidencia.Text = funcionario.numero_residencia.ToString();
+                        txtBoxUsername.Text = funcionario.Username.ToString();
+                        txtBoxTelefoneFuncionario.Text = funcionario.Telefone.ToString();
+                        txtBoxCidadeFuncionario.Text = funcionario.Cidade.ToString();
+                        txtBoxEndereco.Text = funcionario.Endereco.ToString();
+                        txtBoxBairro.Text = funcionario.Bairro.ToString();
+                        txtBoxCep.Text = funcionario.Cep.ToString();
+                        txtBoxNumeroResidencia.Text = funcionario.NumeroResidencia.ToString();
 
                         // Define a situação cadastral no ComboBox
-                        comboBoxSituacao.Text = funcionario.situacao_funcionario.ToString();
+                        comboBoxSituacao.Text = funcionario.Situacao.ToString();
 
                         // Preenche o campo de senha (geralmente o Hash armazenado)
-                        txtBoxSenha.Text = funcionario.senha_hash.ToString();
+                        txtBoxSenha.Text = funcionario.SenhaHash.ToString();
 
                         int codigoFuncionario = Convert.ToInt32(txtBoxCodigo.Text);
 
@@ -417,36 +419,41 @@ namespace Gerenciador_de_Emprestimos
                     }
                 }
 
-                // Coleta os dados dos campos do formulário
-                string? nome = txtBoxNomeFuncionario.Text;
-                string? situacao = comboBoxSituacao.Text;
-                string? cpf = txtBoxCpfFuncionario.Text;
-                string? sexo = comboBoxSexoFuncionario.Text;
-                string? estadoCivil = comboBoxEstadoCivil.Text;
-                string? username = txtBoxUsername.Text;
-                string? telefone = txtBoxTelefoneFuncionario.Text;
-                string senhaHash = Seguranca.GerarHashSenha(txtBoxSenha.Text);
-                string? cidade = txtBoxCidadeFuncionario.Text;
-                string? endereco = txtBoxEndereco.Text;
-                string? bairro = txtBoxBairro.Text;
                 int.TryParse(txtBoxNumeroResidencia.Text, out int numeroResidencia);
-                string? cep = txtBoxCep.Text;
-                string? uf = comboBoxUf.Text;
+
+                FuncionarioDTO funcionarioDTO = new FuncionarioDTO
+                { 
+                    Nome = txtBoxNomeFuncionario.Text,
+                    Situacao = comboBoxSituacao.Text,
+                    Cpf = txtBoxCpfFuncionario.Text,
+                    Sexo = comboBoxSexoFuncionario.Text,
+                    EstadoCivil = comboBoxEstadoCivil.Text,
+                    Username = txtBoxUsername.Text,
+                    SenhaHash = Seguranca.GerarHashSenha(txtBoxSenha.Text),
+                    Cidade = txtBoxCidadeFuncionario.Text,
+                    Endereco = txtBoxEndereco.Text,
+                    Bairro = txtBoxBairro.Text,
+                    NumeroResidencia = numeroResidencia,
+                    Cep = txtBoxCep.Text,
+
+                };
+
+                FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 
                 // Verifica se o CPF já está cadastrado no sistema
-                if (funcionario.CpfJaCadastrado(cpf))
+                if (funcionarioDAO.CpfJaCadastrado(funcionarioDTO.Cpf))
                 {
                     Funcoes.MensagemWarning("Já existe um funcionário com este CPF cadastrado.");
                     return;
                 }
 
                 // Chama o método CadastrarFuncionario da classe Funcionario
-                bool sucesso = funcionario.CadastrarFuncionario(nome, cpf, sexo, estadoCivil, username, senhaHash, telefone, cidade, endereco, bairro, numeroResidencia, cep, uf, situacao);
+                bool sucesso = funcionarioDAO.CadastrarFuncionario(funcionarioDTO);
 
                 // Se o cadastro foi bem-sucedido, exibe uma mensagem de sucesso
                 if (sucesso)
                 {
-                    txtBoxCodigo.Text = Convert.ToString(funcionario.CodigoFuncionario);
+                    txtBoxCodigo.Text = Convert.ToString(funcionarioDTO.Codigo);
                 }
 
                 // Após o cadastro, gerencia os botões e campos da tela
@@ -475,31 +482,28 @@ namespace Gerenciador_de_Emprestimos
                 if (validacoesCampos())
                     return;
 
-                // Define uma váriavel para armazenar o código do funcionário
-                int codigoFuncionario = 0;
-
-                // Tenta converter o texto do campo Código para um número inteiro
-                if (int.TryParse(txtBoxCodigo.Text, out int codFuncionario))
-                {
-                    codigoFuncionario = codFuncionario;
-                }
-
-                // Coleta os dados atualizados dos campos do formulário
-                string nomeFuncionario = txtBoxNomeFuncionario.Text;
-                string cpf = txtBoxCpfFuncionario.Text;
-                string sexo = comboBoxSexoFuncionario.Text;
-                string estadoCivil = comboBoxEstadoCivil.Text;
-                string username = txtBoxUsername.Text;
-                string telefone = txtBoxTelefoneFuncionario.Text;
-                string cidade = txtBoxCidadeFuncionario.Text;
-                string situacao = comboBoxSituacao.Text;
-                string? endereco = txtBoxEndereco.Text;
-                string? bairro = txtBoxBairro.Text;
                 int.TryParse(txtBoxNumeroResidencia.Text, out int numeroResidencia);
-                string? cep = txtBoxCep.Text;
-                string? uf = comboBoxUf.Text;
 
-                bool editouComSucesso = funcionario.EditarCadastroFuncionario(codigoFuncionario, nomeFuncionario, cpf, sexo, estadoCivil, username, telefone, cidade, endereco, bairro, numeroResidencia, cep, uf, situacao);
+                FuncionarioDTO funcionarioDTO = new FuncionarioDTO
+                {
+                    Codigo = Convert.ToInt32(txtBoxCodigo.Text),
+                    Nome = txtBoxNomeFuncionario.Text,
+                    Situacao = comboBoxSituacao.Text,
+                    Cpf = txtBoxCpfFuncionario.Text,
+                    Sexo = comboBoxSexoFuncionario.Text,
+                    EstadoCivil = comboBoxEstadoCivil.Text,
+                    Username = txtBoxUsername.Text,
+                    SenhaHash = Seguranca.GerarHashSenha(txtBoxSenha.Text),
+                    Cidade = txtBoxCidadeFuncionario.Text,
+                    Endereco = txtBoxEndereco.Text,
+                    Bairro = txtBoxBairro.Text,
+                    NumeroResidencia = numeroResidencia,
+                    Cep = txtBoxCep.Text,
+                };
+
+                FuncionarioDAO funcionarioDAO = new FuncionarioDAO();  
+
+                bool editouComSucesso = funcionarioDAO.EditarCadastroFuncionario(funcionarioDTO);
 
                 if (editouComSucesso)
                 {
@@ -507,7 +511,7 @@ namespace Gerenciador_de_Emprestimos
                     if (_AlterarSenha == true && !string.IsNullOrWhiteSpace(txtBoxSenha.Text))
                     {
                         string novaSenhaHash = Seguranca.GerarHashSenha(txtBoxSenha.Text);
-                        funcionario.AtualizarSenhaFuncionario(codigoFuncionario, novaSenhaHash);
+                        funcionarioDAO.AtualizarSenhaFuncionario(funcionarioDTO.Codigo, novaSenhaHash);
                     }
 
                     GerenciarBotoesCampos(OcultarBotoes: false, ManifestarBotoes: false, LimparCampos: false);
@@ -536,8 +540,6 @@ namespace Gerenciador_de_Emprestimos
             {
                 // Caso contrário, chamar o método de Insert
                 InserirNovoCadastroFuncionario();
-
-                txtBoxCodigo.Text = Convert.ToString(funcionario.CodigoFuncionario);
             }
         }
 

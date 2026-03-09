@@ -1,4 +1,5 @@
-﻿using Gerenciador_de_Emprestimos.Repositories;
+﻿using Gerenciador_de_Emprestimos.Models;
+using Gerenciador_de_Emprestimos.Repositories;
 using Gerenciador_de_Emprestimos.Services;
 using Gerenciador_de_Emprestimos.Utils;
 using System;
@@ -157,8 +158,8 @@ namespace Gerenciador_de_Emprestimos.Forms
             {
                 if (int.TryParse(txtCodigoCliente.Text, out int codigoCliente))
                 {
-                    var servico = new SelecionarCliente();
-                    var cliente = servico.BuscarClientePorCodigo(codigoCliente);
+                    var buscarCliente = new ClienteDAO();
+                    var cliente = buscarCliente.BuscarClientePorCodigo(codigoCliente);
 
                     if (cliente != null)
                     {
@@ -184,7 +185,7 @@ namespace Gerenciador_de_Emprestimos.Forms
         {
             if (e.KeyCode == Keys.Enter)
             {
-                var servico = new SelecionarCliente();
+                var servico = new ClienteDAO();
                 var resultado = servico.BuscarClientePorNome(txtNomeCliente.Text);
 
                 if (resultado != null)
@@ -208,20 +209,26 @@ namespace Gerenciador_de_Emprestimos.Forms
             }
         }
 
-        private void PreencherCamposCliente(SelecionarCliente c)
+        private void PreencherCamposCliente(ClienteDTO cliente)
         {
-            txtCodigoCliente.Text = c.codigo.ToString();
-            txtNomeCliente.Text = c.nome_cliente;
-            txtTelefoneCliente.Text = c.celular;
+            txtCodigoCliente.Text = cliente.codigo.ToString();
+            txtNomeCliente.Text = cliente.nome_cliente;
+            txtTelefoneCliente.Text = cliente.celular;
 
             if (txtMensagemCobranca.Text.Contains("{nome}"))
             {
-                txtMensagemCobranca.Text = txtMensagemCobranca.Text.Replace("{nome}", c.nome_cliente);
+                txtMensagemCobranca.Text = txtMensagemCobranca.Text.Replace("{nome}", cliente.nome_cliente);
             }
         }
 
         private void txtBoxValorVencido_Leave(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtBoxValorVencido.Text))
+            {
+                decimal valorVazio = 0;
+                txtBoxValorVencido.Text = valorVazio.ToString("F2");
+            }
+
             if (decimal.TryParse(txtBoxValorVencido.Text, out decimal valorDigitado))
             {
                 txtBoxValorVencido.Text = valorDigitado.ToString("F2");

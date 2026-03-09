@@ -486,6 +486,7 @@
             DoubleBuffered = true;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
+            MinimizeBox = false;
             Name = "frmNovosEmprestimos";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gerenciador de Emprestimos";

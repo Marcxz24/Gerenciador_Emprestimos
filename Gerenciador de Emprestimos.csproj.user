@@ -4,6 +4,9 @@
     <Compile Update="Forms\frmCadastroCliente.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\frmCadastroClientePJ.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\frmCadastroFuncionario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -14,6 +17,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\frmConsultarParcelas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\frmEstornarPagamento.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\frmLoginFuncionario.cs">
@@ -43,5 +49,10 @@
     <Compile Update="Forms\frmVisualizarEmprestimos.cs">
       <SubType>Form</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

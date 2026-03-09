@@ -44,6 +44,7 @@
             MenuStripCadastro = new ToolStripMenuItem();
             MenuStripCliente = new ToolStripMenuItem();
             MenuStripCadastroCliente = new ToolStripMenuItem();
+            pessoaJurídicaCNPJToolStripMenuItem = new ToolStripMenuItem();
             empresaToolStripMenuItem = new ToolStripMenuItem();
             funcionárioToolStripMenuItem = new ToolStripMenuItem();
             mensagemWhatsAppToolStripMenuItem = new ToolStripMenuItem();
@@ -51,6 +52,7 @@
             MenuStripEmprestimos = new ToolStripMenuItem();
             MenuStripNovosEmprestimos = new ToolStripMenuItem();
             pagamentoDeParcelaToolStripMenuItem = new ToolStripMenuItem();
+            estornarPagamentoCTRLEToolStripMenuItem = new ToolStripMenuItem();
             funçõesOperacionaisToolStripMenuItem = new ToolStripMenuItem();
             backUpDoBancoDeDadosToolStripMenuItem = new ToolStripMenuItem();
             whatsAppToolStripMenuItem = new ToolStripMenuItem();
@@ -69,20 +71,12 @@
             picBoxLogoSistema2 = new PictureBox();
             picBoxLogoSistema = new PictureBox();
             btnListaEmprestimos = new Button();
-            dataGridListaEmprestimos = new DataGridView();
-            codigo_emprestimo = new DataGridViewTextBoxColumn();
-            codigo_cliente = new DataGridViewTextBoxColumn();
-            nome_cliente = new DataGridViewTextBoxColumn();
-            valor_emprestado_total = new DataGridViewTextBoxColumn();
-            percentual_juros = new DataGridViewTextBoxColumn();
-            data_pagar = new DataGridViewTextBoxColumn();
-            Obeservacoes = new DataGridViewTextBoxColumn();
-            status_emprestimo = new DataGridViewTextBoxColumn();
             lblListaEmprestimos = new Label();
             btnAtualizarLista = new Button();
             btnLembretes = new Button();
             btnNovoLembrete = new Button();
             panelDataGridListarEmprestimos = new Panel();
+            dataGridListaEmprestimos = new DataGridView();
             flwMuralLembretes = new FlowLayoutPanel();
             btnLimparListaEmprestimos = new Button();
             stsStripSistemVersion.SuspendLayout();
@@ -90,8 +84,8 @@
             painelLogoSistema.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridListaEmprestimos).BeginInit();
             panelDataGridListarEmprestimos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridListaEmprestimos).BeginInit();
             SuspendLayout();
             // 
             // stsStripSistemVersion
@@ -176,7 +170,7 @@
             // MenuStripCliente
             // 
             resources.ApplyResources(MenuStripCliente, "MenuStripCliente");
-            MenuStripCliente.DropDownItems.AddRange(new ToolStripItem[] { MenuStripCadastroCliente });
+            MenuStripCliente.DropDownItems.AddRange(new ToolStripItem[] { MenuStripCadastroCliente, pessoaJurídicaCNPJToolStripMenuItem });
             MenuStripCliente.Name = "MenuStripCliente";
             // 
             // MenuStripCadastroCliente
@@ -184,6 +178,12 @@
             resources.ApplyResources(MenuStripCadastroCliente, "MenuStripCadastroCliente");
             MenuStripCadastroCliente.Name = "MenuStripCadastroCliente";
             MenuStripCadastroCliente.Click += clienteToolStripMenuItem1_Click;
+            // 
+            // pessoaJurídicaCNPJToolStripMenuItem
+            // 
+            resources.ApplyResources(pessoaJurídicaCNPJToolStripMenuItem, "pessoaJurídicaCNPJToolStripMenuItem");
+            pessoaJurídicaCNPJToolStripMenuItem.Name = "pessoaJurídicaCNPJToolStripMenuItem";
+            pessoaJurídicaCNPJToolStripMenuItem.Click += pessoaJurídicaCNPJToolStripMenuItem_Click;
             // 
             // empresaToolStripMenuItem
             // 
@@ -212,7 +212,7 @@
             // MenuStripEmprestimos
             // 
             resources.ApplyResources(MenuStripEmprestimos, "MenuStripEmprestimos");
-            MenuStripEmprestimos.DropDownItems.AddRange(new ToolStripItem[] { MenuStripNovosEmprestimos, pagamentoDeParcelaToolStripMenuItem });
+            MenuStripEmprestimos.DropDownItems.AddRange(new ToolStripItem[] { MenuStripNovosEmprestimos, pagamentoDeParcelaToolStripMenuItem, estornarPagamentoCTRLEToolStripMenuItem });
             MenuStripEmprestimos.Name = "MenuStripEmprestimos";
             // 
             // MenuStripNovosEmprestimos
@@ -226,6 +226,12 @@
             resources.ApplyResources(pagamentoDeParcelaToolStripMenuItem, "pagamentoDeParcelaToolStripMenuItem");
             pagamentoDeParcelaToolStripMenuItem.Name = "pagamentoDeParcelaToolStripMenuItem";
             pagamentoDeParcelaToolStripMenuItem.Click += pagamentoDeParcelaToolStripMenuItem_Click;
+            // 
+            // estornarPagamentoCTRLEToolStripMenuItem
+            // 
+            resources.ApplyResources(estornarPagamentoCTRLEToolStripMenuItem, "estornarPagamentoCTRLEToolStripMenuItem");
+            estornarPagamentoCTRLEToolStripMenuItem.Name = "estornarPagamentoCTRLEToolStripMenuItem";
+            estornarPagamentoCTRLEToolStripMenuItem.Click += estornarPagamentoCTRLEToolStripMenuItem_Click;
             // 
             // funçõesOperacionaisToolStripMenuItem
             // 
@@ -343,73 +349,6 @@
             btnListaEmprestimos.UseVisualStyleBackColor = true;
             btnListaEmprestimos.Click += btnListaEmprestimos_Click;
             // 
-            // dataGridListaEmprestimos
-            // 
-            resources.ApplyResources(dataGridListaEmprestimos, "dataGridListaEmprestimos");
-            dataGridListaEmprestimos.AllowUserToAddRows = false;
-            dataGridListaEmprestimos.AllowUserToDeleteRows = false;
-            dataGridListaEmprestimos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridListaEmprestimos.Columns.AddRange(new DataGridViewColumn[] { codigo_emprestimo, codigo_cliente, nome_cliente, valor_emprestado_total, percentual_juros, data_pagar, Obeservacoes, status_emprestimo });
-            dataGridListaEmprestimos.Name = "dataGridListaEmprestimos";
-            dataGridListaEmprestimos.ReadOnly = true;
-            dataGridListaEmprestimos.CellDoubleClick += dataGridListaEmprestimos_CellDoubleClick;
-            // 
-            // codigo_emprestimo
-            // 
-            codigo_emprestimo.DataPropertyName = "CodigoEmprestimo";
-            resources.ApplyResources(codigo_emprestimo, "codigo_emprestimo");
-            codigo_emprestimo.Name = "codigo_emprestimo";
-            codigo_emprestimo.ReadOnly = true;
-            // 
-            // codigo_cliente
-            // 
-            codigo_cliente.DataPropertyName = "CodigoCliente";
-            resources.ApplyResources(codigo_cliente, "codigo_cliente");
-            codigo_cliente.Name = "codigo_cliente";
-            codigo_cliente.ReadOnly = true;
-            // 
-            // nome_cliente
-            // 
-            nome_cliente.DataPropertyName = "NomeCliente";
-            resources.ApplyResources(nome_cliente, "nome_cliente");
-            nome_cliente.Name = "nome_cliente";
-            nome_cliente.ReadOnly = true;
-            // 
-            // valor_emprestado_total
-            // 
-            valor_emprestado_total.DataPropertyName = "ValorTotal";
-            resources.ApplyResources(valor_emprestado_total, "valor_emprestado_total");
-            valor_emprestado_total.Name = "valor_emprestado_total";
-            valor_emprestado_total.ReadOnly = true;
-            // 
-            // percentual_juros
-            // 
-            percentual_juros.DataPropertyName = "Juros";
-            resources.ApplyResources(percentual_juros, "percentual_juros");
-            percentual_juros.Name = "percentual_juros";
-            percentual_juros.ReadOnly = true;
-            // 
-            // data_pagar
-            // 
-            data_pagar.DataPropertyName = "DataPagamento";
-            resources.ApplyResources(data_pagar, "data_pagar");
-            data_pagar.Name = "data_pagar";
-            data_pagar.ReadOnly = true;
-            // 
-            // Obeservacoes
-            // 
-            Obeservacoes.DataPropertyName = "Observacoes";
-            resources.ApplyResources(Obeservacoes, "Obeservacoes");
-            Obeservacoes.Name = "Obeservacoes";
-            Obeservacoes.ReadOnly = true;
-            // 
-            // status_emprestimo
-            // 
-            status_emprestimo.DataPropertyName = "Status";
-            resources.ApplyResources(status_emprestimo, "status_emprestimo");
-            status_emprestimo.Name = "status_emprestimo";
-            status_emprestimo.ReadOnly = true;
-            // 
             // lblListaEmprestimos
             // 
             resources.ApplyResources(lblListaEmprestimos, "lblListaEmprestimos");
@@ -446,6 +385,15 @@
             panelDataGridListarEmprestimos.BackColor = Color.Transparent;
             panelDataGridListarEmprestimos.Controls.Add(dataGridListaEmprestimos);
             panelDataGridListarEmprestimos.Name = "panelDataGridListarEmprestimos";
+            // 
+            // dataGridListaEmprestimos
+            // 
+            resources.ApplyResources(dataGridListaEmprestimos, "dataGridListaEmprestimos");
+            dataGridListaEmprestimos.AllowUserToAddRows = false;
+            dataGridListaEmprestimos.AllowUserToDeleteRows = false;
+            dataGridListaEmprestimos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridListaEmprestimos.Name = "dataGridListaEmprestimos";
+            dataGridListaEmprestimos.ReadOnly = true;
             // 
             // flwMuralLembretes
             // 
@@ -492,8 +440,8 @@
             painelLogoSistema.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema2).EndInit();
             ((System.ComponentModel.ISupportInitialize)picBoxLogoSistema).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridListaEmprestimos).EndInit();
             panelDataGridListarEmprestimos.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridListaEmprestimos).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -534,18 +482,9 @@
         private Label lblTituloSistemas;
         private PictureBox picBoxLogoSistema;
         private Button btnListaEmprestimos;
-        private DataGridView dataGridListaEmprestimos;
         private Label lblListaEmprestimos;
         private Button btnAtualizarLista;
         private Button btnLembretes;
-        private DataGridViewTextBoxColumn codigo_emprestimo;
-        private DataGridViewTextBoxColumn codigo_cliente;
-        private DataGridViewTextBoxColumn nome_cliente;
-        private DataGridViewTextBoxColumn valor_emprestado_total;
-        private DataGridViewTextBoxColumn percentual_juros;
-        private DataGridViewTextBoxColumn data_pagar;
-        private DataGridViewTextBoxColumn Obeservacoes;
-        private DataGridViewTextBoxColumn status_emprestimo;
         private Button btnNovoLembrete;
         private Panel panelDataGridListarEmprestimos;
         private FlowLayoutPanel flwMuralLembretes;
@@ -554,5 +493,8 @@
         private ToolStripMenuItem whatsAppToolStripMenuItem;
         private ToolStripMenuItem cobrançaToolStripMenuItem;
         private ToolStripMenuItem mensagemWhatsAppToolStripMenuItem;
+        private ToolStripMenuItem estornarPagamentoCTRLEToolStripMenuItem;
+        private ToolStripMenuItem pessoaJurídicaCNPJToolStripMenuItem;
+        private DataGridView dataGridListaEmprestimos;
     }
 }

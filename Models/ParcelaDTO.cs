@@ -10,15 +10,24 @@ namespace Gerenciador_de_Emprestimos.Models
 {
     public class ParcelaDTO
     {
-        public int CodigoParcela { get; set; }
+        // --- Identificação ---
+        public int Codigo { get; set; }
         public int CodigoEmprestimo { get; set; }
         public int CodigoCliente { get; set; }
         public string NomeCliente { get; set; }
-        public decimal ValorEmprestimo { get; set; }
-        public decimal ValorParcela { get; set; }
-        public decimal ValorJuros { get; set; }
         public int NumeroParcela { get; set; }
-        public DateTime DataVencimento { get; set; }
-        public string StatusParcela { get; set; }
+
+        // --- Valores Financeiros ---
+        public decimal ValorEmprestimo { get; set; } // Valor base do contrato
+        public decimal ValorParcela { get; set; }    // Valor atual da parcela (com juros se houver)
+        public decimal ValorJuros { get; set; }      // Valor monetário do juro calculado
+        public decimal PercentualJuros { get; set; } // % de juros aplicado
+        public decimal ValorPago { get; set; }      // Total já amortizado nesta parcela
+
+        // --- Datas e Status ---
+        public DateOnly DataVencimento { get; set; }
+        public DateOnly? DataUltimoCalculoJuros { get; set; }
+        public string StatusParcela { get; set; }    // PAGA, ABERTA, ATRASADA
+        public string TipoJuros { get; set; } // DIARIO, MENSAL
     }
 }

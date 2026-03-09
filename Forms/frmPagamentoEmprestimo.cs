@@ -175,13 +175,15 @@ namespace Gerenciador_de_Emprestimos
 
                 int SelectdCodigoParcela = Convert.ToInt32(dataGridParcelasAbertas.Rows[e.RowIndex].Cells["codigo_parcela"].Value);
 
-                PagamentoParcela logicaPagamento = new PagamentoParcela();
-
-                Parcela parcela = logicaPagamento.ObterDadosParcela(SelectdCodigoParcela);
+                // Usa o DAO diretamente como você pediu
+                ParcelaDAO parcelaDao = new ParcelaDAO();
+                ParcelaDTO parcela = parcelaDao.GetParcela(SelectdCodigoParcela);
 
                 if (parcela != null)
                 {
-                    DateTime referencia = parcela.DataUltimoCalculoJuros ?? parcela.DataVencimento;
+                    DateTime referencia = parcela.DataUltimoCalculoJuros.HasValue
+                        ? parcela.DataUltimoCalculoJuros.Value.ToDateTime(TimeOnly.MinValue)
+                        : parcela.DataVencimento.ToDateTime(TimeOnly.MinValue);
 
                     if (DateTime.Today > referencia.Date)
                     {
@@ -194,7 +196,24 @@ namespace Gerenciador_de_Emprestimos
 
                             try
                             {
-                                atualizado = logicaPagamento.RecalcularJurosEAvancarMes(SelectdCodigoParcela);
+                                // Recalcula juros aqui no form e persiste via DAO
+                                DateTime novaDataUltimoCalculo;
+                                decimal taxa = parcela.PercentualJuros / 100m;
+                                decimal novoValor;
+
+                                if (parcela.TipoJuros == "DIARIO")
+                                {
+                                    novaDataUltimoCalculo = referencia.AddDays(1);
+                                    novoValor = Math.Round(parcela.ValorParcela * (1m + taxa), 2, MidpointRounding.AwayFromZero);
+                                }
+                                else
+                                {
+                                    novaDataUltimoCalculo = referencia.AddMonths(1);
+                                    novoValor = Math.Round(parcela.ValorParcela * (1m + taxa), 2, MidpointRounding.AwayFromZero);
+                                }
+
+                                int linhas = parcelaDao.UpdateParcelaValorJuros(SelectdCodigoParcela, novoValor, novaDataUltimoCalculo);
+                                atualizado = linhas > 0;
                             }
                             catch (Exception ex)
                             {
@@ -205,7 +224,7 @@ namespace Gerenciador_de_Emprestimos
 
                             if (atualizado)
                             {
-                                parcela = logicaPagamento.ObterDadosParcela(SelectdCodigoParcela);
+                                parcela = parcelaDao.GetParcela(SelectdCodigoParcela);
 
                                 var linhasAtualizarComJuros = dataGridParcelasAbertas.Rows[e.RowIndex];
 
@@ -213,7 +232,7 @@ namespace Gerenciador_de_Emprestimos
                                     linhasAtualizarComJuros.Cells["valor_parcela"].Value = parcela.ValorParcela.ToString("F2");
 
                                 if (dataGridParcelasAbertas.Columns["status_parcela"] != null)
-                                    linhasAtualizarComJuros.Cells["status_parcela"].Value = parcela.Status ?? "ATRASADA";
+                                    linhasAtualizarComJuros.Cells["status_parcela"].Value = parcela.StatusParcela ?? "ATRASADA";
 
                                 if (dataGridParcelasAbertas.Columns["data_ultimo_calculo_juros"] != null)
                                     linhasAtualizarComJuros.Cells["data_ultimo_calculo_juros"].Value = (parcela.DataUltimoCalculoJuros.HasValue ? parcela.DataUltimoCalculoJuros.Value.ToString("yyyy/MM/dd") : "");
@@ -283,38 +302,64 @@ namespace Gerenciador_de_Emprestimos
                 if (int.TryParse(txtBoxNumeroParcela.Text, out int numParcelas))
                     numeroParcela = numParcelas;
 
-                // Instancia a classe que contém a lógica de transação no banco
-                PagamentoParcela parcela = new PagamentoParcela();
+                // Usa o DAO diretamente conforme solicitado
+                ParcelaDAO parcelaDao = new ParcelaDAO();
 
-                // Variavel tipo string que armazena a mensagem que irá mostrar no MessageBox.
+                // Pergunta se deseja adicionar observações
                 string mensagemYesOrNo = "Você deseja informar uma Obersvação ao Emprestimo?";
-                // Variavel resultado recebe o valor que foi marcado no MessageBox: Yes ou No (Sim ou Não)
                 var resultado = MessageBox.Show(mensagemYesOrNo, "Observações", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                // Se resultado foi igual a Yes (Sim) executa o bloco abaixo.
                 if (resultado == DialogResult.Yes)
                 {
-                    // Instancia um Objeto do frmObservacoesEmprestimos.
                     frmObservacoesEmprestimos frmObservacoes = new frmObservacoesEmprestimos();
                     frmObservacoes.ShowDialog();
-
-                    // Variavel publica objeto recebe o texto escrito no Formulário de Observações.
                     observacoes = frmObservacoes.ObsercacoesEmprestimos;
-
-                    // Objeto da classe parcela chama o Método responsável por Alterar a linha referente a parcela, adicionando Observações.
-                    parcela.AdicionarObservacoesAParcela(codigoParcela, observacoes);
+                    parcelaDao.AddObservacoes(codigoParcela, observacoes);
                 }
 
-                // Tenta realizar o pagamento e exibe o feedback vindo do banco/serviço
-                if (!parcela.RealizarPagamento(codigoParcela, codigoEmprestimo, numeroParcela, valorPago, valorParcela, out string mensagem))
+                // Validações replicadas do serviço:
+                if (parcelaDao.IsParcelaPaga(codigoParcela))
                 {
-                    Funcoes.MensagemWarning(mensagem);
+                    Funcoes.MensagemWarning("Esta parcela já foi Paga");
                     return;
+                }
+
+                if (parcelaDao.CountParcelasAnterioresAbertas(codigoEmprestimo, numeroParcela) > 0)
+                {
+                    Funcoes.MensagemWarning("Existem parcelas anteriores em aberto. Efetue o pagamento das parcelas anteriores antes de pagar esta parcela.");
+                    return;
+                }
+
+                decimal valorPagoAtual = parcelaDao.GetValorPago(codigoParcela);
+                decimal novoTotal = valorPagoAtual + valorPago;
+
+                if (novoTotal > valorParcela)
+                {
+                    Funcoes.MensagemWarning("O valor informado não pode ser maior que o valor da parcela.");
+                    return;
+                }
+
+                if (novoTotal < valorParcela)
+                {
+                    parcelaDao.UpdateValorPagoPartial(codigoParcela, novoTotal);
                 }
                 else
                 {
-                    Funcoes.MensagemInformation("Pagamento realizado com sucesso!");
+                    int linhas = parcelaDao.MarkParcelaPaga(codigoParcela, novoTotal);
+                    if (linhas == 0)
+                    {
+                        Funcoes.MensagemWarning("Esta parcela já foi quitada por outro processo.");
+                        return;
+                    }
+
+                    if (parcelaDao.CountParcelasAbertas(codigoEmprestimo) == 0)
+                    {
+                        EmprestimoDAO emprestimoDAO = new EmprestimoDAO();
+                        emprestimoDAO.QuitarEmprestimo(codigoEmprestimo);
+                    }
                 }
+
+                Funcoes.MensagemInformation("Pagamento realizado com sucesso!");
 
                 // Retorna a interface ao estado de visualização original
                 txtBoxTotalPagar.ReadOnly = true;
@@ -350,7 +395,7 @@ namespace Gerenciador_de_Emprestimos
             if (parcela != null)
             {
                 txtCodigoEmprestimo.Text = parcela.CodigoEmprestimo.ToString();
-                txtCodigoParcela.Text = parcela.CodigoParcela.ToString();
+                txtCodigoParcela.Text = parcela.Codigo.ToString();
                 txtCodCliente.Text = parcela.CodigoCliente.ToString();
 
                 txtBoxNumeroParcela.Text = parcela.NumeroParcela.ToString();

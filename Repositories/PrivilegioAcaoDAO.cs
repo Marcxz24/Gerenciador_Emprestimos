@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Gerenciador_de_Emprestimos.Repositories
 {
-    public static class PrivilegioAcaoRepository
+    public static class PrivilegioAcaoDAO
     {
         public static Dictionary<string, bool> BuscarPrivilegios(int codigoFuncionario)
         {

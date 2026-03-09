@@ -277,6 +277,7 @@
             Controls.Add(grpBoxDadosParcela);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
+            MinimizeBox = false;
             Name = "frmConsultarParcelas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Visualizar Parcelas";

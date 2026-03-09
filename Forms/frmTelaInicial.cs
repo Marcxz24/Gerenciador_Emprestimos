@@ -92,6 +92,9 @@ namespace Gerenciador_de_Emprestimos
             // Mural de Lembretes
             flwMuralLembretes.Visible = logado;
 
+            // DataDrig da lista de emprestimos
+            dataGridListaEmprestimos.Visible = logado;
+
             // Controle de Login/Logoff
             loginToolStripMenuItem.Enabled = !logado; // Só aparece se NÃO estiver logado
             loginToolStripMenuItem.Visible = !logado;
@@ -261,6 +264,7 @@ namespace Gerenciador_de_Emprestimos
             // CTRL + N: Novo Empréstimo
             // CTRL + P: Pagamento de Empréstimo
             // CTRL + C: Cobrança via WhatsApp
+            // CTRL + E: Estorno de Pagamento
             switch (e.KeyCode)
             {
                 // caso o a tecla HOME seja pressionada, executa o processo de logoff
@@ -301,7 +305,7 @@ namespace Gerenciador_de_Emprestimos
                         frmPagamentoEmprestimo frmPagamento = new frmPagamentoEmprestimo();
                         frmPagamento.ShowDialog();
                     }
-                    break;  
+                    break;
 
                 case Keys.C when e.Control:
                     e.SuppressKeyPress = true; // Evita que o atalho execute ações indesejadas
@@ -317,6 +321,19 @@ namespace Gerenciador_de_Emprestimos
                     }
                     break;
 
+                case Keys.E when e.Control:
+                    e.SuppressKeyPress = true;
+                    if (!ControleAcesso.PodeAcessar("frmEstornarPagamento"))
+                    {
+                        Funcoes.MensagemWarning("Você não tem Privilégio para Realizar esta operação.");
+                        return;
+                    }
+                    else
+                    {
+                        frmEstornarPagamento estornoPagamento = new frmEstornarPagamento();
+                        estornoPagamento.ShowDialog();
+                    }
+                    break;
 
                 default:
                     // Para outras teclas, não faz nada especial
@@ -388,9 +405,25 @@ namespace Gerenciador_de_Emprestimos
         {
             try
             {
-                ListarEmprestimoService emprestimoLisa = new ListarEmprestimoService();
+                EmprestimoDAO emprestimoLisTa = new EmprestimoDAO();
 
-                dataGridListaEmprestimos.DataSource = emprestimoLisa.ListarEmprestimos();
+                dataGridListaEmprestimos.DataSource = emprestimoLisTa.ListarEmprestimos();
+
+                if (dataGridListaEmprestimos.Columns.Count > 0)
+                {
+                    dataGridListaEmprestimos.Columns["codigo_emprestimo"].HeaderText = "CÓD. EMPRÉSTIMO";
+                    dataGridListaEmprestimos.Columns["codigo_cliente"].HeaderText = "CÓD. CLIENTE";
+                    dataGridListaEmprestimos.Columns["nome_cliente"].HeaderText = "NOME DO CLIENTE";
+                    dataGridListaEmprestimos.Columns["valor_total"].HeaderText = "VALOR TOTAL";
+                    dataGridListaEmprestimos.Columns["percentual_juros"].HeaderText = "(%) JUROS";
+                    dataGridListaEmprestimos.Columns["data_pagar"].HeaderText = "VENCIMENTO";
+                    dataGridListaEmprestimos.Columns["status_emprestimo"].HeaderText = "STATUS";
+                    dataGridListaEmprestimos.Columns["observacoes"].HeaderText = "OBSERVAÇÕES";
+
+                    // Formatação de Moeda e Alinhamento
+                    dataGridListaEmprestimos.Columns["valor_total"].DefaultCellStyle.Format = "C2";
+                    dataGridListaEmprestimos.Columns["percentual_juros"].DefaultCellStyle.Format = "N2";
+                }
             }
             catch (Exception ex)
             {
@@ -405,15 +438,15 @@ namespace Gerenciador_de_Emprestimos
 
             try
             {
-                var emprestimoSelecionado = (EmprestimosListaDTO)dataGridListaEmprestimos.Rows[e.RowIndex].DataBoundItem;
+                var emprestimoSelecionado = (EmprestimoDTO)dataGridListaEmprestimos.Rows[e.RowIndex].DataBoundItem;
 
-                if (emprestimoSelecionado.Status == "ATIVO")
+                if (emprestimoSelecionado.StatusEmprestimo == "ATIVO")
                 {
                     frmPagamentoEmprestimo frmPagamento = new frmPagamentoEmprestimo();
 
-                    frmPagamento.codigoEmprestimo = emprestimoSelecionado.CodigoEmprestimo;
+                    frmPagamento.codigoEmprestimo = emprestimoSelecionado.Codigo;
 
-                    frmPagamento.CarregarDadosParcela(emprestimoSelecionado.CodigoEmprestimo);
+                    frmPagamento.CarregarDadosParcela(emprestimoSelecionado.Codigo);
 
                     frmPagamento.ShowDialog();
 
@@ -593,6 +626,30 @@ namespace Gerenciador_de_Emprestimos
 
             frmCadastroMensagemCobranca frmCadastroMsgCobranca = new frmCadastroMensagemCobranca();
             frmCadastroMsgCobranca.ShowDialog();
+        }
+
+        private void pessoaJurídicaCNPJToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!ControleAcesso.PodeAcessar("frmCadastroClientePJ"))
+            {
+                Funcoes.MensagemWarning("Você não tem Privilégio para Realizar esta operação.");
+                return;
+            }
+
+            frmCadastroClientePJ cadastroClientePJ = new frmCadastroClientePJ();
+            cadastroClientePJ.ShowDialog();
+        }
+
+        private void estornarPagamentoCTRLEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!ControleAcesso.PodeAcessar("frmEstornarPagamento"))
+            {
+                Funcoes.MensagemWarning("Você não tem Privilégio para Realizar esta operação.");
+                return;
+            }
+
+            frmEstornarPagamento estornoPagamento = new frmEstornarPagamento();
+            estornoPagamento.ShowDialog();
         }
     }
 }

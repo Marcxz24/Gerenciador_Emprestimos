@@ -76,5 +76,17 @@ namespace Gerenciador_de_Emprestimos.Utils
         {
             MessageBox.Show(mensagem, "Operação Realizada com Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        public static byte[] ConverterImagemParaByte(Image imagem)
+        {
+            if (imagem == null) return null;
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                // Usamos Png para manter a qualidade e transparência se houver
+                imagem.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                return ms.ToArray();
+            }
+        }
     }
 }

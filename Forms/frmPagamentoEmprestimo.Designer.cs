@@ -52,6 +52,8 @@
             lblTotalPagar = new Label();
             txtBoxTotalPagar = new TextBox();
             grpBoxDadosPagamento = new GroupBox();
+            txtCodCliente = new TextBox();
+            lblCodCliente = new Label();
             txtCodigoParcela = new TextBox();
             lblCodParcela = new Label();
             txtCodigoEmprestimo = new TextBox();
@@ -71,8 +73,6 @@
             btnSalvarPagamento = new Button();
             btnCancelar = new Button();
             lblInserindoDados = new Label();
-            txtCodCliente = new TextBox();
-            lblCodCliente = new Label();
             grpBoxDadosParcela.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridParcelasAbertas).BeginInit();
             grpBoxDadosPagamento.SuspendLayout();
@@ -340,6 +340,24 @@
             grpBoxDadosPagamento.TabStop = false;
             grpBoxDadosPagamento.Text = "Dados do Pagamento";
             // 
+            // txtCodCliente
+            // 
+            txtCodCliente.Location = new Point(700, 28);
+            txtCodCliente.Name = "txtCodCliente";
+            txtCodCliente.ReadOnly = true;
+            txtCodCliente.Size = new Size(103, 27);
+            txtCodCliente.TabIndex = 37;
+            // 
+            // lblCodCliente
+            // 
+            lblCodCliente.AutoSize = true;
+            lblCodCliente.BackColor = Color.Transparent;
+            lblCodCliente.Location = new Point(583, 32);
+            lblCodCliente.Name = "lblCodCliente";
+            lblCodCliente.Size = new Size(111, 20);
+            lblCodCliente.TabIndex = 36;
+            lblCodCliente.Text = "Codigo Cliente:";
+            // 
             // txtCodigoParcela
             // 
             txtCodigoParcela.Location = new Point(450, 29);
@@ -523,24 +541,6 @@
             lblInserindoDados.Text = "Inserindo Dados -->";
             lblInserindoDados.Visible = false;
             // 
-            // txtCodCliente
-            // 
-            txtCodCliente.Location = new Point(700, 28);
-            txtCodCliente.Name = "txtCodCliente";
-            txtCodCliente.ReadOnly = true;
-            txtCodCliente.Size = new Size(103, 27);
-            txtCodCliente.TabIndex = 37;
-            // 
-            // lblCodCliente
-            // 
-            lblCodCliente.AutoSize = true;
-            lblCodCliente.BackColor = Color.Transparent;
-            lblCodCliente.Location = new Point(583, 32);
-            lblCodCliente.Name = "lblCodCliente";
-            lblCodCliente.Size = new Size(111, 20);
-            lblCodCliente.TabIndex = 36;
-            lblCodCliente.Text = "Codigo Cliente:";
-            // 
             // frmPagamentoEmprestimo
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -557,6 +557,7 @@
             Controls.Add(btnSalvarPagamento);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
+            MinimizeBox = false;
             Name = "frmPagamentoEmprestimo";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pagamento de Parcelas";
