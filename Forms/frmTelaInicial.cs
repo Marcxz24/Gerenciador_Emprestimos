@@ -88,12 +88,10 @@ namespace Gerenciador_de_Emprestimos
             btnLembretes.Visible = logado;
             btnNovoLembrete.Visible = logado;
             btnAtualizarLista.Visible = logado;
+            btnLimparListaEmprestimos.Visible = logado;
 
             // Mural de Lembretes
             flwMuralLembretes.Visible = logado;
-
-            // DataDrig da lista de emprestimos
-            dataGridListaEmprestimos.Visible = logado;
 
             // Controle de Login/Logoff
             loginToolStripMenuItem.Enabled = !logado; // Só aparece se NÃO estiver logado

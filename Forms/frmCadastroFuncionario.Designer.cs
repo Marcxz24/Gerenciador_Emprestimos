@@ -81,6 +81,7 @@
             chkBoxCadastroFuncionario = new CheckBox();
             tabPageFinanceiro = new TabPage();
             grpBoxEmprestimos = new GroupBox();
+            chkBoxEstornoPagamento = new CheckBox();
             chkBoxPagamentoParcela = new CheckBox();
             chkBoxNovosEmprestimos = new CheckBox();
             tabPageRelatorios = new TabPage();
@@ -90,7 +91,6 @@
             tabPageFuncOperacionais = new TabPage();
             groupBox1 = new GroupBox();
             chkBoxCobranca = new CheckBox();
-            chkEstornoPagamento = new CheckBox();
             tabPageLogin.SuspendLayout();
             tabPageCadastroFuncionario.SuspendLayout();
             grpBoxDadosPessoaisFuncionario.SuspendLayout();
@@ -681,7 +681,7 @@
             // 
             // grpBoxEmprestimos
             // 
-            grpBoxEmprestimos.Controls.Add(chkEstornoPagamento);
+            grpBoxEmprestimos.Controls.Add(chkBoxEstornoPagamento);
             grpBoxEmprestimos.Controls.Add(chkBoxPagamentoParcela);
             grpBoxEmprestimos.Controls.Add(chkBoxNovosEmprestimos);
             grpBoxEmprestimos.Location = new Point(6, 6);
@@ -690,6 +690,18 @@
             grpBoxEmprestimos.TabIndex = 0;
             grpBoxEmprestimos.TabStop = false;
             grpBoxEmprestimos.Text = "Emprestimos";
+            // 
+            // chkBoxEstornoPagamento
+            // 
+            chkBoxEstornoPagamento.AutoSize = true;
+            chkBoxEstornoPagamento.Enabled = false;
+            chkBoxEstornoPagamento.Location = new Point(20, 114);
+            chkBoxEstornoPagamento.Name = "chkBoxEstornoPagamento";
+            chkBoxEstornoPagamento.Size = new Size(181, 24);
+            chkBoxEstornoPagamento.TabIndex = 2;
+            chkBoxEstornoPagamento.Tag = "10";
+            chkBoxEstornoPagamento.Text = "Estorno de Pagamento";
+            chkBoxEstornoPagamento.UseVisualStyleBackColor = true;
             // 
             // chkBoxPagamentoParcela
             // 
@@ -793,18 +805,6 @@
             chkBoxCobranca.Tag = "8";
             chkBoxCobranca.Text = "Cobrança (WhatsApp)";
             chkBoxCobranca.UseVisualStyleBackColor = true;
-            // 
-            // chkEstornoPagamento
-            // 
-            chkEstornoPagamento.AutoSize = true;
-            chkEstornoPagamento.Enabled = false;
-            chkEstornoPagamento.Location = new Point(20, 114);
-            chkEstornoPagamento.Name = "chkEstornoPagamento";
-            chkEstornoPagamento.Size = new Size(181, 24);
-            chkEstornoPagamento.TabIndex = 2;
-            chkEstornoPagamento.Tag = "10";
-            chkEstornoPagamento.Text = "Estorno de Pagamento";
-            chkEstornoPagamento.UseVisualStyleBackColor = true;
             // 
             // frmCadastroFuncionario
             // 
@@ -923,6 +923,6 @@
         private GroupBox groupBox1;
         private CheckBox chkBoxCobranca;
         private CheckBox chkBoxCadastroCNPJ;
-        private CheckBox chkEstornoPagamento;
+        private CheckBox chkBoxEstornoPagamento;
     }
 }

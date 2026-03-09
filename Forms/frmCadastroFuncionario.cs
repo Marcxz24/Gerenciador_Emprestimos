@@ -60,6 +60,7 @@ namespace Gerenciador_de_Emprestimos
             chkBoxCadWhatsapp.Enabled = ManifestarBotoes;
             chkBoxCobranca.Enabled = ManifestarBotoes;
             chkBoxCadastroCNPJ.Enabled = ManifestarBotoes;
+            chkBoxEstornoPagamento.Enabled = ManifestarBotoes;
 
             // --- 2. LIMPEZA DOS CAMPOS ---
             if (LimparCampos)
