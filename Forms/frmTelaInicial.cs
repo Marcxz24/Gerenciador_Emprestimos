@@ -250,6 +250,7 @@ namespace Gerenciador_de_Emprestimos
             lblListaEmprestimos.Visible = false; // Esconde o rótulo da lista de empréstimos
             btnAtualizarLista.Visible = false; // Esconde o botão de atualizar lista
             btnNovoLembrete.Visible = false;
+            flwMuralLembretes.Visible = false;
             frmLoginFuncionario loginFuncionario = new frmLoginFuncionario();
             loginFuncionario.Owner = this;
             loginFuncionario.Show();
