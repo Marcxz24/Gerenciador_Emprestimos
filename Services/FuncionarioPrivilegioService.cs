@@ -11,12 +11,12 @@ namespace Gerenciador_de_Emprestimos.Services
     public class FuncionarioPrivilegioService
     {
         // Declaração do repositório responsável pela persistência dos dados
-        private readonly FuncionarioPrivilegioDAO _repository;
+        private readonly PrivilegioDAO _repository;
 
         // Construtor da classe que inicializa a instância do repositório
         public FuncionarioPrivilegioService()
         {
-            _repository = new FuncionarioPrivilegioDAO();
+            _repository = new PrivilegioDAO();
         }
 
         // Método que retorna uma lista de IDs das telas que o funcionário tem permissão para acessar

@@ -431,12 +431,13 @@ namespace Gerenciador_de_Emprestimos
                     EstadoCivil = comboBoxEstadoCivil.Text,
                     Username = txtBoxUsername.Text,
                     SenhaHash = Seguranca.GerarHashSenha(txtBoxSenha.Text),
+                    Uf = comboBoxUf.Text,
                     Cidade = txtBoxCidadeFuncionario.Text,
                     Endereco = txtBoxEndereco.Text,
                     Bairro = txtBoxBairro.Text,
                     NumeroResidencia = numeroResidencia,
                     Cep = txtBoxCep.Text,
-
+                    Telefone = txtBoxTelefoneFuncionario.Text
                 };
 
                 FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
@@ -494,7 +495,8 @@ namespace Gerenciador_de_Emprestimos
                     Sexo = comboBoxSexoFuncionario.Text,
                     EstadoCivil = comboBoxEstadoCivil.Text,
                     Username = txtBoxUsername.Text,
-                    SenhaHash = Seguranca.GerarHashSenha(txtBoxSenha.Text),
+                    Telefone = txtBoxTelefoneFuncionario.Text,
+                    Uf = comboBoxUf.Text,
                     Cidade = txtBoxCidadeFuncionario.Text,
                     Endereco = txtBoxEndereco.Text,
                     Bairro = txtBoxBairro.Text,
@@ -502,7 +504,8 @@ namespace Gerenciador_de_Emprestimos
                     Cep = txtBoxCep.Text,
                 };
 
-                FuncionarioDAO funcionarioDAO = new FuncionarioDAO();  
+                FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+                FuncionarioPrivilegioService service = new FuncionarioPrivilegioService();
 
                 bool editouComSucesso = funcionarioDAO.EditarCadastroFuncionario(funcionarioDTO);
 

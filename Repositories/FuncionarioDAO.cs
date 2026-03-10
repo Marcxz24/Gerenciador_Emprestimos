@@ -81,7 +81,7 @@ namespace Gerenciador_de_Emprestimos.Repositories
                     comando.Parameters.AddWithValue("@bairro_funcionario", funcionario.Bairro);
                     comando.Parameters.AddWithValue("@numero_residencia", funcionario.NumeroResidencia);
                     comando.Parameters.AddWithValue("@cep_funcionario", funcionario.Cep);
-                    comando.Parameters.AddWithValue("@uf_funcionario", funcionario.Cep);
+                    comando.Parameters.AddWithValue("@uf_funcionario", funcionario.Uf);
                     comando.Parameters.AddWithValue("@situacao_funcionario", funcionario.Situacao);
                     comando.Parameters.AddWithValue("@data_cadastro", DateTime.Now); // Registra o momento exato do cadastro
 

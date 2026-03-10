@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gerenciador_de_Emprestimos.Models
 {
-    public class PrivilegioAcao
+    public class PrivilegioDTO
     {
         public int Codigo { get; set; }
         public string NomeAcao { get; set; }

@@ -57,7 +57,7 @@ namespace Gerenciador_de_Emprestimos
         // --- MÉTODO: Atualiza o nome do funcionário no rodapé (StatusStrip) ---
         public void AtualizarUsuarioLogado(int codigoLogado, string nomeFuncionario)
         {
-            toolStriCodUsuarioLogado.Text = $"Código de Usuário: {codigoLogado}";
+            toolStriCodUsuarioLogado.Text = $"Código: {codigoLogado}";
             statusLabelUsername.Text = $"Nome de Usuário: {nomeFuncionario}";
 
             Sessao.CodigoFuncionarioLogado = codigoLogado;
@@ -88,7 +88,6 @@ namespace Gerenciador_de_Emprestimos
             btnLembretes.Visible = logado;
             btnNovoLembrete.Visible = logado;
             btnAtualizarLista.Visible = logado;
-            btnLimparListaEmprestimos.Visible = logado;
 
             // Mural de Lembretes
             flwMuralLembretes.Visible = logado;
@@ -461,16 +460,22 @@ namespace Gerenciador_de_Emprestimos
 
         private void btnNovoLembrete_Click_1(object sender, EventArgs e)
         {
-            Lembrete novoLembrete = new Lembrete();
+            string tituloPadrao = "Titulo do lembrete";
+            string? descricao = null;
 
-            novoLembrete.CodigoFuncionario = Sessao.CodigoFuncionarioLogado;
+            LembreteDAO novoLembrete = new LembreteDAO();
+
+            LembreteDTO dtoLembrete = new LembreteDTO
+            {
+                CodigoFuncionario = Sessao.CodigoFuncionarioLogado,
+                Titulo = tituloPadrao,
+                Descricao = descricao
+            };
 
             try
             {
-                string tituloPadrao = "Titulo do lembrete";
-                novoLembrete.Titulo = tituloPadrao;
 
-                novoLembrete.CriarLembrete();
+                novoLembrete.CriarLembrete(dtoLembrete);
                 AtualizarMural(); // Atualiza o mural para mostrar o novo lembrete
 
                 if (flwMuralLembretes.Controls.Count > 0)
@@ -489,7 +494,7 @@ namespace Gerenciador_de_Emprestimos
         {
             flwMuralLembretes.Controls.Clear();
 
-            Lembrete lembrete = new Lembrete();
+            LembreteDAO lembrete = new LembreteDAO();
 
             int codigoLogado = Sessao.CodigoFuncionarioLogado;
 
@@ -557,7 +562,7 @@ namespace Gerenciador_de_Emprestimos
                         item.Titulo = txtTitulo.Text;
                         item.Descricao = txtDesc.Text;
 
-                        // 2. Chamamos o método que você acabou de criar
+                        // 2. Chamamos o método Responsável por Editar
                         item.EditarLembrete();
                     }
                     catch (Exception ex)

@@ -39,10 +39,11 @@
             lblCodigoEmprestimo = new Label();
             txtCodigoEmprestimo = new TextBox();
             grpConfirmarEstorno = new GroupBox();
+            lblConfirmacao = new Label();
             btnEstornar = new Button();
             btnCancelar = new Button();
             txtMotivoEstorno = new TextBox();
-            lblConfirmacao = new Label();
+            btnLimparDados = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtGridListarPagamentos).BeginInit();
             grpFiltrosPagamento.SuspendLayout();
@@ -142,6 +143,7 @@
             // grpConfirmarEstorno
             // 
             grpConfirmarEstorno.BackColor = Color.Transparent;
+            grpConfirmarEstorno.Controls.Add(btnLimparDados);
             grpConfirmarEstorno.Controls.Add(lblConfirmacao);
             grpConfirmarEstorno.Controls.Add(btnEstornar);
             grpConfirmarEstorno.Controls.Add(btnCancelar);
@@ -153,9 +155,18 @@
             grpConfirmarEstorno.TabStop = false;
             grpConfirmarEstorno.Text = "Confirmação e Auditoria";
             // 
+            // lblConfirmacao
+            // 
+            lblConfirmacao.AutoSize = true;
+            lblConfirmacao.Location = new Point(15, 31);
+            lblConfirmacao.Name = "lblConfirmacao";
+            lblConfirmacao.Size = new Size(227, 20);
+            lblConfirmacao.TabIndex = 5;
+            lblConfirmacao.Text = "Motivo do Estorno (Obrigatório):";
+            // 
             // btnEstornar
             // 
-            btnEstornar.Location = new Point(807, 118);
+            btnEstornar.Location = new Point(727, 118);
             btnEstornar.Name = "btnEstornar";
             btnEstornar.Size = new Size(113, 45);
             btnEstornar.TabIndex = 2;
@@ -164,7 +175,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(670, 118);
+            btnCancelar.Location = new Point(615, 118);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(106, 45);
             btnCancelar.TabIndex = 1;
@@ -179,14 +190,14 @@
             txtMotivoEstorno.Size = new Size(594, 121);
             txtMotivoEstorno.TabIndex = 0;
             // 
-            // lblConfirmacao
+            // btnLimparDados
             // 
-            lblConfirmacao.AutoSize = true;
-            lblConfirmacao.Location = new Point(15, 31);
-            lblConfirmacao.Name = "lblConfirmacao";
-            lblConfirmacao.Size = new Size(227, 20);
-            lblConfirmacao.TabIndex = 5;
-            lblConfirmacao.Text = "Motivo do Estorno (Obrigatório):";
+            btnLimparDados.Location = new Point(846, 118);
+            btnLimparDados.Name = "btnLimparDados";
+            btnLimparDados.Size = new Size(90, 45);
+            btnLimparDados.TabIndex = 6;
+            btnLimparDados.Text = "Limpar";
+            btnLimparDados.UseVisualStyleBackColor = true;
             // 
             // frmEstornarPagamento
             // 
@@ -200,6 +211,7 @@
             Controls.Add(dtGridListarPagamentos);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmEstornarPagamento";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Estorno de Recebimento de Empréstimos";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -227,5 +239,6 @@
         private Button btnEstornar;
         private Button btnCancelar;
         private Label lblConfirmacao;
+        private Button btnLimparDados;
     }
 }

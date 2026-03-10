@@ -31,10 +31,11 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTelaIncial));
             stsStripSistemVersion = new StatusStrip();
-            statusLabelUsername = new ToolStripStatusLabel();
-            toolStriCodUsuarioLogado = new ToolStripStatusLabel();
             toolStripUserName = new ToolStripStatusLabel();
             lblEspacoVazio = new ToolStripStatusLabel();
+            toolStriCodUsuarioLogado = new ToolStripStatusLabel();
+            toolStrSeparador = new ToolStripStatusLabel();
+            statusLabelUsername = new ToolStripStatusLabel();
             toolStsStripSistemVersion = new ToolStripStatusLabel();
             MenuStripMenusSistema = new MenuStrip();
             arquivoToolStripMenuItem = new ToolStripMenuItem();
@@ -93,20 +94,9 @@
             resources.ApplyResources(stsStripSistemVersion, "stsStripSistemVersion");
             stsStripSistemVersion.BackColor = SystemColors.Window;
             stsStripSistemVersion.ImageScalingSize = new Size(20, 20);
-            stsStripSistemVersion.Items.AddRange(new ToolStripItem[] { statusLabelUsername, toolStriCodUsuarioLogado, toolStripUserName, lblEspacoVazio, toolStsStripSistemVersion });
+            stsStripSistemVersion.Items.AddRange(new ToolStripItem[] { toolStripUserName, lblEspacoVazio, toolStriCodUsuarioLogado, toolStrSeparador, statusLabelUsername, toolStsStripSistemVersion });
             stsStripSistemVersion.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             stsStripSistemVersion.Name = "stsStripSistemVersion";
-            // 
-            // statusLabelUsername
-            // 
-            resources.ApplyResources(statusLabelUsername, "statusLabelUsername");
-            statusLabelUsername.BackColor = SystemColors.Window;
-            statusLabelUsername.Name = "statusLabelUsername";
-            // 
-            // toolStriCodUsuarioLogado
-            // 
-            resources.ApplyResources(toolStriCodUsuarioLogado, "toolStriCodUsuarioLogado");
-            toolStriCodUsuarioLogado.Name = "toolStriCodUsuarioLogado";
             // 
             // toolStripUserName
             // 
@@ -119,6 +109,22 @@
             resources.ApplyResources(lblEspacoVazio, "lblEspacoVazio");
             lblEspacoVazio.Name = "lblEspacoVazio";
             lblEspacoVazio.Spring = true;
+            // 
+            // toolStriCodUsuarioLogado
+            // 
+            resources.ApplyResources(toolStriCodUsuarioLogado, "toolStriCodUsuarioLogado");
+            toolStriCodUsuarioLogado.Name = "toolStriCodUsuarioLogado";
+            // 
+            // toolStrSeparador
+            // 
+            resources.ApplyResources(toolStrSeparador, "toolStrSeparador");
+            toolStrSeparador.Name = "toolStrSeparador";
+            // 
+            // statusLabelUsername
+            // 
+            resources.ApplyResources(statusLabelUsername, "statusLabelUsername");
+            statusLabelUsername.BackColor = SystemColors.Window;
+            statusLabelUsername.Name = "statusLabelUsername";
             // 
             // toolStsStripSistemVersion
             // 
@@ -496,5 +502,6 @@
         private ToolStripMenuItem estornarPagamentoCTRLEToolStripMenuItem;
         private ToolStripMenuItem pessoaJurídicaCNPJToolStripMenuItem;
         private DataGridView dataGridListaEmprestimos;
+        private ToolStripStatusLabel toolStrSeparador;
     }
 }
