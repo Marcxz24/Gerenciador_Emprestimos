@@ -243,11 +243,13 @@ namespace Gerenciador_de_Emprestimos
         private void RealizarLogoff()
         {
             ConfigurarAcesso(false); // Bloqueia menus
+            AlternarVisualizacao(false);
             statusLabelUsername.Text = ""; // Limpa nome do usuário no rodapé
             toolStriCodUsuarioLogado.Text = ""; // Limpa código do usuário no rodapé
             dataGridListaEmprestimos.Visible = false; // Esconde a lista de empréstimos
             lblListaEmprestimos.Visible = false; // Esconde o rótulo da lista de empréstimos
             btnAtualizarLista.Visible = false; // Esconde o botão de atualizar lista
+            btnNovoLembrete.Visible = false;
             frmLoginFuncionario loginFuncionario = new frmLoginFuncionario();
             loginFuncionario.Owner = this;
             loginFuncionario.Show();
