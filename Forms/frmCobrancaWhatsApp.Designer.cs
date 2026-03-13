@@ -67,7 +67,7 @@
             // 
             txtNomeCliente.Location = new Point(325, 64);
             txtNomeCliente.Name = "txtNomeCliente";
-            txtNomeCliente.Size = new Size(247, 27);
+            txtNomeCliente.Size = new Size(312, 27);
             txtNomeCliente.TabIndex = 3;
             txtNomeCliente.KeyDown += txtNomeCliente_KeyDown;
             // 

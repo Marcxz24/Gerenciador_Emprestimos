@@ -156,28 +156,7 @@ namespace Gerenciador_de_Emprestimos.Forms
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (int.TryParse(txtCodigoCliente.Text, out int codigoCliente))
-                {
-                    var buscarCliente = new ClienteDAO();
-                    var cliente = buscarCliente.BuscarClientePorCodigo(codigoCliente);
-
-                    if (cliente != null)
-                    {
-                        PreencherCamposCliente(cliente);
-                    }
-                    else
-                    {
-                        using (var frmBuscarCliente = new frmSelecionarCliente())
-                        {
-                            if (frmBuscarCliente.ShowDialog() == DialogResult.OK)
-                            {
-                                var clienteSelecionado = frmBuscarCliente.ClienteSelecionado;
-
-                                PreencherCamposCliente(clienteSelecionado);
-                            }
-                        }
-                    }
-                }
+                BuscarCliente();
             }
         }
 
@@ -185,27 +164,7 @@ namespace Gerenciador_de_Emprestimos.Forms
         {
             if (e.KeyCode == Keys.Enter)
             {
-                var servico = new ClienteDAO();
-                var resultado = servico.BuscarClientePorNome(txtNomeCliente.Text);
-
-                if (resultado != null)
-                {
-                    txtCodigoCliente.Text = resultado.codigo.ToString();
-                    txtNomeCliente.Text = resultado.nome_cliente;
-                    txtTelefoneCliente.Text = resultado.celular;
-                }
-                else
-                {
-                    using (var frmBuscarCliente = new frmSelecionarCliente())
-                    {
-                        if (frmBuscarCliente.ShowDialog() == DialogResult.OK)
-                        {
-                            var clienteSelecionado = frmBuscarCliente.ClienteSelecionado;
-
-                            PreencherCamposCliente(clienteSelecionado);
-                        }
-                    }
-                }
+                BuscarCliente();
             }
         }
 
@@ -256,6 +215,37 @@ namespace Gerenciador_de_Emprestimos.Forms
                 {
                     Funcoes.MensagemWarning("Valor inválido. Por favor, digite um valor numérico.");
                     txtBoxValorVencido.Focus();
+                }
+            }
+        }
+
+        private void BuscarCliente()
+        {
+            var clienteDao = new ClienteDAO();
+            ClienteDTO resultado = null;
+
+            if (int.TryParse(txtCodigoCliente.Text, out int codigo) && codigo > 0)
+            {
+                resultado = clienteDao.BuscarClientePorCodigo(codigo);
+            }
+            else if (!string.IsNullOrWhiteSpace(txtNomeCliente.Text))
+            {
+                resultado = clienteDao.BuscarClientePorNome(txtNomeCliente.Text);
+            }
+
+            if (resultado != null)
+            {
+                PreencherCamposCliente(resultado);
+            }
+            else
+            {
+                // Se não encontrou de nenhuma forma, abre a tela de seleção
+                using (var frmBuscarCliente = new frmSelecionarCliente()) // Passa o que foi digitado para o filtro da busca
+                {
+                    if (frmBuscarCliente.ShowDialog() == DialogResult.OK)
+                    {
+                        PreencherCamposCliente(frmBuscarCliente.ClienteSelecionado);
+                    }
                 }
             }
         }

@@ -400,6 +400,7 @@
             dataGridListaEmprestimos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridListaEmprestimos.Name = "dataGridListaEmprestimos";
             dataGridListaEmprestimos.ReadOnly = true;
+            dataGridListaEmprestimos.CellDoubleClick += dataGridListaEmprestimos_CellDoubleClick;
             // 
             // flwMuralLembretes
             // 

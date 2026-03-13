@@ -432,35 +432,6 @@ namespace Gerenciador_de_Emprestimos
             }
         }
 
-        private void dataGridListaEmprestimos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0) return;
-
-            try
-            {
-                var emprestimoSelecionado = (EmprestimoDTO)dataGridListaEmprestimos.Rows[e.RowIndex].DataBoundItem;
-
-                if (emprestimoSelecionado.StatusEmprestimo == "ATIVO")
-                {
-                    frmPagamentoEmprestimo frmPagamento = new frmPagamentoEmprestimo();
-
-                    frmPagamento.codigoEmprestimo = emprestimoSelecionado.Codigo;
-
-                    frmPagamento.CarregarDadosParcela(emprestimoSelecionado.Codigo);
-
-                    frmPagamento.ShowDialog();
-
-                    btnAtualizarLista.PerformClick(); // Atualiza a lista após fechar o formulário de pagamento
-                }
-            }
-            catch (Exception ex)
-            {
-                Funcoes.MensagemWarning("Ocorreu um erro ao tentar acessar os detalhes do empréstimo. Tente novamente mais tarde.\nDetalhes do erro: " + ex.Message);
-                Serilog.Log.Error("Erro ao acessar detalhes do empréstimo: " + ex.Message);
-                return;
-            }
-        }
-
         private void btnNovoLembrete_Click_1(object sender, EventArgs e)
         {
             string tituloPadrao = "Titulo do lembrete";
@@ -656,6 +627,51 @@ namespace Gerenciador_de_Emprestimos
 
             frmEstornarPagamento estornoPagamento = new frmEstornarPagamento();
             estornoPagamento.ShowDialog();
+        }
+
+        private void dataGridListaEmprestimos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            try
+            {
+                if (dataGridListaEmprestimos.Rows[e.RowIndex].DataBoundItem is DataRowView rowView)
+                {
+                    var emprestimoSelecionado = new EmprestimoDTO
+                    {
+                        Codigo = Convert.ToInt32(rowView["codigo_emprestimo"]),
+                        CodigoCliente = Convert.ToInt32(rowView["codigo_cliente"]),
+                        NomeCliente = Convert.ToString(rowView["nome_cliente"]),
+                        ValorTotal = Convert.ToDecimal(rowView["valor_total"]),
+                        ValorJurosPercentual = Convert.ToDecimal(rowView["percentual_juros"]),
+                        DataVencimentoInicial = rowView["data_pagar"] != DBNull.Value
+                            ? DateOnly.FromDateTime(Convert.ToDateTime(rowView["data_pagar"]))
+                            : default,
+                        ObservacoesEmprestimos = Convert.ToString(rowView["observacoes"]),
+                        StatusEmprestimo = Convert.ToString(rowView["status_emprestimo"])
+                    };
+
+                    if (emprestimoSelecionado.StatusEmprestimo == "ATIVO")
+                    {
+                        frmPagamentoEmprestimo frmPagamento = new frmPagamentoEmprestimo();
+
+                        frmPagamento.codigoEmprestimo = emprestimoSelecionado.Codigo;
+
+                        frmPagamento.CarregarDadosParcela(emprestimoSelecionado.Codigo);
+
+                        frmPagamento.ShowDialog();
+
+                        btnAtualizarLista.PerformClick(); // Atualiza a lista após fechar o formulário de pagamento
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Funcoes.MensagemWarning("Ocorreu um erro ao tentar acessar os detalhes do empréstimo. Tente novamente mais tarde.\nDetalhes do erro: " + ex.Message);
+                Serilog.Log.Error("Erro ao acessar detalhes do empréstimo: " + ex.Message);
+                return;
+            }
+
         }
     }
 }

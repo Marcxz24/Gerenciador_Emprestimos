@@ -296,6 +296,7 @@
             // 
             // txtBoxUsername
             // 
+            txtBoxUsername.CharacterCasing = CharacterCasing.Upper;
             txtBoxUsername.Location = new Point(289, 143);
             txtBoxUsername.Name = "txtBoxUsername";
             txtBoxUsername.ReadOnly = true;
