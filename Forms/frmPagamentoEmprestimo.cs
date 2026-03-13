@@ -22,6 +22,7 @@ namespace Gerenciador_de_Emprestimos
         private int codigoParcela;
         private decimal valorParcela = 0;
         private string? observacoes;
+        private ParcelaDTO parcelaAtual;
 
         public frmPagamentoEmprestimo()
         {
@@ -386,7 +387,7 @@ namespace Gerenciador_de_Emprestimos
             lblInserindoDados.Visible = false;
         }
 
-        public void CarregarDadosParcela(int codigoParcela)
+        public void CarregarDadosParcela(int codigoEmprestimo)
         {
             EmprestimoDAO emprestimoDAO = new EmprestimoDAO();
 
@@ -394,18 +395,96 @@ namespace Gerenciador_de_Emprestimos
 
             if (parcela != null)
             {
-                txtCodigoEmprestimo.Text = parcela.CodigoEmprestimo.ToString();
-                txtCodigoParcela.Text = parcela.Codigo.ToString();
-                txtCodCliente.Text = parcela.CodigoCliente.ToString();
+                AtualizarInterfaceParcela(parcela);
 
-                txtBoxNumeroParcela.Text = parcela.NumeroParcela.ToString();
-                txtValorEmprestimo.Text = parcela.ValorEmprestimo.ToString("F2");
-                txtValorJuros.Text = parcela.ValorJuros.ToString("F2");
+                this.parcelaAtual = parcela;
+            }
+        }
 
-                comboBoxParcelaStatus.Text = parcela.StatusParcela;
-                txtBoxParcela.Text = parcela.ValorParcela.ToString("F2");
+        private void VerificarERecalcularJuros(ParcelaDTO parcela)
+        {
+            // 1. Defesa: Se o objeto for nulo, não faz nada
+            if (parcela == null) return;
 
-                txtClienteNome.Text = parcela.NomeCliente;
+            ParcelaDAO parcelaDao = new ParcelaDAO();
+
+            // 2. Define a data de referência. 
+            // Se já houve cálculo antes, usa essa data. Se não, usa o vencimento.
+            // Agora que o DAO traz essa coluna, o sistema finalmente "anda" no tempo.
+            DateTime referencia = parcela.DataUltimoCalculoJuros.HasValue
+                ? parcela.DataUltimoCalculoJuros.Value.ToDateTime(TimeOnly.MinValue)
+                : parcela.DataVencimento.ToDateTime(TimeOnly.MinValue);
+
+            // 3. Verifica se a referência (vencimento ou último cálculo) é anterior a hoje
+            if (DateTime.Today > referencia.Date)
+            {
+                var mensagemRecalculo = $"A parcela selecionada está em atraso desde {referencia:dd/MM/yyyy}.\n\n" +
+                                        "Deseja aplicar os juros e atualizar a data de controle?";
+
+                var resultado = MessageBox.Show(mensagemRecalculo, "Recalcular Juros",
+                                               MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (resultado == DialogResult.Yes)
+                {
+                    try
+                    {
+                        // 4. Cálculo matemático (usando o percentual_parcela que agora o DAO carrega)
+                        decimal taxa = parcela.PercentualJuros / 100m;
+                        decimal novoValor = Math.Round(parcela.ValorParcela * (1m + taxa), 2, MidpointRounding.AwayFromZero);
+
+                        // 5. Incremento do controle de data (Avança o ponteiro no tempo)
+                        DateTime novaDataUltimoCalculo = (parcela.TipoJuros == "DIARIO")
+                            ? referencia.AddDays(1)
+                            : referencia.AddMonths(1);
+
+                        // 6. Persistência no Banco de Dados
+                        int linhasAfetadas = parcelaDao.UpdateParcelaValorJuros(parcela.Codigo, novoValor, novaDataUltimoCalculo);
+
+                        if (linhasAfetadas > 0)
+                        {
+                            // 7. REFRESH: Busca o objeto NOVO do banco para garantir que todas as
+                            // propriedades (incluindo as que o DAO carrega com JOIN) estejam certas.
+                            var parcelaAtualizada = parcelaDao.GetParcela(parcela.Codigo);
+
+                            if (parcelaAtualizada != null)
+                            {
+                                // 8. Atualiza a tela com os dados fresquinhos
+                                AtualizarInterfaceParcela(parcelaAtualizada);
+
+                                // Opcional: Se quiser que ele recalcule todos os dias de uma vez
+                                // basta chamar o método novamente (recursividade):
+                                // VerificarERecalcularJuros(parcelaAtualizada);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Serilog.Log.Error("Erro ao Recalcular Juros: " + ex.Message);
+                        Funcoes.MensagemErro("Erro ao Recalcular Juros: " + ex.Message);
+                    }
+                }
+            }
+        }
+
+        // Método auxiliar para preencher os TXTs (evita repetição de código)
+        private void AtualizarInterfaceParcela(ParcelaDTO parcela)
+        {
+            txtCodigoEmprestimo.Text = parcela.CodigoEmprestimo.ToString();
+            txtCodigoParcela.Text = parcela.Codigo.ToString();
+            txtCodCliente.Text = parcela.CodigoCliente.ToString();
+            txtBoxNumeroParcela.Text = parcela.NumeroParcela.ToString();
+            txtValorEmprestimo.Text = parcela.ValorEmprestimo.ToString("F2");
+            txtValorJuros.Text = parcela.PercentualJuros.ToString("F2"); // Ajustado para percentual
+            comboBoxParcelaStatus.Text = parcela.StatusParcela ?? "ABERTA";
+            txtBoxParcela.Text = parcela.ValorParcela.ToString("F2");
+            txtClienteNome.Text = parcela.NomeCliente;
+        }
+
+        private void frmPagamentoEmprestimo_Shown(object sender, EventArgs e)
+        {
+            if (this.parcelaAtual != null)
+            {
+                VerificarERecalcularJuros(this.parcelaAtual);
             }
         }
     }

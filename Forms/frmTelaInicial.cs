@@ -417,6 +417,7 @@ namespace Gerenciador_de_Emprestimos
                     dataGridListaEmprestimos.Columns["valor_total"].HeaderText = "VALOR TOTAL";
                     dataGridListaEmprestimos.Columns["percentual_juros"].HeaderText = "(%) JUROS";
                     dataGridListaEmprestimos.Columns["data_pagar"].HeaderText = "VENCIMENTO";
+                    dataGridListaEmprestimos.Columns["data_ultimo_calculo_juros"].HeaderText = "PORXIMO VENCIMENTO";
                     dataGridListaEmprestimos.Columns["status_emprestimo"].HeaderText = "STATUS";
                     dataGridListaEmprestimos.Columns["observacoes"].HeaderText = "OBSERVAÇÕES";
 

@@ -29,6 +29,7 @@ namespace Gerenciador_de_Emprestimos.Models
         // --- PROPRIEDADES DE DATA ---
         public DateOnly DataEmprestimo { get; set; }
         public DateOnly DataVencimentoInicial { get; set; }
+        public DateOnly? DataUltimoCalculoJuros { get; set; }
 
         // --- PROPRIEDADE AUXILIAR PARA O METODO DE LISTAR EMPRESTIMOS ---
     }

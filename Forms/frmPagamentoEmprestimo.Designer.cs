@@ -561,6 +561,7 @@
             Name = "frmPagamentoEmprestimo";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pagamento de Parcelas";
+            Shown += frmPagamentoEmprestimo_Shown;
             grpBoxDadosParcela.ResumeLayout(false);
             grpBoxDadosParcela.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridParcelasAbertas).EndInit();

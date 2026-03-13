@@ -24,7 +24,7 @@ namespace Gerenciador_de_Emprestimos.Repositories
                                 INNER JOIN cliente c
                                  ON p.codigo_cliente = c.codigo
                                  WHERE codigo_emprestimo = @codigo_emprestimo
-                                 AND status_parcela = 'ABERTA' 
+                                 AND status_parcela IN ('ABERTA', 'ATRASADA')
                                   ORDER BY numero_parcela ASC LIMIT 1";
 
             using (var conn = ConexaoBancoDeDados.Conectar())
@@ -44,9 +44,13 @@ namespace Gerenciador_de_Emprestimos.Repositories
                             NomeCliente = dr.GetString("nome_cliente"),
                             NumeroParcela = dr.GetInt32("numero_parcela"),
                             ValorParcela = dr.GetDecimal("valor_parcela"),
+                            PercentualJuros = dr.GetDecimal("percentual_parcela"),
                             ValorEmprestimo = dr.GetDecimal("valor_emprestado_total"),
                             ValorJuros = dr.GetDecimal("valor_juros"),
                             DataVencimento = DateOnly.FromDateTime(dr.GetDateTime("data_vencimento")),
+                            DataUltimoCalculoJuros = dr.IsDBNull(dr.GetOrdinal("data_ultimo_calculo_juros"))
+                                ? (DateOnly?)null
+                                : DateOnly.FromDateTime(dr.GetDateTime("data_ultimo_calculo_juros")),
                             StatusParcela = dr.GetString("status_parcela")
                         };
                     }
@@ -347,12 +351,16 @@ namespace Gerenciador_de_Emprestimos.Repositories
                                e.valor_emprestado_total AS valor_total, 
                                e.percentual_juros, 
                                e.data_pagar,
+                               P.data_ultimo_calculo_juros,
                                e.observacoes,
                                e.status_emprestimo 
                            FROM emprestimosbd.emprestimos e
                             INNER JOIN emprestimosbd.cliente c
                                 ON e.codigo_cliente = c.codigo
-                            WHERE status_emprestimo = 'ATIVO'";
+                            INNER JOIN emprestimosbd.conta_receber p
+                                ON e.codigo = p.codigo_emprestimo
+                            WHERE status_emprestimo = 'ATIVO'
+                                GROUP BY e.codigo";
 
             using (var conexao = ConexaoBancoDeDados.Conectar())
             using (var comando = new MySqlCommand(sql, conexao))

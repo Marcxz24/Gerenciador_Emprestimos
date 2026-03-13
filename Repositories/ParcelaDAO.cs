@@ -12,15 +12,23 @@ namespace Gerenciador_de_Emprestimos.Repositories
         {
             string sql = @"SELECT 
                                     p.codigo,
+                                    p.codigo_emprestimo,
+                                    p.numero_parcela,
                                     p.valor_parcela,
                                     p.valor_pago,
                                     p.percentual_parcela,
                                     p.data_vencimento,
                                     p.data_ultimo_calculo_juros,
                                     p.status_parcela,
-                                    e.tipo_juros
+                                    e.codigo_cliente,
+                                    e.valor_emprestado_total,
+                                    e.tipo_juros,
+                                    c.nome_cliente
                                FROM emprestimosbd.conta_receber p
-                               INNER JOIN emprestimosbd.emprestimos e ON p.codigo_emprestimo = e.codigo
+                               INNER JOIN emprestimosbd.emprestimos e 
+								ON p.codigo_emprestimo = e.codigo
+							   INNER JOIN emprestimosbd.cliente c
+								ON p.codigo_cliente = c.codigo
                                WHERE p.codigo = @codigo";
 
             using (var conexao = ConexaoBancoDeDados.Conectar())
@@ -36,15 +44,23 @@ namespace Gerenciador_de_Emprestimos.Repositories
                     var dto = new ParcelaDTO
                     {
                         Codigo = reader.GetInt32("codigo"),
+                        // Mapeando os novos campos para não zerar a tela
+                        CodigoEmprestimo = reader.GetInt32("codigo_emprestimo"),
+                        CodigoCliente = reader.GetInt32("codigo_cliente"),
+                        NumeroParcela = reader.GetInt32("numero_parcela"),
+                        NomeCliente = reader.GetString("nome_cliente"),
+                        ValorEmprestimo = reader.IsDBNull(reader.GetOrdinal("valor_emprestado_total")) ? 0m : reader.GetDecimal("valor_emprestado_total"),
+
                         ValorParcela = reader.IsDBNull(reader.GetOrdinal("valor_parcela")) ? 0m : reader.GetDecimal("valor_parcela"),
                         ValorPago = reader.IsDBNull(reader.GetOrdinal("valor_pago")) ? 0m : reader.GetDecimal("valor_pago"),
                         PercentualJuros = reader.IsDBNull(reader.GetOrdinal("percentual_parcela")) ? 0m : reader.GetDecimal("percentual_parcela"),
+
                         DataVencimento = DateOnly.FromDateTime(reader.GetDateTime("data_vencimento")),
                         StatusParcela = reader.IsDBNull(reader.GetOrdinal("status_parcela")) ? null : reader.GetString("status_parcela"),
                         TipoJuros = reader.IsDBNull(reader.GetOrdinal("tipo_juros")) ? null : reader.GetString("tipo_juros"),
                         DataUltimoCalculoJuros = reader.IsDBNull(reader.GetOrdinal("data_ultimo_calculo_juros"))
-                            ? null
-                            : DateOnly.FromDateTime(reader.GetDateTime("data_ultimo_calculo_juros"))
+                    ? null
+                    : DateOnly.FromDateTime(reader.GetDateTime("data_ultimo_calculo_juros"))
                     };
 
                     return dto;
@@ -69,7 +85,10 @@ namespace Gerenciador_de_Emprestimos.Repositories
         public void UpdateValorPagoPartial(int codigoParcela, decimal valorPagoTotal)
         {
             string sql = @"UPDATE emprestimosbd.conta_receber 
-                               SET valor_pago = @valor_pago, data_ultimo_pagamento = NOW(), status_parcela = 'ABERTA'
+                               SET 
+                                    valor_pago = @valor_pago, 
+                                    data_ultimo_pagamento = NOW(), 
+                                    status_parcela = 'ABERTA'
                                WHERE codigo = @codigo";
 
             using (var conexao = ConexaoBancoDeDados.Conectar())
@@ -85,7 +104,11 @@ namespace Gerenciador_de_Emprestimos.Repositories
         public int MarkParcelaPaga(int codigoParcela, decimal valorPagoTotal)
         {
             string sql = @"UPDATE emprestimosbd.conta_receber 
-                               SET valor_pago = @valor_pago, data_ultimo_pagamento = NOW(), data_pagamento = NOW(), status_parcela = 'PAGA'
+                               SET 
+                                    valor_pago = @valor_pago, 
+                                    data_ultimo_pagamento = NOW(), 
+                                    data_pagamento = NOW(), 
+                                    status_parcela = 'PAGA'
                                WHERE codigo = @codigo";
 
             using (var conexao = ConexaoBancoDeDados.Conectar())
@@ -131,7 +154,10 @@ namespace Gerenciador_de_Emprestimos.Repositories
         public int UpdateParcelaValorJuros(int codigoParcela, decimal novoValor, DateTime dataUltimoCalculo)
         {
             string sql = @"UPDATE emprestimosbd.conta_receber 
-                               SET valor_parcela = @valor_parcela, data_ultimo_calculo_juros = @data_ultimo_calculo_juros, status_parcela = 'ATRASADA'
+                               SET 
+                                    valor_parcela = @valor_parcela, 
+                                    data_ultimo_calculo_juros = @data_ultimo_calculo_juros, 
+                                    status_parcela = 'ATRASADA'
                                WHERE codigo = @codigo";
 
             using (var conexao = ConexaoBancoDeDados.Conectar())

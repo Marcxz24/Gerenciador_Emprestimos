@@ -42,6 +42,12 @@
             txtCodigoEmprestimo = new TextBox();
             grpConfirmarEstorno = new GroupBox();
             grpDadosEstorno = new GroupBox();
+            txtValorPago = new TextBox();
+            lblValorPago = new Label();
+            txtValorParcela = new TextBox();
+            lblValorParcela = new Label();
+            lblNumeroParcela = new Label();
+            txtNumeroParcela = new TextBox();
             txtCodigoUserLogado = new TextBox();
             lblCodigoUserLogado = new Label();
             txtValorEstornado = new TextBox();
@@ -53,14 +59,7 @@
             btnLimparDados = new Button();
             lblConfirmacao = new Label();
             btnEstornar = new Button();
-            btnCancelar = new Button();
             txtMotivoEstorno = new TextBox();
-            txtValorPago = new TextBox();
-            lblValorPago = new Label();
-            txtValorParcela = new TextBox();
-            lblValorParcela = new Label();
-            lblNumeroParcela = new Label();
-            txtNumeroParcela = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtGridListarPagamentos).BeginInit();
             grpFiltrosPagamento.SuspendLayout();
@@ -187,7 +186,6 @@
             grpConfirmarEstorno.Controls.Add(btnLimparDados);
             grpConfirmarEstorno.Controls.Add(lblConfirmacao);
             grpConfirmarEstorno.Controls.Add(btnEstornar);
-            grpConfirmarEstorno.Controls.Add(btnCancelar);
             grpConfirmarEstorno.Controls.Add(txtMotivoEstorno);
             grpConfirmarEstorno.Location = new Point(12, 540);
             grpConfirmarEstorno.Name = "grpConfirmarEstorno";
@@ -218,6 +216,57 @@
             grpDadosEstorno.TabIndex = 7;
             grpDadosEstorno.TabStop = false;
             grpDadosEstorno.Text = "Dados do Estorno do Pagamento";
+            // 
+            // txtValorPago
+            // 
+            txtValorPago.Location = new Point(348, 98);
+            txtValorPago.Name = "txtValorPago";
+            txtValorPago.ReadOnly = true;
+            txtValorPago.Size = new Size(153, 27);
+            txtValorPago.TabIndex = 22;
+            // 
+            // lblValorPago
+            // 
+            lblValorPago.AutoSize = true;
+            lblValorPago.Location = new Point(348, 75);
+            lblValorPago.Name = "lblValorPago";
+            lblValorPago.Size = new Size(80, 20);
+            lblValorPago.TabIndex = 21;
+            lblValorPago.Text = "Valor Pago";
+            // 
+            // txtValorParcela
+            // 
+            txtValorParcela.Location = new Point(190, 98);
+            txtValorParcela.Name = "txtValorParcela";
+            txtValorParcela.ReadOnly = true;
+            txtValorParcela.Size = new Size(153, 27);
+            txtValorParcela.TabIndex = 20;
+            // 
+            // lblValorParcela
+            // 
+            lblValorParcela.AutoSize = true;
+            lblValorParcela.Location = new Point(190, 75);
+            lblValorParcela.Name = "lblValorParcela";
+            lblValorParcela.Size = new Size(115, 20);
+            lblValorParcela.TabIndex = 19;
+            lblValorParcela.Text = "Valor da Parcela";
+            // 
+            // lblNumeroParcela
+            // 
+            lblNumeroParcela.AutoSize = true;
+            lblNumeroParcela.Location = new Point(20, 75);
+            lblNumeroParcela.Name = "lblNumeroParcela";
+            lblNumeroParcela.Size = new Size(135, 20);
+            lblNumeroParcela.TabIndex = 18;
+            lblNumeroParcela.Text = "Número da Parcela";
+            // 
+            // txtNumeroParcela
+            // 
+            txtNumeroParcela.Location = new Point(20, 98);
+            txtNumeroParcela.Name = "txtNumeroParcela";
+            txtNumeroParcela.ReadOnly = true;
+            txtNumeroParcela.Size = new Size(164, 27);
+            txtNumeroParcela.TabIndex = 17;
             // 
             // txtCodigoUserLogado
             // 
@@ -289,9 +338,9 @@
             // 
             // btnLimparDados
             // 
-            btnLimparDados.Location = new Point(846, 261);
+            btnLimparDados.Location = new Point(796, 261);
             btnLimparDados.Name = "btnLimparDados";
-            btnLimparDados.Size = new Size(90, 45);
+            btnLimparDados.Size = new Size(140, 45);
             btnLimparDados.TabIndex = 6;
             btnLimparDados.Text = "Limpar";
             btnLimparDados.UseVisualStyleBackColor = true;
@@ -308,81 +357,21 @@
             // 
             // btnEstornar
             // 
-            btnEstornar.Location = new Point(727, 261);
+            btnEstornar.Location = new Point(639, 261);
             btnEstornar.Name = "btnEstornar";
-            btnEstornar.Size = new Size(113, 45);
+            btnEstornar.Size = new Size(151, 45);
             btnEstornar.TabIndex = 2;
             btnEstornar.Text = "Estornar";
             btnEstornar.UseVisualStyleBackColor = true;
             btnEstornar.Click += btnEstornar_Click;
-            // 
-            // btnCancelar
-            // 
-            btnCancelar.Location = new Point(615, 261);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(106, 45);
-            btnCancelar.TabIndex = 1;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = true;
             // 
             // txtMotivoEstorno
             // 
             txtMotivoEstorno.Location = new Point(15, 197);
             txtMotivoEstorno.Multiline = true;
             txtMotivoEstorno.Name = "txtMotivoEstorno";
-            txtMotivoEstorno.Size = new Size(594, 121);
+            txtMotivoEstorno.Size = new Size(618, 121);
             txtMotivoEstorno.TabIndex = 0;
-            // 
-            // txtValorPago
-            // 
-            txtValorPago.Location = new Point(348, 98);
-            txtValorPago.Name = "txtValorPago";
-            txtValorPago.ReadOnly = true;
-            txtValorPago.Size = new Size(153, 27);
-            txtValorPago.TabIndex = 22;
-            // 
-            // lblValorPago
-            // 
-            lblValorPago.AutoSize = true;
-            lblValorPago.Location = new Point(348, 75);
-            lblValorPago.Name = "lblValorPago";
-            lblValorPago.Size = new Size(80, 20);
-            lblValorPago.TabIndex = 21;
-            lblValorPago.Text = "Valor Pago";
-            // 
-            // txtValorParcela
-            // 
-            txtValorParcela.Location = new Point(190, 98);
-            txtValorParcela.Name = "txtValorParcela";
-            txtValorParcela.ReadOnly = true;
-            txtValorParcela.Size = new Size(153, 27);
-            txtValorParcela.TabIndex = 20;
-            // 
-            // lblValorParcela
-            // 
-            lblValorParcela.AutoSize = true;
-            lblValorParcela.Location = new Point(190, 75);
-            lblValorParcela.Name = "lblValorParcela";
-            lblValorParcela.Size = new Size(115, 20);
-            lblValorParcela.TabIndex = 19;
-            lblValorParcela.Text = "Valor da Parcela";
-            // 
-            // lblNumeroParcela
-            // 
-            lblNumeroParcela.AutoSize = true;
-            lblNumeroParcela.Location = new Point(20, 75);
-            lblNumeroParcela.Name = "lblNumeroParcela";
-            lblNumeroParcela.Size = new Size(135, 20);
-            lblNumeroParcela.TabIndex = 18;
-            lblNumeroParcela.Text = "Número da Parcela";
-            // 
-            // txtNumeroParcela
-            // 
-            txtNumeroParcela.Location = new Point(20, 98);
-            txtNumeroParcela.Name = "txtNumeroParcela";
-            txtNumeroParcela.ReadOnly = true;
-            txtNumeroParcela.Size = new Size(164, 27);
-            txtNumeroParcela.TabIndex = 17;
             // 
             // frmEstornarPagamento
             // 
@@ -427,7 +416,6 @@
         private Button btnBuscarParcela;
         private TextBox txtMotivoEstorno;
         private Button btnEstornar;
-        private Button btnCancelar;
         private Label lblConfirmacao;
         private Button btnLimparDados;
         private TextBox txtNomeCliente;

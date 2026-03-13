@@ -211,7 +211,6 @@ namespace Gerenciador_de_Emprestimos.Forms
             txtMotivoEstorno.Clear();
             txtCodigoParcelaEstorno.Clear();
             dtGridListarPagamentos.DataSource = null;
-            txtCodigoUserLogado.Clear();
             txtValorEstornado.Clear();
             txtValorPago.Clear();
             txtValorParcela.Clear();
