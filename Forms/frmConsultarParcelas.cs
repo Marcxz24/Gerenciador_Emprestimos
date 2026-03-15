@@ -1,4 +1,5 @@
-﻿using Gerenciador_de_Emprestimos.Services;
+﻿using Gerenciador_de_Emprestimos.Repositories;
+using Gerenciador_de_Emprestimos.Services;
 using Gerenciador_de_Emprestimos.Utils;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace Gerenciador_de_Emprestimos
         {
             try
             {
-                ParcelaConsulta parcelaConsulta = new ParcelaConsulta();
+                ParcelaConsultaDAO parcelaConsulta = new ParcelaConsultaDAO();
 
                 // Inicializa variáveis nulas para filtros opcionais
                 int? CodigoEmprestimo = null;
@@ -84,6 +85,23 @@ namespace Gerenciador_de_Emprestimos
 
                 // Exibe o resultado na grade (DataGrid)
                 dataGridConsultaParcela.DataSource = dataTable;
+
+                // Identificação
+                dataGridConsultaParcela.Columns["codigo_parcela"].HeaderText = "Cód Parcecla";
+                dataGridConsultaParcela.Columns["codigo_emprestimo"].HeaderText = "Cód Emprestimo.";
+                dataGridConsultaParcela.Columns["codigo_cliente"].HeaderText = "Cód Cliente";
+                dataGridConsultaParcela.Columns["nome_cliente"].HeaderText = "Cliente";
+
+                // Financeiro
+                dataGridConsultaParcela.Columns["valor_total"].HeaderText = "Total Emp.";
+                dataGridConsultaParcela.Columns["valor_parcela"].HeaderText = "Vlr. Parcela";
+                dataGridConsultaParcela.Columns["valor_pago"].HeaderText = "Vlr. Pago";
+
+                // Detalhes e Datas
+                dataGridConsultaParcela.Columns["numero_parcela"].HeaderText = "Nº";
+                dataGridConsultaParcela.Columns["data_pagamento"].HeaderText = "Dt. Pagamento";
+                dataGridConsultaParcela.Columns["data_vencimento"].HeaderText = "Vencimento";
+                dataGridConsultaParcela.Columns["status_parcela"].HeaderText = "Status";
             }
             catch(Exception ex)
             {
@@ -153,7 +171,24 @@ namespace Gerenciador_de_Emprestimos
                 }
 
                 // Obtém o DataTable que está vinculado ao DataGrid
-                DataTable dataTable = (DataTable)dataGridConsultaParcela.DataSource;
+                DataTable tabelaDeRelatorio = ((DataTable)dataGridConsultaParcela.DataSource).Copy();
+
+                // Identificação
+                tabelaDeRelatorio.Columns["codigo_parcela"].ColumnName = "Cód Parcecla";
+                tabelaDeRelatorio.Columns["codigo_emprestimo"].ColumnName = "Cód Emprestimo.";
+                tabelaDeRelatorio.Columns["codigo_cliente"].ColumnName = "Cód Cliente";
+                tabelaDeRelatorio.Columns["nome_cliente"].ColumnName = "Cliente";
+
+                // Financeiro
+                tabelaDeRelatorio.Columns["valor_total"].ColumnName = "Total Emp.";
+                tabelaDeRelatorio.Columns["valor_parcela"].ColumnName = "Vlr. Parcela";
+                tabelaDeRelatorio.Columns["valor_pago"].ColumnName = "Vlr. Pago";
+
+                // Detalhes e Datas
+                tabelaDeRelatorio.Columns["numero_parcela"].ColumnName = "Nº";
+                tabelaDeRelatorio.Columns["data_pagamento"].ColumnName = "Dt. Pagamento";
+                tabelaDeRelatorio.Columns["data_vencimento"].ColumnName = "Vencimento";
+                tabelaDeRelatorio.Columns["status_parcela"].ColumnName = "Status";
 
                 GeradorRelatorio relatorio = new GeradorRelatorio();
 
@@ -175,7 +210,7 @@ namespace Gerenciador_de_Emprestimos
                 relatorio.NumeroDeRegistros = totalDeLinhas;
 
                 // Gera o PDF
-                relatorio.RelatorioParcelas(dataTable);
+                relatorio.RelatorioParcelas(tabelaDeRelatorio);
             }
             catch (Exception ex)
             {

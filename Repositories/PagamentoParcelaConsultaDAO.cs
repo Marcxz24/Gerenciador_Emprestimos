@@ -8,10 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gerenciador_de_Emprestimos.Services
+namespace Gerenciador_de_Emprestimos.Repositories
 {
     // Classe responsável por consultar parcelas que estão pendentes para pagamento
-    public class PagamentoParcelaConsulta
+    public class PagamentoParcelaConsultaDAO
     {
         // Método que busca a relação entre Cliente, Empréstimo e Parcelas usando filtros opcionais
         public DataTable ConsultaClienteEmprestimo(int? codigoCliente, int? codigoEmprestimo, decimal valorJuros, decimal valorTotal, decimal valorParcela)

@@ -345,22 +345,24 @@ namespace Gerenciador_de_Emprestimos.Repositories
             DataTable dt = new DataTable();
 
             string sql = @"SELECT 
-                               e.codigo  AS codigo_emprestimo, 
-                               c.codigo AS codigo_cliente, 
-                               c.nome_cliente, 
-                               e.valor_emprestado_total AS valor_total, 
-                               e.percentual_juros, 
-                               e.data_pagar,
-                               P.data_ultimo_calculo_juros,
-                               e.observacoes,
-                               e.status_emprestimo 
-                           FROM emprestimosbd.emprestimos e
+                                e.codigo AS codigo_emprestimo, 
+                                c.codigo AS codigo_cliente, 
+                                c.nome_cliente,
+                                e.valor_emprestado_total AS valor_total, 
+                                MIN(p.numero_parcela) AS numero_parcela,
+                                e.percentual_juros, 
+                                MIN(p.data_vencimento) AS data_pagar,
+                                MAX(p.data_ultimo_calculo_juros) AS data_ultimo_calculo_juros,
+                                e.observacoes,
+                                e.status_emprestimo 
+                            FROM emprestimosbd.emprestimos e
                             INNER JOIN emprestimosbd.cliente c
                                 ON e.codigo_cliente = c.codigo
                             INNER JOIN emprestimosbd.conta_receber p
                                 ON e.codigo = p.codigo_emprestimo
-                            WHERE status_emprestimo = 'ATIVO'
-                                GROUP BY e.codigo";
+                            WHERE e.status_emprestimo = 'ATIVO'
+                              AND p.status_parcela IN ('ABERTA', 'ATRASADA') -- Filtro crucial para o MIN funcionar
+                            GROUP BY e.codigo";
 
             using (var conexao = ConexaoBancoDeDados.Conectar())
             using (var comando = new MySqlCommand(sql, conexao))

@@ -1,6 +1,5 @@
 ﻿using Gerenciador_de_Emprestimos.Models;
 using Gerenciador_de_Emprestimos.Repositories;
-using Gerenciador_de_Emprestimos.Services;
 using Gerenciador_de_Emprestimos.Utils;
 using System;
 using System.Collections.Generic;
@@ -42,7 +41,7 @@ namespace Gerenciador_de_Emprestimos
         {
             try
             {
-                PagamentoParcelaConsulta parcelaConsulta = new PagamentoParcelaConsulta();
+                PagamentoParcelaConsultaDAO parcelaConsulta = new PagamentoParcelaConsultaDAO();
 
                 int codigoCliente = 0;
                 int codigoEmprestimo = 0;
@@ -69,6 +68,19 @@ namespace Gerenciador_de_Emprestimos
                 // Executa a consulta e vincula o resultado ao DataGridView
                 DataTable dateTable = parcelaConsulta.ConsultaClienteEmprestimo(codigoCliente, codigoEmprestimo, valorJuros, valorTotal, valorParcela);
                 dataGridParcelasAbertas.DataSource = dateTable;
+
+                // Renomeando os nomes que vêm da Query
+                dataGridParcelasAbertas.Columns["codigo_cliente"].HeaderText = "Cód. Cliente";
+                dataGridParcelasAbertas.Columns["nome_cliente"].HeaderText = "Cliente";
+                dataGridParcelasAbertas.Columns["codigo_emprestimo"].HeaderText = "Cód. Emp.";
+                dataGridParcelasAbertas.Columns["valor_contrato"].HeaderText = "Vlr. Contrato";
+                dataGridParcelasAbertas.Columns["codigo_parcela"].HeaderText = "ID Parcela";
+                dataGridParcelasAbertas.Columns["valor_juros"].HeaderText = "Juros";
+                dataGridParcelasAbertas.Columns["numero_parcela"].HeaderText = "Nº Parc.";
+                dataGridParcelasAbertas.Columns["valor_parcela"].HeaderText = "Valor Parc.";
+                dataGridParcelasAbertas.Columns["valor_pago"].HeaderText = "Vlr. Pago";
+                dataGridParcelasAbertas.Columns["status_parcela"].HeaderText = "Status";
+                dataGridParcelasAbertas.Columns["data_vencimento"].HeaderText = "Vencimento";
             }
             catch (Exception ex)
             {

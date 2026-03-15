@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gerenciador_de_Emprestimos.Services
+namespace Gerenciador_de_Emprestimos.Repositories
 {
-    internal class EmprestimosConsulta
+    internal class EmprestimosConsultaDAO
     {
         // --- MÉTODO: Consulta flexível com múltiplos filtros ---
         public DataTable ConsultaEmprestimos(int? CodigoCliente, string NomeCliente, string StatusEmprestimo, decimal ValorEmprestado, decimal ValorParcela, decimal ValorJurosMonetario, int? QtnParcela, decimal ValorTotal)
@@ -18,8 +18,19 @@ namespace Gerenciador_de_Emprestimos.Services
             DataTable dataTable = new DataTable();
 
             // SQL Base: Busca dados do empréstimo e faz um JOIN para trazer o nome do cliente
-            string sql = $@"SELECT e.codigo, e.codigo_cliente, c.nome_cliente, e.valor_emprestado, e.valor_emprestado_total AS valor_total, e.quantidade_parcela, e.valor_parcela, e.valor_juros, e.status_emprestimo 
-                        FROM emprestimosbd.emprestimos e LEFT JOIN emprestimosbd.cliente c ON e.codigo_cliente = c.codigo";
+            string sql = $@"SELECT 
+                            e.codigo, 
+                            e.codigo_cliente, 
+                            c.nome_cliente, 
+                            e.valor_emprestado, 
+                            e.valor_emprestado_total AS valor_total, 
+                            e.quantidade_parcela, 
+                            e.valor_parcela, 
+                            e.valor_juros, 
+                            e.status_emprestimo 
+                        FROM emprestimosbd.emprestimos e 
+                            LEFT JOIN emprestimosbd.cliente c 
+                                ON e.codigo_cliente = c.codigo";
 
             // Técnica "WHERE 1 = 1": Facilita a concatenação de filtros adicionais com "AND"
             string sqlFiltros = " WHERE 1 = 1";

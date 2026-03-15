@@ -1,4 +1,5 @@
-﻿using Gerenciador_de_Emprestimos.Security;
+﻿using Gerenciador_de_Emprestimos.Repositories;
+using Gerenciador_de_Emprestimos.Security;
 using Gerenciador_de_Emprestimos.Services;
 using Gerenciador_de_Emprestimos.Utils;
 using System;
@@ -17,7 +18,7 @@ namespace Gerenciador_de_Emprestimos
     {
         public bool LoginRealizado { get; private set; } = false;
 
-        LoginService login = new LoginService();
+        LoginDAO login = new LoginDAO();
 
         // Método Construtor da classe
         public frmLoginFuncionario()
@@ -81,7 +82,7 @@ namespace Gerenciador_de_Emprestimos
                 }
 
                 // Se for um número, o sistema tenta buscar o nome de usuário vinculado àquele ID
-                LoginService login = new LoginService();
+                LoginDAO login = new LoginDAO();
                 string username = login.ObterUsernamePorCodigo(codigoFuncionario);
 
                 // Se a busca não retornar nada, avisa que o código é inválido ou o funcionário está bloqueado
@@ -201,7 +202,7 @@ namespace Gerenciador_de_Emprestimos
                     }
 
                     // Se for número, busca no banco o nome de usuário vinculado a esse código
-                    LoginService login = new LoginService();
+                    LoginDAO login = new LoginDAO();
                     string username = login.ObterUsernamePorCodigo(codigoFuncionario);
 
                     // Se a busca não retornar um nome, o ID é inexistente ou o funcionário está inativo

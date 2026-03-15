@@ -7,10 +7,10 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gerenciador_de_Emprestimos.Services
+namespace Gerenciador_de_Emprestimos.Repositories
 {
     // Define a classe interna responsável pelos serviços de autenticação e validação de login
-    internal class LoginService
+    internal class LoginDAO
     {
         // Propriedade para armazenar o ID do usuário que conseguiu logar com sucesso
         public int CodigoUsuarioLogado { get; private set; }

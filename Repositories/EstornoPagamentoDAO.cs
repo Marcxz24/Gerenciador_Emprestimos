@@ -70,14 +70,21 @@ namespace Gerenciador_de_Emprestimos.Repositories
                     // SQL Único para Total e Parcial
                     // Ele subtrai o valor e decide o status comparando com e.valor_parcela
                     string sql = @"UPDATE emprestimosbd.conta_receber c
-                                   INNER JOIN emprestimosbd.emprestimos e ON c.codigo_emprestimo = e.codigo
-                                   SET 
-                                       c.valor_pago = c.valor_pago - @valor_estornado,
-                                       c.status_parcela = IF((c.valor_pago - @valor_estornado) < e.valor_parcela, 'ABERTA', 'PAGA'),
-                                       c.data_pagamento = IF((c.valor_pago - @valor_estornado) < e.valor_parcela, NULL, c.data_pagamento),
-                                       c.data_ultimo_pagamento = IF((c.valor_pago - @valor_estornado) < e.valor_parcela, NULL, c.data_ultimo_pagamento)
-                                   WHERE c.codigo = @codigo_parcela 
-                                     AND c.valor_pago >= @valor_estornado";
+                                    INNER JOIN emprestimosbd.emprestimos e ON c.codigo_emprestimo = e.codigo
+                                    SET 
+                                        c.valor_pago = c.valor_pago - @valor_estornado,
+
+                                        c.status_parcela = CASE 
+                                                              WHEN (c.valor_pago - @valor_estornado) >= c.valor_parcela THEN 'PAGA'
+                                                              WHEN CURDATE() > c.data_vencimento THEN 'ATRASADA'
+                                                              ELSE 'ABERTA'
+                                                           END,
+                       
+                                        c.data_pagamento = IF((c.valor_pago - @valor_estornado) < c.valor_parcela, NULL, c.data_pagamento),
+                                        c.data_ultimo_pagamento = IF((c.valor_pago - @valor_estornado) < c.valor_parcela, NULL, c.data_ultimo_pagamento),
+                                        c.data_ultimo_calculo_juros = c.data_ultimo_calculo_juros 
+                                    WHERE c.codigo = @codigo_parcela 
+                                      AND c.valor_pago >= @valor_estornado";
 
                     using (var cmd = new MySqlCommand(sql, conn, transacao))
                     {

@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gerenciador_de_Emprestimos.Services
+namespace Gerenciador_de_Emprestimos.Repositories
 {
     // Define uma classe interna para gerenciar as consultas de parcelas
-    internal class ParcelaConsulta
+    internal class ParcelaConsultaDAO
     {
         // Método que recebe diversos filtros e retorna um DataTable para preencher o DataGrid
         public DataTable ConsultaParcela(int? CodigoEmprestimo, int? CodigoCliente, string NomeCliente, string StatusParcela, decimal ValorTotal, decimal ValorParcela, int? NumeroParcela)
@@ -20,7 +20,23 @@ namespace Gerenciador_de_Emprestimos.Services
 
             // SQL Base: Realiza o JOIN entre conta_receber (p), cliente (c) e emprestimos (e)
             // Isso permite trazer o nome do cliente e o valor total do empréstimo em uma única consulta
-            string SqlConsulta = "SELECT p.codigo as codigo_parcela, p.codigo_emprestimo, p.codigo_cliente, c.nome_cliente, e.valor_emprestado_total as valor_total, p.valor_parcela, p.numero_parcela, p.valor_pago, p.data_pagamento, p.data_vencimento, p.status_parcela FROM emprestimosbd.conta_receber p LEFT JOIN emprestimosbd.cliente c ON p.codigo_cliente = c.codigo LEFT JOIN emprestimosbd.emprestimos e ON p.codigo_emprestimo = e.codigo";
+            string SqlConsulta = @"SELECT 
+                                        p.codigo as codigo_parcela, 
+                                        p.codigo_emprestimo, 
+                                        p.codigo_cliente, 
+                                        c.nome_cliente, 
+                                        e.valor_emprestado_total as valor_total, 
+                                        p.valor_parcela, 
+                                        p.numero_parcela, 
+                                        p.valor_pago, 
+                                        p.data_pagamento, 
+                                        p.data_vencimento, 
+                                        p.status_parcela 
+                                    FROM emprestimosbd.conta_receber p 
+                                        LEFT JOIN emprestimosbd.cliente c 
+                                            ON p.codigo_cliente = c.codigo 
+                                        LEFT JOIN emprestimosbd.emprestimos e 
+                                            ON p.codigo_emprestimo = e.codigo";
 
             // Inicializa a cláusula de filtros. O '1 = 1' facilita a adição de múltiplos 'AND'
             string SqlFiltros = " WHERE 1 = 1";

@@ -75,6 +75,13 @@ namespace Gerenciador_de_Emprestimos.Forms
                 return true;
             }
 
+            if (ValidacaoCnpj.ValidarCnpj(txtCnpj.Text) == false)
+            {
+                Funcoes.MensagemWarning("CNPJ inválido, favor informar um CNPJ válido.");
+                txtCnpj.Focus();
+                return true;
+            }
+
             if (string.IsNullOrWhiteSpace(cmbTipoIE.Text))
             {
                 Funcoes.MensagemWarning("O campo Tipo IE é obrigatório.");

@@ -1,4 +1,5 @@
 ﻿using Gerenciador_de_Emprestimos.Database;
+using Gerenciador_de_Emprestimos.Repositories;
 using Gerenciador_de_Emprestimos.Services;
 using Gerenciador_de_Emprestimos.Utils;
 using MySql.Data.MySqlClient;
@@ -67,7 +68,7 @@ namespace Gerenciador_de_Emprestimos
         {
             try
             {
-                EmprestimosConsulta consultaEmprestimos = new EmprestimosConsulta();
+                EmprestimosConsultaDAO consultaEmprestimos = new EmprestimosConsultaDAO();
 
                 // Variáveis de apoio para os filtros
                 int? CodigoCliente = null;
@@ -107,6 +108,21 @@ namespace Gerenciador_de_Emprestimos
                 // Executa a busca no banco e vincula ao DataGrid
                 DataTable dataTable = consultaEmprestimos.ConsultaEmprestimos(CodigoCliente, NomeCliente, StatusEmprestimo, ValorEmprestado, ValorParcela, ValorJurosMonetario, QtnParcela, ValorTotal);
                 dataGridEmprestimos.DataSource = dataTable;
+
+                // Identificadores
+                dataGridEmprestimos.Columns["codigo"].HeaderText = "Cód Emprestimo";
+                dataGridEmprestimos.Columns["codigo_cliente"].HeaderText = "Cód Cliente";
+                dataGridEmprestimos.Columns["nome_cliente"].HeaderText = "Nome do Cliente";
+
+                // Valores Financeiros
+                dataGridEmprestimos.Columns["valor_emprestado"].HeaderText = "Vlr. Base";
+                dataGridEmprestimos.Columns["valor_total"].HeaderText = "Total c/ Juros";
+                dataGridEmprestimos.Columns["valor_juros"].HeaderText = "Juros Totais";
+                dataGridEmprestimos.Columns["valor_parcela"].HeaderText = "Valor Parc.";
+
+                // Quantidades e Status
+                dataGridEmprestimos.Columns["quantidade_parcela"].HeaderText = "Qtd. Parc.";
+                dataGridEmprestimos.Columns["status_emprestimo"].HeaderText = "Situação";
             }
             catch (Exception ex)
             {
@@ -140,7 +156,23 @@ namespace Gerenciador_de_Emprestimos
             {
                 if (ValidacaoDataGridVazio()) return;
 
-                DataTable tabela = (DataTable)dataGridEmprestimos.DataSource;
+                DataTable tabelaParaRelatorio = ((DataTable)dataGridEmprestimos.DataSource).Copy();
+
+                // Identificadores
+                tabelaParaRelatorio.Columns["codigo"].ColumnName = "Cód Emprestimo";
+                tabelaParaRelatorio.Columns["codigo_cliente"].ColumnName = "Cód Cliente";
+                tabelaParaRelatorio.Columns["nome_cliente"].ColumnName = "Nome do Cliente";
+
+                // Valores Financeiros
+                tabelaParaRelatorio.Columns["valor_emprestado"].ColumnName = "Vlr. Base";
+                tabelaParaRelatorio.Columns["valor_total"].ColumnName = "Total c/ Juros";
+                tabelaParaRelatorio.Columns["valor_juros"].ColumnName = "Juros Totais";
+                tabelaParaRelatorio.Columns["valor_parcela"].ColumnName = "Valor Parc.";
+
+                // Quantidades e Status
+                tabelaParaRelatorio.Columns["quantidade_parcela"].ColumnName = "Qtd. Parc.";
+                tabelaParaRelatorio.Columns["status_emprestimo"].ColumnName = "Situação";
+
                 GeradorRelatorio relatorio = new GeradorRelatorio();
 
                 // Cálculos de somatória para o rodapé do relatório
@@ -163,27 +195,11 @@ namespace Gerenciador_de_Emprestimos
                 relatorio.ValorTotalEmprestado = somarValorEmprestado;
 
                 // Gera o arquivo final
-                relatorio.RelatorioEmprestimoPdf(tabela);
+                relatorio.RelatorioEmprestimoPdf(tabelaParaRelatorio);
             }
             catch(Exception ex)
             {
                 Serilog.Log.Error("Ocorreu um erro ao gerar o relatório de empréstimos.\n\nDetalhes: " + ex.Message);
-            }
-        }
-
-        // --- EVENTO: Captura o código do empréstimo selecionado e fecha com sucesso ---
-        private void dataGridEmprestimos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                CodigoEmprestimoSelecionado = Convert.ToInt32(dataGridEmprestimos.CurrentRow.Cells["codigo"].Value);
-
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-            }
-            catch(Exception ex)
-            {
-                Serilog.Log.Error("Ocorreu um erro ao selecionar o empréstimo.\n\nDetalhes: " + ex.Message);
             }
         }
     }
