@@ -348,12 +348,14 @@ namespace Gerenciador_de_Emprestimos.Repositories
                                 e.codigo AS codigo_emprestimo, 
                                 c.codigo AS codigo_cliente, 
                                 c.nome_cliente,
-                                e.valor_emprestado_total AS valor_total, 
+                                e.valor_emprestado_total AS valor_total,
+                                p.valor_pago,
                                 MIN(p.numero_parcela) AS numero_parcela,
                                 e.percentual_juros, 
                                 MIN(p.data_vencimento) AS data_pagar,
                                 MAX(p.data_ultimo_calculo_juros) AS data_ultimo_calculo_juros,
                                 e.observacoes,
+                                p.observacoes AS obs_parcela,
                                 e.status_emprestimo 
                             FROM emprestimosbd.emprestimos e
                             INNER JOIN emprestimosbd.cliente c

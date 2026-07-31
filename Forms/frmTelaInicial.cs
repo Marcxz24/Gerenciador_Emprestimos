@@ -415,12 +415,14 @@ namespace Gerenciador_de_Emprestimos
                     dataGridListaEmprestimos.Columns["codigo_cliente"].HeaderText = "CÓD. CLIENTE";
                     dataGridListaEmprestimos.Columns["nome_cliente"].HeaderText = "NOME DO CLIENTE";
                     dataGridListaEmprestimos.Columns["valor_total"].HeaderText = "VALOR TOTAL";
+                    dataGridListaEmprestimos.Columns["valor_pago"].HeaderText = "VALOR PAGO";
                     dataGridListaEmprestimos.Columns["numero_parcela"].HeaderText = "N° PARCELA";
                     dataGridListaEmprestimos.Columns["percentual_juros"].HeaderText = "(%) JUROS";
                     dataGridListaEmprestimos.Columns["data_pagar"].HeaderText = "VENCIMENTO";
                     dataGridListaEmprestimos.Columns["data_ultimo_calculo_juros"].HeaderText = "PRÓXIMO VENCIMENTO";
                     dataGridListaEmprestimos.Columns["status_emprestimo"].HeaderText = "STATUS";
-                    dataGridListaEmprestimos.Columns["observacoes"].HeaderText = "OBSERVAÇÕES";
+                    dataGridListaEmprestimos.Columns["observacoes"].HeaderText = "OBS EMPRÉSTIMO";
+                    dataGridListaEmprestimos.Columns["obs_parcela"].HeaderText = "OBS PARCELA";
 
                     // Formatação de Moeda e Alinhamento
                     dataGridListaEmprestimos.Columns["valor_total"].DefaultCellStyle.Format = "C2";
