@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Gerenciador_de_Emprestimos.Models
 {
+    /// <summary>
+    /// DTO usado para armazenar informações sobre estornos de pagamentos.
+    /// Inclui referências ao pagamento/parcela, funcionário que realizou o estorno, valor e motivo.
+    /// </summary>
     public class EstornoPagamentoDTO
     {
         public int? Codigo { get; set; }

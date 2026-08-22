@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 
 namespace Gerenciador_de_Emprestimos.Repositories
 {
+    /// <summary>
+    /// DAO responsável por validar e executar o estorno de pagamentos de parcelas.
+    /// Inclui validações de sequência, atualização de saldo e registro de log de estorno.
+    /// </summary>
     public class EstornoPagamentoDAO
     {
         public bool ValidarSequenciaEstorno(EstornoPagamentoDTO dto)

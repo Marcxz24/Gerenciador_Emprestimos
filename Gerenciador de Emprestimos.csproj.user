@@ -43,6 +43,9 @@
     <Compile Update="Forms\frmSelecionarModeloMsg.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\frmSobreEmpresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\frmTelaInicial.cs">
       <SubType>Form</SubType>
     </Compile>

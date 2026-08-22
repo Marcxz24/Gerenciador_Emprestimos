@@ -12,6 +12,10 @@ using System.Threading.Tasks;
 
 namespace Gerenciador_de_Emprestimos.Repositories
 {
+     /// <summary>
+     /// DAO responsável por operações de persistência relacionadas a funcionários.
+     /// Suporta cadastro, edição, remoção e consultas de funcionários no banco.
+     /// </summary>
      public class FuncionarioDAO
      {
         // --- MÉTODO: Realiza a inserção de um novo funcionário no banco ---

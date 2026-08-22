@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Gerenciador_de_Emprestimos.Models
 {
+    /// <summary>
+    /// DTO que representa um contrato de empréstimo com propriedades financeiras e de identificação.
+    /// Contém valores, datas e estado do empréstimo para uso na lógica do sistema.
+    /// </summary>
     public class EmprestimoDTO
     {
         // --- PROPRIEDADES DE IDENTIFICAÇÃO E ESTADO ---

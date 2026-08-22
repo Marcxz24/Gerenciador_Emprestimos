@@ -12,6 +12,10 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Gerenciador_de_Emprestimos.Repositories
 {
+    /// <summary>
+    /// Acesso a dados (DAO) para operações relacionadas a clientes.
+    /// Fornece métodos para cadastrar, editar, excluir e consultar clientes no banco de dados.
+    /// </summary>
     public class ClienteDAO
     {
         // Variável global, que será utilizada para receber o código do cliente.

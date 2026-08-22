@@ -9,7 +9,10 @@ using System.Threading.Tasks;
 
 namespace Gerenciador_de_Emprestimos.Repositories
 {
-    // Define a classe interna responsável pelos serviços de autenticação e validação de login
+    /// <summary>
+    /// DAO interno responsável por operações de autenticação e verificação de credenciais.
+    /// Fornece métodos para validar login, recuperar username e checar se o usuário está inativo.
+    /// </summary>
     internal class LoginDAO
     {
         // Propriedade para armazenar o ID do usuário que conseguiu logar com sucesso

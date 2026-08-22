@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace Gerenciador_de_Emprestimos.Models
 {
+    /// <summary>
+    /// DTO que representa uma parcela de empréstimo, com valores, datas, status e referências ao empréstimo e cliente.
+    /// Utilizado para cálculo, exibição em grids e operações financeiras sobre parcelas.
+    /// </summary>
     public class ParcelaDTO
     {
         // --- Identificação ---

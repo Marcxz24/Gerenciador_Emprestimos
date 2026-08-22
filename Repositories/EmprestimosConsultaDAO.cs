@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 
 namespace Gerenciador_de_Emprestimos.Repositories
 {
+    /// <summary>
+    /// DAO interno para consultas flexíveis de empréstimos.
+    /// Fornece métodos para pesquisar empréstimos com filtros variados e por código.
+    /// </summary>
     internal class EmprestimosConsultaDAO
     {
         // --- MÉTODO: Consulta flexível com múltiplos filtros ---

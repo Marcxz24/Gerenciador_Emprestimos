@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace Gerenciador_de_Emprestimos.Repositories
 {
+    /// <summary>
+    /// DAO responsável por operações de CRUD para lembretes de funcionário.
+    /// Permite listar, criar, editar e marcar lembretes como excluídos.
+    /// </summary>
     public class LembreteDAO
     {
         public List<LembreteDTO> ListarLembretes(int codigoFuncionarioLogado)

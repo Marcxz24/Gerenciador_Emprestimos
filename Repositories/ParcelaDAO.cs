@@ -5,6 +5,10 @@ using MySql.Data.MySqlClient;
 
 namespace Gerenciador_de_Emprestimos.Repositories
 {
+    /// <summary>
+    /// DAO para operações de acesso e manipulação de parcelas (conta a receber).
+    /// Fornece métodos para obter detalhes de parcela, atualizar pagamentos e consultar status.
+    /// </summary>
     public class ParcelaDAO
     {
         // Retorna os dados da parcela (mapeado para ParcelaDTO)

@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Gerenciador_de_Emprestimos.Models
 {
+    /// <summary>
+    /// Representa um lembrete (DTO) contendo dados e operações para editar e excluir um lembrete.
+    /// </summary>
     public class LembreteDTO
     {
         public int Codigo { get; set; }
@@ -17,12 +20,18 @@ namespace Gerenciador_de_Emprestimos.Models
         public string Descricao { get; set; }
         public string Situacao { get; set; }
 
+        /// <summary>
+        /// Edita o lembrete atual utilizando os dados do DTO.
+        /// </summary>
         public void EditarLembrete()
         {
             LembreteDAO dao = new LembreteDAO();
             dao.EditarLembrete(Codigo, Titulo, Descricao);
         }
 
+        /// <summary>
+        /// Exclui o lembrete atual identificado pelo código.
+        /// </summary>
         public void ExcluirLembrete()
         {
             LembreteDAO dao = new LembreteDAO();

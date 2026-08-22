@@ -1,5 +1,9 @@
 ﻿namespace Gerenciador_de_Emprestimos.Models
 {
+    /// <summary>
+    /// DTO que representa os dados de um funcionário do sistema.
+    /// Contém informações pessoais, credenciais e status de cadastro.
+    /// </summary>
     public class FuncionarioDTO
     {
         public int Codigo { get; set; }

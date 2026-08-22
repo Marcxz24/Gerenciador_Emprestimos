@@ -11,6 +11,10 @@ using System.Threading.Tasks;
 
 namespace Gerenciador_de_Emprestimos.Repositories
 {
+    /// <summary>
+    /// DAO responsável por operações de banco de dados relacionadas a empréstimos e parcelas.
+    /// Inclui consultas para buscar parcelas, salvar empréstimos e operações financeiras.
+    /// </summary>
     public class EmprestimoDAO
     {
         // Método para buscar a menor parcela aberta de um empréstimo específico

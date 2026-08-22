@@ -65,6 +65,7 @@
             ajudaToolStripMenuItem = new ToolStripMenuItem();
             chamadoToolStripMenuItem = new ToolStripMenuItem();
             novoToolStripMenuItem = new ToolStripMenuItem();
+            sobreToolStripMenuItem = new ToolStripMenuItem();
             imageListSistemaGerenciadorEmprestimos = new ImageList(components);
             painelLogoSistema = new Panel();
             lblTituloInicial = new Label();
@@ -290,7 +291,7 @@
             // ajudaToolStripMenuItem
             // 
             resources.ApplyResources(ajudaToolStripMenuItem, "ajudaToolStripMenuItem");
-            ajudaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { chamadoToolStripMenuItem });
+            ajudaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { chamadoToolStripMenuItem, sobreToolStripMenuItem });
             ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
             // 
             // chamadoToolStripMenuItem
@@ -304,6 +305,12 @@
             resources.ApplyResources(novoToolStripMenuItem, "novoToolStripMenuItem");
             novoToolStripMenuItem.Name = "novoToolStripMenuItem";
             novoToolStripMenuItem.Click += novoToolStripMenuItem_Click;
+            // 
+            // sobreToolStripMenuItem
+            // 
+            resources.ApplyResources(sobreToolStripMenuItem, "sobreToolStripMenuItem");
+            sobreToolStripMenuItem.Name = "sobreToolStripMenuItem";
+            sobreToolStripMenuItem.Click += sobreToolStripMenuItem_Click;
             // 
             // imageListSistemaGerenciadorEmprestimos
             // 
@@ -504,5 +511,6 @@
         private ToolStripMenuItem pessoaJurídicaCNPJToolStripMenuItem;
         private DataGridView dataGridListaEmprestimos;
         private ToolStripStatusLabel toolStrSeparador;
+        private ToolStripMenuItem sobreToolStripMenuItem;
     }
 }

@@ -141,7 +141,7 @@
     <value>178, 20</value>
   </data>
   <data name="toolStsStripSistemVersion.Text" xml:space="preserve">
-    <value>Versão do Sistema: 2.0.3</value>
+    <value>Versão do Sistema: 2.1.0</value>
   </data>
   <data name="toolStsStripSistemVersion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -272,6 +272,12 @@
   </data>
   <data name="chamadoToolStripMenuItem.Text" xml:space="preserve">
     <value>Chamado</value>
+  </data>
+  <data name="sobreToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 26</value>
+  </data>
+  <data name="sobreToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sobre</value>
   </data>
   <data name="ajudaToolStripMenuItem.Text" xml:space="preserve">
     <value>Ajuda</value>

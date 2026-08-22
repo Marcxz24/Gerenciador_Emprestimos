@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Gerenciador_de_Emprestimos.Models
 {
+    /// <summary>
+    /// Representa os dados de um cliente (Pessoa Física ou Jurídica) usados pela aplicação.
+    /// Contém informações pessoais, endereço, contato e metadados de cadastro.
+    /// </summary>
     public class ClienteDTO
     {
         // Identificação Única

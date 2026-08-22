@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Gerenciador_de_Emprestimos.Models
 {
+    /// <summary>
+    /// DTO para representar informações básicas de uma empresa (Pessoa Jurídica).
+    /// Utilizado para operações de cadastro e exibição de dados da empresa.
+    /// </summary>
     public class EmpresaDTO
     {
         public string cnpj { get; set; }

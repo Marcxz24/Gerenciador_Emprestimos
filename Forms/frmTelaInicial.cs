@@ -585,6 +585,8 @@ namespace Gerenciador_de_Emprestimos
             dataGridListaEmprestimos.DataSource = null;
         }
 
+        // --- EVENTO: Cobrança via WhatsApp ---
+        // Este evento é disparado quando o usuário não tem privilégios para acessar o formulário de cobrança via WhatsApp.
         private void cobrançaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!ControleAcesso.PodeAcessar("frmCobrancaWhatsApp"))
@@ -597,6 +599,8 @@ namespace Gerenciador_de_Emprestimos
             frmCobranca.ShowDialog();
         }
 
+        // --- EVENTO: Cadastro de Mensagem de Cobrança ---
+        // Este evento é disparado quando o usuário não tem privilégios para acessar o formulário de cadastro de mensagens de cobrança.
         private void mensagemWhatsAppToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!ControleAcesso.PodeAcessar("frmCadastroMensagemCobranca"))
@@ -609,6 +613,8 @@ namespace Gerenciador_de_Emprestimos
             frmCadastroMsgCobranca.ShowDialog();
         }
 
+        // --- EVENTO: Cadastro de Pessoa Jurídica (CNPJ) ---
+        // dispara quando o usuário não tem privilégios para acessar o formulário de cadastro de clientes PJ (Pessoa Jurídica) e exibe uma mensagem de aviso.
         private void pessoaJurídicaCNPJToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!ControleAcesso.PodeAcessar("frmCadastroClientePJ"))
@@ -621,6 +627,7 @@ namespace Gerenciador_de_Emprestimos
             cadastroClientePJ.ShowDialog();
         }
 
+        // Evento para abrir o formulário de estorno de pagamento quando as teclas de atalho CTRL + E forem pressionadas
         private void estornarPagamentoCTRLEToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!ControleAcesso.PodeAcessar("frmEstornarPagamento"))
@@ -633,6 +640,9 @@ namespace Gerenciador_de_Emprestimos
             estornoPagamento.ShowDialog();
         }
 
+        // --- EVENTO: Duplo clique na lista de empréstimos ---
+        // Este evento é disparado quando o usuário dá um duplo clique em uma linha da lista de empréstimos.
+        // abre o formulário de pagamento do empréstimo selecionado, caso ele esteja ativo.
         private void dataGridListaEmprestimos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -676,6 +686,14 @@ namespace Gerenciador_de_Emprestimos
                 return;
             }
 
+        }
+
+        // --- EVENTO: Sobre a Empresa ---
+        // Quando o usuário clica em "Sobre" no menu, este evento é disparado para abrir a tela de informações da empresa.
+        private void sobreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSobreEmpresa frmSobre = new frmSobreEmpresa();
+            frmSobre.ShowDialog();
         }
     }
 }
